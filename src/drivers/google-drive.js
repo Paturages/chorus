@@ -8,7 +8,7 @@ module.exports = async ({
   charterName,
   nameParser = name => {
     let [artist, ...songParts] = name.split(' - ');
-    if (!songParts) return { artist: 'N/A', song: name };
+    if (!songParts || !songParts.length) return { artist: 'N/A', song: name.replace(/\.(zip|rar)$/, '') };
     const song = songParts.join(' - ').replace(/\.(zip|rar)$/, '');
     return { artist, song };
   }
