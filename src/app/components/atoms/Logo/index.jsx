@@ -29,5 +29,8 @@ export default ({ simple, count }) =>
           </a>
         </div>
       )}
+      <div className="Logo__subtitle">
+        <b><a href="https://github.com/Paturages/chorus">GitHub</a></b>
+      </div>
     </div>
   );
