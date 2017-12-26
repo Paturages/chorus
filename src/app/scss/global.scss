@@ -1,0 +1,25 @@
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 1em 2em 2em;
+  background: $color--bg;
+  color: $color--text;
+  font-family: $font-family;
+}
+
+a {
+  color: $color--link;
+  &:hover, &:focus {
+    color: $color--link-hover;
+  }
+  &:visited {
+    color: $color--link-visited;
+    &:hover, &:focus {
+      color: $color--link-hover;
+    }
+  }
+}

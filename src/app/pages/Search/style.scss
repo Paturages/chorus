@@ -1,0 +1,16 @@
+.Search {
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 800px;
+    margin-bottom: 3em;
+  }
+  .Logo {
+    font-size: .8em;
+    margin-right: 1em;
+  }
+  .SearchBox {
+    flex: 1;
+  }
+}

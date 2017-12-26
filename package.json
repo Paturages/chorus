@@ -1,0 +1,52 @@
+{
+  "name": "ch-aggregator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "google-auth-library": "^0.12.0",
+    "googleapis": "^23.0.0",
+    "ls": "^0.2.1",
+    "pg": "^7.4.0",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-inferno": "^3.3.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.21.0",
+    "css-loader": "^0.28.7",
+    "es5-shim": "^4.5.10",
+    "es6-shim": "^0.35.3",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "inferno": "^3.10.1",
+    "inferno-component": "^3.10.1",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.14.3",
+    "npm-run-all": "^4.1.2",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-loader": "^2.0.9",
+    "prettier": "^1.9.2",
+    "prettier-loader": "^2.0.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-merge": "^4.1.1"
+  },
+  "scripts": {
+    "import": "node index.js",
+    "start": "npm-run-all --parallel server webpack-dev browser-sync",
+    "server": "nodemon server.js --watch server.js --watch dist/index.html --watch src/utils",
+    "webpack-dev": "webpack --config webpack/dev.conf.js --watch",
+    "browser-sync": "browser-sync start --config browser-sync.json",
+    "build": "webpack --config webpack/build.conf.js",
+    "postinstall": "webpack --config webpack/dev.conf.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

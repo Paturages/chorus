@@ -1,0 +1,16 @@
+.SearchInput {
+  position: relative;
+  .TextInput__input {
+    padding-right: 1.75em;
+  }
+  &__button {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    font-size: 1em;
+    bottom: .3em;
+    background: none;
+    appearance: none;
+    border: none;
+  }
+}

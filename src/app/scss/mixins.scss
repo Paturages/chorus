@@ -1,0 +1,18 @@
+$breakpoint--tablet: 768;
+$breakpoint--desktop: 980;
+$breakpoint--widescreen: 1180;
+
+@mixin breakpoint($point) {
+  @if $point == widescreen {
+    @media (min-width: $breakpoint--widescreen) { @content ; }
+  }
+  @else if $point == desktop {
+    @media (min-width: #{$breakpoint--desktop}px) and (max-width: #{$breakpoint--widescreen - 1}px) { @content ; }
+  }
+  @else if $point == tablet {
+    @media (min-width: #{$breakpoint--tablet}px) and (max-width: #{$breakpoint--desktop - 1}px) { @content ; }
+  }
+  @else if $point == mobile {
+    @media (max-width: #{$breakpoint--tablet - 1}px) { @content ; }
+  }
+}

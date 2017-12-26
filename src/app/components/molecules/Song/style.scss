@@ -1,0 +1,29 @@
+.Song {
+  padding: 1em 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__meta {
+    flex: 1;
+    @media (min-width: 601px) {
+      margin-right: 1em;
+    }
+  }
+
+  &__artist {
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+
+  &__chart {
+    text-align: right;
+    @media (min-width: 601px) {
+      max-width: 200px;
+    }
+  }
+}

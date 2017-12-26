@@ -1,0 +1,16 @@
+@import 'variables';
+
+.Logo {
+  &__title {
+    font-size: 3em;
+    letter-spacing: 2pt;
+    a {
+      color: $color--text !important;
+      text-decoration: none;
+    }
+  }
+  &__subtitle {
+    font-style: italic;
+    font-size: .8em;
+  }
+}

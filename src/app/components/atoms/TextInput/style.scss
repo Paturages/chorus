@@ -1,0 +1,22 @@
+@import 'variables';
+
+.TextInput {
+  text-align: left;
+
+  &__label {
+    font-size: .8em;
+  }
+
+  &__input {
+    border: 1px solid $color--text;
+    appearance: none;
+    width: 100%;
+    font-size: 1em;
+    padding: .5em 1em;
+    font-family: $font-family;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
