@@ -1,5 +1,5 @@
-const Drive = require('../src/utils/drive');
-const importDrive = require('../src/drivers/google-drive');
+const Drive = require('../../src/utils/drive');
+const importDrive = require('../../src/drivers/google-drive');
 const ROOT_FOLDER = 'https://drive.google.com/drive/folders/1EULhQ6fKJ6XYMvVbXETlaadTMBCbO7Yw';
 
 module.exports = async () => {
