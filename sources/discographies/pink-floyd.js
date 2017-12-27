@@ -10,7 +10,13 @@ module.exports = async () => {
     await importDrive({
       driveUrl: `https://drive.google.com/drive/folders/${folder.id}`,
       driveName: `Pink Floyd - ${folder.name}`,
-      driveShort: folder.id
+      driveShort: folder.id,
+      nameParser: name => {
+        let [artist, ...songParts] = name.split(' - ');
+        if (!songParts || !songParts.length) return { artist: 'Pink Floyd', song: name.replace(/\.(zip|rar)$/, '') };
+        const song = songParts.join(' - ').replace(/\.(zip|rar)$/, '');
+        return { artist, song };
+      }
     });
   }
   return 0;
