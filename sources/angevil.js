@@ -4,7 +4,8 @@ const ROOT_FOLDER = 'https://drive.google.com/drive/folders/1olQexhSVSD6MRQraOsy
 
 module.exports = async () => {
   const rootId = ROOT_FOLDER.slice(ROOT_FOLDER.lastIndexOf('/') + 1);
-  const folders = (await Drive.get({ q: `'${rootId}' in parents` })).filter(x => x.name != 'Icons');
+  const folders = (await Drive.get({ q: `'${rootId}' in parents` })).filter(x => x.name != 'Icons' && x.name != 'Full Albums')
+    .concat(await Drive.get({ q: "'1jfI4ajsJAihfz7iIa_UtbF5FT0fxLXaP' in parents" })); // Full albums
   for (let i = 0; i < folders.length; i++) {
     const folder = folders[i];
     await importDrive({
