@@ -20,28 +20,7 @@ Right now, the search engine is a bit in a proof-of-concept, experimental mode (
 
 ## How to add your drive
 
-If you have a Google Drive folder containing your charts, you can submit a pull request that adds a .js file in the sources folder, so that the next import run can integrate it. The format should be as follows:
-
-```js
-module.exports = {
-  driveUrl: "<your drive folder URL>",
-  driveName: "<how you want to name it>",
-  charter: "<your charter handle>"
-}
-```
-
-The default import script takes folders/archives of songs with the following name format:
-```
-<artist/band name> - <song name>
-```
-
-If your name format doesn't match the above, you can implement your own name parser as a nameParser argument. [Here is an example](sources/digitalsquirrel.js).
-
-If your drive structure is more complicated (e.g. subfolders), you will have go implement your own import script. For instance, [here is the script that imports C3 conversions](sources/c3.js), and the one that imports [Sygenysis' drive](sources/sygenysis.js).
-
-If you have a non-Google repository, as long as you can get a list of links somehow (e.g. with an API) along with their associated song and artist/band names, you can implement your own import script. [Example with my own charts](sources/paturages.js). However, I am currently unable to download archives of packs and parse them: you have to be able to provide separate links for each song. 
-
-If you are unable to provide an implementation of your import script, feel free to submit an issue so we can figure this out.
+[Follow the instructions described here](source-examples).
 
 ## Local installation
 

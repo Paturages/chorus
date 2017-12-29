@@ -1,0 +1,12 @@
+Source name: My beautiful source TXT
+Link to source (Drive, Youtube channel or similar; optional): https://example.org.txt
+Charter (optional; this will automatically attribute the charts defined below if they do not have a "charter" field): MyselfTXT
+
+Artist: A Cool Band TXT
+Song: A Cool Song TXT
+Link: https://somewhere.on.the.internet/a-cool-song-txt
+
+Artist: Another Cool Band TXT
+Song: Another Cool Song TXT
+Link: https://somewhere.on.the.internet/another-cool-song-txt
+Charter: Some other person other than Myself TXT

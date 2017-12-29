@@ -19,7 +19,7 @@ export default ({ simple, count }) =>
       </div>
       {count && (
         <div className="Logo__subtitle">
-          featuring <b>{count}</b> songs scrapped from&nbsp;
+          featuring <b>{count}</b> charts scrapped from&nbsp;
           <a
             href="https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o/edit#gid=0"
             target="_blank"

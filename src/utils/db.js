@@ -41,7 +41,7 @@ module.exports.upsertSource = ({ short, name, link }) =>
   `.then(([source]) => source)
 ;
 
-module.exports.upsertSongs = async songs => {
+module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
   songs = songs.filter(song => song.name);
   for (let i = 0; i < songs.length; i += 1000) {
     console.log('Inserting from', i, 'to', Math.min(i + 1000, songs.length));
@@ -57,8 +57,8 @@ module.exports.upsertSongs = async songs => {
       SET "name" = EXCLUDED."name",
       "artist" = EXCLUDED."artist",
       "charter" = EXCLUDED."charter",
-      "sourceId" = EXCLUDED."sourceId",
-      "lastModified" = EXCLUDED."lastModified"
+      "sourceId" = EXCLUDED."sourceId"
+      ${{ sql: noUpdateLastModified ? '' : `,"lastModified" = EXCLUDED."lastModified"` }}
     `;
   }
 };
