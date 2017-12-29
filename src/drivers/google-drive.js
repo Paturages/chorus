@@ -1,17 +1,19 @@
 const Drive = require('../utils/drive');
 const { upsertSource, upsertSongs } = require('../utils/db');
 
+const defaultNameParser = name => {
+  let [artist, ...songParts] = name.split(' - ');
+  if (!songParts || !songParts.length) return { artist: 'N/A', song: name.replace(/\.(zip|rar)$/, '') };
+  const song = songParts.join(' - ').replace(/\.(zip|rar)$/, '');
+  return { artist, song };
+};
+
 module.exports = async ({
   driveShort,
   driveName,
   driveUrl,
   charterName,
-  nameParser = name => {
-    let [artist, ...songParts] = name.split(' - ');
-    if (!songParts || !songParts.length) return { artist: 'N/A', song: name.replace(/\.(zip|rar)$/, '') };
-    const song = songParts.join(' - ').replace(/\.(zip|rar)$/, '');
-    return { artist, song };
-  }
+  nameParser = defaultNameParser
 }) => {
   console.log('Registering or finding source');
   const source = await upsertSource({

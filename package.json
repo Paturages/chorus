@@ -42,6 +42,7 @@
   },
   "scripts": {
     "import": "node index.js",
+    "import:arcturus": "node --optimize_for_size --max-old-space-size=64 index.js",
     "start": "npm-run-all --parallel server webpack-dev browser-sync",
     "server": "nodemon server.js --watch server.js --watch dist/index.html --watch src/utils",
     "webpack-dev": "webpack --config webpack/dev.conf.js --watch",
