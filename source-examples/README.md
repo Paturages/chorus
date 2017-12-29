@@ -15,7 +15,7 @@ Your Google Drive folder has to match the following structure:
 
 If your folder follows the above guidelines, you can replace the values between quotes in [this file](google-drive.js) and [send it](#sending-your-file).
 
-If your name format doesn't match the above, you can implement your own name parser as a nameParser argument. [Here is an example](../sources/digitalsquirrel.js).
+If your folder/archive names format doesn't match the above, but still is consistent (and you're too lazy to rename them all), you can implement your own name parser as a nameParser argument. [Here is an example](../sources/digitalsquirrel.js).
 
 If your drive structure is categorized in subfolders (e.g. discographies with one subfolder per album), you can copy/paste the script for [BABYMETAL's discography](../sources/discographies/babymetal.js) and replace the values for `ROOT_FOLDER`, `ARTIST` and `SOURCE_NAME`.
 
@@ -35,7 +35,7 @@ Fill in the [template text file](plain-text.txt) and [send it](#sending-your-fil
 
 ![Excel](images/excel.png)
 
-For convenience (especially if you have a lot of songs), the plain text form is also available as an Excel file. You can fill it as is and [send it](#sending-your-file).
+For convenience (especially if you have a lot of songs), the plain text form is also [available as an Excel file](https://github.com/Paturages/chorus/raw/master/source-examples/excel.xlsx). You can fill it as is and [send it](#sending-your-file).
 
 ## Sending your file
 
