@@ -11,10 +11,10 @@ const ROOT_FOLDER = 'https://drive.google.com/drive/folders/0B1lvPFfHBT2LTFN0ODh
 
 const nameParser = name => {
   let [artist, ...songParts] = name.split(' - ');
-  if (!songParts) return { artist: 'N/A', song: name };
-  const song = songParts.join(' - ').replace(/\.(.+)$/, '');
+  if (!songParts || !songParts.length) return { artist: 'N/A', song: name.replace(/\.(zip|rar)$/, '') };
+  const song = songParts.join(' - ').replace(/\.(zip|rar)$/, '');
   return { artist, song };
-}
+};
 
 module.exports = async () => {
   // 1. Register the source in the database
