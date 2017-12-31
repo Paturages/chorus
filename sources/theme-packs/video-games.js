@@ -7,6 +7,21 @@ const SOURCE_NAME = 'Video games';
 module.exports = async () => {
   const rootId = ROOT_FOLDER.slice(ROOT_FOLDER.lastIndexOf('/') + 1);
   const folders = (await Drive.get({ q: `'${rootId}' in parents` }));
+  const subfolders = [];
+  for (let i = 0; i < folders.length; i++) {
+    const folder = folders[i];
+    const subfolderPayload = await Drive.get({ q: `'${folder.id}' in parents and mimeType = 'application/vnd.google-apps.folder'` });
+    for (let j = 0; j < subfolderPayload.length; j++) {
+      const subfolder = subfolderPayload[j];
+      console.log('Checking if', subfolder.name, 'is not a chart folder');
+      const subfolderContent = await Drive.get({ q: `'${subfolder.id}' in parents` });
+      if (!subfolderContent.find(({ name }) => name == 'notes.chart' || name == 'notes.mid')) {
+        subfolder.name = `${folder.name} - ${subfolder.name}`;
+        subfolders.push(subfolder);
+      }
+    }
+  }
+  folders.push(...subfolders);
   for (let i = 0; i < folders.length; i++) {
     const folder = folders[i];
     await importDrive({

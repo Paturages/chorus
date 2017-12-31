@@ -46,8 +46,6 @@ module.exports = async () => {
 
   // 4. For each artist, get all the songs and insert them
   await Promise.all(artists.map(async ({ id, name: artistName }) => {
-    // Wait half a second between each request to try to escape Arcturus' OOM killer
-    await new Promise(resolve => setTimeout(() => resolve()), 500);
     const songs = await Drive.get({
       q: `'${id}' in parents`,
       fields: 'nextPageToken, files(id, name, modifiedTime, webViewLink)'

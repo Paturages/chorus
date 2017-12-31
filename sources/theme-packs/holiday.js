@@ -1,8 +1,8 @@
 const Drive = require('../../src/utils/drive');
 const importDrive = require('../../src/drivers/google-drive');
-const ROOT_FOLDER = 'https://drive.google.com/drive/folders/1A0tRg3y3NjeS1Wfv978dhhCFhUeDFXDH';
+const ROOT_FOLDER = 'https://drive.google.com/drive/folders/1KQhZgffuchPqle0EA9B9o7ne25ZoEQ4v';
 const ARTIST = null;
-const SOURCE_NAME = 'Memes';
+const SOURCE_NAME = 'Holiday Songs';
 
 module.exports = async () => {
   const rootId = ROOT_FOLDER.slice(ROOT_FOLDER.lastIndexOf('/') + 1);
