@@ -30,7 +30,29 @@ export default ({ simple, count }) =>
         </div>
       )}
       <div className="Logo__subtitle">
-        <b><a href="https://github.com/Paturages/chorus">GitHub</a></b>
+        <br />
+        <b>
+          <a
+            href="https://github.com/Paturages/chorus"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </b>
+        <br />
+        <a
+          href="https://github.com/Paturages/chorus/blob/master/source-examples"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Want to add more songs to chorus?
+        </a>
+        <br />
+        <span>
+          Having issues? File an issue on the GitHub or DM Paturages#9405 on
+          Discord!
+        </span>
       </div>
     </div>
   );
