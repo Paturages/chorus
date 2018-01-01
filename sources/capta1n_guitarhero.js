@@ -18,7 +18,14 @@ module.exports = async () => {
     driveUrl: ROOT_FOLDER,
     driveName: `capta1n_guitarhero`,
     driveShort: rootId,
-    charterName: 'capta1n_guitarhero'
+    charterName: 'capta1n_guitarhero',
+    nameParser: name => {
+      if (name.indexOf('.rar') < 0) return {};
+      let [artist, ...songParts] = name.split(' - ');
+      if (!songParts || !songParts.length) return { artist: 'N/A', song: name.replace(/\.(zip|rar)$/, '') };
+      const song = songParts.join(' - ').replace(/\.(zip|rar)$/, '');
+      return { artist, song };
+    }
   });
   return 0;
 };
