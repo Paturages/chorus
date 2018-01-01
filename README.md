@@ -36,7 +36,7 @@ Configure a PostgreSQL database and get your Google API client ID and secret. Co
 
 (you can definitely help if you want to!)
 
-* *(In progress)* Index official GH/RB songs and provide individual song download links
+* *(In progress)* Index other popular custom packs (e.g. from FoF, Phase Shift...)
 * **(Priority)** Fetch the song.ini for every song (if applicable) to get more metadata (individual charters for C3 converts/streamer packs/etc..., album, year, genre, instrument difficulties...)
 * Fetch the .chart and/or .mid for every song to browse available difficulties and instruments
 * Compute the checksum (`sha1` most likely) of .chart/.mid files (possibly for each difficulty/instrument) to detect duplicates and to be able to find a download link just from the .chart/.mid file (would be especially useful for streamers wanting to provide individual song download links for their setlists). Possibly cooperate with the Clone Hero dev team in regards to online leaderboards and highscores (potentially mergeable with chorus).
