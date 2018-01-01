@@ -16,7 +16,7 @@ with a ton of songs from talented charters, including conversions from C3, as we
 
 ## How it works
 
-**chorus** periodically imports links to songs from a list of mostly Google Drive folders (manually provided in the sources folder). It crawls the provided folders and formally saves the links (**not the song bundles**; I am not hosting/mirroring any charts other than mine) and their metadata in a database: the web app simply reads and searches from it.
+**chorus** periodically imports links to songs from a list of mostly Google Drive folders (manually provided in the sources folder). It crawls the provided folders and formally saves the links (**not the song bundles themselves**) and their metadata in a database: the web app simply reads and searches from it.
 
 The search engine makes use of PostgreSQL's `ts_vectors` and trigrams (via the `pg_trgm` extension): it operates on the concatenation of artist/band, song, charter and source names. It seems to be working pretty well for now!
 
