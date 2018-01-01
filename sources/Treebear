@@ -1,0 +1,5 @@
+module.exports = {
+  driveUrl: 'https://drive.google.com/open?id=1UfY8MwsUP7DuUIXqwQRBiUeah55R90GX',
+  driveName: `Treebear's Customs`,
+  charterName: `Treebear`
+};
