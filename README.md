@@ -2,7 +2,7 @@
 
 *Clone Hero-friendly Organized Repository of User-provided Songs*
 
-[Link to web app here](http://arcturus.fightthe.pw)
+[Link to web app here](https://chorus.fightthe.pw)
 
 ## Introduction
 
@@ -10,7 +10,7 @@ The current state of Guitar Hero/Rock Band/Clone Hero custom songs aggregation i
 
 The current sources are based on the
 [official CH charts spreadsheet](https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o)
-with a ton of songs from talented charters, including conversions from C3. There are currently more than 14,000 charts indexed, and the number is still growing!
+with a ton of songs from talented charters, including conversions from C3, as well as the official GH/RB setlists. There are currently more than 18,000 charts indexed, and the number is still growing!
 
 *Disclaimer: I am not responsible of the charts and songs that are indexed by chorus (except the charts that are attributed to "Paturages"). If you have an issue with any of those, please contact the source owners (links to sources are provided for every song).*
 
@@ -37,7 +37,7 @@ Configure a PostgreSQL database and get your Google API client ID and secret. Co
 (you can definitely help if you want to!)
 
 * *(In progress)* Index other popular custom packs (e.g. from FoF, Phase Shift...)
-* **(Priority)** Fetch the song.ini for every song (if applicable) to get more metadata (individual charters for C3 converts/streamer packs/etc..., album, year, genre, instrument difficulties...)
+* **(Priority)** Fetch the song.ini for every song (if applicable) to get more metadata (individual charters for C3 converts/streamer packs/etc..., album, year, genre, instrument difficulties...). **Feasibility validated with the import script for ExileLord's setlist!**
 * Fetch the .chart and/or .mid for every song to browse available difficulties and instruments
 * Compute the checksum (`sha1` most likely) of .chart/.mid files (possibly for each difficulty/instrument) to detect duplicates and to be able to find a download link just from the .chart/.mid file (would be especially useful for streamers wanting to provide individual song download links for their setlists). Possibly cooperate with the Clone Hero dev team in regards to online leaderboards and highscores (potentially mergeable with chorus).
 * Detect features in a .chart/.mid: Tap notes, open notes... Compute total notes and note density (total notes / song length (between first and last note))
