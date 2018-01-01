@@ -15,12 +15,9 @@ const express = Express();
 const server = Server(express);
 const port = process.env.PORT || 3000;
 
-express.use(
-  Express.static(
-    Path.resolve(process.env.NODE_DIR || 'dist'),
-    process.env.NODE_ENV === 'production' ? { maxAge: 86400000 } : undefined,
-  ),
-);
+if (process.env.NODE_ENV != 'production') {
+  express.use(Express.static(Path.resolve(process.env.NODE_DIR || 'dist')));
+}
 
 express.get('/search', (req, res) => res.sendFile(Path.resolve(__dirname, 'dist', 'index.html')));
 express.get('/artist/:name', (req, res) => res.sendFile(Path.resolve(__dirname, 'dist', 'index.html')));

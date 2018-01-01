@@ -1,16 +1,11 @@
 const Pg = require('./pg');
 
-let NB_SONGS;
-let LATEST_CHARTS;
-
 module.exports.getNbSongs = async () => {
-  if (NB_SONGS != null) return NB_SONGS;
   return await Pg.q`SELECT COUNT(*) AS "nbSongs" FROM "Songs"`
   .then(([{ nbSongs }]) => (NB_SONGS = nbSongs));
 };
 
 module.exports.getLatestCharts = async () => {
-  if (LATEST_CHARTS != null) return LATEST_CHARTS;
   return await Pg.q`
     select
       s."name",

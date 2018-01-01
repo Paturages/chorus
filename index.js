@@ -22,9 +22,9 @@ const { updateWords } = require('./src/utils/db');
         else if (sources[i].slice(-2) != 'js') await excel(sources[i]);
         else {
           // Skip imports
-          if ([
-            'c3', 'c3-releases'
-          ].find(x => x == driveShort)) continue;
+          // if ([
+          //   'c3', 'c3-releases'
+          // ].find(x => x == driveShort)) continue;
           const source = require(sources[i]);
           console.log('Importing', driveShort);
           await (typeof source == 'function' ? source() : drive(Object.assign(source, { driveShort })));

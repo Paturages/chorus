@@ -19,20 +19,7 @@
 
 const Pg = require('pg');
 
-let pgConfig;
-if (process.env.NODE_ENV === 'production') {
-  pgConfig = {
-    database: process.env.PG_DATABASE,
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    host: process.env.PG_HOST,
-    port: process.env.PG_PORT,
-    max: process.env.PG_MAX || 10,
-    idleTimeoutMillis: process.env.PG_IDLE_TIMEOUT_MILLIS || 5000,
-  };
-} else {
-  pgConfig = require('../../conf/pg.json');
-}
+const pgConfig = require('../../conf/pg.json');
 
 const pool = new Pg.Pool(pgConfig);
 Promise.race([
