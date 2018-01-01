@@ -1,6 +1,6 @@
 const Drive = require('../../src/utils/drive');
 const importDrive = require('../../src/drivers/google-drive');
-const ROOT_FOLDER = 'https://drive.google.com/drive/folders/1G9w2zgnMgWkvrzvGPB02hIn5NR8pm_Ni';
+const ROOT_FOLDER = 'https://drive.google.com/drive/folders/1p69THgM2-ovTmqjrekXzbTpsrO7zeW2G';
 
 module.exports = async () => {
   const rootId = ROOT_FOLDER.slice(ROOT_FOLDER.lastIndexOf('/') + 1);
