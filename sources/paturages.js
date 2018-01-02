@@ -34,7 +34,7 @@ module.exports = async () => {
     // - "charter": the name of the charter (optional)
     // - "link": the link to download the song
     // - "lastModified": a timestamp in ISO format (e.g. 2017-12-24T21:52:23.617Z)
-    const [, artist, name] = Name.match(/^\[.+\] (.+) - (.+)\.zip$/);
+    const [, artist, name] = Name.match(/\]? ?(.+) - (.+)\.zip$/);
     const link = `https://public.fightthe.pw/clonehero/${URL.slice(2)}`
     return {
       name,
