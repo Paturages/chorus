@@ -4,6 +4,7 @@ const drive = require('./src/drivers/google-drive');
 const txt = require('./src/drivers/txt');
 const excel = require('./src/drivers/excel');
 const init = require('./src/utils/init');
+const exit = require('./src/utils/exit');
 const { updateWords } = require('./src/utils/db');
 
 (async () => {
@@ -22,9 +23,9 @@ const { updateWords } = require('./src/utils/db');
         else if (sources[i].slice(-2) != 'js') await excel(sources[i]);
         else {
           // Skip imports
-          // if ([
-          //   'c3', 'c3-releases'
-          // ].find(x => x == driveShort)) continue;
+          if (![
+            'paturages', 'siavash', 'chezy'
+          ].find(x => x == driveShort)) continue;
           const source = require(sources[i]);
           console.log('Importing', driveShort);
           await (typeof source == 'function' ? source() : drive(Object.assign(source, { driveShort })));
@@ -39,7 +40,7 @@ const { updateWords } = require('./src/utils/db');
     await updateWords();
     console.log('Done!');
     if (failed.length) console.log('The following imports failed:', failed.join(', '));
-    process.exit(0);
+    await exit();
   } catch (err) {
     console.error(err.stack);
     process.exit(1);

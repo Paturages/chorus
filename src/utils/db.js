@@ -25,7 +25,7 @@ module.exports.getLatestCharts = async () => {
 
 module.exports.upsertSource = ({ short, name, link }) =>
   Pg.q`
-    INSERT INTO "Sources"
+    INSERT INTO "Sources${{ sql: process.argv[2] ? '' : '_new'}}"
     ("short", "name", "link")
     VALUES
     (${short}, ${name}, ${link})
@@ -41,7 +41,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
   for (let i = 0; i < songs.length; i += 1000) {
     console.log('Inserting from', i, 'to', Math.min(i + 1000, songs.length));
     await Pg.q`
-      INSERT INTO "Songs"
+      INSERT INTO "Songs${{ sql: process.argv[2] ? '' : '_new' }}"
       ("name", "artist", "sourceId", "charter", "link", "lastModified")
       VALUES
       ${songs.slice(i, i + 1000).map(
@@ -59,7 +59,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
 };
 
 module.exports.updateWords = async () => Pg.q`
-  update "Songs" s set words = array_to_string(tsvector_to_array(
+  update "Songs${{ sql: process.argv[2] ? '' : '_new' }}" s set words = array_to_string(tsvector_to_array(
     setweight(to_tsvector('english', coalesce("artist",'')), 'A') ||
     setweight(to_tsvector('english', coalesce("name",'')), 'A') ||
     setweight(to_tsvector('simple', coalesce("charter",'')), 'B') ||
