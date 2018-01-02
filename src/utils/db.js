@@ -63,7 +63,7 @@ module.exports.updateWords = async () => Pg.q`
     setweight(to_tsvector('english', coalesce("artist",'')), 'A') ||
     setweight(to_tsvector('english', coalesce("name",'')), 'A') ||
     setweight(to_tsvector('simple', coalesce("charter",'')), 'B') ||
-    setweight(to_tsvector('english', (SELECT "name" FROM "Sources" WHERE "id" = s."sourceId")), 'B')
+    setweight(to_tsvector('english', (SELECT "name" FROM "Sources${{ sql: process.argv[2] ? '' : '_new' }}" WHERE "id" = s."sourceId")), 'B')
   ), ' ');
 `;
 
