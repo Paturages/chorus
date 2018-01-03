@@ -36,11 +36,12 @@ Configure a PostgreSQL database and get your Google API client ID and secret. Co
 
 (you can definitely help if you want to!)
 
-* *(In progress)* Index other popular custom packs (e.g. from FoF, Phase Shift...)
-* **(Priority)** Fetch the song.ini for every song (if applicable) to get more metadata (individual charters for C3 converts/streamer packs/etc..., album, year, genre, instrument difficulties...). **Feasibility validated with the import script for ExileLord's setlist!**
-* Fetch the .chart and/or .mid for every song to browse available difficulties and instruments
-* Compute the checksum (`sha1` most likely) of .chart/.mid files (possibly for each difficulty/instrument) to detect duplicates and to be able to find a download link just from the .chart/.mid file (would be especially useful for streamers wanting to provide individual song download links for their setlists). Possibly cooperate with the Clone Hero dev team in regards to online leaderboards and highscores (potentially mergeable with chorus).
-* Detect features in a .chart/.mid: Tap notes, open notes... Compute total notes and note density (total notes / song length (between first and last note))
+* *(In progress by @sandsoles16)* Index other popular custom packs (e.g. from FoF, Phase Shift...)
+* **(Priority, in progress)** Fetch the song.ini for every song (if applicable) to get more metadata (individual charters for C3 converts/streamer packs/etc..., album, year, genre, instrument difficulties...). **Feasibility validated with the import script for ExileLord's setlist!**
+* *(In progress)* Fetch the .chart and/or .mid for every song to browse available difficulties and instruments
+* *(In progress)* Compute the checksum (`sha1` most likely) of .chart/.mid files (possibly for each difficulty/instrument) to detect duplicates and to be able to find a download link just from the .chart/.mid file (would be especially useful for streamers wanting to provide individual song download links for their setlists). Possibly cooperate with the Clone Hero dev team in regards to online leaderboards and highscores (potentially mergeable with chorus).
+* *(In progress)* Detect features in a .chart/.mid: Tap notes, open notes... Compute total notes and note density (total notes / song length (between first and last note))
+* Add possibility to save favorites (locally, in `localStorage`)
 * Investigate possibilities of detecting stolen charts (percentage of similarity in one difficulty/instrument)
 * Support other hosting solutions (i.e. write [drivers](src/drivers) for them), such as Dropbox, Mediafire, MEGA...
 * Link the search engine to a Discord bot
