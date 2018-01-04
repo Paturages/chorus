@@ -9,6 +9,7 @@
     "google-auth-library": "^0.12.0",
     "googleapis": "^23.0.0",
     "ls": "^0.2.1",
+    "midifile": "^1.0.4",
     "pg": "^7.4.0",
     "request": "^2.83.0",
     "xlsx": "^0.11.15"

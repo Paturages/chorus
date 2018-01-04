@@ -50,16 +50,16 @@ let timeout;
 const DELAY = 200;
 const processQueue = () => {
   if (!queue.length) return timeout = null;
-  const { args, callback } = queue.shift();
+  const { method, args, callback } = queue.shift();
   timeout = setTimeout(() => processQueue(), DELAY);
-  Drive.files.list(args, callback);
+  Drive.files[method](args, callback);
 };
-const throttle = (args, callback) => {
-  queue.push({ args, callback });
+const throttle = (method, args, callback) => {
+  queue.push({ method, args, callback });
   if (!timeout) timeout = setTimeout(() => processQueue(), DELAY);
 };
 
-const get = (args, files) => new Promise((resolve, reject) => throttle(Object.assign({
+const list = (args, files) => new Promise((resolve, reject) => throttle('list', Object.assign({
   auth: oAuth2,
   pageSize: 1000,
   fields: 'nextPageToken, files(id, name)'
@@ -77,4 +77,9 @@ const get = (args, files) => new Promise((resolve, reject) => throttle(Object.as
   );
 }));
 
-module.exports = { init, get };
+const get = fileId => new Promise((resolve, reject) => throttle('get', { auth: oAuth2, fileId }, async (err, payload) => {
+  if (err) return reject(err);
+  resolve(payload);
+}));
+
+module.exports = { init, list, get };

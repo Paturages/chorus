@@ -1,0 +1,45 @@
+[Song]
+{
+  Offset = 0
+  Resolution = 192
+  Player2 = bass
+  Difficulty = 0
+  PreviewStart = 0
+  PreviewEnd = 0
+  Genre = "rock"
+  MediaType = "cd"
+}
+[SyncTrack]
+{
+  0 = TS 4
+  0 = B 120000
+}
+[Events]
+{
+}
+[ExpertSingle]
+{
+  0 = N 3 0
+  0 = N 6 0 
+  48 = N 2 0
+  48 = N 6 0 
+  96 = N 3 0
+  96 = N 6 0 
+  144 = N 7 0
+  192 = N 0 0
+  240 = N 1 144
+  432 = N 2 0
+  432 = N 4 0
+  480 = N 2 0
+  480 = N 4 0
+}
+[ExpertGHLGuitar]
+{
+  0 = N 3 0
+  48 = N 4 0
+  96 = N 8 0
+  144 = N 0 0
+  192 = N 1 0
+  240 = N 2 0
+  288 = N 7 0
+}
