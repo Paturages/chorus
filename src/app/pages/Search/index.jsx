@@ -14,12 +14,8 @@ export default class Search extends Component {
     super(props);
     this.state = { songs: [], query: props.query, from: 0 };
     if (process.env.NODE_ENV === 'production' && typeof ga !== 'undefined') {
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'Search',
-        eventAction: 'default',
-        eventLabel: props.query
-      });
+      ga('set', 'page', `/search?query=${props.query}`);
+      ga('send', 'pageview');
     }
     Http.get("/api/search", { query: props.query }).then(songs =>
       this.setState({ songs })
