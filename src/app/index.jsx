@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
     window,
     document,
     "script",
-    "https://www.google-analytics.com/analytics_debug.js",
+    "https://www.google-analytics.com/analytics.js",
     "ga"
   );
   ga("create", "UA-112049887-1", "auto");
