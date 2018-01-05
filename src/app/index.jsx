@@ -11,6 +11,19 @@ import "scss/fonts.scss";
 
 import "./index.html";
 
+// Evil good ol' spying Google Analytics >:)
+if (process.env.NODE_ENV === 'production') {
+  const remote = document.createElement('script');
+  remote.async = true;
+  remote.src = 'https://www.googletagmanager.com/gtag/js?id=UA-112049887-1';
+  remote.type = 'text/javascript';
+  (document.getElementsByTagName('HEAD')[0] || document.body).appendChild(remote);
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-112049887-1');
+};
+
 const queryParts = (window.location.search || "")
   .slice(1)
   .split("&")
