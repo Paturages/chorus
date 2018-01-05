@@ -31,7 +31,10 @@ export default ({ simple, count }) =>
       )}
       <div className="Logo__subtitle">
         <br />
-        <span>Shoutouts to sandsoles16 for re-uploading archives as individual songs, and ZeroHearts for always taking care of the spreadsheet!</span>
+        <span>
+          Shoutouts to sandsoles16 for re-uploading archives as individual
+          songs, and ZeroHearts for always taking care of the spreadsheet!
+        </span>
         <br />
         <b>
           <a

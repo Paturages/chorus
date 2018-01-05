@@ -12,17 +12,29 @@ import "scss/fonts.scss";
 import "./index.html";
 
 // Evil good ol' spying Google Analytics >:)
-if (process.env.NODE_ENV === 'production') {
-  const remote = document.createElement('script');
-  remote.async = true;
-  remote.src = 'https://www.googletagmanager.com/gtag/js?id=UA-112049887-1';
-  remote.type = 'text/javascript';
-  (document.getElementsByTagName('HEAD')[0] || document.body).appendChild(remote);
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'UA-112049887-1');
-};
+if (process.env.NODE_ENV === "production") {
+  (function(i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    (i[r] =
+      i[r] ||
+      function() {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date());
+    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics_debug.js",
+    "ga"
+  );
+  ga("create", "UA-112049887-1", "auto");
+  ga("send", "pageview");
+}
 
 const queryParts = (window.location.search || "")
   .slice(1)

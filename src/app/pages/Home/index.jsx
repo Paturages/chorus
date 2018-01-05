@@ -34,6 +34,10 @@ export default class Home extends Component {
                 "Search",
                 `/search?query=${query}`
               );
+              if (typeof ga !== "undefined") {
+                ga("set", "page", `/search?query=${query}`);
+                ga("send", "pageview");
+              }
             })
           }
         />
