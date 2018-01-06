@@ -66,7 +66,7 @@ const q = (queryArr, ...params) => {
       params[index][0].length
     ) {
       params[index].forEach(row => row.forEach(x => queryArgs.push(x)));
-      return `${part}${params[index].map(row => `(${row.map(x => `$${queryIndex++}`)})`).join(',')}`;
+      return `${part}${params[index].map(row => `(${row.map(x => (x || {}).sql || `$${queryIndex++}`)})`).join(',')}`;
     }
     // Decompose arrays
     if (typeof params[index] === 'object' && params[index].length) {

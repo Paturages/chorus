@@ -1,6 +1,11 @@
 const crypto = require('crypto');
+if (!process.env.HASH_SECRET) console.log('WARNING: HASH_SECRET not defined for sha256');
 const getSha = txt => {
-  const hash = crypto.createHmac('sha256', process.env.HASH_SECRET || 'this should really be defined for production runs');
+  const hash = crypto.createHmac(
+    'sha256',
+    process.env.HASH_SECRET ||
+    'this should really be defined for production runs'
+  );
   hash.update(txt);
   return hash.digest('hex');
 };
@@ -52,6 +57,19 @@ const notesMap = { 0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 8: 6, 7: 7 };
 module.exports = chart => {
   // Trim each line because of Windows \r\n shenanigans
   const lines = chart.split('\n').map(line => line.trim());
+  // Get song metadata from the [Song] section as a backup to the song.ini
+  const songIndex = lines.indexOf('[Song]');
+  const chartMeta = {};
+  for (let i = 1; lines[i] != '}'; i++) {
+    let [param, value] = lines[i].split(' = ');
+    if (!value) continue;
+    param = param.trim();
+    value = value.trim();
+    if (value[0] == '"') value = value.slice(1, -1);
+    // For some reason, there's an extra ", " in front of the year
+    if (param == 'Year') value = value.replace(', ', '');
+    chartMeta[param] = value;
+  }
   /*
     Detect sections:
     A song with no sections matches the following:
@@ -108,5 +126,5 @@ module.exports = chart => {
     noteCounts[instrument][difficulty] = notesArray.length;
     hashes[instrument][difficulty] = getSha(notesArray.join(' '));
   }
-  return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, hasSoloSections, noteCounts, hashes };
+  return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, hasSoloSections, noteCounts, hashes, chartMeta };
 };

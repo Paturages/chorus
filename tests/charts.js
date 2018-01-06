@@ -1,4 +1,4 @@
-const getMetaFromChart = require('../src/utils/chart-meta');
+const getMetaFromChart = require('../src/utils/meta/chart');
 const fs = require('fs');
 const ls = require('ls');
 const path = require('path');

@@ -1,4 +1,4 @@
-const ls = require('ls');
+const fs = require('fs');
 const path = require('path');
 const drive = require('./src/drivers/google-drive');
 const txt = require('./src/drivers/txt');
@@ -10,36 +10,30 @@ const { updateWords } = require('./src/utils/db');
 (async () => {
   await init();
   try {
-    const sources = ls(`${path.resolve(__dirname, 'sources')}/**/${process.argv[2] ? `${process.argv[2]}.*` : '*.js'}`)
-      .map(({ full }) => full);
+    const sources = [
+      fs.readFileSync(path.resolve(__dirname, 'sources', 'charters.txt'), 'utf8')
+    ].join('\n')
+      .split('\n')
+      .map(line => {
+        if (!line.trim() || line.trim()[0] == '#') return;
+        const [name, link] = line.split('::');
+        if (!name || !link) return;
+        return { name: name.trim(), link: link.trim() };
+      });
     const failed = [];
     for (let i = 0; i < sources.length; i++) {
-      const driveShort = sources[i].slice(
-        sources[i].lastIndexOf('/') + 1,
-        sources[i].lastIndexOf('.')
-      );
+      if (!sources[i] || (process.argv[2] && sources[i].name.toLowerCase().indexOf(process.argv[2].toLowerCase()) < 0)) continue;
       try {
-        if (sources[i].slice(-3) == 'txt') await txt(sources[i]);
-        else if (sources[i].slice(-2) != 'js') await excel(sources[i]);
-        else {
-          // Skip imports
-          // if (![
-          //   'paturages', 'siavash', 'chezy'
-          // ].find(x => x == driveShort)) continue;
-          const source = require(sources[i]);
-          console.log('Importing', driveShort);
-          await (typeof source == 'function' ? source() : drive(Object.assign(source, { driveShort })));
-        }
+        await drive(sources[i]);
       } catch (err) {
         console.error(err.stack);
-        console.log(driveShort, 'failed!');
-        failed.push(driveShort);
+        console.log(sources[i].name, 'failed!');
+        failed.push(sources[i].name);
       }
     }
-    console.log('Updating song indexation words');
-    await updateWords();
     console.log('Done!');
-    if (failed.length) console.log('The following imports failed:', failed.join(', '));
+    if (failed.length) console.log(`The following imports failed:
+    ${failed.join('\n    ')}`);
     await exit();
   } catch (err) {
     console.error(err.stack);

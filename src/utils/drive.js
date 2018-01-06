@@ -62,7 +62,7 @@ const throttle = (method, args, callback) => {
 const list = (args, files) => new Promise((resolve, reject) => throttle('list', Object.assign({
   auth: oAuth2,
   pageSize: 1000,
-  fields: 'nextPageToken, files(id, name)'
+  fields: 'nextPageToken, files(id, name, mimeType, fileExtension, size, webContentLink, modifiedTime, webViewLink)'
 }, args), async (err, payload) => {
   if (err) return reject(err);
   resolve(

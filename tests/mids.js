@@ -1,4 +1,4 @@
-const getMetaFromMidi = require('../src/utils/midi-meta');
+const getMetaFromMidi = require('../src/utils/meta/midi');
 const fs = require('fs');
 const ls = require('ls');
 const path = require('path');

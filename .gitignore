@@ -2,6 +2,8 @@ conf
 node_modules
 dist
 build
-npm-debug.log
+tmp
+tmp.rar
+*.log
 .DS_Store
 ~$*

@@ -7,7 +7,11 @@ const crypto = require('crypto');
 const MIDIFile = require('midifile');
 const fs = require('fs');
 const getSha = txt => {
-  const hash = crypto.createHmac('sha256', process.env.HASH_SECRET || 'this should really be defined for production runs');
+  const hash = crypto.createHmac(
+    'sha256',
+    process.env.HASH_SECRET ||
+    'this should really be defined for production runs'
+  );
   hash.update(txt);
   return hash.digest('hex');
 };
@@ -24,9 +28,9 @@ const partMap = {
 const diffOffsets = { e: 59, m: 71, h: 83, x: 95 };
 const tracks = {};
 
-module.exports = midiFile => {
+const parse = midiFile => {
   const midi = new MIDIFile(midiFile.buffer);
-  let hasSections = false, hasStarPower = false, hasForced = false, hasTaps = false, hasOpen = false;
+  let hasSections = false, hasStarPower = false, hasForced = false, hasTap = false, hasOpen = false;
   let isOpen = false;
   const notes = {};
   midi.getEvents().forEach(event => {
@@ -36,7 +40,7 @@ module.exports = midiFile => {
     if (data && data.slice(1, 8) == 'section') hasSections = true;
     else if (data && partMap[data]) tracks[event.track] = partMap[data];
     // If that ain't black magic, I don't know what it is. But it works.
-    else if (data == "PS\u0000\u0000ÿ\u0004\u0001÷") hasTaps = true;
+    else if (data == "PS\u0000\u0000ÿ\u0004\u0001÷") hasTap = true;
     else if (data == "PS\u0000\u0000\u0003\u0001\u0001÷") {
       hasOpen = true;
       isOpen = true;
@@ -98,5 +102,14 @@ module.exports = midiFile => {
     hashes[instrument][difficulty] = getSha(notesArray.join(' '));
   }
 
-  return { hasSections, hasStarPower, hasForced, hasTaps, hasOpen, noteCounts, hashes };
+  return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, noteCounts, hashes };
+};
+
+module.exports = midiFile => {
+  try {
+    return parse(midiFile);
+  } catch (err) {
+    console.error(err.message);
+    return {};
+  }
 };
