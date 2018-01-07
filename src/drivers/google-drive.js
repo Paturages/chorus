@@ -214,6 +214,7 @@ module.exports = async ({ name, link }) => {
     }
     // Recurse on subfolders
     for (let i = 0; i < subfolders.length; i++) {
+      subfolders[i].parent = Object.assign({}, folder, { name: `${folder.parent ? `${folder.parent.name} - ` : ''}${folder.name}` });
       await searchSongFolders(subfolders[i]);
     }
   };

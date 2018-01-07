@@ -2,6 +2,15 @@ import Inferno from "inferno";
 
 import "./style.scss";
 
+// Of course there's an easter egg.
+const ACRONYMS = [
+  "Clone Hero-friendly Organized Repository of User-provided Songs",
+  "Charting habitat of real unsettling secrets",
+  "Cool hats on randyladyman's unlisted stream",
+  "Clown harmonica olympics: a really useless sport."
+  // TODO: I need more! Send pull requests!
+];
+
 export default ({ simple, count }) =>
   simple ? (
     <div className="Logo">
@@ -15,7 +24,9 @@ export default ({ simple, count }) =>
         <a href="/">chorus</a>
       </div>
       <div className="Logo__subtitle">
-        Clone Hero-friendly Organized Repository of User-provided Songs
+        {Math.random() < 0.1
+          ? ACRONYMS[(Math.random() * ACRONYMS.length) >> 0]
+          : ACRONYMS[0]}
       </div>
       {count && (
         <div className="Logo__subtitle">
@@ -26,15 +37,12 @@ export default ({ simple, count }) =>
             rel="noopener noreferrer"
           >
             various drives of this spreadsheet
-          </a>
+          </a>&nbsp;and tons more from the Clone Hero community
         </div>
       )}
       <div className="Logo__subtitle">
         <br />
-        <span>
-          Shoutouts to sandsoles16 for re-uploading archives as individual
-          songs, and ZeroHearts for always taking care of the spreadsheet!
-        </span>
+        <span>Advanced search is coming soon, I swear.</span>
         <br />
         <b>
           <a
@@ -47,7 +55,7 @@ export default ({ simple, count }) =>
         </b>
         <br />
         <a
-          href="https://github.com/Paturages/chorus/blob/master/source-examples"
+          href="https://github.com/Paturages/chorus/blob/master/sources"
           target="_blank"
           rel="noopener noreferrer"
         >

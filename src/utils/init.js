@@ -60,8 +60,7 @@ module.exports = async () => {
       "hasStems" boolean,
       "noteCounts" jsonb,
       "lastModified" timestamp with time zone,
-      "link" text,
-      "hashes" jsonb
+      "link" text
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON public."Songs_new" USING btree(link)`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(name gin_trgm_ops)`;
@@ -70,6 +69,7 @@ module.exports = async () => {
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(genre gin_trgm_ops)`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(charter gin_trgm_ops)`;
     await Pg.q`CREATE TABLE "Songs_Sources_new" (
+      "parent" jsonb,
       "sourceId" integer,
       "songId" integer,
       PRIMARY KEY ("sourceId", "songId"),

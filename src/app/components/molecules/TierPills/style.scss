@@ -1,0 +1,77 @@
+.TierPills {
+  position: relative;
+  cursor: default;
+
+  &__label {
+    text-transform: uppercase;
+    font-size: .6em;
+
+    &--disabled {
+      opacity: .25;
+    }
+  }
+
+  &__pills {
+    font-size: .8em;
+    display: flex;
+    flex-direction: row;
+
+    &--hard-as-fuck {
+      .TierPills__pill {
+        background: red;
+      }
+    }
+
+    &--disabled {
+      opacity: .25;
+    }
+  }
+
+  &__pill {
+    border: 1px solid #fff;
+    border-radius: 1em;
+    width: 1em;
+    height: 1em;
+    background: #eeea;
+    opacity: .8;
+    &--empty {
+      background: none;
+    }
+  }
+
+  &__diffs {
+    font-size: .6em;
+    text-align: right;
+    height: .8em;
+  }
+
+  &__diff {
+    &--disabled {
+      opacity: .25;
+    }
+  }
+
+  &__details {
+    cursor: text;
+    background: rgba(50, 50, 50, .8);
+    width: 18rem;
+    padding: .5em 1em;
+    font-size: .6em;
+    position: absolute;
+    bottom: -.5em;
+    right: 0;
+    display: none;
+    &:hover {
+      display: block;
+    }
+  }
+
+  &__detail-hash {
+    font-size: .7em;
+    opacity: .6;
+  }
+
+  &:hover .TierPills__details {
+    display: block;
+  }
+}

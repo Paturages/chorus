@@ -9,8 +9,17 @@ module.exports.getLatestCharts = async () => {
   return await Pg.q`
     SELECT
       s.*,
-      array_agg(row_to_json(x)) as "sources",
-      array_agg(row_to_json(sh)) as "hashes"
+      array_agg(distinct jsonb_build_object(
+        'id', x."id",
+        'name', x."name",
+        'link', x."link",
+        'parent', ss."parent"
+      )) as "sources",
+      array_agg(distinct jsonb_build_object(
+        'hash', sh."hash",
+        'part', sh."part",
+        'difficulty', sh."difficulty"
+      )) as "hashes"
     from "Songs_Words" sw
     join "Songs" s on s."id" = sw."songId"
     join "Songs_Sources" ss on ss."songId" = s."id"
@@ -20,8 +29,16 @@ module.exports.getLatestCharts = async () => {
     order by s."lastModified" desc
     limit 20
   `
-  .then(songs => (LATEST_CHARTS = songs));
-};
+  .then(songs => songs.map(song => Object.assign(song, {
+    hashes: song.hashes.reduce((hashes, { hash, part, difficulty }) => {
+      if (part == 'file') return Object.assign(hashes, { file: hash });
+      if (!hashes[part]) hashes[part] = {};
+      hashes[part][difficulty] = hash;
+      return hashes;
+    }, {})
+  })))
+  .then(songs => (LATEST_CHARTS = songs))
+}
 
 module.exports.upsertSource = ({ name, link }) =>
   Pg.q`
@@ -182,9 +199,13 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
     await Promise.all([
       Pg.q`
         INSERT INTO "Songs_Sources${{ sql: process.argv[2] ? '' : '_new' }}"
-        ("sourceId", "songId")
+        ("parent", "sourceId", "songId")
         VALUES
-        ${songIds.map(({ id }) => [songs[0].meta.source.chorusId, id])}
+        ${songIds.map(({ id }) => [
+          songs[0].parent ? JSON.stringify(songs[0].parent) : null,
+          songs[0].meta.source.chorusId,
+          id
+        ])}
         ON CONFLICT DO NOTHING
       `,
       Pg.q`
@@ -220,8 +241,9 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           ("songId", "word")
           VALUES
           ${songIds.reduce((arr, { id }, index) => {
+            const parent = songs[i + index].parent || {};
             const { source, name, artist, genre, album, charter } = songs[i + index].meta;
-            [source.name, name, artist, genre, album, charter].join(' ').split(' ').forEach(word => {
+            [parent.name || '', source.name, name, artist, genre, album, charter].join(' ').split(' ').forEach(word => {
               arr.push(`($${queryIndex++}, coalesce((
                 select array_to_string(array_agg(t), ' ') from unnest(tsvector_to_array(to_tsvector('english', $${queryIndex++}))) t
               ), ''))`);
@@ -238,16 +260,25 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
 
 module.exports.search = (query, offset, limit) => Pg.query(`
   select
-    avg(
+    round(100 * avg(
       word_similarity(sw."word", array_to_string(
         tsvector_to_array(
-          to_tsvector('english', $1)
+          to_tsvector('english', 'something')
         ), ' ')
       )
-    ) as "searchScore",
+    )::numeric,2) as "searchScore",
     s.*,
-    array_agg(row_to_json(x)) as "sources",
-    array_agg(row_to_json(sh)) as "hashes"
+    array_agg(distinct jsonb_build_object(
+      'id', x."id",
+      'name', x."name",
+      'link', x."link",
+      'parent', ss."parent"
+    )) as "sources",
+    array_agg(distinct jsonb_build_object(
+      'hash', sh."hash",
+      'part', sh."part",
+      'difficulty', sh."difficulty"
+    )) as "hashes"
   from "Songs_Words" sw
   join "Songs" s on s."id" = sw."songId"
   join "Songs_Sources" ss on ss."songId" = s."id"
@@ -257,7 +288,15 @@ module.exports.search = (query, offset, limit) => Pg.query(`
   order by "searchScore" desc
   limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
   ${+offset ? `OFFSET ${+offset}` : ''}
-`, [query]);
+`, [query])
+.then(songs => songs.map(song => Object.assign(song, {
+  hashes: song.hashes.reduce((hashes, { hash, part, difficulty }) => {
+    if (part == 'file') return Object.assign(hashes, { file: hash });
+    if (!hashes[part]) hashes[part] = {};
+    hashes[part][difficulty] = hash;
+    return hashes;
+  }, {})
+})));
 
 module.exports.getLinksMapBySource = sourceId => Promise.all([
   Pg.q`

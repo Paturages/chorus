@@ -9,6 +9,10 @@ body {
   background: $color--bg;
   color: $color--text;
   font-family: $font-family;
+
+  @media (max-width: 740px) {
+    margin: 1em 0 2em;
+  }
 }
 
 a {

@@ -1,4 +1,7 @@
 .Search {
+  max-width: 1280px;
+  margin: auto;
+  
   &__header {
     display: flex;
     flex-direction: row;
@@ -12,5 +15,18 @@
   }
   .SearchBox {
     flex: 1;
+  }
+  @media (max-width: 740px) {
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .Logo {
+      margin: 0 1em 1em;
+    }
+    .SearchBox {
+      margin: 0 1em;
+      width: calc(100% - 2em);
+    }
   }
 }
