@@ -59,8 +59,10 @@ module.exports = chart => {
   const lines = chart.split('\n').map(line => line.trim());
   // Get song metadata from the [Song] section as a backup to the song.ini
   const songIndex = lines.indexOf('[Song]');
+  // Catch invalid files
+  if (songIndex < 0) return {};
   const chartMeta = {};
-  for (let i = 1; lines[i] != '}'; i++) {
+  for (let i = 1; lines[i] != null && lines[i] != '}'; i++) {
     let [param, value] = lines[i].split(' = ');
     if (!value) continue;
     param = param.trim();
@@ -78,6 +80,8 @@ module.exports = chart => {
     }
   */
   const eventsIndex = lines.indexOf('[Events]');
+  // Catch invalid files
+  if (eventsIndex < 0) return { chartMeta };
   const hasSections = lines[eventsIndex + 2] != '}';
   // Detect features
   let currentStatus;

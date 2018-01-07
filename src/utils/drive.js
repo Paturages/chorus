@@ -65,16 +65,20 @@ const list = (args, files) => new Promise((resolve, reject) => throttle('list', 
   fields: 'nextPageToken, files(id, name, mimeType, fileExtension, size, webContentLink, modifiedTime, webViewLink)'
 }, args), async (err, payload) => {
   if (err) return reject(err);
-  resolve(
-    payload.nextPageToken ?
-    (
-      await get(
-        Object.assign(args, { pageToken: payload.nextPageToken }),
-        (files || []).concat(payload.files)
-      )
-    ) :
-    (files || []).concat(payload.files)
-  );
+  try {
+    resolve(
+      payload.nextPageToken ?
+      (
+        await list(
+          Object.assign(args, { pageToken: payload.nextPageToken }),
+          (files || []).concat(payload.files)
+        )
+      ) :
+      (files || []).concat(payload.files)
+    );
+  } catch (err) {
+    reject(err);
+  }
 }));
 
 const get = fileId => new Promise((resolve, reject) => throttle('get', { auth: oAuth2, fileId }, async (err, payload) => {
