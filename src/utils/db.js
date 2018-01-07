@@ -101,8 +101,8 @@ const getDiffsFromNoteCounts = noteCounts => {
   return diffs;
 };
 module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
-  for (let i = 0; i < songs.length; i += 1000) {
-    console.log('Inserting from', i, 'to', Math.min(i + 1000, songs.length));
+  for (let i = 0; i < songs.length; i += 50) {
+    console.log('Inserting from', i, 'to', Math.min(i + 50, songs.length));
     const songIds = await Pg.q`
       INSERT INTO "Songs${{ sql: process.argv[2] ? '' : '_new' }}"
       (
@@ -115,7 +115,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "hasSoloSections", "hasStems", "noteCounts", "link", "lastModified"
       )
       VALUES
-      ${songs.slice(i, i + 1000).map(
+      ${songs.slice(i, i + 50).map(
         ({ meta: {
             name = '', artist = '', album = '', genre = '', year = '', charter = '',
             diff_band = '', diff_guitar = '', diff_bass = '', diff_rhythm = '',
@@ -351,4 +351,5 @@ module.exports.getLinksMapBySource = sourceId => Promise.all([
       return parts;
     })(),
   } : 'ignore' })))
-);
+)
+.catch(() => ({}));

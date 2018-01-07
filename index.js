@@ -7,6 +7,17 @@ const init = require('./src/utils/init');
 const exit = require('./src/utils/exit');
 const { updateWords } = require('./src/utils/db');
 
+
+process.on('uncaughtException', err => {
+  console.error('Uncaught exception!')
+  console.error(err.stack);
+});
+
+process.on("unhandledRejection", (err, promise) => {
+  console.error('Unhandled promise rejection!', promise);
+  console.error(err.stack);
+});
+
 (async () => {
   await init();
   try {

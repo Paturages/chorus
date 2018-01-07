@@ -184,6 +184,10 @@ module.exports = async ({ name, link }) => {
       } catch (err) {
         console.error(archives[i].name, 'failed!');
         console.error(err.stack);
+        await Promise.all([
+          new Promise((resolve, reject) => Rimraf(Path.resolve(__dirname, '..', '..', 'tmp'), (err, res) => err ? reject(err) : resolve(res))),
+          new Promise((resolve, reject) => Fs.unlink(Path.resolve(__dirname, '..', '..', 'tmp.rar'), (err, res) => err ? reject(err) : resolve(res)))
+        ]).catch(() => {});
       }
     }
     // If the folder contains a "song.ini", a .chart or a .mid,

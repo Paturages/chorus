@@ -8,7 +8,7 @@ const CLIENT = require('../../conf/client_id.json');
 
 // Auth to Google APIs
 const auth = new Auth();
-const oAuth2 = new auth.OAuth2(CLIENT.web.client_id, CLIENT.web.client_secret, 'https://fightthe.pw');
+const oAuth2 = new auth.OAuth2(CLIENT.web.client_id, CLIENT.web.client_secret, 'https://chorus.fightthe.pw');
 let Drive;
 
 const init = async () => {
