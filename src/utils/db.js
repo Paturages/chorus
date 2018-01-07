@@ -64,6 +64,7 @@ module.exports.upsertLinksToIgnore = (toIgnore) => Promise.all([
     INSERT INTO "LinksToIgnore_new"
     ("link", "sourceId")
     SELECT "link", "sourceId" FROM "LinksToIgnore"
+    WHERE "sourceId" = ${toIgnore[0].sourceId}
     ON CONFLICT DO NOTHING
   `
 ])
@@ -297,7 +298,7 @@ module.exports.search = (query, offset, limit) => Pg.query(`
   }, {})
 })));
 
-module.exports.getLinksMapBySource = sourceId => Promise.all([
+module.exports.getLinksMapBySource = ({ link }) => Promise.all([
   Pg.q`
     select s.link, row_to_json(s) as "meta", sh."hashes"
     from "Songs_Sources" ss
@@ -307,15 +308,21 @@ module.exports.getLinksMapBySource = sourceId => Promise.all([
       from "Songs_Hashes" sh
       group by "songId"
     ) sh on sh."songId" = s."id"
-    where ss."sourceId" = ${sourceId}
+    where ss."sourceId" = (
+      select "id" from "Sources"
+      where "link" = ${link}
+    )
   `,
   Pg.q`
     select "link"
     from "LinksToIgnore"
-    where "sourceId" = ${sourceId}
+    where "sourceId" = (
+      select "id" from "Sources"
+      where "link" = ${link}
+    )
   `
 ]).then(
-  ([songs, toIgnore]) => Object.assign({}, ...songs.map(song => ({ [song.link]: song.meta ? {
+  ([songs, toIgnore]) => Object.assign({}, ...songs.concat(toIgnore).map(song => ({ [song.link]: song.meta ? {
     name: song.meta.name,
     artist: song.meta.artist,
     album: song.meta.album,
@@ -350,6 +357,6 @@ module.exports.getLinksMapBySource = sourceId => Promise.all([
       });
       return parts;
     })(),
-  } : 'ignore' })))
+  } : { ignore: true } })))
 )
-.catch(() => ({}));
+.catch(err => console.error(err.stack));

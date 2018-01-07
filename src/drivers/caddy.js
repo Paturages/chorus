@@ -18,7 +18,7 @@ module.exports = async ({ name, link }) => {
   const source = await upsertSource({ name, link });
   source.chorusId = source.id;
   // 2. Get the map of already indexed links so that they don't get parsed again
-  const linksMap = await getLinksMapBySource(source.chorusId);
+  const linksMap = await getLinksMapBySource(source);
   // 3. Get the songs: they're all in the one folder, and they're all .zips.
   // (I'm probably gonna be the only one using it, so whatever)
   console.log('Fetching list of songs');

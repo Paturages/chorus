@@ -46,7 +46,7 @@ module.exports = async ({ name, link }) => {
   source.chorusId = (await upsertSource(source)).id;
 
   // 2. Get the map of already indexed links so that they don't get parsed again
-  const linksMap = await getLinksMapBySource(source.chorusId);
+  const linksMap = await getLinksMapBySource(source);
 
   /*
     3. Attempt to discover songs inside the drive
@@ -67,7 +67,7 @@ module.exports = async ({ name, link }) => {
           songs.push(Object.assign(item, { meta: Object.assign(linksMap[item.webViewLink], { source }) }));
           return content;
         }
-        if (linksMap[item.webViewLink] == 'ignore') return content;
+        if (linksMap[item.webViewLink] && linksMap[item.webViewLink].ignore) return content;
         // Save subfolders for further processing
         if (item.mimeType == 'application/vnd.google-apps.folder') {
           content.subfolders.push(item);
@@ -93,7 +93,7 @@ module.exports = async ({ name, link }) => {
     for (let i = 0; i < archives.length; i++) {
       try {
         const file = archives[i];
-        if (linksMap[file.webViewLink] == 'ignore') continue;
+        if (linksMap[file.webViewLink] && linksMap[file.webViewLink].ignore) continue;
         console.log('Extracting', file.name);
         // Computing default artist and song names in case there's no song.ini file,
         // and also inputing already available metadata
