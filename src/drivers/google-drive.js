@@ -149,6 +149,7 @@ module.exports = async ({ name, link }) => {
           };
           // .rar: Libs depend on .childProcess shenanigans,
           // so we have to save the archive to disk first.
+          await new Promise((resolve) => Rimraf(Path.resolve(__dirname, '..', '..', 'tmp'), () => resolve()));
           await new Promise((resolve, reject) => Fs.mkdir(Path.resolve(__dirname, '..', '..', 'tmp'), (err, res) => err ? reject(err) : resolve(res)));
           await new Promise((resolve, reject) => Fs.writeFile(Path.resolve(__dirname, '..', '..', 'tmp.rar'), archive, (err, res) => err ? reject(err) : resolve(res)));
           await new Promise((resolve, reject) => Unrar.extract(Path.resolve(__dirname, '..', '..', 'tmp.rar'), { dest: Path.resolve(__dirname, '..', '..', 'tmp') }, (err, res) => err ? reject(err) : resolve(res)));
