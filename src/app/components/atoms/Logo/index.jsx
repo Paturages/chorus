@@ -55,7 +55,7 @@ export default ({ simple, count }) =>
         </b>
         <br />
         <a
-          href="https://github.com/Paturages/chorus/blob/master/sources"
+          href="https://github.com/Paturages/chorus/blob/master/sources/sources.txt"
           target="_blank"
           rel="noopener noreferrer"
         >

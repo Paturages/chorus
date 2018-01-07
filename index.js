@@ -11,20 +11,21 @@ const { updateWords } = require('./src/utils/db');
   await init();
   try {
     const sources = [
-      fs.readFileSync(path.resolve(__dirname, 'sources', 'charters.txt'), 'utf8')
+      fs.readFileSync(path.resolve(__dirname, 'sources', 'sources.txt'), 'utf8')
     ].join('\n')
       .split('\n')
       .map(line => {
         if (!line.trim() || line.trim()[0] == '#') return;
-        const [name, link] = line.split('::');
+        const [name, link, script] = line.split('::');
         if (!name || !link) return;
-        return { name: name.trim(), link: link.trim() };
+        return { name: name.trim(), link: link.trim(), script: (script || '').trim() };
       });
     const failed = [];
     for (let i = 0; i < sources.length; i++) {
       if (!sources[i] || (process.argv[2] && sources[i].name.toLowerCase().indexOf(process.argv[2].toLowerCase()) < 0)) continue;
       try {
-        await drive(sources[i]);
+        if (sources[i].script) await require(`./src/drivers/${sources[i].script}`)(sources[i]);
+        else await drive(sources[i]);
       } catch (err) {
         console.error(err.stack);
         console.log(sources[i].name, 'failed!');

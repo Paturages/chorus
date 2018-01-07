@@ -101,7 +101,6 @@ const getDiffsFromNoteCounts = noteCounts => {
   return diffs;
 };
 module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
-  songs = songs.filter(song => song.name);
   for (let i = 0; i < songs.length; i += 1000) {
     console.log('Inserting from', i, 'to', Math.min(i + 1000, songs.length));
     const songIds = await Pg.q`

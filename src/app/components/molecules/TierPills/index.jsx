@@ -24,8 +24,8 @@ export default ({ tier, diff, label, hashes, counts, hideDiffs }) => (
     <div
       className={[
         "TierPills__pills",
-        (tier == null || tier < 0) && "TierPills__pills--disabled",
-        tier == 6 && "TierPills__pills--hard-as-fuck"
+        (!counts || tier == null || tier < 0) && "TierPills__pills--disabled",
+        counts && tier >= 6 && "TierPills__pills--hard-as-fuck"
       ]
         .filter(x => x)
         .join(" ")}
