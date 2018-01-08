@@ -70,8 +70,8 @@ const q = (queryArr, ...params) => {
     }
     // Decompose arrays
     if (typeof params[index] === 'object' && params[index].length) {
-      queryArgs = queryArgs.push(...params[index]);
-      return `${part}${params[index].map(x => `$${queryIndex++}::${typeof x == 'string' ? 'text' : 'integer'}`)}`;
+      queryArgs.push(...params[index]);
+      return `${part}${params[index].map(x => `$${queryIndex++}`)}`;
     }
     queryArgs.push(params[index]);
     return `${part}$${queryIndex++}`;

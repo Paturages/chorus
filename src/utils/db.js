@@ -1,44 +1,41 @@
 const Pg = require('./pg');
 
-module.exports.getNbSongs = async () => {
-  return await Pg.q`SELECT COUNT(*) AS "nbSongs" FROM "Songs"`
-  .then(([{ nbSongs }]) => (NB_SONGS = nbSongs));
-};
+module.exports.getNbSongs = () => Pg.q`SELECT COUNT(*) AS "nbSongs" FROM "Songs"`.then(([{ nbSongs }]) => nbSongs);
 
-module.exports.getLatestCharts = async () => {
-  return await Pg.q`
-    SELECT
-      s.*,
-      array_agg(distinct jsonb_build_object(
-        'id', x."id",
-        'name', x."name",
-        'link', x."link",
-        'parent', ss."parent"
-      )) as "sources",
-      array_agg(distinct jsonb_build_object(
-        'hash', sh."hash",
-        'part', sh."part",
-        'difficulty', sh."difficulty"
-      )) as "hashes"
-    from "Songs_Words" sw
-    join "Songs" s on s."id" = sw."songId"
-    join "Songs_Sources" ss on ss."songId" = s."id"
-    join "Sources" x on ss."sourceId" = x."id"
-    join "Songs_Hashes" sh on sh."songId" = s."id"
-    group by s."id"
-    order by s."lastModified" desc
-    limit 20
-  `
-  .then(songs => songs.map(song => Object.assign(song, {
-    hashes: song.hashes.reduce((hashes, { hash, part, difficulty }) => {
-      if (part == 'file') return Object.assign(hashes, { file: hash });
-      if (!hashes[part]) hashes[part] = {};
-      hashes[part][difficulty] = hash;
-      return hashes;
-    }, {})
-  })))
-  .then(songs => (LATEST_CHARTS = songs))
-}
+module.exports.getLatestCharts = () =>
+  Pg.q`SELECT * FROM "Songs" ORDER BY "lastModified" DESC LIMIT 20`
+  .then(songs =>
+    Promise.all([
+      Pg.q`
+        SELECT ss."songId", s."id", s."name", s."link", ss."parent"
+        FROM "Songs_Sources" ss
+        JOIN "Sources" s ON ss."sourceId" = s."id"
+        WHERE "songId" IN (${songs.map(({ id }) => id)})
+      `,
+      Pg.q`
+        SELECT * FROM "Songs_Hashes"
+        WHERE "songId" IN (${songs.map(({ id }) => id)})
+      `
+    ])
+    .then(([sources, hashes]) => {
+      const songMap = Object.assign({}, ...songs.map(song => ({ [song.id]: song })));
+      sources.forEach(({ songId, id, name, link, parent }) => {
+        if (!songMap[songId].sources) songMap[songId].sources = [];
+        if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
+        songMap[songId].sources.push({ id, name, link, parent });
+      });
+      hashes.forEach(({ songId, hash, part, difficulty }) => {
+        if (!songMap[songId].hashes) songMap[songId].hashes = {};
+        if (part == 'file') songMap[songId].hashes.file = hash;
+        else {
+          if (!songMap[songId].hashes[part]) songMap[songId].hashes[part] = {};
+          songMap[songId].hashes[part][difficulty] = hash;
+        }
+      });
+      return songs.map(({ id }) => songMap[id]); // songs is still sorted by "lastModified" desc
+    })
+  )
+;
 
 module.exports.upsertSource = ({ name, link }) =>
   Pg.q`
@@ -262,43 +259,56 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
 
 module.exports.search = (query, offset, limit) => Pg.query(`
   select
-    round(100 * avg(
-      word_similarity(sw."word", array_to_string(
+    "songId",
+    round(100 * sum(
+      similarity("word", array_to_string(
         tsvector_to_array(
-          to_tsvector('english', 'something')
+          to_tsvector('english', $1)
         ), ' ')
       )
-    )::numeric,2) as "searchScore",
-    s.*,
-    array_agg(distinct jsonb_build_object(
-      'id', x."id",
-      'name', x."name",
-      'link', x."link",
-      'parent', ss."parent"
-    )) as "sources",
-    array_agg(distinct jsonb_build_object(
-      'hash', sh."hash",
-      'part', sh."part",
-      'difficulty', sh."difficulty"
-    )) as "hashes"
-  from "Songs_Words" sw
-  join "Songs" s on s."id" = sw."songId"
-  join "Songs_Sources" ss on ss."songId" = s."id"
-  join "Sources" x on ss."sourceId" = x."id"
-  join "Songs_Hashes" sh on sh."songId" = s."id"
-  group by s."id"
+    )::numeric,2) as "searchScore"
+  from "Songs_Words"
+  group by "songId"
   order by "searchScore" desc
   limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
   ${+offset ? `OFFSET ${+offset}` : ''}
 `, [query])
-.then(songs => songs.map(song => Object.assign(song, {
-  hashes: song.hashes.reduce((hashes, { hash, part, difficulty }) => {
-    if (part == 'file') return Object.assign(hashes, { file: hash });
-    if (!hashes[part]) hashes[part] = {};
-    hashes[part][difficulty] = hash;
-    return hashes;
-  }, {})
-})));
+.then(songScores =>
+  Promise.all([
+    Pg.q`
+      SELECT * FROM "Songs"
+      WHERE "id" IN (${songScores.map(({ songId: id }) => id)})
+    `,
+    Pg.q`
+      SELECT ss."songId", s."id", s."name", s."link", ss."parent"
+      FROM "Songs_Sources" ss
+      JOIN "Sources" s ON ss."sourceId" = s."id"
+      WHERE "songId" IN (${songScores.map(({ songId: id }) => id)})
+    `,
+    Pg.q`
+      SELECT * FROM "Songs_Hashes"
+      WHERE "songId" IN (${songScores.map(({ songId: id }) => id)})
+    `
+  ])
+  .then(([songs, sources, hashes]) => {
+    const songMap = Object.assign({}, ...songs.map(song => ({ [song.id]: song })));
+    sources.forEach(({ songId, id, name, link, parent }) => {
+      if (!songMap[songId].sources) songMap[songId].sources = [];
+      if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
+      songMap[songId].sources.push({ id, name, link, parent });
+    });
+    hashes.forEach(({ songId, hash, part, difficulty }) => {
+      if (!songMap[songId].hashes) songMap[songId].hashes = {};
+      if (part == 'file') songMap[songId].hashes.file = hash;
+      else {
+        if (!songMap[songId].hashes[part]) songMap[songId].hashes[part] = {};
+        songMap[songId].hashes[part][difficulty] = hash;
+      }
+    });
+    songScores.forEach(({ songId, searchScore }) => songMap[songId].searchScore = searchScore);
+    return songScores.map(({ songId }) => songMap[songId]); // songs is still sorted by "lastModified" desc
+  })
+);
 
 module.exports.getLinksMapBySource = ({ link }) => Promise.all([
   Pg.q`
