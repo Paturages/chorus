@@ -102,6 +102,8 @@ const getDiffsFromNoteCounts = noteCounts => {
   return diffs;
 };
 module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
+  // Checking that a link doesn't appear twice
+  songs = Object.values(songs.reduce((obj, song) => Object.assign(obj, { [song.link]: song }), {}));
   for (let i = 0; i < songs.length; i += 50) {
     console.log('Inserting from', i, 'to', Math.min(i + 50, songs.length));
     const songIds = await Pg.q`

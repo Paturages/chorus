@@ -59,7 +59,7 @@ module.exports = async () => {
       "hasSoloSections" boolean,
       "hasStems" boolean,
       "noteCounts" jsonb,
-      "lastModified" timestamp with time zone,
+      "lastModified" timestamp,
       "link" text
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON public."Songs_new" USING btree(link)`;

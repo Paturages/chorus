@@ -6,6 +6,7 @@ const Ls = require('ls');
 const Fs = require('fs');
 const Rimraf = require('rimraf');
 const Path = require('path');
+const ChildProcess = require('child_process');
 
 const getMetaFromChart = require('../utils/meta/chart');
 const getMetaFromMidi = require('../utils/meta/midi');
@@ -47,7 +48,7 @@ module.exports = async ({ name, link }) => {
 
   // 2. Get the map of already indexed links so that they don't get parsed again
   const linksMap = await getLinksMapBySource(source);
-
+  
   /*
     3. Attempt to discover songs inside the drive
     A song can be either a folder with "song.ini", "notes.chart" and audio files in it,
@@ -149,7 +150,11 @@ module.exports = async ({ name, link }) => {
           };
           // .rar: Libs depend on .childProcess shenanigans,
           // so we have to save the archive to disk first.
-          await new Promise((resolve) => Rimraf(Path.resolve(__dirname, '..', '..', 'tmp'), () => resolve()));
+          await new Promise((resolve) =>
+            process.platform == 'win32' ?            
+              Rimraf(Path.resolve(__dirname, '..', '..', 'tmp'), err => resolve()) :
+              ChildProcess.exec(`rm -R ${Path.resolve(__dirname, '..', '..', 'tmp')}`, err => resolve())
+          );
           await new Promise((resolve, reject) => Fs.mkdir(Path.resolve(__dirname, '..', '..', 'tmp'), (err, res) => err ? reject(err) : resolve(res)));
           await new Promise((resolve, reject) => Fs.writeFile(Path.resolve(__dirname, '..', '..', 'tmp.rar'), archive, (err, res) => err ? reject(err) : resolve(res)));
           await new Promise((resolve, reject) => Unrar.extract(Path.resolve(__dirname, '..', '..', 'tmp.rar'), { dest: Path.resolve(__dirname, '..', '..', 'tmp') }, (err, res) => err ? reject(err) : resolve(res)));
@@ -185,10 +190,7 @@ module.exports = async ({ name, link }) => {
       } catch (err) {
         console.error(archives[i].name, 'failed!');
         console.error(err.stack);
-        await Promise.all([
-          new Promise((resolve, reject) => Rimraf(Path.resolve(__dirname, '..', '..', 'tmp'), (err, res) => err ? reject(err) : resolve(res))),
-          new Promise((resolve, reject) => Fs.unlink(Path.resolve(__dirname, '..', '..', 'tmp.rar'), (err, res) => err ? reject(err) : resolve(res)))
-        ]).catch(() => {});
+        await new Promise((resolve) => Rimraf(Path.resolve(__dirname, '..', '..', 'tmp'), err => resolve(err && console.error(err.stack))));
       }
     }
     // If the folder contains a "song.ini", a .chart or a .mid,
