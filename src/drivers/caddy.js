@@ -31,7 +31,9 @@ module.exports = async ({ name, link }) => {
   // (I'm probably gonna be the only one using it, so whatever)
   const songList = [];
   console.log('Fetching list of songs');
-  for (let i = 0; i < folders.length; i++) {
+  // Difference between my charter drive (/clonehero) and games drive (/ghrb)
+  if (folders[0].Name.slice(-4) == '.zip') songList.push(...folders);
+  else for (let i = 0; i < folders.length; i++) {
     const { Name, URL } = folders[i];
     const content = await new Promise((resolve, reject) =>
       Request.get(`${link}${URL.slice(2)}`, { headers: { Accept: 'application/json' } }, (err, res) => {
@@ -46,13 +48,13 @@ module.exports = async ({ name, link }) => {
   console.log(songList.length, 'songs found');
   for (let i = 0; i < songList.length; i++) {
     try {
-      const { Name, URL, ModTime } = songList[i];
-      const url = `${link}${URL.slice(2)}`;
+      const { Name, URL, ModTime, parent } = songList[i];
+      const url = `${(parent || {}).link || link}${URL.slice(2)}`;
       if (linksMap[url] && ModTime.slice(0, 19) == linksMap[url].lastModified.slice(0, 19)) {
         songs.push(Object.assign({ meta: Object.assign(linksMap[url], { source }) }));
         continue;
       }
-      console.log('Extracting', Name);
+      console.log('Extracting', Name, url);
       const archive = await new Promise((resolve, reject) =>
         Request.get(url, { encoding: null }, (err, res) => {
           if (err) reject(err);
