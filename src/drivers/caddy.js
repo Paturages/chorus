@@ -36,7 +36,7 @@ module.exports = async ({ name, link }) => {
       const { Name, URL, ModTime } = songList[i];
       const url = `${link}${URL.slice(2)}`;
       if (linksMap[url] && ModTime.slice(0, 19) == linksMap[url].lastModified.slice(0, 19)) {
-        songs.push(Object.assign(item, { meta: Object.assign(linksMap[url], { source }) }));
+        songs.push(Object.assign({ meta: Object.assign(linksMap[url], { source }) }));
         continue;
       }
       console.log('Extracting', Name);

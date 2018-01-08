@@ -30,17 +30,17 @@ export default class Search extends Component {
           <SearchBox
             query={query}
             onQuery={query =>
-              this.setState({ query, songs: [], from: 0 }, () => {
+              this.setState({ query: encodeURIComponent(query), songs: [], from: 0 }, () => {
                 window.history.pushState(
                   null,
                   "Search",
-                  `/search?query=${query}`
+                  `/search?query=${encodeURIComponent(query)}`
                 );
                 if (typeof ga !== "undefined") {
-                  ga("set", "page", `/search?query=${query}`);
+                  ga("set", "page", `/search?query=${encodeURIComponent(query)}`);
                   ga("send", "pageview");
                 }
-                Http.get("/api/search", { query }).then(songs =>
+                Http.get("/api/search", { query: encodeURIComponent(query) }).then(songs =>
                   this.setState({ songs })
                 );
               })

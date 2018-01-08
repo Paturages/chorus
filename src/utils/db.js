@@ -359,6 +359,6 @@ module.exports.getLinksMapBySource = ({ link }) => Promise.all([
       });
       return parts;
     })(),
-  } : { ignore: true } })))
+  } : { [song.link]: { ignore: true } } })))
 )
 .catch(err => console.error(err.stack));
