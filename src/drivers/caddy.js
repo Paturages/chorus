@@ -19,15 +19,28 @@ module.exports = async ({ name, link }) => {
   source.chorusId = source.id;
   // 2. Get the map of already indexed links so that they don't get parsed again
   const linksMap = await getLinksMapBySource(source);
-  // 3. Get the songs: they're all in the one folder, and they're all .zips.
-  // (I'm probably gonna be the only one using it, so whatever)
-  console.log('Fetching list of songs');
-  const songList = await new Promise((resolve, reject) =>
+  // 3. Get the list of folders (games)
+  console.log('Fetching folders');
+  const folders = await new Promise((resolve, reject) =>
     Request.get(link, { headers: { Accept: 'application/json' } }, (err, res) => {
       if (err) reject(err);
       else resolve(JSON.parse(res.body));
     })
   );
+  // 4. Get the songs: they're all in the one folder, and they're all .zips.
+  // (I'm probably gonna be the only one using it, so whatever)
+  const songList = [];
+  console.log('Fetching list of songs');
+  for (let i = 0; i < folders.length; i++) {
+    const { Name, URL } = folders[i];
+    const content = await new Promise((resolve, reject) =>
+      Request.get(`${link}${URL.slice(2)}`, { headers: { Accept: 'application/json' } }, (err, res) => {
+        if (err) reject(err);
+        else resolve(JSON.parse(res.body));
+      })
+    );
+    songList.push(...content.map(item => Object.assign(item, { parent: { name: Name, link: `${link}${URL.slice(2)}` } })));
+  }
   const songs = [];
   const toIgnore = [];
   console.log(songList.length, 'songs found');
@@ -70,8 +83,8 @@ module.exports = async ({ name, link }) => {
       console.error(err.message);
     }
   }
-  // 4. Update the list of links to ignore (e.g. invalid archives, stray files...)
+  // 5. Update the list of links to ignore (e.g. invalid archives, stray files...)
   if (toIgnore.length) await upsertLinksToIgnore(toIgnore);
-  // 5. Insert the songs with their metadata into the database
+  // 6. Insert the songs with their metadata into the database
   if (songs.length) await upsertSongs(songs);
 };
