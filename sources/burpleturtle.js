@@ -1,5 +1,5 @@
-const Drive = require('../../src/utils/drive');
-const importDrive = require('../../src/drivers/google-drive');
+const Drive = require('../src/utils/drive');
+const importDrive = require('../src/drivers/google-drive');
 const ROOT_FOLDER = 'https://drive.google.com/drive/folders/0B-93AYpB5GxgUGlyaVRIek1mbnc';
 const SOURCE_NAME = `BurpLeTurtle's charts`;
 
@@ -8,6 +8,7 @@ module.exports = async () => {
   const folders = (await Drive.get({ q: `'${rootId}' in parents` }));
   for (let i = 0; i < folders.length; i++) {
     const folder = folders[i];
+    if (folder.name.slice(-4) == '.zip') continue;
     const ARTIST = folder.name;
     await importDrive({
       driveUrl: `https://drive.google.com/drive/folders/${folder.id}`,
@@ -29,7 +30,7 @@ module.exports = async () => {
     charterName: `BurpLeTurtle`,
     nameParser: name => {
       let [artist, ...songParts] = name.split(' - ');
-      if (!songParts || !songParts.length) return { artist: ARTIST || 'N/A', song: name.replace(/\.(zip|rar)$/, '') };
+      if (!songParts || !songParts.length) return { artist: 'N/A', song: name.replace(/\.(zip|rar)$/, '') };
       const song = songParts.join(' - ').replace(/\.(zip|rar)$/, '');
       return { artist, song };
     }
