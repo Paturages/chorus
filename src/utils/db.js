@@ -112,7 +112,8 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "tier_bassghl", "diff_guitar", "diff_bass", "diff_rhythm",
         "diff_drums", "diff_keys", "diff_guitarghl", "diff_bassghl",
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
-        "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link", "lastModified"
+        "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
+        "lastModified", "words"
       )
       VALUES
       ${songs.slice(i, i + 50).map(
@@ -159,6 +160,16 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             noteCounts ? JSON.stringify(noteCounts) : null,
             link,
             lastModified,
+            [
+              name, artist, album, genre, year, charter, name,
+              source.name, parent && parent.name,
+              (() => {
+                // Initials
+                const words = name.split(' ').filter(word => word[0].match(/[A-z]/));
+                if (words.length < 3) return;
+                return words.map(word => word[0]).join('');
+              })
+            ].filter(x => x).join(' ')
           ];
         }
       )}
@@ -192,7 +203,8 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "hasStarPower" = EXCLUDED."hasStarPower",
         "hasSoloSections" = EXCLUDED."hasSoloSections",
         "hasStems" = EXCLUDED."hasStems",
-        "noteCounts" = EXCLUDED."noteCounts"
+        "noteCounts" = EXCLUDED."noteCounts",
+        "words" = EXCLUDED."words"
       ${{ sql: noUpdateLastModified ? '' : `,"lastModified" = EXCLUDED."lastModified"` }}
       RETURNING "id"
     `;
@@ -232,66 +244,32 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           return arr;
         }, [])}
         ON CONFLICT DO NOTHING
-      `,
-      (() => {
-        let queryIndex = 1;
-        let queryParams = [];
-        return Pg.query(`
-          INSERT INTO "Songs_Words${process.argv[2] ? '' : '_new'}"
-          ("songId", "word")
-          VALUES
-          ${songIds.reduce((arr, { id }, index) => {
-            const parent = songs[i + index].parent || {};
-            const { source, name, artist, genre, album, charter } = songs[i + index];
-            [parent.name || '', source.name, name, artist, genre, album, charter].join(' ').split(' ').forEach(word => {
-              arr.push(`($${queryIndex++}, coalesce((
-                select array_to_string(array_agg(t), ' ') from unnest(tsvector_to_array(to_tsvector('english', $${queryIndex++}))) t
-              ), ''))`);
-              queryParams.push(id, word);
-            });
-            return arr;
-          }, [])}
-          ON CONFLICT DO NOTHING
-        `, queryParams)
-      })(),
+      `
     ]);
   }
 };
 
 module.exports.search = (query, offset, limit) => Pg.query(`
-  select
-    "songId",
-    round(100 * sum(
-      similarity("word", array_to_string(
-        tsvector_to_array(
-          to_tsvector('english', $1)
-        ), ' ')
-      )
-    )::numeric,2) as "searchScore"
-  from "Songs_Words"
-  group by "songId"
+  select round(100 * similarity(s."words", $1)::numeric, 2) as "searchScore", *
+  from "Songs" s
   order by "searchScore" desc
   limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
   ${+offset ? `OFFSET ${+offset}` : ''}
 `, [query])
-.then(songScores =>
+.then(songs =>
   Promise.all([
-    Pg.q`
-      SELECT * FROM "Songs"
-      WHERE "id" IN (${songScores.map(({ songId: id }) => id)})
-    `,
     Pg.q`
       SELECT ss."songId", s."id", s."name", s."link", ss."parent"
       FROM "Songs_Sources" ss
       JOIN "Sources" s ON ss."sourceId" = s."id"
-      WHERE "songId" IN (${songScores.map(({ songId: id }) => id)})
+      WHERE "songId" IN (${songs.map(({ id }) => id)})
     `,
     Pg.q`
       SELECT * FROM "Songs_Hashes"
-      WHERE "songId" IN (${songScores.map(({ songId: id }) => id)})
+      WHERE "songId" IN (${songs.map(({ id }) => id)})
     `
   ])
-  .then(([songs, sources, hashes]) => {
+  .then(([sources, hashes]) => {
     const songMap = Object.assign({}, ...songs.map(song => ({ [song.id]: song })));
     sources.forEach(({ songId, id, name, link, parent }) => {
       if (!songMap[songId].sources) songMap[songId].sources = [];
@@ -306,8 +284,7 @@ module.exports.search = (query, offset, limit) => Pg.query(`
         songMap[songId].hashes[part][difficulty] = hash;
       }
     });
-    songScores.forEach(({ songId, searchScore }) => songMap[songId].searchScore = searchScore);
-    return songScores.map(({ songId }) => songMap[songId]); // songs is still sorted by "lastModified" desc
+    return songs.map(({ id }) => songMap[id]); // songs is still sorted by "lastModified" desc
   })
 );
 

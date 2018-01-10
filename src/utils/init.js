@@ -11,13 +11,11 @@ module.exports = async () => {
     await Pg.q`DROP TABLE IF EXISTS "Songs_new" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "LinksToIgnore_new" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "Songs_Hashes_new" CASCADE`;
-    await Pg.q`DROP TABLE IF EXISTS "Songs_Words_new" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "Songs_Sources_new" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "Sources_backup" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "Songs_backup" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "LinksToIgnore_backup" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "Songs_Hashes_backup" CASCADE`;
-    await Pg.q`DROP TABLE IF EXISTS "Songs_Words_backup" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "Songs_Sources_backup" CASCADE`;
     await Pg.q`CREATE EXTENSION IF NOT EXISTS pg_trgm`;
     await Pg.q`CREATE TABLE "Sources_new" (
@@ -61,7 +59,8 @@ module.exports = async () => {
       "hasVideo" boolean,
       "noteCounts" jsonb,
       "lastModified" timestamp,
-      "link" text
+      "link" text,
+      "words" text
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON public."Songs_new" USING btree(link)`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_band)`;
@@ -86,6 +85,7 @@ module.exports = async () => {
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(album gin_trgm_ops)`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(genre gin_trgm_ops)`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(charter gin_trgm_ops)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(words gin_trgm_ops)`;
     await Pg.q`CREATE TABLE "Songs_Sources_new" (
       "parent" jsonb,
       "sourceId" integer,
@@ -112,16 +112,6 @@ module.exports = async () => {
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON "Songs_Hashes_new" USING btree("hash", "songId", "part", "difficulty")`;
     await Pg.q`CREATE INDEX ON "Songs_Hashes_new" USING hash("hash")`;
-    await Pg.q`CREATE TABLE "Songs_Words_new" (
-      "songId" integer,
-      "word" text,
-      PRIMARY KEY ("songId", "word"),
-      FOREIGN KEY ("songId")
-      REFERENCES public."Songs_new" (id) MATCH SIMPLE
-      ON UPDATE NO ACTION
-      ON DELETE CASCADE
-    )`;
-    await Pg.q`CREATE INDEX ON public."Songs_Words_new" USING gin("word" gin_trgm_ops)`;
     await Pg.q`CREATE TABLE "LinksToIgnore_new" (
       "link" text,
       "sourceId" integer,

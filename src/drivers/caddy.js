@@ -53,7 +53,7 @@ module.exports = async ({ name, link }) => {
         else resolve(JSON.parse(res.body));
       })
     );
-    songList.push(...content.map(item => Object.assign(item, { parent: { name: Name, link: `${link}${URL.slice(2)}` } })));
+    songList.push(...content.map(item => Object.assign(item, { parent: { name: folders[i].Name, link: `${link}${folders[i].URL.slice(2)}` } })));
   }
   const songs = [];
   const toIgnore = [];
@@ -62,7 +62,7 @@ module.exports = async ({ name, link }) => {
     const { Name, URL, ModTime, parent } = songList[i];
     const url = `${(parent || {}).link || link}${URL.slice(2)}`;
     if (linksMap[url] && ModTime.slice(0, 19) == linksMap[url].lastModified.slice(0, 19)) {
-      songs.push(Object.assign(linksMap[url], { source }));
+      songs.push(Object.assign(linksMap[url], { source, parent }));
       continue;
     }
     console.log('Extracting', Name);

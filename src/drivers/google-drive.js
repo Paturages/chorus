@@ -63,7 +63,12 @@ module.exports = async ({ name, link }) => {
       .reduce((content, item) => {
         // Do not parse already indexed songs
         if (linksMap[item.webViewLink] && (linksMap[item.webViewLink].lastModified || '').slice(0, 19) == item.modifiedTime.slice(0, 19)) {
-          songs.push(Object.assign(linksMap[item.webViewLink], { source }));
+          songs.push(Object.assign(linksMap[item.webViewLink], {
+            source, parent: folder.parent ? {
+              name: folder.parent.name,
+              link: folder.parent.link
+            } : null
+          }));
           return content;
         }
         if (linksMap[item.webViewLink] && linksMap[item.webViewLink].ignore) return content;
@@ -105,9 +110,9 @@ module.exports = async ({ name, link }) => {
         // and also inputing already available metadata
         const { artist, name } = defaultNameParser(file.name);
         const song = {
-          artist, name, lastModified: file.modifiedTime, source, link: file.webViewLink, parent: file.parent ? {
-            name: file.parent.name,
-            link: file.parent.link
+          artist, name, lastModified: file.modifiedTime, source, link: file.webViewLink, parent: folder.parent ? {
+            name: folder.parent.name,
+            link: folder.parent.link
           } : null
         };
         console.log(`> Found "${
@@ -143,13 +148,8 @@ module.exports = async ({ name, link }) => {
     // Recurse on subfolders
     for (let i = 0; i < subfolders.length; i++) {
       subfolders[i].parent = {
-        name: `${
-          folder.parent && folder.parent.parent ?
-            `${folder.parent.name} - ` :
-            ''
-          }${folder.name}`,
-        link: folder.webViewLink,
-        parent: folder.parent && !!folder.parent.parent
+        name: folder.parent ? `${folder.parent.name} - ${folder.name}` : folder.name,
+        link: folder.webViewLink
       };
       await searchSongFolders(subfolders[i]);
     }

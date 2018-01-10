@@ -34,6 +34,7 @@ export default ({
   hasStarPower,
   hasSoloSections,
   hasStems,
+  hasVideo,
   noteCounts,
   lastModified,
   link,
@@ -75,11 +76,7 @@ export default ({
         {sources.map(({ name, link, parent }) => (
           <div className="Song__source">
             {parent && (
-              <a
-                href={parent.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={parent.link} target="_blank" rel="noopener noreferrer">
                 {parent.name}
               </a>
             )}
@@ -98,19 +95,29 @@ export default ({
           <div
             className={[
               "Song__feature",
+              !Object.keys(hasOpen).length && "Song__feature--disabled"
+            ]
+              .filter(x => x)
+              .join(" ")}
+          >
+            Open notes
+            {!!Object.keys(hasOpen).length && (
+              <div className="Song__feature-items">
+                {Object.keys(hasOpen).map(part => (
+                  <div className="Song__feature-item">{part}</div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div
+            className={[
+              "Song__feature",
               !hasForced && "Song__feature--disabled"
             ]
               .filter(x => x)
               .join(" ")}
           >
             Forced notes
-          </div>
-          <div
-            className={["Song__feature", !hasOpen && "Song__feature--disabled"]
-              .filter(x => x)
-              .join(" ")}
-          >
-            Open notes
           </div>
           <div
             className={["Song__feature", !hasTap && "Song__feature--disabled"]
@@ -155,6 +162,13 @@ export default ({
               .join(" ")}
           >
             Stems (multi-track)
+          </div>
+          <div
+            className={["Song__feature", !hasVideo && "Song__feature--disabled"]
+              .filter(x => x)
+              .join(" ")}
+          >
+            Video background
           </div>
         </div>
         <div className="Song__tiers">

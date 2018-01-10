@@ -75,6 +75,15 @@
     &--disabled {
       opacity: .25;
     }
+    &-items {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      font-size: .6em;
+    }
+    &-item {
+      margin-left: .5em;
+    }
   }
 
   &__tiers-columns {
