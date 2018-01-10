@@ -15,13 +15,13 @@ export default ({ simple, count }) =>
   simple ? (
     <div className="Logo">
       <div className="Logo__title">
-        <a href="/">chorus</a>
+        <a href={`${process.env.TESTING ? "/testing" : ""}/`}>chorus</a>
       </div>
     </div>
   ) : (
     <div className="Logo">
       <div className="Logo__title">
-        <a href="/">chorus</a>
+        <a href={`${process.env.TESTING ? "/testing" : ""}/`}>chorus</a>
       </div>
       <div className="Logo__subtitle">
         {Math.random() < 0.1

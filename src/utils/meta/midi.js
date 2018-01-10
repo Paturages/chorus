@@ -26,12 +26,12 @@ const partMap = {
   'PART BASS GHL': 'bassghl',
 };
 const diffOffsets = { e: 59, m: 71, h: 83, x: 95 };
-const tracks = {};
 
 const parse = midiFile => {
   const midi = new MIDIFile(midiFile.buffer);
-  let hasSections = false, hasStarPower = false, hasForced = false, hasTap = false, hasOpen = false;
+  let hasSections = false, hasStarPower = false, hasForced = false, hasTap = false, hasOpen = {};
   let isOpen = false;
+  const tracks = {};
   const notes = {};
   midi.getEvents().forEach(event => {
     // data is a string attached to the MIDI event.
@@ -42,7 +42,7 @@ const parse = midiFile => {
     // If that ain't black magic, I don't know what it is. But it works.
     else if (data == "PS\u0000\u0000ÿ\u0004\u0001÷") hasTap = true;
     else if (data == "PS\u0000\u0000\u0003\u0001\u0001÷") {
-      hasOpen = true;
+      hasOpen[tracks[event.track]] = true;
       isOpen = true;
     } else if (data == "PS\u0000\u0000\u0003\u0001\u0000÷") isOpen = false;
 
@@ -80,16 +80,12 @@ const parse = midiFile => {
     }
   });
 
-  // Compute the hash of the .chart itself first
+  // Compute the hash of the .mid itself first
   const hashes = { file: getSha(midiFile) };
   const noteCounts = {};
   let earliestNote = +Infinity, latestNote = 0;
   for (let part in notes) {
     const [instrument, difficulty] = part.split('.');
-    if (!hashes[instrument]) {
-      hashes[instrument] = {};
-      noteCounts[instrument] = {};
-    }
     // We have to reorder the values by ascending index (Object.values gets by "alphabetical" order of index)
     const notesArray = Object.keys(notes[part]).sort((a, b) => +a < +b ? -1 : 1).map(index => {
       index = +index;
@@ -97,6 +93,12 @@ const parse = midiFile => {
       if (index > latestNote) latestNote = index;
       return notes[part][index];
     });
+    // Ignore tracks with less than 10 notes
+    if (notesArray.length < 10) continue;
+    if (!hashes[instrument]) {
+      hashes[instrument] = {};
+      noteCounts[instrument] = {};
+    }
     // Compute the hashes and note counts of individual difficulties/instruments
     noteCounts[instrument][difficulty] = notesArray.length;
     hashes[instrument][difficulty] = getSha(notesArray.join(' '));
@@ -109,7 +111,7 @@ module.exports = midiFile => {
   try {
     return parse(midiFile);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.stack);
     return {};
   }
 };

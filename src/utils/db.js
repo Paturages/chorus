@@ -100,7 +100,7 @@ const getDiffsFromNoteCounts = noteCounts => {
 };
 module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
   // Checking that a link doesn't appear twice
-  songs = Object.values(songs.reduce((obj, song) => Object.assign(obj, { [song.meta.link]: song }), {}));
+  songs = Object.values(songs.reduce((obj, song) => Object.assign(obj, { [song.link]: song }), {}));
   for (let i = 0; i < songs.length; i += 50) {
     console.log('Inserting from', i, 'to', Math.min(i + 50, songs.length));
     const songIds = await Pg.q`
@@ -112,18 +112,18 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "tier_bassghl", "diff_guitar", "diff_bass", "diff_rhythm",
         "diff_drums", "diff_keys", "diff_guitarghl", "diff_bassghl",
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
-        "hasSoloSections", "hasStems", "noteCounts", "link", "lastModified"
+        "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link", "lastModified"
       )
       VALUES
       ${songs.slice(i, i + 50).map(
-        ({ meta: {
-            name = '', artist = '', album = '', genre = '', year = '', charter = '',
-            diff_band = '', diff_guitar = '', diff_bass = '', diff_rhythm = '',
-            diff_drums = '', diff_vocals = '', diff_keys = '', diff_guitarghl = '',
-            diff_bassghl = '', hasForced, hasOpen, hasTap, hasSections,
-            hasStarPower, hasSoloSections, hasStems, noteCounts, lastModified,
-            hashes, link, chartMeta = {}, frets = ''
-          } }) => {
+        ({
+          name = '', artist = '', album = '', genre = '', year = '', charter = '',
+          diff_band = -1, diff_guitar = -1, diff_bass = -1, diff_rhythm = -1,
+          diff_drums = -1, diff_vocals = -1, diff_keys = -1, diff_guitarghl = -1,
+          diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
+          hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
+          hashes, link, chartMeta = {}, frets = ''
+        }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
             name || chartMeta.Name || null,
@@ -132,15 +132,15 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             genre || chartMeta.Genre || null,
             year || chartMeta.Year || null,
             charter || frets || chartMeta.Charter || null,
-            diff_band || null,
-            diff_guitar || null,
-            diff_bass || null,
-            diff_rhythm || null,
-            diff_drums || null,
-            diff_vocals || null,
-            diff_keys || null,
-            diff_guitarghl || null,
-            diff_bassghl || null,
+            +diff_band >= 0 ? diff_band : null,
+            +diff_guitar >= 0 ? diff_guitar : null,
+            +diff_bass >= 0 ? diff_bass : null,
+            +diff_rhythm >= 0 ? diff_rhythm : null,
+            +diff_drums >= 0 ? diff_drums : null,
+            +diff_vocals >= 0 ? diff_vocals : null,
+            +diff_keys >= 0 ? diff_keys : null,
+            +diff_guitarghl >= 0 ? diff_guitarghl : null,
+            +diff_bassghl >= 0 ? diff_bassghl : null,
             diffs.guitar,
             diffs.bass,
             diffs.rhythm,
@@ -155,6 +155,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             hasStarPower,
             hasSoloSections,
             hasStems,
+            hasVideo,
             noteCounts ? JSON.stringify(noteCounts) : null,
             link,
             lastModified,
@@ -202,7 +203,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         VALUES
         ${songIds.map(({ id }) => [
           songs[0].parent ? JSON.stringify(songs[0].parent) : null,
-          songs[0].meta.source.chorusId,
+          songs[0].source.chorusId,
           id
         ])}
         ON CONFLICT DO NOTHING
@@ -212,16 +213,16 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         ("hash", "part", "difficulty", "songId")
         VALUES
         ${songIds.reduce((arr, { id }, index) => {
-          for (part in songs[i + index].meta.hashes) {
+          for (part in songs[i + index].hashes) {
             if (part == 'file') arr.push([
-              songs[i + index].meta.hashes.file,
+              songs[i + index].hashes.file,
               'file',
               null,
               id
             ]);
-            else for (diff in songs[i + index].meta.hashes[part]) {
+            else for (diff in songs[i + index].hashes[part]) {
               arr.push([
-                songs[i + index].meta.hashes[part][diff],
+                songs[i + index].hashes[part][diff],
                 part.trim(),
                 diff.trim(),
                 id
@@ -241,7 +242,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           VALUES
           ${songIds.reduce((arr, { id }, index) => {
             const parent = songs[i + index].parent || {};
-            const { source, name, artist, genre, album, charter } = songs[i + index].meta;
+            const { source, name, artist, genre, album, charter } = songs[i + index];
             [parent.name || '', source.name, name, artist, genre, album, charter].join(' ').split(' ').forEach(word => {
               arr.push(`($${queryIndex++}, coalesce((
                 select array_to_string(array_agg(t), ' ') from unnest(tsvector_to_array(to_tsvector('english', $${queryIndex++}))) t
@@ -341,15 +342,15 @@ module.exports.getLinksMapBySource = ({ link }) => Promise.all([
     genre: song.meta.genre,
     year: song.meta.year,
     charter: song.meta.charter,
-    diff_band: '' + (song.meta.tier_band || ''),
-    diff_guitar: '' + (song.meta.tier_guitar || ''),
-    diff_bass: '' + (song.meta.tier_bass || ''),
-    diff_rhythm: '' + (song.meta.tier_rhythm || ''),
-    diff_drums: '' + (song.meta.tier_drums || ''),
-    diff_vocals: '' + (song.meta.tier_vocals || ''),
-    diff_keys: '' + (song.meta.tier_keys || ''),
-    diff_guitarghl: '' + (song.meta.tier_guitarghl || ''),
-    diff_bassghl: '' + (song.meta.tier_bassghl || ''),
+    diff_band: '' + (song.meta.tier_band == null ? -1 : song.meta.tier_band),
+    diff_guitar: '' + (song.meta.tier_guitar == null ? -1 : song.meta.tier_guitar),
+    diff_bass: '' + (song.meta.tier_bass == null ? -1 : song.meta.tier_bass),
+    diff_rhythm: '' + (song.meta.tier_rhythm == null ? -1 : song.meta.tier_rhythm),
+    diff_drums: '' + (song.meta.tier_drums == null ? -1 : song.meta.tier_drums),
+    diff_vocals: '' + (song.meta.tier_vocals == null ? -1 : song.meta.tier_vocals),
+    diff_keys: '' + (song.meta.tier_keys == null ? -1 : song.meta.tier_keys),
+    diff_guitarghl: '' + (song.meta.tier_guitarghl == null ? -1 : song.meta.tier_guitarghl),
+    diff_bassghl: '' + (song.meta.tier_bassghl == null ? -1 : song.meta.tier_bassghl),
     hasForced: song.meta.hasForced,
     hasOpen: song.meta.hasOpen,
     hasTap: song.meta.hasTap,
@@ -371,4 +372,4 @@ module.exports.getLinksMapBySource = ({ link }) => Promise.all([
     })(),
   } : { [song.link]: { ignore: true } } })))
 )
-.catch(err => console.error(err.stack));
+.catch(err => console.error(err.stack) || {});

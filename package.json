@@ -3,15 +3,19 @@
   "version": "0.0.1",
   "description": "Clone Hero-friendly Organized Repository of User-provided Songs",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Paturages/chorus"
+  },
   "dependencies": {
-    "@fknop/node-unrar": "^1.1.0",
     "csv-parse": "^2.0.0",
     "express": "^4.16.2",
     "google-auth-library": "^0.12.0",
     "googleapis": "^23.0.0",
+    "iconv-lite": "^0.4.19",
     "ls": "^0.2.1",
     "midifile": "^1.0.4",
-    "node-zip": "^1.1.1",
+    "node-7z": "^0.4.0",
     "pg": "^7.4.0",
     "request": "^2.83.0",
     "rimraf": "^2.6.2",

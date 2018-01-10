@@ -28,11 +28,13 @@ export default class Home extends Component {
         <SearchBox
           label="What do you feel like playing today?"
           onQuery={query =>
-            this.setState({ query: encodeURIComponent(query) }, () => {
+            this.setState({ query }, () => {
               window.history.pushState(
                 null,
                 "Search",
-                `/search?query=${encodeURIComponent(query)}`
+                `${
+                  process.env.TESTING ? "/testing" : ""
+                }/search?query=${encodeURIComponent(query)}`
               );
               if (typeof ga !== "undefined") {
                 ga("set", "page", `/search?query=${encodeURIComponent(query)}`);

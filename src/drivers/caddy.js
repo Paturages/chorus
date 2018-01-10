@@ -1,9 +1,21 @@
 const Request = require('request');
-const Unzip = require('node-zip');
 
-const getMetaFromChart = require('../utils/meta/chart');
-const getMetaFromMidi = require('../utils/meta/midi');
-const getMetaFromIni = require('../utils/meta/ini');
+const getMetaFromArchive = require('../utils/extract/archive');
+
+const download = url => new Promise((resolve, reject) =>
+  Request.get(url, { encoding: null }, (err, res) => {
+    if (err) reject(err);
+    else resolve(res.body);
+  })
+);
+
+const defaultNameParser = txt => {
+  let [artist, ...songParts] = txt.split(' - ');
+  if (!songParts || !songParts.length) return { artist: 'N/A', name: txt.replace(/\.(zip|rar|7z)$/, '') };
+  const name = songParts.join(' - ').replace(/\.(zip|rar|7z)$/, '');
+  return { artist: artist.trim(), name: name.trim() };
+};
+
 const {
   upsertSource,
   upsertSongs,
@@ -47,42 +59,31 @@ module.exports = async ({ name, link }) => {
   const toIgnore = [];
   console.log(songList.length, 'songs found');
   for (let i = 0; i < songList.length; i++) {
-    try {
-      const { Name, URL, ModTime, parent } = songList[i];
-      const url = `${(parent || {}).link || link}${URL.slice(2)}`;
-      if (linksMap[url] && ModTime.slice(0, 19) == linksMap[url].lastModified.slice(0, 19)) {
-        songs.push(Object.assign({ meta: Object.assign(linksMap[url], { source }) }));
-        continue;
-      }
-      console.log('Extracting', Name, url);
-      const archive = await new Promise((resolve, reject) =>
-        Request.get(url, { encoding: null }, (err, res) => {
-          if (err) reject(err);
-          else resolve(res.body);
-        })
-      );
-      const { files } = Unzip(archive, { base64: false, checkCRC32: true });
-      const iniFileName = Object.keys(files).find(f => f.indexOf('song.ini') > -1);
-      const chartFileName = Object.keys(files).find(f => f.indexOf('.chart') > -1);
-      const midFileName = Object.keys(files).find(f => f.indexOf('.mid') > -1);
-      const hasStems = Object.keys(files).find(f => f.indexOf('rhythm.ogg') > -1);
-      const meta = {};
-      // Parse song.ini
-      if (iniFileName) Object.assign(meta, getMetaFromIni(files[iniFileName]._data));
-      // Parse either .chart (safest choice) or .mid
-      if (chartFileName) Object.assign(meta, getMetaFromChart(files[chartFileName]._data));
-      else if (midFileName) Object.assign(meta, getMetaFromMidi(files[midFileName]._data));
-      // If anything was found, add to list of songs with meta,
-      // else add it to the ignore list
-      if (Object.keys(meta).length) {
-        console.log('Found', meta.name, 'by', meta.artist);
-        songs.push({ meta: Object.assign(meta, { hasStems: !!hasStems, source, link: url, lastModified: ModTime }) });
-      } else {
-        toIgnore.push({ sourceId: source.chorusId, link: url });
-      }
-    } catch (err) {
-      console.log(songList[i].Name, 'failed!');
-      console.error(err.message);
+    const { Name, URL, ModTime, parent } = songList[i];
+    const url = `${(parent || {}).link || link}${URL.slice(2)}`;
+    if (linksMap[url] && ModTime.slice(0, 19) == linksMap[url].lastModified.slice(0, 19)) {
+      songs.push(Object.assign(linksMap[url], { source }));
+      continue;
+    }
+    console.log('Extracting', Name);
+    const meta = await getMetaFromArchive(await download(url), 'zip');
+    if (!meta) toIgnore.push({ sourceId: source.chorusId, link: url });
+    else {
+      // Computing default artist and song names in case there's no song.ini file,
+      // and also inputing already available metadata
+      const { artist, name } = defaultNameParser(Name);
+      const song = {
+        artist, name, lastModified: ModTime, source, link: url, parent: parent ? {
+          name: parent.name,
+          link: parent.link
+        } : null
+      };
+      console.log(`> Found "${
+        meta.name || meta.chartMeta.Name || name
+      }" by "${
+        meta.artist || chartMeta.Artist || artist || '???'
+      }"`);
+      songs.push(Object.assign(song, meta));
     }
   }
   // 5. Update the list of links to ignore (e.g. invalid archives, stray files...)

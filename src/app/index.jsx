@@ -12,7 +12,7 @@ import "scss/fonts.scss";
 import "./index.html";
 
 // Evil good ol' spying Google Analytics >:)
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production" && !process.env.TESTING) {
   (function(i, s, o, g, r, a, m) {
     i["GoogleAnalyticsObject"] = r;
     (i[r] =
@@ -46,7 +46,7 @@ const queryParts = (window.location.search || "")
 const query = queryParts.find(x => x.key == "query") || {};
 
 Inferno.render(
-  window.location.pathname === "/" ? (
+  window.location.pathname === `/${process.env.TESTING ? "testing/" : ""}` ? (
     <Home />
   ) : (
     <Search query={decodeURIComponent(query.value)} />

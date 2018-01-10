@@ -52,17 +52,35 @@ module.exports = async () => {
       "diff_guitarghl" smallint,
       "diff_bassghl" smallint,
       "hasForced" boolean,
-      "hasOpen" boolean,
+      "hasOpen" jsonb,
       "hasTap" boolean,
       "hasSections" boolean,
       "hasStarPower" boolean,
       "hasSoloSections" boolean,
       "hasStems" boolean,
+      "hasVideo" boolean,
       "noteCounts" jsonb,
       "lastModified" timestamp,
       "link" text
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON public."Songs_new" USING btree(link)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_band)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_guitar)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_bass)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_rhythm)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_drums)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_vocals)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_keys)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_guitarghl)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(tier_bassghl)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(diff_guitar)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(diff_bass)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(diff_rhythm)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(diff_drums)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(diff_keys)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(diff_guitarghl)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree(diff_bassghl)`;
+    await Pg.q`CREATE INDEX ON public."Songs_new" USING btree("lastModified")`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(name gin_trgm_ops)`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(artist gin_trgm_ops)`;
     await Pg.q`CREATE INDEX ON public."Songs_new" USING gin(album gin_trgm_ops)`;
@@ -93,6 +111,7 @@ module.exports = async () => {
       ON DELETE CASCADE
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON "Songs_Hashes_new" USING btree("hash", "songId", "part", "difficulty")`;
+    await Pg.q`CREATE INDEX ON "Songs_Hashes_new" USING hash("hash")`;
     await Pg.q`CREATE TABLE "Songs_Words_new" (
       "songId" integer,
       "word" text,

@@ -35,7 +35,8 @@ module.exports = webpackMerge(commonConfig, {
     }),
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify("production") // required for Inferno production build
+        NODE_ENV: JSON.stringify("production"), // required for Inferno production build
+        TESTING: JSON.stringify(process.env.TESTING), // for test build
       }
     })
   ]

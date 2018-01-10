@@ -16,7 +16,9 @@ export default ({ tier, diff, label, hashes, counts, hideDiffs }) => (
   <div className="TierPills">
     <div
       className={`TierPills__label ${
-        !counts ? "TierPills__label--disabled" : ""
+        !counts && (tier == null || tier == -1)
+          ? "TierPills__label--disabled"
+          : ""
       }`}
     >
       {label}
@@ -24,8 +26,8 @@ export default ({ tier, diff, label, hashes, counts, hideDiffs }) => (
     <div
       className={[
         "TierPills__pills",
-        (!counts || tier == null || tier < 0) && "TierPills__pills--disabled",
-        counts && tier >= 6 && "TierPills__pills--hard-as-fuck"
+        (tier == null || tier < 0) && "TierPills__pills--disabled",
+        tier >= 6 && "TierPills__pills--hard-as-fuck"
       ]
         .filter(x => x)
         .join(" ")}

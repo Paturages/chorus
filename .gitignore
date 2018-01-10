@@ -2,8 +2,8 @@ conf
 node_modules
 dist
 build
-tmp
-tmp.rar
+src/utils/extract/tmp/
+src/utils/extract/tmp.*
 *.log
 .DS_Store
 ~$*
