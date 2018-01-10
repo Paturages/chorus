@@ -111,9 +111,9 @@ module.exports = async ({ name, link }) => {
           } : null
         };
         console.log(`> Found "${
-          meta.name || meta.chartMeta.Name || name
+          meta.name || (meta.chartMeta || {}).Name || name
         }" by "${
-          meta.artist || chartMeta.Artist || artist || '???'
+          meta.artist || (meta.chartMeta || {}).Artist || artist || '???'
         }"`);
         songs.push(Object.assign(song, meta));
       }
@@ -133,9 +133,9 @@ module.exports = async ({ name, link }) => {
         } : null
       };
       console.log(`> Found "${
-        meta.name || meta.chartMeta.Name || name
+        meta.name || (meta.chartMeta || {}).Name || name
       }" by "${
-        meta.artist || chartMeta.Artist || artist || '???'
+        meta.artist || (meta.chartMeta || {}).Artist || artist || '???'
       }"`);
       songs.push(Object.assign(song, meta));
     }
