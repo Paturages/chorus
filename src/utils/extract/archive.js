@@ -37,6 +37,10 @@ module.exports = async (archive, extension) => {
     await p(Fs.mkdir, pathDir);
     const zip = new Node7z();
     await zip.extract(pathFile, pathDir);
+    // Ugly workaround to solve filename encoding issues
+    if (process.platform != 'win32') {
+      await new Promise(resolve => ChildProcess.exec(`mv ${pathDir}/\*.chart ${pathDir}/notes.chart`, () => resolve()));
+    }
     // 3. Find the files we need
     // Check if the song is available in the temp folder
     let iniFile, chartFile, midFile, hasStems, hasVideo;

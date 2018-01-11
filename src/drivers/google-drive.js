@@ -64,9 +64,9 @@ module.exports = async ({ name, link }) => {
         // Do not parse already indexed songs
         if (linksMap[item.webViewLink] && (linksMap[item.webViewLink].lastModified || '').slice(0, 19) == item.modifiedTime.slice(0, 19)) {
           songs.push(Object.assign(linksMap[item.webViewLink], {
-            source, parent: folder.parent ? {
-              name: folder.parent.name,
-              link: folder.parent.link
+            source, parent: folder.canBeParent ? {
+              name: folder.name,
+              link: folder.webViewLink
             } : null
           }));
           return content;
@@ -110,9 +110,9 @@ module.exports = async ({ name, link }) => {
         // and also inputing already available metadata
         const { artist, name } = defaultNameParser(file.name);
         const song = {
-          artist, name, lastModified: file.modifiedTime, source, link: file.webViewLink, parent: folder.parent ? {
-            name: folder.parent.name,
-            link: folder.parent.link
+          artist, name, lastModified: file.modifiedTime, source, link: file.webViewLink, parent: folder.canBeParent ? {
+            name: folder.name,
+            link: folder.webViewLink
           } : null
         };
         console.log(`> Found "${
@@ -132,9 +132,9 @@ module.exports = async ({ name, link }) => {
       // and also inputing already available metadata
       const { artist, name } = defaultNameParser(folder.name);
       const song = {
-        artist, name, lastModified: folder.modifiedTime, source, link: folder.webViewLink, parent: folder.parent ? {
-          name: folder.parent.name,
-          link: folder.parent.link
+        artist, name, lastModified: folder.modifiedTime, source, link: folder.webViewLink, parent: folder.canBeParent ? {
+          name: folder.name,
+          link: folder.webViewLink
         } : null
       };
       console.log(`> Found "${
@@ -147,10 +147,10 @@ module.exports = async ({ name, link }) => {
 
     // Recurse on subfolders
     for (let i = 0; i < subfolders.length; i++) {
-      subfolders[i].parent = {
-        name: folder.parent ? `${folder.parent.name} - ${folder.name}` : folder.name,
-        link: folder.webViewLink
-      };
+      if (folder.canBeParent) {
+        subfolders[i].name = `${folder.name} - ${subfolders[i].name}`;
+      }
+      subfolders[i].canBeParent = true;
       await searchSongFolders(subfolders[i]);
     }
   };

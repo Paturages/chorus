@@ -123,7 +123,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_drums = -1, diff_vocals = -1, diff_keys = -1, diff_guitarghl = -1,
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
-          hashes, link, chartMeta = {}, frets = ''
+          hashes, link, chartMeta = {}, source, parent = {}, frets = ''
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -133,15 +133,15 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             genre || chartMeta.Genre || null,
             year || chartMeta.Year || null,
             charter || frets || chartMeta.Charter || null,
-            +diff_band >= 0 ? diff_band : null,
-            +diff_guitar >= 0 ? diff_guitar : null,
-            +diff_bass >= 0 ? diff_bass : null,
-            +diff_rhythm >= 0 ? diff_rhythm : null,
-            +diff_drums >= 0 ? diff_drums : null,
-            +diff_vocals >= 0 ? diff_vocals : null,
-            +diff_keys >= 0 ? diff_keys : null,
-            +diff_guitarghl >= 0 ? diff_guitarghl : null,
-            +diff_bassghl >= 0 ? diff_bassghl : null,
+            +diff_band >= 0 ? +diff_band >> 0 : null,
+            +diff_guitar >= 0 ? +diff_guitar >> 0 : null,
+            +diff_bass >= 0 ? +diff_bass >> 0 : null,
+            +diff_rhythm >= 0 ? +diff_rhythm >> 0 : null,
+            +diff_drums >= 0 ? +diff_drums >> 0 : null,
+            +diff_vocals >= 0 ? +diff_vocals >> 0 : null,
+            +diff_keys >= 0 ? +diff_keys >> 0 : null,
+            +diff_guitarghl >= 0 ? +diff_guitarghl >> 0 : null,
+            +diff_bassghl >= 0 ? +diff_bassghl >> 0 : null,
             diffs.guitar,
             diffs.bass,
             diffs.rhythm,
@@ -169,7 +169,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
                 if (words.length < 3) return;
                 return words.map(word => word[0]).join('');
               })
-            ].filter(x => x).join(' ')
+            ].filter(x => x).join(' ').toLowerCase()
           ];
         }
       )}
@@ -213,9 +213,9 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         INSERT INTO "Songs_Sources${{ sql: process.argv[2] ? '' : '_new' }}"
         ("parent", "sourceId", "songId")
         VALUES
-        ${songIds.map(({ id }) => [
-          songs[0].parent ? JSON.stringify(songs[0].parent) : null,
-          songs[0].source.chorusId,
+        ${songIds.map(({ id }, index) => [
+          songs[index].parent ? JSON.stringify(songs[index].parent) : null,
+          songs[index].source.chorusId,
           id
         ])}
         ON CONFLICT DO NOTHING
@@ -347,6 +347,6 @@ module.exports.getLinksMapBySource = ({ link }) => Promise.all([
       });
       return parts;
     })(),
-  } : { [song.link]: { ignore: true } } })))
+  } : { ignore: true } })))
 )
 .catch(err => console.error(err.stack) || {});
