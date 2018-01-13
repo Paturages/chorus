@@ -1,5 +1,5 @@
 Source name: Thunder Force
-Link to source (Drive, Youtube channel or similar; optional): https://github.com/Paturages/chorus/blob/master/sources/ThunderForce.txt
+Link to source (Drive, Youtube channel or similar; optional): https://github.com/Paturages/chorus/blob/master/sources/txt/thunderforce.txt
 Charter (optional; this will automatically attribute the charts defined below if they do not have a "charter" field): N/A
 
 Artist: S.S.H

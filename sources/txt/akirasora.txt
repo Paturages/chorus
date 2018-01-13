@@ -1,0 +1,11 @@
+Source name: Akira Sora's charts
+Link to source (Drive, Youtube channel or similar; optional): https://github.com/Paturages/chorus/blob/master/sources/txt/akirasora.txt
+Charter (optional; this will automatically attribute the charts defined below if they do not have a "charter" field): Akira Sora
+
+Artist: Skrillex
+Song: Kyoto
+Link: http://www.mediafire.com/file/ahm5so5g6q88snh
+
+Artist: Akira Sora
+Song: Columpio
+Link: http://www.mediafire.com/?hqmg8w1ei26bg
