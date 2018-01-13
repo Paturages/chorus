@@ -3,16 +3,30 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: stretch;
+  position: relative;
+
+  @media (max-width: 740px) {
+    display: block;
+    padding: 1em;
   }
 
   &__meta {
     flex: 1;
-    @media (min-width: 601px) {
-      margin-right: 1em;
-    }
+  }
+
+  &__modified {
+    font-size: .5em;
+    opacity: .6;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    text-align: right;
+  }
+
+  &__hash {
+    margin-top: 1rem;
+    font-size: .5em;
+    opacity: .6;
   }
 
   &__artist {
@@ -20,10 +34,64 @@
     font-size: 1.25em;
   }
 
-  &__chart {
+  &__album, &__genre {
+    font-size: .8em;
+    opacity: .6;
+  }
+
+  &__charter {
+    margin: 1em 0;
+  }
+
+  &__sources {
+    font-size: .8em;
+  }
+
+  &__features {
+    width: 11em;
+    flex-shrink: 0;
+    font-size: .8em;
+    margin: 0 1.5em;
     text-align: right;
-    @media (min-width: 601px) {
-      max-width: 200px;
+    text-transform: uppercase;
+    @media (max-width: 740px) {
+      flex: 1;
+      width: auto;
+      font-size: .6em;
     }
+  }
+
+  &__chart-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media (max-width: 740px) {
+      margin-top: 1em;
+    }
+  }
+
+  &__feature {
+    margin: .25em 0;
+    &--disabled {
+      opacity: .25;
+    }
+    &-items {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      font-size: .6em;
+    }
+    &-item {
+      margin-left: .5em;
+    }
+  }
+
+  &__tiers-columns {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__tiers-column {
+    margin-right: 1em;
   }
 }

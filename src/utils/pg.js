@@ -35,7 +35,7 @@ const query = (query, queryArgs) => {
   if (!pgConfig) return Promise.reject('No config');
   if (!pool) return Promise.reject('No pool');
   return Promise.race([
-    new Promise((resolve, reject) => setTimeout(() => { reject('Connection timed out'); }, 5000)),
+    new Promise((resolve, reject) => setTimeout(() => { reject('Connection timed out'); }, 20000)),
     pool.query(query, queryArgs).then(result => result.rows),
   ])
   .catch((err) => {
@@ -66,12 +66,12 @@ const q = (queryArr, ...params) => {
       params[index][0].length
     ) {
       params[index].forEach(row => row.forEach(x => queryArgs.push(x)));
-      return `${part}${params[index].map(row => `(${row.map(x => `$${queryIndex++}`)})`).join(',')}`;
+      return `${part}${params[index].map(row => `(${row.map(x => (x || {}).sql || `$${queryIndex++}`)})`).join(',')}`;
     }
     // Decompose arrays
     if (typeof params[index] === 'object' && params[index].length) {
-      queryArgs = queryArgs.push(...params[index]);
-      return `${part}${params[index].map(x => `$${queryIndex++}::${typeof x == 'string' ? 'text' : 'integer'}`)}`;
+      queryArgs.push(...params[index]);
+      return `${part}${params[index].map(x => `$${queryIndex++}`)}`;
     }
     queryArgs.push(params[index]);
     return `${part}$${queryIndex++}`;

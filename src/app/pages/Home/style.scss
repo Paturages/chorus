@@ -1,6 +1,18 @@
 .Home {
+  max-width: 1280px;
+  margin: auto;
+  
   .SearchBox {
     margin: 3em auto;
     max-width: 800px;
+  }
+
+  @media (max-width: 740px) {
+    .Logo {
+      margin: 0 1em;
+    }
+    .SearchBox {
+      margin: 3em 1em;
+    }
   }
 }

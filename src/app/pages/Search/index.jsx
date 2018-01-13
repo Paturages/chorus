@@ -34,15 +34,21 @@ export default class Search extends Component {
                 window.history.pushState(
                   null,
                   "Search",
-                  `/search?query=${query}`
+                  `${
+                    process.env.TESTING ? "/testing" : ""
+                  }/search?query=${encodeURIComponent(query)}`
                 );
                 if (typeof ga !== "undefined") {
-                  ga("set", "page", `/search?query=${query}`);
+                  ga(
+                    "set",
+                    "page",
+                    `/search?query=${encodeURIComponent(query)}`
+                  );
                   ga("send", "pageview");
                 }
-                Http.get("/api/search", { query }).then(songs =>
-                  this.setState({ songs })
-                );
+                Http.get("/api/search", {
+                  query: encodeURIComponent(query)
+                }).then(songs => this.setState({ songs }));
               })
             }
           />

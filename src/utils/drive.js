@@ -8,7 +8,7 @@ const CLIENT = require('../../conf/client_id.json');
 
 // Auth to Google APIs
 const auth = new Auth();
-const oAuth2 = new auth.OAuth2(CLIENT.web.client_id, CLIENT.web.client_secret, 'https://fightthe.pw');
+const oAuth2 = new auth.OAuth2(CLIENT.web.client_id, CLIENT.web.client_secret, 'https://chorus.fightthe.pw');
 let Drive;
 
 const init = async () => {
@@ -50,31 +50,51 @@ let timeout;
 const DELAY = 200;
 const processQueue = () => {
   if (!queue.length) return timeout = null;
-  const { args, callback } = queue.shift();
+  const { method, args, callback } = queue.shift();
   timeout = setTimeout(() => processQueue(), DELAY);
-  Drive.files.list(args, callback);
+  Drive.files[method](args, callback);
 };
-const throttle = (args, callback) => {
-  queue.push({ args, callback });
+const throttle = (method, args, callback) => {
+  queue.push({ method, args, callback });
   if (!timeout) timeout = setTimeout(() => processQueue(), DELAY);
 };
 
-const get = (args, files) => new Promise((resolve, reject) => throttle(Object.assign({
+const list = (args, files, retry) => new Promise((resolve, reject) => throttle('list', Object.assign({
   auth: oAuth2,
   pageSize: 1000,
-  fields: 'nextPageToken, files(id, name)'
+  fields: 'nextPageToken, files(id, name, mimeType, fileExtension, size, webContentLink, modifiedTime, webViewLink)'
 }, args), async (err, payload) => {
-  if (err) return reject(err);
-  resolve(
-    payload.nextPageToken ?
-    (
-      await get(
-        Object.assign(args, { pageToken: payload.nextPageToken }),
-        (files || []).concat(payload.files)
-      )
-    ) :
-    (files || []).concat(payload.files)
-  );
+  if (err) {
+    // If Google Drive fails (e.g. 500 Internal Error),
+    // try 5 more times before giving up and yielding nothing.
+    // This should be rare enough, I hope.
+    console.error(err.stack);
+    console.log(`> Retry n°${(retry || 0) + 1}`);
+    if (retry >= 5) return resolve(files || []);
+    return resolve(await list(args, files, (retry || 0) + 1));
+  }
+  try {
+    resolve(
+      payload.nextPageToken ?
+      (
+        await list(
+          Object.assign(args, { pageToken: payload.nextPageToken }),
+          (files || []).concat(payload.files)
+        )
+      ) :
+      (files || []).concat(payload.files)
+    );
+  } catch (err) {
+    console.error(err.stack);
+    console.log(`> Retry n°${(retry || 0) + 1}`);
+    if (retry >= 5) return resolve(files || []);
+    return resolve(await list(args, files, (retry || 0) + 1));
+  }
 }));
 
-module.exports = { init, get };
+const get = fileId => new Promise((resolve, reject) => throttle('get', { auth: oAuth2, fileId }, async (err, payload) => {
+  if (err) return reject(err);
+  resolve(payload);
+}));
+
+module.exports = { init, list, get };

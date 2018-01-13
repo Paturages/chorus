@@ -4,6 +4,7 @@
 
 const get = (url, params) =>
   new Promise((resolve, reject) => {
+    if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
     xhr.onreadystatechange = () => {
       if (xhr.readyState === window.XMLHttpRequest.DONE) {
@@ -23,6 +24,7 @@ const get = (url, params) =>
 
 const req = method => (url, params) =>
   new Promise((resolve, reject) => {
+    if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
     xhr.onreadystatechange = () => {
       if (xhr.readyState === window.XMLHttpRequest.DONE) {

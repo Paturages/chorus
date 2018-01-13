@@ -19,8 +19,8 @@ module.exports = async fileName => {
     else if (match = line.match(/^Charter [^:]*: ?(.+)$/)) [, sourceCharter] = match;
     else if (match = line.match(/^Artist: ?(.+)$/)) {
       const [, artist] = match;
-      const name = lines[index+1].slice(6);
-      const link = lines[index+2].slice(6);
+      const name = lines[index+1].slice(6).trim();
+      const link = lines[index+2].slice(6).trim();
       const charter = lines[index+3].slice(9).trim() || sourceCharter;
       songs.push({ name, artist, link, charter, lastModified });
     }
@@ -28,13 +28,13 @@ module.exports = async fileName => {
   
   console.log('Registering or finding source');
   const source = await upsertSource({
-    short,
     name: sourceName.trim(),
     link: sourceLink.trim()
   });
+  source.chorusId = source.id;
 
   console.log('Adding/updating songs');
-  await upsertSongs(songs.map(song => Object.assign(song, { sourceId: source.id })), true);
+  await upsertSongs(songs.map(song => Object.assign(song, { source })), true);
 
   console.log(sourceName, 'imported!');
   return 0;

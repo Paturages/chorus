@@ -1,0 +1,95 @@
+# Wanna add some charts?
+# Get your GitHub account and edit this file!
+
+# The format matches the following fields:
+# <drive_name> :: <link> [:: <custom_script>]
+
+# <drive_name> will show up on chorus as the label for the source link (i.e. "found in <drive_name>").
+# It is searchable, so choose accordingly. Obviously, don't put "::" in it. I added the second ":"
+# to enable people to use ":" in drive names, so don't ruin my fun!
+
+# <link> is the link to your drive.
+# The guidelines for folder/archive naming is gone: chorus now reads from your song.ini and .chart files.
+# Make sure you fill them in properly: not only for chorus, but for Clone Hero as well!
+
+# Optional: <custom_script> is for custom handlers. Default script is Google Drive (google-drive.js).
+
+# Lines that start with a # are comments and will not be parsed. Neither will empty lines.
+
+# Charter drives
+
+Angevil's charts :: https://drive.google.com/drive/folders/1olQexhSVSD6MRQraOsyYmRdeLdMKneC8
+Aren's charts :: https://drive.google.com/drive/folders/1PPTVn4AlSjDtJ3Y90K9oWiL0jOqyAzkr 
+Berk Rider's charts :: https://drive.google.com/drive/folders/1rjIT93mk-Tluu789OorgXj_cCIWm6Tpq
+capta1n_guitarhero's charts :: https://drive.google.com/drive/folders/1kazNw6LPjnbahS5s1iKAGhNkNeLDpxDW
+CaptainToasty's charts :: https://drive.google.com/drive/folders/0B7sLCPWoM-w3aDVLdUV2YmZ5ejg
+ChemFinal's charts :: https://drive.google.com/drive/folders/0BxwFbK1RPXa7NktEZ0VacVAxRkE
+Chezy's charts :: https://drive.google.com/drive/folders/1GMWUS_9lttQktzTeek1J14rFfFI16pFG
+DeathOfTeyolia' charts :: https://drive.google.com/drive/folders/1bBiEK3kAf_5500Cc8x1kj3-RcDZ1J73q
+DigitalSquirrel's charts :: https://drive.google.com/drive/folders/0B2cTDJt4RaShTFBxak9nM212T0U
+GarryTheMod's songs :: https://drive.google.com/drive/folders/0By6Bhg7s6NEUNURxejJyZkwzOEU
+JaysonTM's charts :: https://drive.google.com/drive/u/0/folders/0B6v9d_hMqZXRQzJxRUVMMVRITEE
+Kalevasd's charts :: https://drive.google.com/drive/folders/0ByRQBiyVwONWTTFPQ1BWdEk0R3M
+M9's charts :: https://drive.google.com/drive/folders/0B2IgMGWELz1NUXJxaGJWMHRMYVU
+MJR's charts :: https://drive.google.com/drive/folders/0Bxt_bZMbHrqtcVkyTF9LUV9aZFU
+Miscellany's charts :: https://drive.google.com/drive/folders/1p1XuIwYmndRK8Z0VK-uQtnhQEqCBbM9D
+Naonemeu's charts :: https://drive.google.com/drive/folders/0Bxt_bZMbHrqtSlRaYVpDTWpjX2M
+ParallaxDG's charts :: https://drive.google.com/drive/folders/0B9c6s3i6iVBIaHFjR2h1QlZMZVE
+Paturages' charts :: https://public.fightthe.pw/clonehero/ :: caddy.js
+Siavash's charts :: https://drive.google.com/drive/folders/0B2RLHuNpuW16UnhnNFUxVXBOamc
+Supah's charts :: https://drive.google.com/drive/folders/0B1O7vQQXwpsSbjdMWldKR0xRLVE
+Supradyke's charts :: https://drive.google.com/drive/folders/1Aazku1hXC3YsPonPHiZ3AGGVBxovMaHr
+Sygenysis's charts :: https://drive.google.com/drive/folders/0B8ZIiYD-xI8RN1VaUXUzYXMyVkU
+ThundahK's charts :: https://drive.google.com/drive/folders/1t13rjjbPVWzae2gGtUa0DuPPLRT_9tiK
+XKirby's songs :: https://drive.google.com/drive/folders/0B1Eqk46gRA4zTXNMWVBlbVhNa0U
+xX760Xx's charts :: https://drive.google.com/drive/folders/0B5LGIoSN3SrkQm1EZjhlSTBjSUE
+Yhughu's charts :: https://drive.google.com/drive/folders/0B2uoOxv3jfw6SHRZMlgyZHFzOTg
+Hoph2o's charts :: https://drive.google.com/drive/folders/0B_jYZyKzV5MXVVh4LWFHc0JvQ1k
+Tetrinity's charts :: https://drive.google.com/drive/folders/1IFplFLiKX8mxnnfmvCTIEqBb_1r9i-rb
+Treebear's customs :: https://drive.google.com/drive/folders/1UfY8MwsUP7DuUIXqwQRBiUeah55R90GX
+Tsuunaamii's charts :: https://drive.google.com/drive/folders/1fQhmu3nB4t2SQiPIRzXazxs6HbHXogT8
+VanessaMagick's charts :: https://drive.google.com/drive/u/2/folders/1rC9loeBoowMX5c91WZNMgLAZlkdQ6qU9
+Alxon's charts :: https://drive.google.com/drive/u/0/folders/163_VAWf-mcnS9su_R50S35C_q9OR_NXc
+BurpLeTurtle's charts :: https://drive.google.com/drive/folders/0B-93AYpB5GxgUGlyaVRIek1mbnc
+YoloMcSwagginz' charts :: https://drive.google.com/drive/folders/12F0GfMIro8jlJEmXoad9jFl08S49Hkqo
+Ent!ty's Clone Hero Charts :: https://drive.google.com/drive/folders/0B7DAknKs0_efd3k5TVVHQ2JRQ3c
+Gabe's charts :: https://drive.google.com/drive/folders/1eJa7sdE-A4sLhqg9jkYvNMxLqFdpuJ9h
+CyclopsDragon's charts :: https://drive.google.com/drive/folders/0B4vo9ev8ymFsMTBwWGVlM3dtUUE
+Mintorment's charts :: https://drive.google.com/drive/folders/1SrQTdaySPfB7vOrmaycfF-KJw68K_LPd
+BurpLeTurtle's charts :: https://drive.google.com/drive/folders/0B-93AYpB5GxgUGlyaVRIek1mbnc
+Doodled's charts :: https://drive.google.com/drive/folders/1jm700XG3aqecmdLUU211rhiNpQKUGRqT
+Burning's charts :: https://drive.google.com/drive/folders/1O4YGtkbb2hPwNDHytXir01-Qg0sARCUa
+
+# Packs
+
+C3 conversions :: https://drive.google.com/drive/folders/0B1lvPFfHBT2LTFN0ODh3OHdJdUk
+Plumato's drive :: https://drive.google.com/drive/folders/0B3cd4Ad4P4NiNUx3dEJtWnIxREU
+331erock discography :: https://drive.google.com/drive/folders/1nS8e3XE-2eew57pzn0N648xeF4MPqiEo
+BABYMETAL discography :: https://drive.google.com/drive/folders/17H3fTFd4nWmnwYK7MrZfqyQ2T-Y7h278
+Exilelord setlist :: https://drive.google.com/drive/folders/1CK7XDRxH3zyIZgbta1PbSzCeZXXk1uNV
+Galneryus discography :: https://drive.google.com/drive/folders/1EULhQ6fKJ6XYMvVbXETlaadTMBCbO7Yw
+Metallica discography :: https://drive.google.com/drive/folders/1BY4V6S-OHcr0ENUUYUJnnXb1ziB2zGbB
+Pink Floyd discography :: https://drive.google.com/drive/folders/1-sdXHaJYmseTmK_inPKt2q3raYwHdbzI
+Tenacious D discography :: https://drive.google.com/drive/folders/1lBfqXaQDqiYWDi0Qfm1DPiscQiHg89Sp
+Tool discography :: https://drive.google.com/drive/folders/16W44-PmSEZwphYbjlOa1NVL5DPTabkMv
+TriggerTheDragon's Orden Ogan :: https://drive.google.com/drive/folders/1DL1OLtUpqPEFaS2oI7bCVQdMfqXkXaGQ
+TriggerTheDragon's Bury Tomorrow :: https://drive.google.com/drive/folders/1SqHg8zyaIP84sNKOg61QBFUXTFmMIr6O
+TriggerTheDragon's Any Given Day :: https://drive.google.com/drive/folders/1ltjMDbJ9yNBpzI8XazvKa2NS9GcFXRCD
+
+Official games :: https://public.fightthe.pw/ghrb/ :: caddy.js
+Guitarmaggedon :: https://drive.google.com/drive/folders/1N58FEcWidA4dEe7N0bpiKB3Hq3iXbOIe
+Holiday Songs :: https://drive.google.com/drive/folders/1KQhZgffuchPqle0EA9B9o7ne25ZoEQ4v
+Internet Stars :: https://drive.google.com/drive/folders/1L40_VhzLRYJcnpAyQPP1EH0h8Ek1v0mR
+Memes :: https://drive.google.com/drive/folders/1A0tRg3y3NjeS1Wfv978dhhCFhUeDFXDH
+Movies and TV :: https://drive.google.com/drive/folders/1Cr0Ev7Kx4j_BjnNNVWpgqLgQQEqIw2vA
+Post Rock :: https://drive.google.com/drive/folders/1M1niLzG4nTUWLI4O1UmZqOoIeWmjfIpR
+Solos and Instrumentals :: https://drive.google.com/drive/folders/1MNjs8l8DHopbRAIk1f-NeLcmkTrbGXa6
+Video games :: https://drive.google.com/drive/folders/1a0t_iQS9J9ccz_XGq3SuVzmc8mv48Ts8
+YouTube shredders :: https://drive.google.com/drive/folders/1NbNIZuDdvW6rGAo_L4V5uKVgWjJcQeTt
+Country :: https://drive.google.com/drive/folders/1hmdPoZK629Qv8ixPr6DwDWQlKPcf1oDA
+Overcharts :: https://drive.google.com/drive/folders/1rfpaYmO5_fXNxG3TxtMkdrVYeob4O1b1
+Rap & Hip-hop :: https://drive.google.com/drive/folders/12sQo6ghHBXeXDE3iN3k8CNNmjprwVKUM
+Anime Mega-Pack :: https://drive.google.com/drive/folders/16b6qn3RQCshuPWEcRpGUi2L2nBFNHivu
+
+sandsoles16's reuploads :: https://drive.google.com/drive/folders/1G9w2zgnMgWkvrzvGPB02hIn5NR8pm_Ni
+

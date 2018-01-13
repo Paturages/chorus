@@ -32,10 +32,12 @@ export default class Home extends Component {
               window.history.pushState(
                 null,
                 "Search",
-                `/search?query=${query}`
+                `${
+                  process.env.TESTING ? "/testing" : ""
+                }/search?query=${encodeURIComponent(query)}`
               );
               if (typeof ga !== "undefined") {
-                ga("set", "page", `/search?query=${query}`);
+                ga("set", "page", `/search?query=${encodeURIComponent(query)}`);
                 ga("send", "pageview");
               }
             })

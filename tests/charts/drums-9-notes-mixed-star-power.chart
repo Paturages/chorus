@@ -1,0 +1,52 @@
+[Song]
+{
+  Offset = 0
+  Resolution = 192
+  Player2 = bass
+  Difficulty = 0
+  PreviewStart = 0
+  PreviewEnd = 0
+  Genre = "rock"
+  MediaType = "cd"
+}
+[SyncTrack]
+{
+  0 = TS 4
+  0 = B 120000
+}
+[Events]
+{
+}
+[EasySingle]
+{
+  0 = N 0 0
+  48 = N 1 0
+  96 = N 2 0
+  144 = N 3 0
+  192 = N 4 0
+  240 = N 3 0
+  288 = N 2 0
+  336 = N 1 0
+  384 = N 0 0
+}
+[ExpertDrums]
+{
+  0 = N 1 0
+  0 = S 2 576
+  48 = N 2 0
+  48 = N 5 0 
+  96 = N 3 0
+  96 = N 5 0 
+  144 = N 4 0
+  144 = N 5 0 
+  192 = N 5 0
+  192 = N 6 0 
+  240 = N 4 0
+  240 = N 6 0 
+  288 = N 3 0
+  288 = N 6 0 
+  336 = N 2 0
+  336 = N 6 0 
+  384 = N 1 0
+  384 = N 6 0 
+}
