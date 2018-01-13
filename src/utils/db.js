@@ -335,6 +335,7 @@ module.exports.getLinksMapBySource = ({ link }) => Promise.all([
     hasStarPower: song.meta.hasStarPower,
     hasSoloSections: song.meta.hasSoloSections,
     hasStems: song.meta.hasStems,
+    hasVideo: song.meta.hasVideo,
     noteCounts: song.meta.noteCounts,
     link: song.meta.link,
     lastModified: song.meta.lastModified,
