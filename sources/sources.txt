@@ -1,5 +1,6 @@
 # Wanna add some charts?
 # Get your GitHub account and edit this file!
+# (or just DM Paturages#9405 on Discord with your drive link and how you wanna name it)
 
 # The format matches the following fields:
 # <drive_name> :: <link> [:: <custom_script>]
