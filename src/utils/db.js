@@ -102,6 +102,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
   // Checking that a link doesn't appear twice
   songs = Object.values(songs.reduce((obj, song) => Object.assign(obj, { [song.link]: song }), {}));
   for (let i = 0; i < songs.length; i += 50) {
+    if (!songs.slice(i, i + 50).length) continue;
     console.log('Inserting from', i, 'to', Math.min(i + 50, songs.length));
     const songIds = await Pg.q`
       INSERT INTO "Songs${{ sql: process.argv[2] ? '' : '_new' }}"
@@ -220,7 +221,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         ])}
         ON CONFLICT ("songId", "sourceId") DO UPDATE SET "parent" = EXCLUDED."parent"
       `,
-      Pg.q`
+      songs.slice(i, i + 50).find(song => song.hashes && Object.keys(song.hashes).length) && Pg.q`
         INSERT INTO "Songs_Hashes${{ sql: process.argv[2] ? '' : '_new' }}"
         ("hash", "part", "difficulty", "songId")
         VALUES
