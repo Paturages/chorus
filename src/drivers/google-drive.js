@@ -131,10 +131,11 @@ module.exports = async ({ name, link }) => {
       // Computing default artist and song names in case there's no song.ini file,
       // and also inputing already available metadata
       const { artist, name } = defaultNameParser(folder.name);
+      // The parent of a folder is its own parent folder
       const song = {
-        artist, name, lastModified: folder.modifiedTime, source, link: folder.webViewLink, parent: folder.canBeParent ? {
-          name: folder.name,
-          link: folder.webViewLink
+        artist, name, lastModified: folder.modifiedTime, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
+          name: folder.parentFolder.name,
+          link: folder.parentFolder.webViewLink
         } : null
       };
       console.log(`> Found "${
@@ -148,8 +149,9 @@ module.exports = async ({ name, link }) => {
     // Recurse on subfolders
     for (let i = 0; i < subfolders.length; i++) {
       if (folder.canBeParent) {
-        subfolders[i].name = `${folder.name} - ${subfolders[i].name}`;
+        subfolders[i].name = `${folder.name}/${subfolders[i].name}`;
       }
+      subfolders[i].parentFolder = folder;
       subfolders[i].canBeParent = true;
       await searchSongFolders(subfolders[i]);
     }
