@@ -1,4 +1,5 @@
 const fs = require('fs');
+const ls = require('ls');
 const path = require('path');
 const drive = require('./src/drivers/google-drive');
 const txt = require('./src/drivers/txt');
@@ -31,11 +32,18 @@ process.on("unhandledRejection", (err, promise) => {
         if (!name || !link) return;
         return { name: name.trim(), link: link.trim(), script: (script || '').trim() };
       });
+    const txtSources = ls(path.resolve(__dirname, 'sources', 'txt', '*')).map(({ full }) => ({
+      name: full.slice(full.lastIndexOf('/') + 1, full.lastIndexOf('.')),
+      path: full,
+      txt: true
+    }));
+    if (txtSources && txtSources.length) sources.push(...txtSources);
     const failed = [];
     for (let i = 0; i < sources.length; i++) {
       if (!sources[i] || (process.argv[2] && sources[i].name.toLowerCase().indexOf(process.argv[2].toLowerCase()) < 0)) continue;
       try {
-        if (sources[i].script) await require(`./src/drivers/${sources[i].script}`)(sources[i]);
+        if (sources[i].txt) await txt(sources[i].path);
+        else if (sources[i].script) await require(`./src/drivers/${sources[i].script}`)(sources[i]);
         else await drive(sources[i]);
       } catch (err) {
         console.error(err.stack);

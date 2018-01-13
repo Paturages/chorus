@@ -59,12 +59,20 @@ const throttle = (method, args, callback) => {
   if (!timeout) timeout = setTimeout(() => processQueue(), DELAY);
 };
 
-const list = (args, files) => new Promise((resolve, reject) => throttle('list', Object.assign({
+const list = (args, files, retry) => new Promise((resolve, reject) => throttle('list', Object.assign({
   auth: oAuth2,
   pageSize: 1000,
   fields: 'nextPageToken, files(id, name, mimeType, fileExtension, size, webContentLink, modifiedTime, webViewLink)'
 }, args), async (err, payload) => {
-  if (err) return reject(err);
+  if (err) {
+    // If Google Drive fails (e.g. 500 Internal Error),
+    // try 5 more times before giving up and yielding nothing.
+    // This should be rare enough, I hope.
+    console.error(err.stack);
+    console.log(`> Retry n°${(retry || 0) + 1}`);
+    if (retry >= 5) return resolve(files || []);
+    return resolve(await list(args, files, (retry || 0) + 1));
+  }
   try {
     resolve(
       payload.nextPageToken ?
@@ -77,7 +85,10 @@ const list = (args, files) => new Promise((resolve, reject) => throttle('list', 
       (files || []).concat(payload.files)
     );
   } catch (err) {
-    reject(err);
+    console.error(err.stack);
+    console.log(`> Retry n°${(retry || 0) + 1}`);
+    if (retry >= 5) return resolve(files || []);
+    return resolve(await list(args, files, (retry || 0) + 1));
   }
 }));
 
