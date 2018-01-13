@@ -22,6 +22,21 @@ export default ({ simple, count }) =>
     <div className="Logo">
       <div className="Logo__title">
         <a href={`${process.env.TESTING ? "/testing" : ""}/`}>chorus</a>
+        <a
+          href="https://digitaltipjar.com/paturages?_external=true"
+          class="dtj-tip-button"
+          data-username="paturages"
+        >
+          Digital Tip Jar
+        </a>
+        <script>
+          var a = document.querySelectorAll('.dtj-tip-button')[0]; var i =
+          document.createElement('IFRAME'); i.setAttribute('src',
+          "https://digitaltipjar.com/paturages/widgets/tip?_external=true");
+          i.setAttribute('frameborder','0'); i.style.height = 70 +'px';
+          i.style.width = 120 +'px'; a.parentNode.insertBefore(i,a);
+          a.parentNode.removeChild(a);
+        </script>
       </div>
       <div className="Logo__subtitle">
         {Math.random() < 0.1

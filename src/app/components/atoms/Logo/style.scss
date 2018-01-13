@@ -8,6 +8,10 @@
       color: $color--text !important;
       text-decoration: none;
     }
+    iframe {
+      margin-bottom: -0.45em;
+      margin-left: .5em;
+    }
   }
   &__subtitle {
     font-style: italic;
