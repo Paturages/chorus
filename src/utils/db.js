@@ -214,11 +214,11 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         ("parent", "sourceId", "songId")
         VALUES
         ${songIds.map(({ id }, index) => [
-          songs[index].parent ? JSON.stringify(songs[index].parent) : null,
-          songs[index].source.chorusId,
+          songs[i + index].parent ? JSON.stringify(songs[i + index].parent) : null,
+          songs[i + index].source.chorusId,
           id
         ])}
-        ON CONFLICT DO NOTHING
+        ON CONFLICT ("songId", "sourceId") DO UPDATE SET "parent" = EXCLUDED."parent"
       `,
       Pg.q`
         INSERT INTO "Songs_Hashes${{ sql: process.argv[2] ? '' : '_new' }}"

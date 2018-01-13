@@ -35,7 +35,7 @@ const query = (query, queryArgs) => {
   if (!pgConfig) return Promise.reject('No config');
   if (!pool) return Promise.reject('No pool');
   return Promise.race([
-    new Promise((resolve, reject) => setTimeout(() => { reject('Connection timed out'); }, 5000)),
+    new Promise((resolve, reject) => setTimeout(() => { reject('Connection timed out'); }, 20000)),
     pool.query(query, queryArgs).then(result => result.rows),
   ])
   .catch((err) => {

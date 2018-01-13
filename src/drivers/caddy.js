@@ -39,7 +39,8 @@ module.exports = async ({ name, link }) => {
       else resolve(JSON.parse(res.body));
     })
   );
-  // 4. Get the songs: they're all in the one folder, and they're all .zips.
+  // 4. Get the songs: they're either all in the source folder (/clonehero/),
+  // or they're in "game folders" (/ghrb/). Oh, and they're all .zips.
   // (I'm probably gonna be the only one using it, so whatever)
   const songList = [];
   console.log('Fetching list of songs');
@@ -53,7 +54,7 @@ module.exports = async ({ name, link }) => {
         else resolve(JSON.parse(res.body));
       })
     );
-    songList.push(...content.map(item => Object.assign(item, { parent: { name: folders[i].Name, link: `${link}${folders[i].URL.slice(2)}` } })));
+    songList.push(...content.map(item => Object.assign(item, { parent: { name: Name, link: `${link}${URL.slice(2)}` } })));
   }
   const songs = [];
   const toIgnore = [];
