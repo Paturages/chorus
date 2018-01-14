@@ -108,17 +108,17 @@ module.exports = async ({ name, link }) => {
       else {
         // Computing default artist and song names in case there's no song.ini file,
         // and also inputing already available metadata
-        const { artist, name } = defaultNameParser(file.name);
+        const { artist: defaultArtist, name: defaultName } = defaultNameParser(file.name);
         const song = {
-          artist, name, lastModified: file.modifiedTime, source, link: file.webViewLink, parent: folder.canBeParent ? {
+          defaultArtist, defaultName, lastModified: file.modifiedTime, source, link: file.webViewLink, parent: folder.canBeParent ? {
             name: folder.name,
             link: folder.webViewLink
           } : null
         };
         console.log(`> Found "${
-          meta.name || (meta.chartMeta || {}).Name || name
+          meta.name || (meta.chartMeta || {}).Name || defaultName
         }" by "${
-          meta.artist || (meta.chartMeta || {}).Artist || artist || '???'
+          meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
         }"`);
         songs.push(Object.assign(song, meta));
       }
@@ -130,18 +130,18 @@ module.exports = async ({ name, link }) => {
     if (meta) {
       // Computing default artist and song names in case there's no song.ini file,
       // and also inputing already available metadata
-      const { artist, name } = defaultNameParser(folder.name);
+      const { artist: defaultArtist, name: defaultName } = defaultNameParser(folder.name);
       // The parent of a folder is its own parent folder
       const song = {
-        artist, name, lastModified: folder.modifiedTime, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
+        defaultArtist, defaultName, lastModified: folder.modifiedTime, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
           name: folder.parentFolder.name,
           link: folder.parentFolder.webViewLink
         } : null
       };
       console.log(`> Found "${
-        meta.name || (meta.chartMeta || {}).Name || name
+        meta.name || (meta.chartMeta || {}).Name || defaultName
       }" by "${
-        meta.artist || (meta.chartMeta || {}).Artist || artist || '???'
+        meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
       }"`);
       songs.push(Object.assign(song, meta));
     }

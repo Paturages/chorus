@@ -99,6 +99,7 @@ const getDiffsFromNoteCounts = noteCounts => {
   return diffs;
 };
 module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
+  if (!songs.length) return;
   // Checking that a link doesn't appear twice
   songs = Object.values(songs.reduce((obj, song) => Object.assign(obj, { [song.link]: song }), {}));
   for (let i = 0; i < songs.length; i += 50) {
@@ -119,6 +120,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
       VALUES
       ${songs.slice(i, i + 50).map(
         ({
+          defaultName, defaultArtist,
           name = '', artist = '', album = '', genre = '', year = '', charter = '',
           diff_band = -1, diff_guitar = -1, diff_bass = -1, diff_rhythm = -1,
           diff_drums = -1, diff_vocals = -1, diff_keys = -1, diff_guitarghl = -1,
@@ -128,8 +130,8 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
-            name || chartMeta.Name || null,
-            artist || chartMeta.Artist || null,
+            name || chartMeta.Name || defaultName || null,
+            artist || chartMeta.Artist || defaultArtist || null,
             album || chartMeta.Album || null,
             genre || chartMeta.Genre || null,
             year || chartMeta.Year || null,
