@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { upsertSource, upsertSongs } = require('../utils/db');
+const { upsertSource, upsertSongs, getLinksMapBySource } = require('../utils/db');
 
 module.exports = async fileName => {
   const short = fileName.slice(fileName.lastIndexOf('/') + 1, fileName.lastIndexOf('.'));
@@ -33,8 +33,15 @@ module.exports = async fileName => {
   });
   source.chorusId = source.id;
 
+  // Get the map of already indexed links so that they don't get parsed again
+  const linksMap = await getLinksMapBySource(source);
+
   console.log('Adding/updating songs');
-  await upsertSongs(songs.map(song => Object.assign(song, { source })), true);
+  await upsertSongs(
+    songs
+    .filter(({ link }) => !linksMap[link])
+    .map(song => Object.assign(song, { source })), true
+  );
 
   console.log(sourceName, 'imported!');
   return 0;
