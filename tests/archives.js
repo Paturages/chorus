@@ -3,7 +3,7 @@ const fs = require('fs');
 const ls = require('ls');
 const path = require('path');
 
-ls(path.resolve(__dirname, 'zips', '*'))
+ls(path.resolve(__dirname, 'archives', 'Reflec*'))
 .forEach(async file => {
-  console.log(file.file, await getMetaFromArchive(fs.readFileSync(file.full, { encoding: 'utf8' }), file.full.slice(-3)));
+  console.log(file.file, await getMetaFromArchive(fs.readFileSync(file.full), file.full.slice(-3)));
 });

@@ -75,11 +75,11 @@ module.exports = async ({ name, link }) => {
         // Save subfolders for further processing
         if (item.mimeType == 'application/vnd.google-apps.folder') {
           content.subfolders.push(item);
-        } else if ((['rar', 'zip', '7z'].indexOf(item.fileExtension) >= 0) && item.size < 104857600 && item.webContentLink) {
+        } else if ((['rar', 'zip', '7z'].indexOf(item.fileExtension) >= 0) && item.size < 209715200 && item.webContentLink) {
           // Archives might or might not be songs.
-          // The 100 MB threshold is to exclude song packs (and also not kill my bandwidth everyday)
-          // (100 MB should be big enough to take stems and non-insane video backgrounds into account.
-          // For reference, Yes' Roundabout from Rock Band 3 archive is 54 MB)
+          // The 200 MB threshold is just mostly here to not kill my bandwidth with multi-GB packs, which are therefore excluded.
+          // The good practice for such packs would be to rehost it (either by individual charters, or independently with separate
+          // folders/archives for each song)
           archives.push(item);
         // Pick up interesting files along the way
         // (just take the first occurrence of charts and mids)
@@ -106,8 +106,8 @@ module.exports = async ({ name, link }) => {
       if (linksMap[file.webViewLink] && linksMap[file.webViewLink].ignore) continue;
       console.log('Extracting', file.name);
       const archive = await download(file.webContentLink);
-      const meta = await getMetaFromArchive(archive, file.fileExtension);
-      if (!meta) toIgnore.push({ sourceId: source.chorusId, link: file.webViewLink });
+      const metaList = await getMetaFromArchive(archive, file.fileExtension);
+      if (!metaList || !metaList.length) toIgnore.push({ sourceId: source.chorusId, link: file.webViewLink });
       else {
         // Computing default artist and song names in case there's no song.ini file,
         // and also inputing already available metadata
@@ -118,12 +118,14 @@ module.exports = async ({ name, link }) => {
             link: folder.webViewLink
           } : null
         };
-        console.log(`> Found "${
-          meta.name || (meta.chartMeta || {}).Name || defaultName
-        }" by "${
-          meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
-        }"`);
-        songs.push(Object.assign(song, meta));
+        metaList.forEach(meta => {
+          console.log(`> Found "${
+            meta.name || (meta.chartMeta || {}).Name || defaultName
+          }" by "${
+            meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
+          }"`);
+          songs.push(Object.assign(song, meta));
+        });
       }
     }
 

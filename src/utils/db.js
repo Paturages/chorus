@@ -115,7 +115,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "diff_drums", "diff_keys", "diff_guitarghl", "diff_bassghl",
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
         "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
-        "lastModified", "words"
+        "lastModified", "isPack", "words"
       )
       VALUES
       ${songs.slice(i, i + 50).map(
@@ -126,7 +126,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_drums = -1, diff_vocals = -1, diff_keys = -1, diff_guitarghl = -1,
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
-          hashes, link, chartMeta = {}, source, parent = {}, frets = ''
+          hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -163,6 +163,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             noteCounts ? JSON.stringify(noteCounts) : null,
             link,
             lastModified,
+            isPack,
             [
               name, artist, album, genre, year, charter, name,
               source.name, parent && parent.name,

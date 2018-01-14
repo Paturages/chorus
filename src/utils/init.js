@@ -49,6 +49,7 @@ module.exports = async () => {
       "diff_keys" smallint,
       "diff_guitarghl" smallint,
       "diff_bassghl" smallint,
+      "isPack" boolean,
       "hasForced" boolean,
       "hasOpen" jsonb,
       "hasTap" boolean,

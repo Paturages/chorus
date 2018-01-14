@@ -35,37 +35,53 @@ module.exports = async (archive, extension) => {
         ChildProcess.exec(`rm -R ${pathDir}`, err => resolve())
     );
     await p(Fs.mkdir, pathDir);
+    await p(Fs.mkdir, `${pathDir}/__process`);
     const zip = new Node7z();
-    await zip.extract(pathFile, pathDir);
-    // Ugly workaround to solve filename encoding issues
-    if (process.platform != 'win32') {
-      await new Promise(resolve => ChildProcess.exec(`mv ${pathDir}/\*.chart ${pathDir}/notes.chart`, () => resolve()));
-    }
-    // 3. Find the files we need
-    // Check if the song is available in the temp folder
-    let iniFile, chartFile, midFile, hasStems, hasVideo;
-    const fileList = Ls(Path.resolve(pathDir, '*'));
-    iniFile = fileList.find(({ file }) => file == 'song.ini');
-    chartFile = fileList.find(({ file }) => file.slice(-6) == '.chart');
-    midFile = fileList.find(({ file }) => file.slice(-4) == '.mid');
-    hasVideo = fileList.find(({ file }) => file.slice(0, 6) == 'video.');
-    hasStems = fileList.filter(({ file }) => file.match(
-      /(guitar|bass|rhythm|drums|vocals|keys|song).*\.(ogg|mp3|wav)/i
-    )).length > 1;
-    if (!iniFile && !chartFile && !midFile) return null;
-    else {
-      const meta = {};
-      const { ini, chart, mid } = await getFiles({ iniFile, chartFile, midFile });
-      if (ini) Object.assign(meta, getMetaFromIni(ini));
-      if (chart) Object.assign(meta, getMetaFromChart(chart));
-      else if (mid) Object.assign(meta, getMetaFromMidi(mid));
-      return Object.assign(meta, { hasStems, hasVideo: !!hasVideo });
-    }
+    await zip.extractFull(pathFile, pathDir);
+    // 3. Find folders and try to move relevant files to the __process folder for processing
+    const songs = [];
+    // Normalize folder names to avoid encoding issues (screw platform compatibility)
+    await new Promise(resolve => ChildProcess.exec(`find -d "${pathDir}" -type d -execdir rename 's/[^A-z0-9]/_/g' '{}' \\;`, () => resolve()));
+    // Explore folders
+    const processFolder = async folder => {
+      const list = Ls(Path.resolve(folder, '*'));
+      if (!list || !list.length) return;
+      iniFile = list.find(({ file }) => file == 'song.ini');
+      chartFile = list.find(({ file }) => file.slice(-6) == '.chart');
+      midFile = list.find(({ file }) => file.slice(-4) == '.mid');
+      hasVideo = list.find(({ file }) => file.slice(0, 6) == 'video.');
+      hasStems = list.filter(({ file }) => file.match(
+        /(guitar|bass|rhythm|drums|vocals|keys|song).*\.(ogg|mp3|wav)/i
+      )).length > 1;
+      // If this matches a song folder
+      if (iniFile || chartFile || midFile) {
+        // More horrendous tricks to avoid encoding issues
+        if (iniFile) await new Promise(resolve => ChildProcess.exec(`mv ${iniFile.full} "${pathDir}/__process/song.ini"`, () => resolve()));
+        if (chartFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.chart "${pathDir}/__process/notes.chart"`, () => resolve()));
+        if (midFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.mid "${pathDir}/__process/notes.mid"`, () => resolve()));
+        const meta = {};
+        const { ini, chart, mid } = await getFiles({
+          iniFile: iniFile && { full: `${pathDir}/__process/song.ini` },
+          chartFile: chartFile && { full: `${pathDir}/__process/notes.chart` },
+          midFile: midFile && { full: `${pathDir}/__process/notes.mid` },
+        });
+        if (ini) Object.assign(meta, getMetaFromIni(ini));
+        if (chart) Object.assign(meta, getMetaFromChart(chart));
+        else if (mid) Object.assign(meta, getMetaFromMidi(mid));
+        songs.push(Object.assign(meta, { hasStems, hasVideo: !!hasVideo }));
+      }
+      // Recurse in subfolders
+      for (let i = 0; i < list.length; i++) {
+        await processFolder(list[i].full);
+      }
+    };
+    await processFolder(pathDir);
+    return songs;
   } catch (err) {
     // Corrupted archives happen, sometimes.
     // More often than not, the archive is actually extractable on Windows (don't ask me why or how).
     // Therefore, we give benefit of doubt and fall back to parsing from the file name.
     console.error(err && err.stack);
-    return {};
+    return [{}];
   }
 };

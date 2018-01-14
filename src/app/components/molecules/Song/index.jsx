@@ -27,6 +27,7 @@ export default ({
   diff_keys,
   diff_guitarghl,
   diff_bassghl,
+  isPack,
   hasForced,
   hasOpen,
   hasTap,
@@ -61,7 +62,7 @@ export default ({
             <b>
               {charter}'{charter.slice(-1) == "s" ? "" : "s"}
             </b>{" "}
-            chart
+            {isPack ? 'pack' : 'chart'}
           </a>
         </div>
       ) : (
