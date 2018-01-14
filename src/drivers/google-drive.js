@@ -89,8 +89,11 @@ module.exports = async ({ name, link }) => {
           content.files.chart = item;
         } else if (item.fileExtension == 'mid' && !content.files.mid) {
           content.files.mid = item;
-        } else if (item.name == 'rhythm.ogg') {
-          content.files.rhythm = item;
+        } else if (item.name.match(
+          /(guitar|bass|rhythm|drums|vocals|keys|song).*\.(ogg|mp3|wav)/i
+        )) {
+          if (!content.files.audio) content.files.audio = [];
+          content.files.audio.push(item);
         } else if (item.name.slice(0, 6) == 'video.') {
           content.files.video = item;
         }

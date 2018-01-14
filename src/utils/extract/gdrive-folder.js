@@ -9,7 +9,7 @@ const download = url => new Promise((resolve, reject) =>
   })
 );
 
-module.exports = async ({ ini: iniItem, chart: chartItem, mid: midItem, rhythm: rhythmItem, video: videoItem }) => {
+module.exports = async ({ ini: iniItem, chart: chartItem, mid: midItem, audio, video }) => {
   if (
     !iniItem &&
     !chartItem &&
@@ -24,7 +24,7 @@ module.exports = async ({ ini: iniItem, chart: chartItem, mid: midItem, rhythm: 
   if (chart) Object.assign(meta, getMetaFromChart(chart));
   else if (mid) Object.assign(meta, getMetaFromMidi(mid));
   return Object.assign(meta, {
-    hasVideo: !!videoItem,
-    hasStems: !!rhythmItem,
+    hasVideo: !!video,
+    hasStems: audio && audio.length > 1,
   });
 };

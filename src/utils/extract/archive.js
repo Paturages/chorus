@@ -44,11 +44,14 @@ module.exports = async (archive, extension) => {
     // 3. Find the files we need
     // Check if the song is available in the temp folder
     let iniFile, chartFile, midFile, hasStems, hasVideo;
-    [iniFile] = Ls(Path.resolve(pathDir, 'song.ini'));
-    [chartFile] = Ls(Path.resolve(pathDir, '*.chart'));
-    [midFile] = Ls(Path.resolve(pathDir, '*.mid'));
-    [hasStems] = Ls(Path.resolve(pathDir, 'rhythm.ogg'));
-    [hasVideo] = Ls(Path.resolve(pathDir, 'video.*'));
+    const fileList = Ls(Path.resolve(pathDir, '*'));
+    iniFile = fileList.find(({ file }) => file == 'song.ini');
+    chartFile = fileList.find(({ file }) => file.slice(-6) == '.chart');
+    midFile = fileList.find(({ file }) => file.slice(-4) == '.mid');
+    hasVideo = fileList.find(({ file }) => file.slice(0, 6) == 'video.');
+    hasStems = fileList.filter(({ file }) => file.match(
+      /(guitar|bass|rhythm|drums|vocals|keys|song).*\.(ogg|mp3|wav)/i
+    )).length > 1;
     if (!iniFile && !chartFile && !midFile) return null;
     else {
       const meta = {};
@@ -56,7 +59,7 @@ module.exports = async (archive, extension) => {
       if (ini) Object.assign(meta, getMetaFromIni(ini));
       if (chart) Object.assign(meta, getMetaFromChart(chart));
       else if (mid) Object.assign(meta, getMetaFromMidi(mid));
-      return Object.assign(meta, { hasStems: !!hasStems, hasVideo: !!hasVideo });
+      return Object.assign(meta, { hasStems, hasVideo: !!hasVideo });
     }
   } catch (err) {
     // Corrupted archives happen, sometimes.

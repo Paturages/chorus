@@ -291,7 +291,7 @@ module.exports.search = (query, offset, limit) => Pg.query(`
   })
 );
 
-module.exports.getLinksMapBySource = ({ link }) => Promise.all([
+module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise.resolve({}) : Promise.all([
   Pg.q`
     select s.link, row_to_json(s) as "meta", sh."hashes"
     from "Songs_Sources" ss
