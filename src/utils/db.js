@@ -18,7 +18,10 @@ module.exports.getLatestCharts = () =>
       `
     ])
     .then(([sources, hashes]) => {
-      const songMap = Object.assign({}, ...songs.map(song => ({ [song.id]: song })));
+      const songMap = Object.assign({}, ...songs.map(song => {
+        delete song.words; // Users don't need them.
+        return { [song.id]: song };
+      }));
       sources.forEach(({ songId, id, name, link, parent }) => {
         if (!songMap[songId].sources) songMap[songId].sources = [];
         if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
@@ -172,7 +175,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
                 const words = name.split(' ').filter(word => word[0].match(/[A-z]/));
                 if (words.length < 3) return;
                 return words.map(word => word[0]).join('');
-              })
+              })()
             ].filter(x => x).join(' ').toLowerCase()
           ];
         }

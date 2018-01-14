@@ -154,9 +154,9 @@ module.exports = async ({ name, link }) => {
     // Recurse on subfolders
     for (let i = 0; i < subfolders.length; i++) {
       if (folder.canBeParent) {
+        subfolders[i].parentFolder = folder;
         subfolders[i].name = `${folder.name}/${subfolders[i].name}`;
       }
-      subfolders[i].parentFolder = folder;
       subfolders[i].canBeParent = true;
       await searchSongFolders(subfolders[i]);
     }
