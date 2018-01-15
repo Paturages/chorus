@@ -167,16 +167,21 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             link,
             lastModified,
             isPack,
-            [
-              name, artist, album, genre, year, charter, name,
-              source.name, parent && parent.name,
-              (() => {
-                // Initials
-                const words = name.split(' ').filter(word => (word[0] || '').match(/[A-z]/));
-                if (words.length < 3) return;
-                return words.map(word => word[0]).join('');
-              })()
-            ].filter(x => x).join(' ').toLowerCase()
+            {
+              sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)))`,
+              params: [
+                [
+                  name, artist, album, genre, year, charter,
+                  source.name, parent && parent.name,
+                  (() => {
+                    // Initials
+                    const words = name.split(' ').filter(word => word[0].match(/[A-z]/));
+                    if (words.length < 3) return;
+                    return words.map(word => word[0]).join('');
+                  })()
+                ].filter(x => x).join(' ').toLowerCase()
+              ]
+            }
           ];
         }
       )}
@@ -257,7 +262,10 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
 };
 
 module.exports.search = (query, offset, limit) => Pg.query(`
-  select round(100 * similarity(s."words", $1)::numeric, 2) as "searchScore", *
+  select round(100 * similarity(
+    s."words",
+    array_to_string(tsvector_to_array(to_tsvector('simple', $1)))
+  )::numeric, 2) as "searchScore", *
   from "Songs" s
   order by "searchScore" desc
   limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
@@ -277,7 +285,10 @@ module.exports.search = (query, offset, limit) => Pg.query(`
     `
   ])
   .then(([sources, hashes]) => {
-    const songMap = Object.assign({}, ...songs.map(song => ({ [song.id]: song })));
+    const songMap = Object.assign({}, ...songs.map(song => {
+      delete song.words; // Users don't need them.
+      return { [song.id]: song };
+    }));
     sources.forEach(({ songId, id, name, link, parent }) => {
       if (!songMap[songId].sources) songMap[songId].sources = [];
       if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)

@@ -55,7 +55,14 @@ const q = (queryArr, ...params) => {
     // The last part is not followed by a parameter
     if (index === queryArr.length - 1) return part;
     // Do not transform SQL segments
-    if (typeof params[index] === 'object' && typeof params[index].sql != 'undefined') return `${part}${params[index].sql}`;
+    // and replace $$ by proper indexes
+    if (typeof params[index] === 'object' && typeof params[index].sql != 'undefined') {
+      if (params[index].params && params[index].params.length) {
+        params[index].sql = params[index].sql.replace(/\$\$/, () => `$${queryIndex++}`);
+        queryArgs.push(...params[index].params);
+      }
+      return `${part}${params[index].sql}`;
+    }
     // Special case: Table/column names are not parametrizable
     if (part.slice(-1) === '"') return `${part}${params[index]}`;
     // Unroll array of arrays into ($1, $2, $3), ($4, $5, $6), ...
