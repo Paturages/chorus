@@ -9,12 +9,15 @@
       text-decoration: none;
     }
     iframe {
-      margin-bottom: -0.45em;
+      margin-bottom: -0.25em;
       margin-left: .5em;
     }
   }
   &__subtitle {
     font-style: italic;
     font-size: .8em;
+  }
+  &__image {
+    width: 4.5em;
   }
 }

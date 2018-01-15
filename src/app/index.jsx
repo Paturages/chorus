@@ -5,6 +5,7 @@ import Search from "pages/Search";
 
 import "assets/fonts/roboto/regular.ttf";
 import "assets/fonts/roboto/bold.ttf";
+import "assets/images/favicon_128.png";
 
 import "scss/global.scss";
 import "scss/fonts.scss";

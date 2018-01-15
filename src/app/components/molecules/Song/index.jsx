@@ -62,7 +62,7 @@ export default ({
             <b>
               {charter}'{charter.slice(-1) == "s" ? "" : "s"}
             </b>{" "}
-            {isPack ? 'pack' : 'chart'}
+            {isPack ? "pack" : "chart"}
           </a>
         </div>
       ) : (

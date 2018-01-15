@@ -1,5 +1,7 @@
 import Inferno from "inferno";
 
+import logo from "assets/images/logo.png"; // credits for the logo go to TheFilyng!
+
 import "./style.scss";
 
 // Of course there's an easter egg.
@@ -15,13 +17,25 @@ export default ({ simple, count }) =>
   simple ? (
     <div className="Logo">
       <div className="Logo__title">
-        <a href={`${process.env.TESTING ? "/testing" : ""}/`}>chorus</a>
+        <a href={`${process.env.TESTING ? "/testing" : ""}/`}>
+          <img
+            src="/assets/images/logo.png"
+            alt="chorus"
+            className="Logo__image"
+          />
+        </a>
       </div>
     </div>
   ) : (
     <div className="Logo">
       <div className="Logo__title">
-        <a href={`${process.env.TESTING ? "/testing" : ""}/`}>chorus</a>
+        <a href={`${process.env.TESTING ? "/testing" : ""}/`}>
+          <img
+            src="/assets/images/logo.png"
+            alt="chorus"
+            className="Logo__image"
+          />
+        </a>
         <a
           href="https://digitaltipjar.com/paturages?_external=true"
           class="dtj-tip-button"
@@ -52,12 +66,16 @@ export default ({ simple, count }) =>
             rel="noopener noreferrer"
           >
             various drives of this spreadsheet
-          </a>&nbsp;and tons more from the Clone Hero community
+          </a>&nbsp; (shoutouts to <b>ZeroHearts</b>) and tons more from the
+          Clone Hero community
         </div>
       )}
       <div className="Logo__subtitle">
         <br />
-        <span>Advanced search is coming soon, I swear.</span>
+        <span>
+          Advanced search is coming soon, I swear. Credits for the logo and
+          favicon go to <b>TheFilyng</b>. Thanks man!
+        </span>
         <br />
         <b>
           <a
@@ -67,8 +85,7 @@ export default ({ simple, count }) =>
           >
             GitHub
           </a>
-        </b>
-        <br />
+        </b>&nbsp;-&nbsp;
         <a
           href="https://github.com/Paturages/chorus/blob/master/sources/sources.txt"
           target="_blank"
