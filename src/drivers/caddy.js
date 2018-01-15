@@ -10,10 +10,8 @@ const download = url => new Promise((resolve, reject) =>
 );
 
 const defaultNameParser = txt => {
-  let [artist, ...songParts] = txt.split(' - ');
-  if (!songParts || !songParts.length) return { artist: 'N/A', name: txt.replace(/\.(zip|rar|7z)$/, '') };
-  const name = songParts.join(' - ').replace(/\.(zip|rar|7z)$/, '');
-  return { artist: artist.trim(), name: name.trim() };
+  let [, charter, artist, name] = txt.match(/\[(.*)\] (.+) - (.+)/);
+  return { artist: artist.trim(), name: name.trim().replace('.zip', ''), charter: charter.trim() || null };
 };
 
 const {
@@ -67,24 +65,25 @@ module.exports = async ({ name, link }) => {
       continue;
     }
     console.log('Extracting', Name);
-    const meta = await getMetaFromArchive(await download(url), 'zip');
-    if (!meta) toIgnore.push({ sourceId: source.chorusId, link: url });
+    const metaList = await getMetaFromArchive(await download(url), 'zip');
+    if (!metaList || !metaList.length) toIgnore.push({ sourceId: source.chorusId, link: url });
     else {
+      const meta = metaList[0];
       // Computing default artist and song names in case there's no song.ini file,
       // and also inputing already available metadata
-      const { artist, name } = defaultNameParser(Name);
+      const { artist: defaultArtist, name: defaultName, charter: defaultCharter } = defaultNameParser(Name);
       const song = {
-        artist, name, lastModified: ModTime, source, link: url, parent: parent ? {
+        defaultArtist, defaultName, lastModified: ModTime, source, link: url, parent: parent ? {
           name: parent.name,
           link: parent.link
         } : null
       };
       console.log(`> Found "${
-        meta.name || meta.chartMeta.Name || name
+        meta.name || (meta.chartMeta || {}).Name || defaultName
       }" by "${
-        meta.artist || chartMeta.Artist || artist || '???'
+        meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
       }"`);
-      songs.push(Object.assign(song, meta));
+      songs.push(Object.assign(song, meta, meta.charter ? {} : { charter: defaultCharter }));
     }
   }
   // 5. Update the list of links to ignore (e.g. invalid archives, stray files...)

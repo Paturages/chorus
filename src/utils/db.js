@@ -172,7 +172,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
               source.name, parent && parent.name,
               (() => {
                 // Initials
-                const words = name.split(' ').filter(word => word[0].match(/[A-z]/));
+                const words = name.split(' ').filter(word => (word[0] || '').match(/[A-z]/));
                 if (words.length < 3) return;
                 return words.map(word => word[0]).join('');
               })()

@@ -41,7 +41,7 @@ module.exports = async (archive, extension) => {
     // 3. Find folders and try to move relevant files to the __process folder for processing
     const songs = [];
     // Normalize folder names to avoid encoding issues (screw platform compatibility)
-    await new Promise(resolve => ChildProcess.exec(`find -d "${pathDir}" -type d -execdir rename 's/[^A-z0-9]/_/g' '{}' \\;`, () => resolve()));
+    await new Promise(resolve => ChildProcess.exec(`find ${pathDir}/* -depth -type d -execdir rename 's/[^A-z0-9.\\\/]/_/g' '{}' \\;`, () => resolve()));
     // Explore folders
     const processFolder = async folder => {
       const list = Ls(Path.resolve(folder, '*'));
@@ -56,9 +56,9 @@ module.exports = async (archive, extension) => {
       // If this matches a song folder
       if (iniFile || chartFile || midFile) {
         // More horrendous tricks to avoid encoding issues
-        if (iniFile) await new Promise(resolve => ChildProcess.exec(`mv ${iniFile.full} "${pathDir}/__process/song.ini"`, () => resolve()));
-        if (chartFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.chart "${pathDir}/__process/notes.chart"`, () => resolve()));
-        if (midFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.mid "${pathDir}/__process/notes.mid"`, () => resolve()));
+        if (iniFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/song.ini ${pathDir}/__process/song.ini`, () => resolve()));
+        if (chartFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.chart ${pathDir}/__process/notes.chart`, () => resolve()));
+        if (midFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.mid ${pathDir}/__process/notes.mid`, () => resolve()));
         const meta = {};
         const { ini, chart, mid } = await getFiles({
           iniFile: iniFile && { full: `${pathDir}/__process/song.ini` },

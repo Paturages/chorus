@@ -113,18 +113,20 @@ module.exports = async ({ name, link }) => {
         // and also inputing already available metadata
         const { artist: defaultArtist, name: defaultName } = defaultNameParser(file.name);
         const song = {
-          defaultArtist, defaultName, lastModified: file.modifiedTime, source, link: file.webViewLink, parent: folder.canBeParent ? {
+          defaultArtist, defaultName, lastModified: file.modifiedTime, source, link: file.webViewLink,
+          isPack: metaList.length > 1, parent: folder.canBeParent ? {
             name: folder.name,
             link: folder.webViewLink
           } : null
         };
-        metaList.forEach(meta => {
+        metaList.forEach((meta, index) => {
           console.log(`> Found "${
             meta.name || (meta.chartMeta || {}).Name || defaultName
           }" by "${
             meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
           }"`);
-          songs.push(Object.assign(song, meta));
+          // An awful trick to have unique links for multiple items in a pack
+          songs.push(Object.assign({}, song, meta, { link: song.isPack ? `${song.link}&i=${index+1}` : song.link }));
         });
       }
     }
