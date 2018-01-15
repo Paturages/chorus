@@ -58,7 +58,7 @@ const q = (queryArr, ...params) => {
     // and replace $$ by proper indexes
     if (typeof params[index] === 'object' && typeof params[index].sql != 'undefined') {
       if (params[index].params && params[index].params.length) {
-        params[index].sql = params[index].sql.replace(/\$\$/, () => `$${queryIndex++}`);
+        params[index].sql = params[index].sql.replace(/\$\$/g, () => `$${queryIndex++}`);
         queryArgs.push(...params[index].params);
       }
       return `${part}${params[index].sql}`;
@@ -72,8 +72,12 @@ const q = (queryArr, ...params) => {
       typeof params[index][0] === 'object' &&
       params[index][0].length
     ) {
-      params[index].forEach(row => row.forEach(x => queryArgs.push(x)));
-      return `${part}${params[index].map(row => `(${row.map(x => (x || {}).sql || `$${queryIndex++}`)})`).join(',')}`;
+      params[index].forEach(row => row.forEach(x => (!x || !x.sql || x.param) && queryArgs.push((x || {}).param || x)));
+      return `${part}${params[index].map(row => `(${row.map(x => {
+        if (!(x || {}).sql) return `$${queryIndex++}`;
+        if (x.param) return x.sql.replace(/\$\$/, () => `$${queryIndex++}`);
+        return x.sql;
+      }).join(',')})`)}`;
     }
     // Decompose arrays
     if (typeof params[index] === 'object' && params[index].length) {

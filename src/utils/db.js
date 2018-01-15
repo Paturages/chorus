@@ -168,19 +168,17 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             lastModified,
             isPack,
             {
-              sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)))`,
-              params: [
-                [
-                  name, artist, album, genre, year, charter,
-                  source.name, parent && parent.name,
-                  (() => {
-                    // Initials
-                    const words = name.split(' ').filter(word => word[0].match(/[A-z]/));
-                    if (words.length < 3) return;
-                    return words.map(word => word[0]).join('');
-                  })()
-                ].filter(x => x).join(' ').toLowerCase()
-              ]
+              sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)), ' ')`,
+              param: [
+                name, artist, album, genre, year, charter,
+                source.name, parent && parent.name,
+                (() => {
+                  // Initials
+                  const words = name.split(' ').filter(word => word && (word[0] || '').match(/[A-z]/));
+                  if (words.length < 3) return;
+                  return words.map(word => word[0]).join('');
+                })()
+              ].filter(x => x).join(' ').toLowerCase()
             }
           ];
         }
@@ -264,7 +262,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
 module.exports.search = (query, offset, limit) => Pg.query(`
   select round(100 * similarity(
     s."words",
-    array_to_string(tsvector_to_array(to_tsvector('simple', $1)))
+    array_to_string(tsvector_to_array(to_tsvector('simple', $1)), ' ')
   )::numeric, 2) as "searchScore", *
   from "Songs" s
   order by "searchScore" desc

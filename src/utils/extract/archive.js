@@ -35,16 +35,15 @@ module.exports = async (archive, extension) => {
         ChildProcess.exec(`rm -R ${pathDir}`, err => resolve())
     );
     await p(Fs.mkdir, pathDir);
-    await p(Fs.mkdir, `${pathDir}/__process`);
     const zip = new Node7z();
     await zip.extractFull(pathFile, pathDir);
     // 3. Find folders and try to move relevant files to the __process folder for processing
     const songs = [];
     // Normalize folder names to avoid encoding issues (screw platform compatibility)
-    await new Promise(resolve => ChildProcess.exec(`find ${pathDir}/* -depth -type d -execdir rename 's/[^A-z0-9.\\\/]/_/g' '{}' \\;`, () => resolve()));
+    await new Promise(resolve => ChildProcess.exec(`find ${pathDir}/* -depth -execdir rename 's/[^A-z0-9.\\\/]/_/g' '{}' \\;`, () => resolve()));
     // Explore folders
     const processFolder = async folder => {
-      const list = Ls(Path.resolve(folder, '*'));
+      const list = Ls(Path.resolve(folder.replace(/(\[|\])/g, '\\$1'), '*'));
       if (!list || !list.length) return;
       iniFile = list.find(({ file }) => file == 'song.ini');
       chartFile = list.find(({ file }) => file.slice(-6) == '.chart');
@@ -55,16 +54,8 @@ module.exports = async (archive, extension) => {
       )).length > 1;
       // If this matches a song folder
       if (iniFile || chartFile || midFile) {
-        // More horrendous tricks to avoid encoding issues
-        if (iniFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/song.ini ${pathDir}/__process/song.ini`, () => resolve()));
-        if (chartFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.chart ${pathDir}/__process/notes.chart`, () => resolve()));
-        if (midFile) await new Promise(resolve => ChildProcess.exec(`mv ${folder}/*.mid ${pathDir}/__process/notes.mid`, () => resolve()));
         const meta = {};
-        const { ini, chart, mid } = await getFiles({
-          iniFile: iniFile && { full: `${pathDir}/__process/song.ini` },
-          chartFile: chartFile && { full: `${pathDir}/__process/notes.chart` },
-          midFile: midFile && { full: `${pathDir}/__process/notes.mid` },
-        });
+        const { ini, chart, mid } = await getFiles({ iniFile, chartFile, midFile });
         if (ini) Object.assign(meta, getMetaFromIni(ini));
         if (chart) Object.assign(meta, getMetaFromChart(chart));
         else if (mid) Object.assign(meta, getMetaFromMidi(mid));

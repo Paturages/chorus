@@ -71,6 +71,19 @@ module.exports = async ({ name, link }) => {
           }));
           return content;
         }
+        // Retrieve already indexed packs
+        const firstLink = `${item.webViewLink}&i=1`;
+        if (linksMap[firstLink] && (linksMap[firstLink].lastModified || '').slice(0, 19) == item.modifiedTime.slice(0, 19)) {
+          for (let i = 1; linksMap[`${item.webViewLink}&i=${i}`]; i++) {
+            songs.push(Object.assign(linksMap[`${item.webViewLink}&i=${i}`], {
+              source, isPack: true, parent: folder.canBeParent ? {
+                name: folder.name,
+                link: folder.webViewLink
+              } : null
+            }));
+          }
+          return content;
+        }
         if (linksMap[item.webViewLink] && linksMap[item.webViewLink].ignore) return content;
         // Save subfolders for further processing
         if (item.mimeType == 'application/vnd.google-apps.folder') {
