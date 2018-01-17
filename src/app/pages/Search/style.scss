@@ -22,11 +22,14 @@
       flex-direction: column;
       align-items: flex-start;
     }
+    &__nothing {
+      margin: 0 1.5em;
+    }
     .Logo {
       margin: 0 1em 1em;
     }
     .SearchBox {
-      margin-left: 0 1em;
+      margin: 0 1em;
       width: calc(100% - 2em);
     }
   }
