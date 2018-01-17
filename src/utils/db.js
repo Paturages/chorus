@@ -309,30 +309,94 @@ module.exports.search = async (query, offset, limit) => {
       ${album ? queryParams.push(album) && `and album ilike concat('%', $${queryIndex++}::text, '%')` : ''}
       ${genre ? queryParams.push(genre) && `and genre ilike concat('%', $${queryIndex++}::text, '%')` : ''}
       ${charter ? queryParams.push(charter) && `and charter ilike concat('%', $${queryIndex++}::text, '%')` : ''}
-      ${tier_band ? queryParams.push(tier_band[2]) && `and tier_band ${tier_band[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_guitar ? queryParams.push(tier_guitar[2]) && `and tier_guitar ${tier_guitar[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_bass ? queryParams.push(tier_bass[2]) && `and tier_bass ${tier_bass[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_rhythm ? queryParams.push(tier_rhythm[2]) && `and tier_rhythm ${tier_rhythm[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_drums ? queryParams.push(tier_drums[2]) && `and tier_drums ${tier_drums[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_vocals ? queryParams.push(tier_vocals[2]) && `and tier_vocals ${tier_vocals[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_keys ? queryParams.push(tier_keys[2]) && `and tier_keys ${tier_keys[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_guitarghl ? queryParams.push(tier_guitarghl[2]) && `and tier_guitarghl ${tier_guitarghl[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${tier_bassghl ? queryParams.push(tier_bassghl[2]) && `and tier_bassghl ${tier_bassghl[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
-      ${diff_guitar ? queryParams.push(diff_guitar) && `and diff_guitar & $${queryIndex++} > 0` : ''}
-      ${diff_bass ? queryParams.push(diff_bass) && `and diff_bass & $${queryIndex++} > 0` : ''}
-      ${diff_rhythm ? queryParams.push(diff_rhythm) && `and diff_rhythm & $${queryIndex++} > 0` : ''}
-      ${diff_drums ? queryParams.push(diff_drums) && `and diff_drums & $${queryIndex++} > 0` : ''}
-      ${diff_keys ? queryParams.push(diff_keys) && `and diff_keys & $${queryIndex++} > 0` : ''}
-      ${diff_guitarghl ? queryParams.push(diff_guitarghl) && `and diff_guitarghl & $${queryIndex++} > 0` : ''}
-      ${diff_bassghl ? queryParams.push(diff_bassghl) && `and diff_bassghl & $${queryIndex++} > 0` : ''}
-      ${hasForced ? queryParams.push(!!+hasForced) && `and "hasForced" = $${queryIndex++}` : ''}
-      ${hasOpen ? queryParams.push(!!+hasOpen) && `and "hasOpen" = $${queryIndex++}` : ''}
-      ${hasTap ? queryParams.push(!!+hasTap) && `and "hasTap" = $${queryIndex++}` : ''}
-      ${hasSections ? queryParams.push(!!+hasSections) && `and "hasSections" = $${queryIndex++}` : ''}
-      ${hasStarPower ? queryParams.push(!!+hasStarPower) && `and "hasStarPower" = $${queryIndex++}` : ''}
-      ${hasSoloSections ? queryParams.push(!!+hasSoloSections) && `and "hasSoloSections" = $${queryIndex++}` : ''}
-      ${hasStems ? queryParams.push(!!+hasStems) && `and "hasStems" = $${queryIndex++}` : ''}
-      ${hasVideo ? queryParams.push(!!+hasVideo) && `and "hasVideo" = $${queryIndex++}` : ''}
+      ${tier_band ? queryParams.push(tier_band[2]) && `
+        and tier_band is not null
+        and tier_band ${tier_band[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_guitar ? queryParams.push(tier_guitar[2]) && `
+        and tier_guitar is not null
+        and tier_guitar ${tier_guitar[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_bass ? queryParams.push(tier_bass[2]) && `
+        and tier_bass is not null
+        and tier_bass ${tier_bass[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_rhythm ? queryParams.push(tier_rhythm[2]) && `
+        and tier_rhythm is not null
+        and tier_rhythm ${tier_rhythm[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_drums ? queryParams.push(tier_drums[2]) && `
+        and tier_drums is not null
+        and tier_drums ${tier_drums[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_vocals ? queryParams.push(tier_vocals[2]) && `
+        and tier_vocals is not null
+        and tier_vocals ${tier_vocals[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_keys ? queryParams.push(tier_keys[2]) && `
+        and tier_keys is not null
+        and tier_keys ${tier_keys[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_guitarghl ? queryParams.push(tier_guitarghl[2]) && `
+        and tier_guitarghl is not null
+        and tier_guitarghl ${tier_guitarghl[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_bassghl ? queryParams.push(tier_bassghl[2]) && `
+        and tier_bassghl is not null
+        and tier_bassghl ${tier_bassghl[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${diff_guitar ? queryParams.push(diff_guitar) && `
+        and diff_guitar is not null
+        and diff_guitar & $${queryIndex++} > 0` : ''}
+      ${diff_bass ? queryParams.push(diff_bass) && `
+        and diff_bass is not null
+        and diff_bass & $${queryIndex++} > 0` : ''}
+      ${diff_rhythm ? queryParams.push(diff_rhythm) && `
+        and diff_rhythm is not null
+        and diff_rhythm & $${queryIndex++} > 0` : ''}
+      ${diff_drums ? queryParams.push(diff_drums) && `
+        and diff_drums is not null
+        and diff_drums & $${queryIndex++} > 0` : ''}
+      ${diff_keys ? queryParams.push(diff_keys) && `
+        and diff_keys is not null
+        and diff_keys & $${queryIndex++} > 0` : ''}
+      ${diff_guitarghl ? queryParams.push(diff_guitarghl) && `
+        and diff_guitarghl is not null
+        and diff_guitarghl & $${queryIndex++} > 0` : ''}
+      ${diff_bassghl ? queryParams.push(diff_bassghl) && `
+        and diff_bassghl is not null
+        and diff_bassghl & $${queryIndex++} > 0` : ''}
+      ${hasForced ? queryParams.push(!!+hasForced) && `
+        and (
+          "hasForced" is ${hasForced == 1 ? 'not' : ''} null
+          ${hasForced == 1 ? 'and' : 'or'} "hasForced" = $${queryIndex++}
+        )` : ''}
+      ${hasOpen ? queryParams.push(!!+hasOpen) && `
+        and (
+          "hasOpen" is ${hasOpen == 1 ? 'not' : ''} null
+          ${hasOpen == 1 ? 'and' : 'or'} "hasOpen" = $${queryIndex++}
+        )` : ''}
+      ${hasTap ? queryParams.push(!!+hasTap) && `
+        and (
+          "hasTap" is ${hasTap == 1 ? 'not' : ''} null
+          ${hasTap == 1 ? 'and' : 'or'} "hasTap" = $${queryIndex++}
+        )` : ''}
+      ${hasSections ? queryParams.push(!!+hasSections) && `
+        and (
+          "hasSections" is ${hasSections == 1 ? 'not' : ''} null
+          ${hasSections == 1 ? 'and' : 'or'} "hasSections" = $${queryIndex++}
+        )` : ''}
+      ${hasStarPower ? queryParams.push(!!+hasStarPower) && `
+        and (
+          "hasStarPower" is ${hasStarPower == 1 ? 'not' : ''} null
+          ${hasStarPower == 1 ? 'and' : 'or'} "hasStarPower" = $${queryIndex++}
+        )` : ''}
+      ${hasSoloSections ? queryParams.push(!!+hasSoloSections) && `
+        and (
+          "hasSoloSections" is ${hasSoloSections == 1 ? 'not' : ''} null
+          ${hasSoloSections == 1 ? 'and' : 'or'} "hasSoloSections" = $${queryIndex++}
+        )` : ''}
+      ${hasStems ? queryParams.push(!!+hasStems) && `
+        and (
+          "hasStems" is ${hasStems == 1 ? 'not' : ''} null
+          ${hasStems == 1 ? 'and' : 'or'} "hasStems" = $${queryIndex++}
+        )` : ''}
+      ${hasVideo ? queryParams.push(!!+hasVideo) && `
+        and (
+          "hasVideo" is ${hasVideo == 1 ? 'not' : ''} null
+          ${hasVideo == 1 ? 'and' : 'or'} "hasVideo" = $${queryIndex++}
+        )` : ''}
       limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
       ${+offset ? `OFFSET ${+offset}` : ''}
     `, queryParams);
