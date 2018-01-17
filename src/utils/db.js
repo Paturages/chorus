@@ -338,25 +338,25 @@ module.exports.search = async (query, offset, limit) => {
         and tier_bassghl ${tier_bassghl[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
       ${diff_guitar ? queryParams.push(diff_guitar) && `
         and diff_guitar is not null
-        and diff_guitar & $${queryIndex++} > 0` : ''}
+        and diff_guitar & $${queryIndex} = $${queryIndex++}` : ''}
       ${diff_bass ? queryParams.push(diff_bass) && `
         and diff_bass is not null
-        and diff_bass & $${queryIndex++} > 0` : ''}
+        and diff_bass & $${queryIndex} = $${queryIndex++}` : ''}
       ${diff_rhythm ? queryParams.push(diff_rhythm) && `
         and diff_rhythm is not null
-        and diff_rhythm & $${queryIndex++} > 0` : ''}
+        and diff_rhythm & $${queryIndex} = $${queryIndex++}` : ''}
       ${diff_drums ? queryParams.push(diff_drums) && `
         and diff_drums is not null
-        and diff_drums & $${queryIndex++} > 0` : ''}
+        and diff_drums & $${queryIndex} = $${queryIndex++}` : ''}
       ${diff_keys ? queryParams.push(diff_keys) && `
         and diff_keys is not null
-        and diff_keys & $${queryIndex++} > 0` : ''}
+        and diff_keys & $${queryIndex} = $${queryIndex++}` : ''}
       ${diff_guitarghl ? queryParams.push(diff_guitarghl) && `
         and diff_guitarghl is not null
-        and diff_guitarghl & $${queryIndex++} > 0` : ''}
+        and diff_guitarghl & $${queryIndex} = $${queryIndex++}` : ''}
       ${diff_bassghl ? queryParams.push(diff_bassghl) && `
         and diff_bassghl is not null
-        and diff_bassghl & $${queryIndex++} > 0` : ''}
+        and diff_bassghl & $${queryIndex} = $${queryIndex++}` : ''}
       ${hasForced ? queryParams.push(!!+hasForced) && `
         and (
           "hasForced" is ${hasForced == 1 ? 'not' : ''} null
