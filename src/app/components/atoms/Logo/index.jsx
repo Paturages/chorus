@@ -36,21 +36,25 @@ export default ({ simple, count }) =>
             className="Logo__image"
           />
         </a>
-        <a
-          href="https://digitaltipjar.com/paturages?_external=true"
-          class="dtj-tip-button"
-          data-username="paturages"
-        >
-          Digital Tip Jar
-        </a>
-        <script>
-          var a = document.querySelectorAll('.dtj-tip-button')[0]; var i =
-          document.createElement('IFRAME'); i.setAttribute('src',
-          "https://digitaltipjar.com/paturages/widgets/tip?_external=true");
-          i.setAttribute('frameborder','0'); i.style.height = 70 +'px';
-          i.style.width = 120 +'px'; a.parentNode.insertBefore(i,a);
-          a.parentNode.removeChild(a);
-        </script>
+        {process.env.NODE_ENV != "dev" && (
+          <a
+            href="https://digitaltipjar.com/paturages?_external=true"
+            class="dtj-tip-button"
+            data-username="paturages"
+          >
+            Digital Tip Jar
+          </a>
+        )}
+        {process.env.NODE_ENV != "dev" && (
+          <script>
+            var a = document.querySelectorAll('.dtj-tip-button')[0]; var i =
+            document.createElement('IFRAME'); i.setAttribute('src',
+            "https://digitaltipjar.com/paturages/widgets/tip?_external=true");
+            i.setAttribute('frameborder','0'); i.style.height = 70 +'px';
+            i.style.width = 120 +'px'; a.parentNode.insertBefore(i,a);
+            a.parentNode.removeChild(a);
+          </script>
+        )}
       </div>
       <div className="Logo__subtitle">
         {Math.random() < 0.1
@@ -73,8 +77,8 @@ export default ({ simple, count }) =>
       <div className="Logo__subtitle">
         <br />
         <span>
-          Advanced search is coming soon, I swear. Credits for the logo and
-          favicon go to <b>TheFilyng</b>. Thanks man!
+          Advanced search: it's ugly but it's here and it works. Kinda. Credits
+          for the logo and favicon go to <b>TheFilyng</b>. Thanks man!
         </span>
         <br />
         <b>

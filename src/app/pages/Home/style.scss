@@ -2,7 +2,7 @@
   max-width: 1280px;
   margin: auto;
   
-  .SearchBox {
+  .SearchBox, .AdvancedSearch {
     margin: 3em auto;
     max-width: 800px;
   }
@@ -11,7 +11,7 @@
     .Logo {
       margin: 0 1em;
     }
-    .SearchBox {
+    .SearchBox, .AdvancedSearch {
       margin: 3em 1em;
     }
   }

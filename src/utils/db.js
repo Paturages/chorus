@@ -259,18 +259,99 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
   }
 };
 
-module.exports.search = (query, offset, limit) => Pg.query(`
-  select round(100 * similarity(
-    s."words",
-    array_to_string(tsvector_to_array(to_tsvector('simple', $1)), ' ')
-  )::numeric, 2) as "searchScore", *
-  from "Songs" s
-  order by "searchScore" desc
-  limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
-  ${+offset ? `OFFSET ${+offset}` : ''}
-`, [query])
-.then(songs =>
-  Promise.all([
+module.exports.search = async (query, offset, limit) => {
+  // Oh, god.
+  const [, name] = query.match(/name="([^"]+)"/) || [];
+  const [, artist] = query.match(/artist="([^"]+)"/) || [];
+  const [, album] = query.match(/album="([^"]+)"/) || [];
+  const [, genre] = query.match(/genre="([^"]+)"/) || [];
+  const [, charter] = query.match(/charter="([^"]+)"/) || [];
+  const [, tier_band] = query.match(/tier_band=(.t\d)/) || [];
+  const [, tier_guitar] = query.match(/tier_guitar=(.t\d)/) || [];
+  const [, tier_bass] = query.match(/tier_bass=(.t\d)/) || [];
+  const [, tier_rhythm] = query.match(/tier_rhythm=(.t\d)/) || [];
+  const [, tier_drums] = query.match(/tier_drums=(.t\d)/) || [];
+  const [, tier_vocals] = query.match(/tier_vocals=(.t\d)/) || [];
+  const [, tier_keys] = query.match(/tier_keys=(.t\d)/) || [];
+  const [, tier_guitarghl] = query.match(/tier_guitarghl=(.t\d)/) || [];
+  const [, tier_bassghl] = query.match(/tier_bassghl=(.t\d)/) || [];
+  const [, diff_guitar] = query.match(/diff_guitar=(\d)/) || [];
+  const [, diff_bass] = query.match(/diff_bass=(\d)/) || [];
+  const [, diff_rhythm] = query.match(/diff_rhythm=(\d)/) || [];
+  const [, diff_drums] = query.match(/diff_drums=(\d)/) || [];
+  const [, diff_keys] = query.match(/diff_keys=(\d)/) || [];
+  const [, diff_guitarghl] = query.match(/diff_guitarghl=(\d)/) || [];
+  const [, diff_bassghl] = query.match(/diff_bassghl=(\d)/) || [];
+  const [, hasForced] = query.match(/hasForced=(\d)/) || [];
+  const [, hasOpen] = query.match(/hasOpen=(\d)/) || [];
+  const [, hasTap] = query.match(/hasTap=(\d)/) || [];
+  const [, hasSections] = query.match(/hasSections=(\d)/) || [];
+  const [, hasStarPower] = query.match(/hasStarPower=(\d)/) || [];
+  const [, hasSoloSections] = query.match(/hasSoloSections=(\d)/) || [];
+  const [, hasStems] = query.match(/hasStems=(\d)/) || [];
+  const [, hasVideo] = query.match(/hasVideo=(\d)/) || [];
+  let songs;
+  if (name || artist || album || genre || charter ||
+    tier_band || tier_guitar || tier_bass || tier_rhythm ||
+    tier_drums || tier_vocals || tier_keys || tier_guitarghl ||
+    tier_bassghl || diff_guitar || diff_bass || diff_rhythm ||
+    diff_drums || diff_keys || diff_guitarghl || diff_bassghl ||
+    hasForced || hasOpen || hasTap || hasSections || hasStarPower ||
+    hasSoloSections || hasStems || hasVideo) {
+    // Advanced search: detected.
+    let queryIndex = 1;
+    const queryParams = [];
+    songs = await Pg.query(`
+      select * from "Songs"
+      where 1 = 1
+      ${name ? queryParams.push(name) && `and name ilike concat('%', $${queryIndex++}::text, '%')` : ''}
+      ${artist ? queryParams.push(artist) && `and artist ilike concat('%', $${queryIndex++}::text, '%')` : ''}
+      ${album ? queryParams.push(album) && `and album ilike concat('%', $${queryIndex++}::text, '%')` : ''}
+      ${genre ? queryParams.push(genre) && `and genre ilike concat('%', $${queryIndex++}::text, '%')` : ''}
+      ${charter ? queryParams.push(charter) && `and charter ilike concat('%', $${queryIndex++}::text, '%')` : ''}
+      ${tier_band ? queryParams.push(tier_band[2]) && `and tier_band ${tier_band[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_guitar ? queryParams.push(tier_guitar[2]) && `and tier_guitar ${tier_guitar[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_bass ? queryParams.push(tier_bass[2]) && `and tier_bass ${tier_bass[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_rhythm ? queryParams.push(tier_rhythm[2]) && `and tier_rhythm ${tier_rhythm[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_drums ? queryParams.push(tier_drums[2]) && `and tier_drums ${tier_drums[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_vocals ? queryParams.push(tier_vocals[2]) && `and tier_vocals ${tier_vocals[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_keys ? queryParams.push(tier_keys[2]) && `and tier_keys ${tier_keys[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_guitarghl ? queryParams.push(tier_guitarghl[2]) && `and tier_guitarghl ${tier_guitarghl[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${tier_bassghl ? queryParams.push(tier_bassghl[2]) && `and tier_bassghl ${tier_bassghl[0] == 'g' ? '>' : '<'}= $${queryIndex++}` : ''}
+      ${diff_guitar ? queryParams.push(diff_guitar) && `and diff_guitar & $${queryIndex++} > 0` : ''}
+      ${diff_bass ? queryParams.push(diff_bass) && `and diff_bass & $${queryIndex++} > 0` : ''}
+      ${diff_rhythm ? queryParams.push(diff_rhythm) && `and diff_rhythm & $${queryIndex++} > 0` : ''}
+      ${diff_drums ? queryParams.push(diff_drums) && `and diff_drums & $${queryIndex++} > 0` : ''}
+      ${diff_keys ? queryParams.push(diff_keys) && `and diff_keys & $${queryIndex++} > 0` : ''}
+      ${diff_guitarghl ? queryParams.push(diff_guitarghl) && `and diff_guitarghl & $${queryIndex++} > 0` : ''}
+      ${diff_bassghl ? queryParams.push(diff_bassghl) && `and diff_bassghl & $${queryIndex++} > 0` : ''}
+      ${hasForced ? queryParams.push(!!+hasForced) && `and "hasForced" = $${queryIndex++}` : ''}
+      ${hasOpen ? queryParams.push(!!+hasOpen) && `and "hasOpen" = $${queryIndex++}` : ''}
+      ${hasTap ? queryParams.push(!!+hasTap) && `and "hasTap" = $${queryIndex++}` : ''}
+      ${hasSections ? queryParams.push(!!+hasSections) && `and "hasSections" = $${queryIndex++}` : ''}
+      ${hasStarPower ? queryParams.push(!!+hasStarPower) && `and "hasStarPower" = $${queryIndex++}` : ''}
+      ${hasSoloSections ? queryParams.push(!!+hasSoloSections) && `and "hasSoloSections" = $${queryIndex++}` : ''}
+      ${hasStems ? queryParams.push(!!+hasStems) && `and "hasStems" = $${queryIndex++}` : ''}
+      ${hasVideo ? queryParams.push(!!+hasVideo) && `and "hasVideo" = $${queryIndex++}` : ''}
+      limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
+      ${+offset ? `OFFSET ${+offset}` : ''}
+    `, queryParams);
+  } else {
+    // Fall back to quick search
+    songs = await Pg.query(`
+      select round(100 * similarity(
+        s."words",
+        array_to_string(tsvector_to_array(to_tsvector('simple', $1)), ' ')
+      )::numeric, 2) as "searchScore", *
+      from "Songs" s
+      order by "searchScore" desc
+      limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
+      ${+offset ? `OFFSET ${+offset}` : ''}
+    `, [query]);
+  }
+  if (!songs.length) return [];
+  // Populate the results with sources and hashes
+  return Promise.all([
     Pg.q`
       SELECT ss."songId", s."id", s."name", s."link", ss."parent"
       FROM "Songs_Sources" ss
@@ -300,9 +381,9 @@ module.exports.search = (query, offset, limit) => Pg.query(`
         songMap[songId].hashes[part][difficulty] = hash;
       }
     });
-    return songs.map(({ id }) => songMap[id]); // songs is still sorted by "lastModified" desc
-  })
-);
+    return songs.map(({ id }) => songMap[id]); // songs is still sorted by the proper filter
+  });
+};
 
 module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise.resolve({}) : Promise.all([
   Pg.q`

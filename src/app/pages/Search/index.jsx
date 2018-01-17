@@ -18,11 +18,11 @@ export default class Search extends Component {
       ga("send", "pageview");
     }
     Http.get("/api/search", { query: props.query }).then(songs =>
-      this.setState({ songs })
+      this.setState({ songs, hasMore: songs.length == 20 })
     );
   }
   render() {
-    const { songs, query, from } = this.state;
+    const { songs, query, from, hasMore } = this.state;
     return (
       <div className="Search">
         <div className="Search__header">
@@ -55,9 +55,14 @@ export default class Search extends Component {
         </div>
         <SongList
           songs={songs}
+          hasMore={hasMore}
           onMore={() =>
             Http.get("/api/search", { query, from: from + 20 }).then(newSongs =>
-              this.setState({ songs: songs.concat(newSongs), from: from + 20 })
+              this.setState({
+                hasMore: newSongs.length == 20,
+                songs: songs.concat(newSongs),
+                from: from + 20
+              })
             )
           }
         />

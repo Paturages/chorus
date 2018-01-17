@@ -1,0 +1,24 @@
+@import 'variables';
+
+.FeatureSelector {
+  height: 2.5em;
+  color: $color--text;
+  font-family: $font-family;
+  padding: 0;
+  text-align: left;
+  font-size: 1em;
+  background: none;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  opacity: .25;
+  outline: none;
+  
+  &:hover {
+    opacity: .8;
+  }
+  &.FeatureSelector--active {
+    opacity: 1;
+  }
+}

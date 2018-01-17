@@ -1,0 +1,48 @@
+@import 'variables';
+
+.AdvancedSearch {
+  &__text-row {
+    display: flex;
+    flex-direction: row;
+    margin: 1em 0;
+    .TextInput {
+      margin: 0 .5em;
+      flex: 1;
+    }
+  }
+  &__tier-row {
+    display: flex;
+    flex-direction: row;
+    margin: 1em 0;
+    .TierPillSelector {
+      margin: 0 .5em;
+      flex: 1;
+    }
+  }
+  &__feature-row {
+    display: flex;
+    flex-direction: row;
+    margin: 1em 0;
+    .FeatureSelector {
+      margin: 0 3em;
+      flex: 1;
+    }
+  }
+  &__submit {
+    text-align: center;
+    margin: 1em;
+    button {
+      font-size: 1.5em;
+      font-family: $font-family;
+      padding: .25em 2em;
+      text-transform: uppercase;
+      background: none;
+      outline: none;
+      color: $color--text;
+      cursor: pointer;
+    }
+  }
+  &__simple-search {
+    text-align: center;
+  }
+}
