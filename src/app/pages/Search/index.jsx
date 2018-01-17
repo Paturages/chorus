@@ -9,6 +9,10 @@ import Http from "utils/Http";
 
 import "./style.scss";
 
+const substitutes = {
+  "ugandan knuckles": "No, I don't know the fucking way."
+};
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -21,12 +25,27 @@ export default class Search extends Component {
       this.setState({
         songs,
         hasNothing: !songs.length,
-        hasMore: songs.length == 20
+        hasMore: songs.length == 20,
+        substituteResult: (() => {
+          for (let phrase in substitutes) {
+            if (props.query.toLowerCase().indexOf(phrase) > -1) {
+              return substitutes[phrase];
+            }
+          }
+          return null;
+        })()
       })
     );
   }
   render() {
-    const { songs, query, from, hasMore, hasNothing } = this.state;
+    const {
+      songs,
+      query,
+      from,
+      hasMore,
+      hasNothing,
+      substituteResult
+    } = this.state;
     return (
       <div className="Search">
         <div className="Search__header">
@@ -56,7 +75,17 @@ export default class Search extends Component {
                     this.setState({
                       songs,
                       hasNothing: !songs.length,
-                      hasMore: songs.length == 20
+                      hasMore: songs.length == 20,
+                      substituteResult: (() => {
+                        for (let phrase in substitutes) {
+                          if (
+                            this.state.query.toLowerCase().indexOf(phrase) > -1
+                          ) {
+                            return substitutes[phrase];
+                          }
+                        }
+                        return null;
+                      })()
                     })
                   );
                 }
@@ -64,26 +93,31 @@ export default class Search extends Component {
             }
           />
         </div>
-        {!hasNothing && (
-          <SongList
-            songs={songs}
-            hasMore={hasMore}
-            onMore={() =>
-              Http.get("/api/search", { query, from: from + 20 }).then(
-                newSongs =>
-                  this.setState({
-                    hasMore: newSongs.length == 20,
-                    songs: songs.concat(newSongs),
-                    from: from + 20
-                  })
-              )
-            }
-          />
-        )}
-        {hasNothing && (
-          <div className="Search__nothing">
-            Sorry, we couldn't find anything!
-          </div>
+        {!hasNothing &&
+          !substituteResult && (
+            <SongList
+              songs={songs}
+              hasMore={hasMore}
+              onMore={() =>
+                Http.get("/api/search", { query, from: from + 20 }).then(
+                  newSongs =>
+                    this.setState({
+                      hasMore: newSongs.length == 20,
+                      songs: songs.concat(newSongs),
+                      from: from + 20
+                    })
+                )
+              }
+            />
+          )}
+        {hasNothing &&
+          !substituteResult && (
+            <div className="Search__nothing">
+              Sorry, we couldn't find anything!
+            </div>
+          )}
+        {substituteResult && (
+          <div className="Search__nothing">{substituteResult}</div>
         )}
       </div>
     );
