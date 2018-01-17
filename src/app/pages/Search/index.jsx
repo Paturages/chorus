@@ -18,11 +18,15 @@ export default class Search extends Component {
       ga("send", "pageview");
     }
     Http.get("/api/search", { query: props.query }).then(songs =>
-      this.setState({ songs, hasMore: songs.length == 20 })
+      this.setState({
+        songs,
+        hasNothing: !songs.length,
+        hasMore: songs.length == 20
+      })
     );
   }
   render() {
-    const { songs, query, from, hasMore } = this.state;
+    const { songs, query, from, hasMore, hasNothing } = this.state;
     return (
       <div className="Search">
         <div className="Search__header">
@@ -30,42 +34,57 @@ export default class Search extends Component {
           <SearchBox
             query={query}
             onQuery={query =>
-              this.setState({ query, songs: [], from: 0 }, () => {
-                window.history.pushState(
-                  null,
-                  "Search",
-                  `${
-                    process.env.TESTING ? "/testing" : ""
-                  }/search?query=${encodeURIComponent(query)}`
-                );
-                if (typeof ga !== "undefined") {
-                  ga(
-                    "set",
-                    "page",
-                    `/search?query=${encodeURIComponent(query)}`
+              this.setState(
+                { query, hasNothing: null, songs: [], from: 0 },
+                () => {
+                  window.history.pushState(
+                    null,
+                    "Search",
+                    `${
+                      process.env.TESTING ? "/testing" : ""
+                    }/search?query=${encodeURIComponent(query)}`
                   );
-                  ga("send", "pageview");
+                  if (typeof ga !== "undefined") {
+                    ga(
+                      "set",
+                      "page",
+                      `/search?query=${encodeURIComponent(query)}`
+                    );
+                    ga("send", "pageview");
+                  }
+                  Http.get("/api/search", { query }).then(songs =>
+                    this.setState({
+                      songs,
+                      hasNothing: !songs.length,
+                      hasMore: songs.length == 20
+                    })
+                  );
                 }
-                Http.get("/api/search", {
-                  query: encodeURIComponent(query)
-                }).then(songs => this.setState({ songs }));
-              })
+              )
             }
           />
         </div>
-        <SongList
-          songs={songs}
-          hasMore={hasMore}
-          onMore={() =>
-            Http.get("/api/search", { query, from: from + 20 }).then(newSongs =>
-              this.setState({
-                hasMore: newSongs.length == 20,
-                songs: songs.concat(newSongs),
-                from: from + 20
-              })
-            )
-          }
-        />
+        {!hasNothing && (
+          <SongList
+            songs={songs}
+            hasMore={hasMore}
+            onMore={() =>
+              Http.get("/api/search", { query, from: from + 20 }).then(
+                newSongs =>
+                  this.setState({
+                    hasMore: newSongs.length == 20,
+                    songs: songs.concat(newSongs),
+                    from: from + 20
+                  })
+              )
+            }
+          />
+        )}
+        {hasNothing && (
+          <div className="Search__nothing">
+            Sorry, we couldn't find anything!
+          </div>
+        )}
       </div>
     );
   }
