@@ -10,7 +10,8 @@ import Http from "utils/Http";
 import "./style.scss";
 
 const substitutes = {
-  "ugandan knuckles": "No, I don't know the fucking way."
+  "ugandan knuckles": "No, I don't know the fucking way.",
+  "uganda knuckles": "No, I don't know the fucking way."
 };
 
 export default class Search extends Component {

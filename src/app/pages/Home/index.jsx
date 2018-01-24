@@ -44,7 +44,6 @@ export default class Home extends Component {
           <SearchBox
             label="What do you feel like playing today?"
             onQuery={onQuery}
-            onAdvanced={() => this.setState({ advanced: true })}
           />
         )}
         {advanced && (
@@ -53,6 +52,14 @@ export default class Home extends Component {
             onSimple={() => this.setState({ advanced: false })}
           />
         )}
+        <div className="Home__links">
+          <a
+            onClick={() => this.setState({ advanced: !advanced })}
+            href="javascript:void(0)"
+          >
+            {advanced ? "Back to quick search" : "Advanced search"}
+          </a>
+        </div>
         <SongList title="Latest indexed charts" songs={songs} />
       </div>
     );

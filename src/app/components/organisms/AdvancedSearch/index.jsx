@@ -82,7 +82,7 @@ export default class AdvancedSearch extends Component {
       hasStems,
       hasVideo
     } = this.state;
-    const { onSimple, onQuery } = this.props;
+    const { onQuery } = this.props;
     return (
       <form
         className="AdvancedSearch"
@@ -325,11 +325,6 @@ export default class AdvancedSearch extends Component {
         </div>
         <div className="AdvancedSearch__submit">
           <button type="submit">Submit</button>
-        </div>
-        <div className="AdvancedSearch__simple-search">
-          <a href="javascript:void(0)" onClick={onSimple}>
-            Back to quick search
-          </a>
         </div>
       </form>
     );

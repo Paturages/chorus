@@ -70,11 +70,19 @@ export default ({ simple, count }) =>
             rel="noopener noreferrer"
           >
             various drives of this spreadsheet
-          </a>&nbsp; (shoutouts to <b>ZeroHearts</b>) and tons more from the
+          </a>&nbsp;(shoutouts to <b>ZeroHearts</b>) and tons more from the
           Clone Hero community
         </div>
       )}
       <div className="Logo__subtitle">
+        <a
+          href="https://docs.google.com/document/d/14gJj66WpGKFPJOBCQ1HTOCrXuidWmGMVI2CIXA1-Qws/edit"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Wait, what is Clone Hero?
+        </a>
+        <br />
         <br />
         <span>
           Advanced search: it's ugly but it's here and it works. Kinda. Credits
@@ -97,6 +105,22 @@ export default ({ simple, count }) =>
         >
           Want to add more songs to chorus?
         </a>
+        <br />
+        Chart not working? Try&nbsp;
+        <a
+          href="https://drive.google.com/file/d/0BxG2l7vY7NPteWx0T0N1TkF2WDg/view"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MIDIFix
+        </a>! Make sure to&nbsp;
+        <a
+          href="https://i.gyazo.com/5da0997d9f2282a29532ae70559c7069.gif"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          follow the instructions
+        </a>.
         <br />
         <span>
           Having issues? File an issue on the GitHub or DM Paturages#9405 on
