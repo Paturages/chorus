@@ -28,13 +28,14 @@ const defaultNameParser = txt => {
   return { artist: artist.trim(), name: name.trim() };
 };
 
-module.exports = async ({ name, link }) => {
+module.exports = async ({ name, link, proxy }) => {
   console.log('Adding', name);
   // Supporting both https://drive.google.com/open?id=<drive_id>
   // and https://drive.google.com/drive/folders/<drive_id> syntaxes
+  // `proxy` is a link that will be displayed instead of the link as a source (useful for rehosts)
   const questionMarkIndex = link.indexOf('?');
   const source = {
-    name, link,
+    name, link: proxy || link,
     id: link.indexOf('/open?id=') > -1 ?
       link.slice(link.indexOf('/open?id=') + 9) :
       link.slice(link.lastIndexOf('/') + 1, questionMarkIndex < 0 ? undefined : questionMarkIndex)
@@ -43,6 +44,7 @@ module.exports = async ({ name, link }) => {
   // 1. Registering the source, or finding its ID if it already exists
   console.log('Registering/finding source');
   source.chorusId = (await upsertSource(source)).id;
+  if (source.proxy) source.link = link;
 
   // 2. Get the map of already indexed links so that they don't get parsed again
   const linksMap = await getLinksMapBySource(source);

@@ -10,7 +10,7 @@ const download = url => new Promise((resolve, reject) =>
 );
 
 const defaultNameParser = txt => {
-  let [, charter, artist, name] = txt.match(/\[(.*)\] (.+) - (.+)/);
+  let [, charter, artist, name] = txt.match(/\[?(.*)\]? ?(.+) - (.+)/);
   return { artist: artist.trim(), name: name.trim().replace('.zip', ''), charter: charter.trim() || null };
 };
 
@@ -21,12 +21,14 @@ const {
   getLinksMapBySource,
 } = require('../utils/db');
 
-module.exports = async ({ name, link }) => {
+module.exports = async ({ name, link, proxy }) => {
   console.log('Adding', name);
   // 1. Registering the source, or finding its ID if it already exists
   console.log('Registering/finding source');
-  const source = await upsertSource({ name, link });
+  // `proxy` is a link that will be displayed instead of the link as a source (useful for rehosts)
+  const source = await upsertSource({ name, link: proxy || link });
   source.chorusId = source.id;
+  if (source.proxy) source.link = link;
   // 2. Get the map of already indexed links so that they don't get parsed again
   const linksMap = await getLinksMapBySource(source);
   // 3. Get the list of folders (games)

@@ -43,8 +43,11 @@ process.on("unhandledRejection", (err, promise) => {
       if (!sources[i] || (process.argv[2] && sources[i].name.toLowerCase().indexOf(process.argv[2].toLowerCase()) < 0)) continue;
       try {
         if (sources[i].txt) await txt(sources[i].path);
-        else if (sources[i].script) await require(`./src/drivers/${sources[i].script}`)(sources[i]);
-        else await drive(sources[i]);
+        else if (sources[i].script) {
+          if (sources[i].script.slice(0, 5) == 'proxy')
+            await require(`./src/drivers/caddy`)(Object.assign(sources[i], { proxy: sources[i].script.slice(6) }));
+          else await require(`./src/drivers/${sources[i].script}`)(sources[i]);
+        } else await drive(sources[i]);
       } catch (err) {
         console.error(err.stack);
         console.log(sources[i].name, 'failed!');

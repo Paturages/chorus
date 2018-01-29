@@ -57,7 +57,7 @@ Mintorment's charts :: https://drive.google.com/drive/folders/1SrQTdaySPfB7vOrma
 Miscellany's charts :: https://drive.google.com/drive/folders/1p1XuIwYmndRK8Z0VK-uQtnhQEqCBbM9D
 Naonemeu's charts :: https://drive.google.com/drive/folders/0Bxt_bZMbHrqtSlRaYVpDTWpjX2M
 ParallaxDG's charts :: https://drive.google.com/drive/folders/0B9c6s3i6iVBIaHFjR2h1QlZMZVE
-Paturages' charts :: https://public.fightthe.pw/clonehero/ :: caddy.js
+Paturages' charts :: https://public.fightthe.pw/clonehero/ :: caddy
 Regiden's Video Game charts :: https://drive.google.com/drive/folders/1AHbog-yUN_gA998-gsS2acUi6_bh4R7p
 Sean2490's charts :: https://drive.google.com/drive/folders/1dU83ug-QdVfA_pR6Q1djiUcIzq2CKEJh
 ShadeGH's charts :: https://drive.google.com/drive/folders/0B60cVxSWmZPcOHJkbWRkQkc1YWs
@@ -97,7 +97,7 @@ TriggerTheDragon's Orden Ogan :: https://drive.google.com/drive/folders/1DL1OLtU
 TriggerTheDragon's Bury Tomorrow :: https://drive.google.com/drive/folders/1SqHg8zyaIP84sNKOg61QBFUXTFmMIr6O
 TriggerTheDragon's Any Given Day :: https://drive.google.com/drive/folders/1ltjMDbJ9yNBpzI8XazvKa2NS9GcFXRCD
 
-Official games :: https://public.fightthe.pw/ghrb/ :: caddy.js
+Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Guitarmaggedon :: https://drive.google.com/drive/folders/1N58FEcWidA4dEe7N0bpiKB3Hq3iXbOIe
 Holiday Songs :: https://drive.google.com/drive/folders/1KQhZgffuchPqle0EA9B9o7ne25ZoEQ4v
 Internet Stars :: https://drive.google.com/drive/folders/1L40_VhzLRYJcnpAyQPP1EH0h8Ek1v0mR
@@ -115,3 +115,9 @@ Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWR
 
 sandsoles16's reuploads :: https://drive.google.com/drive/folders/1G9w2zgnMgWkvrzvGPB02hIn5NR8pm_Ni
 
+# Re-hosts
+
+Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1 :: proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
+Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2 :: proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
+Acai's setlist :: https://public.fightthe.pw/rehosts/acai :: proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
+Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets :: proxy:https://docs.google.com/spreadsheets/d/1jylytDh7E7kcLwvDGGk-2ScWbt9AqABLeEu5Bz490E8/edit#gid=0
