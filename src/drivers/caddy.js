@@ -85,7 +85,7 @@ module.exports = async ({ name, link, proxy }) => {
       }" by "${
         meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
       }"`);
-      songs.push(Object.assign(song, meta, meta.charter ? {} : { charter: defaultCharter }));
+      songs.push(Object.assign(song, meta, meta.charter || meta.frets ? {} : { charter: defaultCharter }));
     }
   }
   // 5. Update the list of links to ignore (e.g. invalid archives, stray files...)
