@@ -118,7 +118,7 @@ sandsoles16's reuploads :: https://drive.google.com/drive/folders/1G9w2zgnMgWkvr
 
 # Re-hosts
 
-Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1 :: proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
-Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2 :: proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
-Acai's setlist :: https://public.fightthe.pw/rehosts/acai :: proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
-Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets :: proxy:https://docs.google.com/spreadsheets/d/1jylytDh7E7kcLwvDGGk-2ScWbt9AqABLeEu5Bz490E8/edit#gid=0
+Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1/ :: proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
+Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2/ :: proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
+Acai's setlist :: https://public.fightthe.pw/rehosts/acai/ :: proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
+Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets/ :: proxy:https://docs.google.com/spreadsheets/d/1jylytDh7E7kcLwvDGGk-2ScWbt9AqABLeEu5Bz490E8/edit#gid=0
