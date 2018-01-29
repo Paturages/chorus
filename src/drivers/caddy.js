@@ -10,8 +10,8 @@ const download = url => new Promise((resolve, reject) =>
 );
 
 const defaultNameParser = txt => {
-  let [, charter, artist, name] = txt.match(/\[?(.*)\]? ?(.+) - (.+)/);
-  return { artist: artist.trim(), name: name.trim().replace('.zip', ''), charter: charter.trim() || null };
+  let [, charter, artist, name] = txt.match(/\[?(.*)\]? ?(.+) - (.+)/) || [];
+  return { artist: (artist || '').trim(), name: (name || '').trim().replace('.zip', ''), charter: (charter || '').trim() || null };
 };
 
 const {
