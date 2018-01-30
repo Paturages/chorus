@@ -9,7 +9,8 @@ const ACRONYMS = [
   "Clone Hero-friendly Organized Repository of User-provided Songs",
   "Charting habitat of real unsettling secrets",
   "Cool hats on randyladyman's unlisted stream",
-  "Clown harmonica olympics: a really useless sport."
+  "Clown harmonica olympics: a really useless sport.",
+  `I see alot of personal preference in there... "looks bad" thats like a personal opinion. Not even going to bother arguing back on this because from how much you tried putting in there on finding things, i can see how thick you are in the head :LUL3D:`
   // TODO: I need more! Send pull requests!
 ];
 
