@@ -10,9 +10,9 @@ The current state of Guitar Hero/Rock Band/Clone Hero custom songs aggregation i
 
 The current sources are based on the
 [official CH charts spreadsheet](https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o)
-with a ton of songs from talented charters, including conversions from C3, as well as the official GH/RB setlists. There are currently almost 20,000 charts indexed, and the number is still growing!
+with a ton of songs from talented charters, including conversions from C3, as well as the official GH/RB setlists. There are currently more than 20,000 charts indexed, and the number is still growing!
 
-*Disclaimer: I am not responsible of the charts and songs that are indexed by chorus (except the charts that are attributed to "Paturages"). If you have an issue with any of those, please contact the source owners (links to sources are provided for every song).*
+*Disclaimer: I am not responsible of the charts and songs that are indexed by chorus (except the charts that are attributed to "Paturages"). If you have an issue with any of those, please contact the charters and/or the source owners (links to sources are provided for every song).*
 
 ## How it works
 
@@ -34,7 +34,7 @@ Configure a PostgreSQL database and get your Google API client ID and secret. Co
 
 `npm run import <short_name>` to run just one particular import script.
 
-Fair warning: the very first run will take between 12 and 15 hours, so make sure to run the script as a background task. The following runs should only take between 15 and 20 minutes. If you're not willing to go through the 12/15 hours, feel free to ask me for a database dump on Discord (`Paturages#9405`) or elsewhere.
+Fair warning: the very first run will take more than 12 hours, so make sure to run the script as a background task. The following runs should only take about an hour, depending on the amount of new charts. If you're not willing to go through the 12+ hours, feel free to ask me for a database dump on Discord (`Paturages#9405`) or elsewhere.
 
 ## Roadmap and random ideas
 
