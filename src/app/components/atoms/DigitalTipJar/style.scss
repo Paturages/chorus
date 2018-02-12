@@ -1,0 +1,12 @@
+.DigitalTipJar {
+  position: relative;
+  left: 2em;
+  top: .5em;
+  &__label {
+    position: absolute;
+    margin-left: .5em;
+    left: 100%;
+    top: 1em;
+    width: 10em;
+  }
+}

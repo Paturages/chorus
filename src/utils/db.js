@@ -2,8 +2,13 @@ const Pg = require('./pg');
 
 module.exports.getNbSongs = () => Pg.q`SELECT COUNT(*) AS "nbSongs" FROM "Songs"`.then(([{ nbSongs }]) => nbSongs);
 
-module.exports.getLatestCharts = () =>
-  Pg.q`SELECT * FROM "Songs" ORDER BY "lastModified" DESC LIMIT 20`
+module.exports.getLatestCharts = (offset = 0, limit = 20) =>
+  Pg.q`
+    SELECT *
+    FROM "Songs"
+    ORDER BY "lastModified"
+    DESC LIMIT 20
+    OFFSET ${+offset || 0}`
   .then(songs =>
     Promise.all([
       Pg.q`
@@ -15,9 +20,23 @@ module.exports.getLatestCharts = () =>
       Pg.q`
         SELECT * FROM "Songs_Hashes"
         WHERE "songId" IN (${songs.map(({ id }) => id)})
-      `
+      `,
+      Pg.q`
+        SELECT "roles", "alias"
+        FROM (
+          SELECT "roles", UNNEST("aliases") AS "alias"
+          FROM "Charters"
+        ) c
+        WHERE LOWER("alias") IN (${Object.keys(
+          songs.reduce((charters, { charter }) => {
+            const parts = charter.split(/&|,|\+|\//).map(x => x.trim());
+            parts.forEach(part => charters[part.toLowerCase()] = 1);
+            return charters;
+          }, {})
+        )})
+      `,
     ])
-    .then(([sources, hashes]) => {
+    .then(([sources, hashes, roles]) => {
       const songMap = Object.assign({}, ...songs.map(song => {
         delete song.words; // Users don't need them.
         return { [song.id]: song };
@@ -35,7 +54,11 @@ module.exports.getLatestCharts = () =>
           songMap[songId].hashes[part][difficulty] = hash;
         }
       });
-      return songs.map(({ id }) => songMap[id]); // songs is still sorted by "lastModified" desc
+      return {
+        // songs is still sorted by "lastModified" desc
+        songs: songs.map(({ id }) => songMap[id]),
+        roles: Object.assign({}, ...roles.map(({ roles, alias }) => ({ [alias.toLowerCase()] : roles }))),
+      };
     })
   )
 ;
@@ -260,7 +283,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
 };
 
 module.exports.search = async (query, offset, limit) => {
-  // Oh, god.
+  // Oh my good!
   const [, name] = query.match(/name="([^"]+)"/) || [];
   const [, artist] = query.match(/artist="([^"]+)"/) || [];
   const [, album] = query.match(/album="([^"]+)"/) || [];
@@ -425,9 +448,24 @@ module.exports.search = async (query, offset, limit) => {
     Pg.q`
       SELECT * FROM "Songs_Hashes"
       WHERE "songId" IN (${songs.map(({ id }) => id)})
-    `
+    `,
+    Pg.q`
+      SELECT "roles", "alias"
+      FROM (
+        SELECT "roles", UNNEST("aliases") AS "alias"
+        FROM "Charters"
+      ) c
+      WHERE LOWER("alias") IN (${Object.keys(
+        songs.reduce((charters, { charter }) => {
+          if (!charter) return charters;
+          const parts = charter.split(/&|,|\+|\//).map(x => x.trim());
+          parts.forEach(part => charters[part.toLowerCase()] = 1);
+          return charters;
+        }, {})
+      )})
+    `,
   ])
-  .then(([sources, hashes]) => {
+  .then(([sources, hashes, roles]) => {
     const songMap = Object.assign({}, ...songs.map(song => {
       delete song.words; // Users don't need them.
       return { [song.id]: song };
@@ -445,7 +483,11 @@ module.exports.search = async (query, offset, limit) => {
         songMap[songId].hashes[part][difficulty] = hash;
       }
     });
-    return songs.map(({ id }) => songMap[id]); // songs is still sorted by the proper filter
+    return {
+      // songs is still sorted by the proper filter
+      songs: songs.map(({ id }) => songMap[id]),
+      roles: Object.assign({}, ...roles.map(({ roles, alias }) => ({ [alias.toLowerCase()]: roles }))),
+    };
   });
 };
 

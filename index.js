@@ -44,8 +44,12 @@ process.on("unhandledRejection", (err, promise) => {
       try {
         if (sources[i].txt) await txt(sources[i].path);
         else if (sources[i].script) {
-          if (sources[i].script.slice(0, 5) == 'proxy')
-            await require(`./src/drivers/caddy`)(Object.assign(sources[i], { proxy: sources[i].script.slice(6) }));
+          if (sources[i].script.indexOf('proxy:') > -1)
+            await require(`./src/drivers/${
+              sources[i].script.split('/', 1)[0]
+            }`)(Object.assign(sources[i], { proxy: sources[i].script.slice(
+              sources[i].script.indexOf(':') + 1
+            ) }));
           else await require(`./src/drivers/${sources[i].script}`)(sources[i]);
         } else await drive(sources[i]);
       } catch (err) {

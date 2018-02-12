@@ -1,0 +1,32 @@
+.Charter {
+  &--roled {
+    position: relative;
+    a:hover + .Charter__tooltip {
+      display: block;
+    }
+  }
+
+  &__charter {
+    &--roled {
+      .Charter__charter-name {
+        color: #BBDEFB;
+        &:hover {
+          color: #64B5F6;
+        }
+      }
+    }
+  }
+
+  &__tooltip {
+    font-size: .8em;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 5em;
+    margin-top: .25rem;
+    background: #444;
+    color: #fff;
+    padding: .5rem;
+    max-width: 20rem;
+  }
+}

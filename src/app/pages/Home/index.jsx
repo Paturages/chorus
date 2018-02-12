@@ -1,7 +1,7 @@
 import Inferno from "inferno";
 import Component from "inferno-component";
 
-import Logo from "components/atoms/Logo";
+import NavBar from "components/organisms/NavBar";
 import SearchBox from "components/organisms/SearchBox";
 import SongList from "components/organisms/SongList";
 import AdvancedSearch from "components/organisms/AdvancedSearch";
@@ -15,12 +15,14 @@ import "./style.scss";
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { from: 0 };
     Http.get("/api/count").then(count => this.setState({ count }));
-    Http.get("/api/latest").then(songs => this.setState({ songs }));
+    Http.get("/api/latest").then(({ roles, songs }) =>
+      this.setState({ roles, songs, hasMore: songs.length == 20 })
+    );
   }
   render() {
-    const { count, songs, query, advanced } = this.state;
+    const { count, roles, songs, query, advanced, hasMore, from } = this.state;
     const onQuery = query =>
       this.setState({ query }, () => {
         window.history.pushState(
@@ -39,7 +41,7 @@ export default class Home extends Component {
       <Search query={query} />
     ) : (
       <div className="Home">
-        <Logo count={count} />
+        <NavBar count={count} />
         {!advanced && (
           <SearchBox
             label="What do you feel like playing today?"
@@ -60,7 +62,23 @@ export default class Home extends Component {
             {advanced ? "Back to quick search" : "Advanced search"}
           </a>
         </div>
-        <SongList title="Latest indexed charts" songs={songs} />
+        <SongList
+          title="Latest indexed charts"
+          roles={roles}
+          songs={songs}
+          hasMore={hasMore}
+          onMore={() =>
+            Http.get("/api/latest", { from: from + 20 }).then(
+              ({ songs: newSongs, roles: newRoles }) =>
+                this.setState({
+                  hasMore: newSongs.length == 20,
+                  songs: songs.concat(newSongs),
+                  roles: Object.assign(roles, newRoles),
+                  from: from + 20
+                })
+            )
+          }
+        />
       </div>
     );
   }

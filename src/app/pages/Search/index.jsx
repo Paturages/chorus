@@ -22,8 +22,9 @@ export default class Search extends Component {
       ga("set", "page", `/search?query=${props.query}`);
       ga("send", "pageview");
     }
-    Http.get("/api/search", { query: props.query }).then(songs =>
+    Http.get("/api/search", { query: props.query }).then(({ songs, roles }) =>
       this.setState({
+        roles,
         songs,
         hasNothing: !songs.length,
         hasMore: songs.length == 20,
@@ -41,6 +42,7 @@ export default class Search extends Component {
   render() {
     const {
       songs,
+      roles,
       query,
       from,
       hasMore,
@@ -72,9 +74,10 @@ export default class Search extends Component {
                     );
                     ga("send", "pageview");
                   }
-                  Http.get("/api/search", { query }).then(songs =>
+                  Http.get("/api/search", { query }).then(({ songs, roles }) =>
                     this.setState({
                       songs,
+                      roles,
                       hasNothing: !songs.length,
                       hasMore: songs.length == 20,
                       substituteResult: (() => {
@@ -97,14 +100,16 @@ export default class Search extends Component {
         {!hasNothing &&
           !substituteResult && (
             <SongList
+              roles={roles}
               songs={songs}
               hasMore={hasMore}
               onMore={() =>
                 Http.get("/api/search", { query, from: from + 20 }).then(
-                  newSongs =>
+                  ({ songs: newSongs, roles: newRoles }) =>
                     this.setState({
                       hasMore: newSongs.length == 20,
                       songs: songs.concat(newSongs),
+                      roles: Object.assign(roles, newRoles),
                       from: from + 20
                     })
                 )

@@ -1,5 +1,6 @@
 import Inferno from "inferno";
 
+import DownloadLink from "components/atoms/DownloadLink";
 import TierPills from "components/molecules/TierPills";
 
 import "./style.scss";
@@ -11,6 +12,7 @@ export default ({
   genre,
   year,
   charter,
+  roles,
   tier_band,
   tier_guitar,
   tier_bass,
@@ -55,23 +57,14 @@ export default ({
         {album || "Unknown album"}
         {year ? ` (${year})` : ""}
       </div>
-      {charter ? (
-        <div className="Song__charter">
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            Download{" "}
-            <b>
-              {charter}'{charter.slice(-1) == "s" ? "" : "s"}
-            </b>{" "}
-            {isPack ? "pack" : "chart"}
-          </a>
-        </div>
-      ) : (
-        <div className="Song__charter">
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            Download here
-          </a>
-        </div>
-      )}
+      <div className="Song__charter">
+        <DownloadLink
+          link={link}
+          charter={charter}
+          roles={roles}
+          isPack={isPack}
+        />
+      </div>
       <div className="Song__sources">
         Source{sources.length == 1 ? "" : "s"}:
         {sources.map(({ name, link, parent }) => (

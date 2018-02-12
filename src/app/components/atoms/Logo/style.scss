@@ -1,22 +1,11 @@
 @import 'variables';
 
 .Logo {
-  &__title {
-    font-size: 3em;
-    letter-spacing: 2pt;
-    margin-bottom: .125em;
-    a {
-      color: $color--text !important;
-      text-decoration: none;
-    }
-    iframe {
-      margin-bottom: -0.25em;
-      margin-left: .5em;
-    }
-  }
-  &__subtitle {
-    font-style: italic;
-    font-size: .8em;
+  font-size: 3em;
+  margin-bottom: .125em;
+  a {
+    color: $color--text !important;
+    text-decoration: none;
   }
   &__image {
     width: 4.5em;

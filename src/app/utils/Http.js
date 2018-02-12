@@ -2,7 +2,7 @@
   Basic wrapper for HTTP requests in a browser.
 */
 
-const get = (url, params) =>
+const get = (url, params, headers) =>
   new Promise((resolve, reject) => {
     if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
@@ -19,10 +19,15 @@ const get = (url, params) =>
             .join("&")
         : "";
     xhr.open("GET", `${url}${uriParams ? `?${uriParams}` : ""}`, true);
+    if (headers) {
+      for (let header in headers) {
+        xhr.setRequestHeader(header, headers[header]);
+      }
+    }
     xhr.send();
   });
 
-const req = method => (url, params) =>
+const req = method => (url, params, headers) =>
   new Promise((resolve, reject) => {
     if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
@@ -35,6 +40,11 @@ const req = method => (url, params) =>
     };
     xhr.open(method.toUpperCase(), url, true);
     xhr.setRequestHeader("Content-type", "application/json");
+    if (headers) {
+      for (let header in headers) {
+        xhr.setRequestHeader(header, headers[header]);
+      }
+    }
     xhr.send(params ? JSON.stringify(params) : undefined);
   });
 

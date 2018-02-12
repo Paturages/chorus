@@ -2,6 +2,7 @@ import Inferno from "inferno";
 
 import Home from "pages/Home";
 import Search from "pages/Search";
+import Http from "utils/Http";
 
 import "assets/fonts/roboto/regular.ttf";
 import "assets/fonts/roboto/bold.ttf";
@@ -46,11 +47,45 @@ const queryParts = (window.location.search || "")
   });
 const query = queryParts.find(x => x.key == "query") || {};
 
+/*
+
+--- TODO: Uncomment when feeling like implementing Discord auth ---
+
+const hashParts = (window.location.hash || "")
+  .slice(1)
+  .split("&")
+  .map(x => {
+    const [key, value] = x.split("=");
+    return { key, value };
+  });
+// Catch Discord OAuth2 redirect
+let accessToken = hashParts.find(x => x.key == "access_token");
+if (accessToken) window.localStorage.setItem("accessToken", accessToken.value);
+else accessToken = { value: window.localStorage.getItem("accessToken") };
+
+accessToken.value &&
+  Http.get(
+    "https://discordapp.com/api/guilds/296481029303304192/members",
+    null,
+    {
+      Authorization: `Bearer ${accessToken.value}`,
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
+  ).then(guilds => {
+    console.log(guilds);
+  });
+
+*/
+
 Inferno.render(
   window.location.pathname === `/${process.env.TESTING ? "testing/" : ""}` ? (
+    // <Home discord={{ accessToken: accessToken.value }} />
     <Home />
   ) : (
-    <Search query={decodeURIComponent(query.value)} />
+    <Search
+      query={decodeURIComponent(query.value)}
+      // discord={{ accessToken: accessToken.value }}
+    />
   ),
   document.getElementById("root")
 );

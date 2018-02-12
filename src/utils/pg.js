@@ -56,7 +56,7 @@ const q = (queryArr, ...params) => {
     if (index === queryArr.length - 1) return part;
     // Do not transform SQL segments
     // and replace $$ by proper indexes
-    if (typeof params[index] === 'object' && typeof params[index].sql != 'undefined') {
+    if (params[index] != null && typeof params[index] === 'object' && typeof params[index].sql != 'undefined') {
       if (params[index].params && params[index].params.length) {
         params[index].sql = params[index].sql.replace(/\$\$/g, () => `$${queryIndex++}`);
         queryArgs.push(...params[index].params);
@@ -67,6 +67,7 @@ const q = (queryArr, ...params) => {
     if (part.slice(-1) === '"') return `${part}${params[index]}`;
     // Unroll array of arrays into ($1, $2, $3), ($4, $5, $6), ...
     if (
+      params[index] != null &&
       typeof params[index] === 'object' &&
       params[index].length &&
       typeof params[index][0] === 'object' &&
@@ -80,7 +81,7 @@ const q = (queryArr, ...params) => {
       }).join(',')})`)}`;
     }
     // Decompose arrays
-    if (typeof params[index] === 'object' && params[index].length) {
+    if (params[index] != null && typeof params[index] === 'object' && params[index].length) {
       queryArgs.push(...params[index]);
       return `${part}${params[index].map(x => `$${queryIndex++}`)}`;
     }

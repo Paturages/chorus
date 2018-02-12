@@ -41,7 +41,7 @@ Duknine2's charts : https://drive.google.com/drive/folders/1JZu0Pn4eiraYTi5f0lnE
 Enkidu+'s charts :: https://drive.google.com/drive/folders/1im9FiXTKHbENw9eOquopoqbxa17e-Qaw
 Ent!ty's charts :: https://drive.google.com/drive/folders/0B7DAknKs0_efd3k5TVVHQ2JRQ3c
 ErupTi0n's CH Charts Drive :: https://drive.google.com/drive/folders/1txRQqp_hIuJsZ-TZ8tttMP1ucUlAR9_n
-Gabe's charts :: https://drive.google.com/drive/folders/1eJa7sdE-A4sLhqg9jkYvNMxLqFdpuJ9h
+Gabe's charts :: https://drive.google.com/drive/folders/1eJa7sdE-A4sLhqg9jkYvNMxLqFdpuJ9h :: google-drive/proxy:http://bit.ly/gaebpls
 GarryTheMod's songs :: https://drive.google.com/drive/folders/0By6Bhg7s6NEUNURxejJyZkwzOEU
 Grim's GH3 conversions :: https://drive.google.com/drive/folders/19vygIovofMZVp8E-oV05tfZlAR051ZMI
 Grim's CH charts :: https://drive.google.com/drive/folders/1ZsRrAfwgGLbkvnURk9TMOtXDx53iBBdu
@@ -130,10 +130,10 @@ sandsoles16's reuploads :: https://drive.google.com/drive/folders/1G9w2zgnMgWkvr
 # Re-hosts
 
 Random rehosts :: https://public.fightthe.pw/rehosts/randomshit/ :: caddy
-Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1/ :: proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
-Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2/ :: proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
-Acai's setlist :: https://public.fightthe.pw/rehosts/acai/ :: proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
-Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets/ :: proxy:https://docs.google.com/spreadsheets/d/1jylytDh7E7kcLwvDGGk-2ScWbt9AqABLeEu5Bz490E8/edit#gid=0
-Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
-Reklist :: https://public.fightthe.pw/rehosts/reklist/ :: proxy:https://drive.google.com/file/d/1I3PcJcZX1km5gguTlw3S0haJjteaqSBy/view
-Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
+Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1/ :: caddy/proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
+Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2/ :: caddy/proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
+Acai's setlist :: https://public.fightthe.pw/rehosts/acai/ :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
+Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets/ :: caddy/proxy:https://docs.google.com/spreadsheets/d/1jylytDh7E7kcLwvDGGk-2ScWbt9AqABLeEu5Bz490E8/edit#gid=0
+Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
+Reklist :: https://public.fightthe.pw/rehosts/reklist/ :: caddy/proxy:https://drive.google.com/file/d/1I3PcJcZX1km5gguTlw3S0haJjteaqSBy/view
+Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view

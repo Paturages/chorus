@@ -34,7 +34,8 @@ express.get('/api/count', async (req, res) => {
 
 express.get('/api/latest', async (req, res) => {
   try {
-    const results = await getLatestCharts();
+    const { from } = req.query;
+    const results = await getLatestCharts(from);
     return res.json(results);
   } catch (err) {
     console.error(err.stack);
