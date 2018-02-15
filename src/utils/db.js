@@ -385,10 +385,10 @@ module.exports.search = async (query, offset, limit) => {
           "hasForced" is ${hasForced == 1 ? 'not' : ''} null
           ${hasForced == 1 ? 'and' : 'or'} "hasForced" = $${queryIndex++}
         )` : ''}
-      ${hasOpen ? queryParams.push(!!+hasOpen) && `
+      ${hasOpen ? `
         and (
           "hasOpen" is ${hasOpen == 1 ? 'not' : ''} null
-          ${hasOpen == 1 ? 'and' : 'or'} "hasOpen" = $${queryIndex++}
+          ${hasOpen == 1 ? 'and' : 'or'} "hasOpen" ${hasOpen == 1 ? '!' : ''}= '{}'
         )` : ''}
       ${hasTap ? queryParams.push(!!+hasTap) && `
         and (
@@ -436,7 +436,7 @@ module.exports.search = async (query, offset, limit) => {
       ${+offset ? `OFFSET ${+offset}` : ''}
     `, [query]);
   }
-  if (!songs.length) return [];
+  if (!songs.length) return { songs: [], roles: {} };
   // Populate the results with sources and hashes
   return Promise.all([
     Pg.q`
