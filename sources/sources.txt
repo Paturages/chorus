@@ -1,21 +1,33 @@
 # Wanna add some charts?
+
 # Get your GitHub account and edit this file!
 # (or just DM Paturages#9405 on Discord with your drive link and how you wanna name it)
 
 # The format matches the following fields:
 # <drive_name> :: <link> [:: <custom_script>]
 
-# <drive_name> will show up on chorus as the label for the source link (i.e. "found in <drive_name>").
+# <drive_name> will show up on chorus as the label for the source link, along with the name of the subfolder it's in.
 # It is searchable, so choose accordingly. Obviously, don't put "::" in it. I added the second ":"
 # to enable people to use ":" in drive names, so don't ruin my fun!
 
 # <link> is the link to your drive.
+# Make sure to make your drive *public* first!
 # The guidelines for folder/archive naming is gone: chorus now reads from your song.ini and .chart files.
 # Make sure you fill them in properly: not only for chorus, but for Clone Hero as well!
 
-# Optional: <custom_script> is for custom handlers. Default script is Google Drive (google-drive.js).
+# Optional: <custom_script> is for custom handlers. Default script is Google Drive (google-drive).
+# (right now, you shouldn't have to use that at all in 99% of cases)
+
+# proxy/<custom_script>:<url> is particularly useful if you have a front page you want to show
+# instead of your drive folder (i.e. spreadsheet, website...).
+
+# Current available custom scripts are:
+# - google-drive: The default one for Google Drive
+# - caddy: if you are using https://caddyserver.com/docs/browse to serve your files
 
 # Lines that start with a # are comments and will not be parsed. Neither will empty lines.
+
+# --------------------------------- #
 
 # Charter drives
 
