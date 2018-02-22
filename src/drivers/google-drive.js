@@ -105,7 +105,7 @@ module.exports = async ({ name, link, proxy }) => {
         } else if (item.fileExtension == 'mid' && !content.files.mid) {
           content.files.mid = item;
         } else if (item.name.match(
-          /(guitar|bass|rhythm|drums|vocals|keys|song).*\.(ogg|mp3|wav)/i
+          /^(guitar|bass|rhythm|drums|vocals|keys|song)\.(ogg|mp3|wav)$/i
         )) {
           if (!content.files.audio) content.files.audio = [];
           content.files.audio.push(item);

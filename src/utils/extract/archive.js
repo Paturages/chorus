@@ -50,7 +50,7 @@ module.exports = async (archive, extension) => {
       midFile = list.find(({ file }) => file.slice(-4) == '.mid');
       hasVideo = list.find(({ file }) => file.slice(0, 6) == 'video.');
       hasStems = list.filter(({ file }) => file.match(
-        /(guitar|bass|rhythm|drums|vocals|keys|song).*\.(ogg|mp3|wav)/i
+        /^(guitar|bass|rhythm|drums|vocals|keys|song)\.(ogg|mp3|wav)$/i
       )).length > 1;
       // If this matches a song folder
       if (iniFile || chartFile || midFile) {
