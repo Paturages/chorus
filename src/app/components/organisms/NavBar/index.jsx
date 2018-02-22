@@ -4,6 +4,8 @@ import Logo from "components/atoms/Logo";
 import DigitalTipJar from "components/atoms/DigitalTipJar";
 // import Login from "components/molecules/Login";
 
+import ohMyGood from "assets/images/ohmygood.png";
+
 import "./style.scss";
 
 // Of course there's an easter egg.
@@ -12,7 +14,14 @@ const ACRONYMS = [
   "Charting habitat of real unsettling secrets",
   "Cool hats on randyladyman's unlisted stream",
   "Clown harmonica olympics: a really useless sport.",
-  `I see alot of personal preference in there... "looks bad" thats like a personal opinion. Not even going to bother arguing back on this because from how much you tried putting in there on finding things, i can see how thick you are in the head :LUL3D:`
+  `I see alot of personal preference in there... "looks bad" thats like a personal opinion. Not even going to bother arguing back on this because from how much you tried putting in there on finding things, i can see how thick you are in the head :LUL3D:`,
+  <div>
+    {[1, 2, 3, 4, 5]
+      .map(() => (
+        <img className="NavBar__oh-my-good" src={ohMyGood} alt="Oh my good!" />
+      ))
+      .concat(<small>(no, you won't find GH2 ISOs here)</small>)}
+  </div>
   // TODO: I need more! Send pull requests!
 ];
 
@@ -57,17 +66,15 @@ export default ({ count }) => (
       </div>
       <br />
       <div className="NavBar__item">
-        You probably won't be able to find the DDLC easter egg here. Why don't
-        you read an{" "}
-        <i>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="http://store.steampowered.com/app/658620/Wonderful_Everyday_Down_the_RabbitHole/"
-          >
-            actual visual novel
-          </a>
-        </i>? <small className="NavBar__kappa">Kappa</small>
+        Ever wonder how your favorite streamer got custom note colors and stuff?
+        Here's a shoutout to <b>Zerotica</b> and{" "}
+        <a
+          href="https://www.youtube.com/watch?v=TZKwk-ebh1g"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          CHLauncher
+        </a>!
       </div>
       <div className="NavBar__item">
         <a

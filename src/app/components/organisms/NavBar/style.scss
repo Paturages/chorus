@@ -10,7 +10,12 @@
     font-style: italic;
     font-size: .8em;
   }
-  &__kappa {
-    font-size: .25em;
+  &__oh-my-good {
+    width: 4em;
+    margin-top: -1em;
+    + small {
+      position: relative;
+      top: -1.5em;
+    }
   }
 }

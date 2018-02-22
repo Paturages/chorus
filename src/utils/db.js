@@ -29,7 +29,7 @@ module.exports.getLatestCharts = (offset = 0, limit = 20) =>
         ) c
         WHERE LOWER("alias") IN (${Object.keys(
           songs.reduce((charters, { charter }) => {
-            const parts = charter.split(/&|,|\+|\//).map(x => x.trim());
+            const parts = (charter || '').split(/&|,|\+|\//).map(x => x.trim());
             parts.forEach(part => charters[part.toLowerCase()] = 1);
             return charters;
           }, {})
