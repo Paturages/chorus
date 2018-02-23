@@ -1,7 +1,7 @@
 import Inferno from "inferno";
 
 import Logo from "components/atoms/Logo";
-import DigitalTipJar from "components/atoms/DigitalTipJar";
+import DonationButton from "components/atoms/DonationButton";
 // import Login from "components/molecules/Login";
 
 import ohMyGood from "assets/images/ohmygood.png";
@@ -29,7 +29,7 @@ export default ({ count }) => (
   <div className="NavBar">
     <div className="NavBar__head">
       <Logo />
-      <DigitalTipJar />
+      <DonationButton />
       <div className="NavBar__head-spacer" />
       {/*
         TODO: Uncomment when feeling like implementing Discord auth
