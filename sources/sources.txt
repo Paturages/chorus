@@ -88,6 +88,7 @@ ParallaxDG's charts :: https://drive.google.com/drive/folders/0B9c6s3i6iVBIaHFjR
 Paturages' charts :: https://public.fightthe.pw/clonehero/ :: caddy
 PeckInkay's charts :: https://drive.google.com/drive/folders/1KnDI0gN4D5DAaSCRGJK6eUVyw3Ftkmxq :: google-drive/proxy:https://docs.google.com/spreadsheets/d/1AQbLS3KuJGGjmg5aRkjJjePlc7wU0TTQek-Wr0BBf-U/htmlview#gid=0
 Regiden's Video Game charts :: https://drive.google.com/drive/folders/1AHbog-yUN_gA998-gsS2acUi6_bh4R7p
+relaxedcreeper's charts :: https://drive.google.com/open?id=16FbYr0h36WwbSBDJwK1AqyOpk5zujpRQ
 Rexxios' charts :: https://drive.google.com/drive/u/1/folders/1h_7hXZiC8ES-8dpOvsXZX_8ObLZ2x3fA
 Rifampin's charts :: https://drive.google.com/drive/folders/1kHwKX3odO5A77HGAHnJ8Av3wkPOTHOe-
 Sean2490's charts :: https://drive.google.com/drive/folders/1dU83ug-QdVfA_pR6Q1djiUcIzq2CKEJh
@@ -119,7 +120,6 @@ xX760Xx's charts :: https://drive.google.com/drive/folders/0B5LGIoSN3SrkQm1EZjhl
 Yhughu's charts :: https://drive.google.com/drive/folders/0B2uoOxv3jfw6SHRZMlgyZHFzOTg
 YoloMcSwagginz' charts :: https://drive.google.com/drive/folders/12F0GfMIro8jlJEmXoad9jFl08S49Hkqo
 Zack's charts :: https://drive.google.com/drive/folders/1I63OHT1kRYutR5RaXtabrW-bFngmUQ_Y
-relaxedcreeper's charts :: https://drive.google.com/open?id=16FbYr0h36WwbSBDJwK1AqyOpk5zujpRQ
 
 # Packs
 
@@ -158,8 +158,6 @@ Rap & Hip-hop :: https://drive.google.com/drive/folders/12sQo6ghHBXeXDE3iN3k8CNN
 Anime Mega-Pack :: https://drive.google.com/drive/folders/16b6qn3RQCshuPWEcRpGUi2L2nBFNHivu
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
 
-sandsoles16's reuploads :: https://drive.google.com/drive/folders/1G9w2zgnMgWkvrzvGPB02hIn5NR8pm_Ni
-
 # Re-hosts
 
 Random rehosts :: https://public.fightthe.pw/rehosts/randomshit/ :: caddy
@@ -170,3 +168,4 @@ Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets/ :: ca
 Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
 Reklist :: https://public.fightthe.pw/rehosts/reklist/ :: caddy/proxy:https://drive.google.com/file/d/1I3PcJcZX1km5gguTlw3S0haJjteaqSBy/view
 Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
+Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4 :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
