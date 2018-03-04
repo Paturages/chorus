@@ -1,5 +1,5 @@
 const fs = require('fs');
-const ls = require('ls');
+const glob = require('glob');
 const path = require('path');
 const drive = require('./src/drivers/google-drive');
 const txt = require('./src/drivers/txt');
@@ -7,7 +7,13 @@ const excel = require('./src/drivers/excel');
 const init = require('./src/utils/init');
 const exit = require('./src/utils/exit');
 const { updateWords } = require('./src/utils/db');
-
+const ls = (folder, pattern) => new Promise((resolve, reject) =>
+  glob(pattern, {
+    absolute: true,
+    realpath: true,
+    cwd: folder
+  }, (err, res) => err ? reject(err) : resolve(res))
+);
 
 process.on('uncaughtException', err => {
   console.error('Uncaught exception!')
@@ -32,7 +38,7 @@ process.on("unhandledRejection", (err, promise) => {
         if (!name || !link) return;
         return { name: name.trim(), link: link.trim(), script: (script || '').trim() };
       });
-    const txtSources = ls(path.resolve(__dirname, 'sources', 'txt', '*')).map(({ full }) => ({
+    const txtSources = (await ls(path.resolve(__dirname, 'sources', 'txt'), '*')).map(full => ({
       name: full.slice(full.lastIndexOf('/') + 1, full.lastIndexOf('.')),
       path: full,
       txt: true

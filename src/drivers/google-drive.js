@@ -1,6 +1,5 @@
 const Drive = require('../utils/drive');
 const Request = require('request');
-const Ls = require('ls');
 const Fs = require('fs');
 const Path = require('path');
 

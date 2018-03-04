@@ -10,8 +10,8 @@ const download = url => new Promise((resolve, reject) =>
 );
 
 const defaultNameParser = txt => {
-  let [, charter, artist, name] = txt.match(/\[?(.*)\]? ?(.+) - (.+)/) || [];
-  return { artist: (artist || '').trim(), name: (name || '').trim().replace('.zip', ''), charter: (charter || '').trim() || null };
+  let [, artist, name] = txt.match(/(.+) - (.+)/) || [];
+  return { artist: (artist || '').trim(), name: (name || '').trim().replace('.zip', '') };
 };
 
 const {
@@ -73,7 +73,7 @@ module.exports = async ({ name, link, proxy }) => {
       const meta = metaList[0];
       // Computing default artist and song names in case there's no song.ini file,
       // and also inputing already available metadata
-      const { artist: defaultArtist, name: defaultName, charter: defaultCharter } = defaultNameParser(Name);
+      const { artist: defaultArtist, name: defaultName } = defaultNameParser(Name);
       const song = {
         defaultArtist, defaultName, lastModified: ModTime, source, link: url, parent: parent ? {
           name: parent.name,
@@ -85,7 +85,7 @@ module.exports = async ({ name, link, proxy }) => {
       }" by "${
         meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
       }"`);
-      songs.push(Object.assign(song, meta, meta.charter || meta.frets ? {} : { charter: defaultCharter }));
+      songs.push(Object.assign(song, meta, {}));
     }
   }
   // 5. Update the list of links to ignore (e.g. invalid archives, stray files...)
