@@ -52,12 +52,10 @@ module.exports = async (archive, extension) => {
       const files = (await ls(folder, '*')) || [];
       const subfolders = (await ls(folder, '*/')) || [];
       if (!files.length && !subfolders.length) return;
-      console.log(files);
 
       iniFile = files.find(path => getFileName(path).slice(-8) == 'song.ini');
       chartFile = files.find(path => path.slice(-6) == '.chart');
       midFile = files.find(path => path.slice(-4) == '.mid');
-      console.log(iniFile, chartFile, midFile);
       hasVideo = files.find(path => getFileName(path).slice(0, 6) == 'video.');
       hasStems = files.filter(path => getFileName(path).match(
         /(guitar|bass|rhythm|drums|vocals|keys|song)\.(ogg|mp3|wav)$/i
