@@ -170,4 +170,4 @@ Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets/ :: ca
 Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
 Reklist :: https://public.fightthe.pw/rehosts/reklist/ :: caddy/proxy:https://drive.google.com/file/d/1I3PcJcZX1km5gguTlw3S0haJjteaqSBy/view
 Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
-Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4 :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
+Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
