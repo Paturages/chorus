@@ -172,3 +172,9 @@ Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: cad
 Reklist :: https://public.fightthe.pw/rehosts/reklist/ :: caddy/proxy:https://drive.google.com/file/d/1I3PcJcZX1km5gguTlw3S0haJjteaqSBy/view
 Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
 Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
+Community Track Pack 1 :: https://public.fightthe.pw/rehosts/ctp1/ :: caddy
+Community Track Pack 2 :: https://public.fightthe.pw/rehosts/ctp2/ :: caddy
+Community Track Pack 3 :: https://public.fightthe.pw/rehosts/ctp3/ :: caddy
+Community Track Pack 4 :: https://public.fightthe.pw/rehosts/ctp4/ :: caddy
+Community Track Pack 5 :: https://public.fightthe.pw/rehosts/ctp5/ :: caddy
+Community Track Pack 6 :: https://public.fightthe.pw/rehosts/ctp6/ :: caddy/proxy:https://www.youtube.com/watch?v=0qnYxeBclHc
