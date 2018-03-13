@@ -9,8 +9,19 @@ import AdvancedSearch from "components/organisms/AdvancedSearch";
 import Http from "utils/Http";
 
 import Search from "pages/Search";
+import Random from "pages/Random";
 
 import "./style.scss";
+
+const RANDOM_LABELS = [
+  "just fuck my shit up fam",
+  "I hope there's no tables",
+  "I have no idea what I'm doing",
+  "i'm 12 and what is this",
+  "20 TTFAF memes and recharts",
+  "Serendipity"
+];
+const RANDOM_LABEL = RANDOM_LABELS[(Math.random() * RANDOM_LABELS.length) >> 0];
 
 export default class Home extends Component {
   constructor(props) {
@@ -22,7 +33,16 @@ export default class Home extends Component {
     );
   }
   render() {
-    const { count, roles, songs, query, advanced, hasMore, from } = this.state;
+    const {
+      count,
+      roles,
+      songs,
+      query,
+      random,
+      advanced,
+      hasMore,
+      from
+    } = this.state;
     const onQuery = query =>
       this.setState({ query }, () => {
         window.history.pushState(
@@ -37,9 +57,9 @@ export default class Home extends Component {
           ga("send", "pageview");
         }
       });
-    return query ? (
-      <Search query={query} />
-    ) : (
+    if (query) return <Search query={query} />;
+    if (random) return <Random />;
+    return (
       <div className="Home">
         <NavBar count={count} />
         {!advanced && (
@@ -60,6 +80,23 @@ export default class Home extends Component {
             href="javascript:void(0)"
           >
             {advanced ? "Back to quick search" : "Advanced search"}
+          </a>&nbsp;-&nbsp;<a
+            onClick={() =>
+              this.setState({ random: true }, () => {
+                window.history.pushState(
+                  null,
+                  "Random",
+                  `${process.env.TESTING ? "/testing" : ""}/random`
+                );
+                if (typeof ga !== "undefined") {
+                  ga("set", "page", `/random`);
+                  ga("send", "pageview");
+                }
+              })
+            }
+            href="javascript:void(0)"
+          >
+            {RANDOM_LABEL} (random songs)
           </a>
         </div>
         <SongList

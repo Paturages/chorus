@@ -4,6 +4,7 @@ const {
   getByArtist,
   getBySource,
   getLatestCharts,
+  getSongsSample,
   getNbSongs
 } = require('./src/utils/db');
 const Express = require('express');
@@ -20,6 +21,7 @@ const port = process.env.PORT || 3000;
 if (process.env.NODE_ENV != 'production') {
   express.use(Express.static(Path.resolve(process.env.NODE_DIR || 'dist')));
   express.get('/search', (req, res) => res.sendFile(Path.resolve(__dirname, 'dist', 'index.html')));
+  express.get('/random', (req, res) => res.sendFile(Path.resolve(__dirname, 'dist', 'index.html')));
 }
 
 express.get('/api/count', async (req, res) => {
@@ -36,6 +38,16 @@ express.get('/api/latest', async (req, res) => {
   try {
     const { from } = req.query;
     const results = await getLatestCharts(from);
+    return res.json(results);
+  } catch (err) {
+    console.error(err.stack);
+    res.sendStatus(500);
+  }
+});
+
+express.get('/api/random', async (req, res) => {
+  try {
+    const results = await getSongsSample();
     return res.json(results);
   } catch (err) {
     console.error(err.stack);

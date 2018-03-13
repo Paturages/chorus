@@ -1,0 +1,26 @@
+.Random {
+  max-width: 1280px;
+  margin: auto;
+  
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 800px;
+    margin-bottom: 3em;
+  }
+  .Logo {
+    font-size: 2.5em;
+    margin-right: 1em;
+    margin-top: .5em;
+  }
+  @media (max-width: 740px) {
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .Logo {
+      margin: 0 1em 1em;
+    }
+  }
+}

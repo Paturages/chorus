@@ -2,6 +2,7 @@ import Inferno from "inferno";
 
 import Home from "pages/Home";
 import Search from "pages/Search";
+import Random from "pages/Random";
 import Http from "utils/Http";
 
 import "assets/fonts/roboto/regular.ttf";
@@ -77,15 +78,21 @@ accessToken.value &&
 
 */
 
+const indexOfQuestionMark = window.location.pathname.indexOf("?");
+const page = window.location.pathname.slice(
+  process.env.TESTING ? 9 : 0,
+  indexOfQuestionMark < 0 ? undefined : indexOfQuestionMark
+);
+
 Inferno.render(
-  window.location.pathname === `/${process.env.TESTING ? "testing/" : ""}` ? (
-    // <Home discord={{ accessToken: accessToken.value }} />
-    <Home />
-  ) : (
-    <Search
-      query={decodeURIComponent(query.value)}
-      // discord={{ accessToken: accessToken.value }}
-    />
-  ),
+  {
+    "/search": (
+      <Search
+        query={decodeURIComponent(query.value)}
+        // discord={{ accessToken: accessToken.value }}
+      />
+    ),
+    "/random": <Random />
+  }[page] || <Home />,
   document.getElementById("root")
 );

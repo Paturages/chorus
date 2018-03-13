@@ -554,3 +554,56 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
   } : { ignore: true } })))
 )
 .catch(err => console.error(err.stack) || {});
+
+module.exports.getSongsSample = () => Pg.q`select * from "Songs" tablesample bernoulli (0.15) limit 20`
+.then(songs =>
+  Promise.all([
+    Pg.q`
+      SELECT ss."songId", s."id", s."name", s."link", ss."parent"
+      FROM "Songs_Sources" ss
+      JOIN "Sources" s ON ss."sourceId" = s."id"
+      WHERE "songId" IN (${songs.map(({ id }) => id)})
+    `,
+    Pg.q`
+      SELECT * FROM "Songs_Hashes"
+      WHERE "songId" IN (${songs.map(({ id }) => id)})
+    `,
+    Pg.q`
+      SELECT "roles", "alias"
+      FROM (
+        SELECT "roles", UNNEST("aliases") AS "alias"
+        FROM "Charters"
+      ) c
+      WHERE LOWER("alias") IN (${Object.keys(
+        songs.reduce((charters, { charter }) => {
+          const parts = (charter || '').split(/&|,|\+|\//).map(x => x.trim());
+          parts.forEach(part => charters[part.toLowerCase()] = 1);
+          return charters;
+        }, {})
+      )})
+    `,
+  ])
+  .then(([sources, hashes, roles]) => {
+    const songMap = Object.assign({}, ...songs.map(song => {
+      delete song.words; // Users don't need them.
+      return { [song.id]: song };
+    }));
+    sources.forEach(({ songId, id, name, link, parent }) => {
+      if (!songMap[songId].sources) songMap[songId].sources = [];
+      if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
+      songMap[songId].sources.push({ id, name, link, parent });
+    });
+    hashes.forEach(({ songId, hash, part, difficulty }) => {
+      if (!songMap[songId].hashes) songMap[songId].hashes = {};
+      if (part == 'file') songMap[songId].hashes.file = hash;
+      else {
+        if (!songMap[songId].hashes[part]) songMap[songId].hashes[part] = {};
+        songMap[songId].hashes[part][difficulty] = hash;
+      }
+    });
+    return {
+      songs: songs.map(({ id }) => songMap[id]),
+      roles: Object.assign({}, ...roles.map(({ roles, alias }) => ({ [alias.toLowerCase()] : roles }))),
+    };
+  })
+)

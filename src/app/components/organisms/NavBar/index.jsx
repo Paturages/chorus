@@ -24,6 +24,7 @@ const ACRONYMS = [
   </div>
   // TODO: I need more! Send pull requests!
 ];
+const ACRONYM = ACRONYMS[(Math.random() * ACRONYMS.length) >> 0];
 
 export default ({ count }) => (
   <div className="NavBar">
@@ -38,9 +39,7 @@ export default ({ count }) => (
     </div>
     <div className="NavBar__text">
       <div className="NavBar__item">
-        {Math.random() < 0.1
-          ? ACRONYMS[(Math.random() * ACRONYMS.length) >> 0]
-          : ACRONYMS[0]}
+        {Math.random() < 0.1 ? ACRONYM : ACRONYMS[0]}
       </div>
       {count && (
         <div className="NavBar__item">
