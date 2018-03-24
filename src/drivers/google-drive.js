@@ -58,66 +58,92 @@ module.exports = async ({ name, link, proxy }) => {
   const toIgnore = [];
   const searchSongFolders = async folder => {
     console.log('Looking inside', folder.name);
+    // If this belongs to the blacklist, skip
+    if (linksMap[folder.webViewLink] && linksMap[folder.webViewLink].ignore) return;
     // List files inside the folder
     const archives = [];
-    let { subfolders, files } = (await Drive.list({ q: `'${folder.id}' in parents` }))
-      .reduce((content, item) => {
-        // Do not parse already indexed songs
-        if (linksMap[item.webViewLink] && (linksMap[item.webViewLink].lastModified || '').slice(0, 19) == item.modifiedTime.slice(0, 19)) {
-          songs.push(Object.assign(linksMap[item.webViewLink], {
-            source, parent: folder.canBeParent ? {
-              name: folder.name,
-              link: folder.webViewLink
-            } : null
-          }));
-          return content;
-        }
-        // Retrieve already indexed packs
-        const firstLink = `${item.webViewLink}&i=1`;
-        if (linksMap[firstLink] && (linksMap[firstLink].lastModified || '').slice(0, 19) == item.modifiedTime.slice(0, 19)) {
-          for (let i = 1; linksMap[`${item.webViewLink}&i=${i}`]; i++) {
-            songs.push(Object.assign(linksMap[`${item.webViewLink}&i=${i}`], {
-              source, isPack: true, parent: folder.canBeParent ? {
-                name: folder.name,
-                link: folder.webViewLink
-              } : null
-            }));
-          }
-          return content;
-        }
-        if (linksMap[item.webViewLink] && linksMap[item.webViewLink].ignore) return content;
-        // Save subfolders for further processing
-        if (item.mimeType == 'application/vnd.google-apps.folder') {
-          content.subfolders.push(item);
-        } else if ((['rar', 'zip', '7z'].indexOf(item.fileExtension) >= 0) && item.size < 209715200 && item.webContentLink) {
-          // Archives might or might not be songs.
-          // The 200 MB threshold is just mostly here to not kill my bandwidth with multi-GB packs, which are therefore excluded.
-          // The good practice for such packs would be to rehost it (either by individual charters, or independently with separate
-          // folders/archives for each song)
-          archives.push(item);
-        // Pick up interesting files along the way
-        // (just take the first occurrence of charts and mids)
-        } else if (item.name == 'song.ini') {
-          content.files.ini = item;
-        } else if (item.fileExtension == 'chart' && !content.files.chart) {
-          content.files.chart = item;
-        } else if (item.fileExtension == 'mid' && !content.files.mid) {
-          content.files.mid = item;
-        } else if (item.name.match(
-          /^(guitar|bass|rhythm|drums|vocals|keys|song)\.(ogg|mp3|wav)$/i
-        )) {
-          if (!content.files.audio) content.files.audio = [];
-          content.files.audio.push(item);
-        } else if (item.name.slice(0, 6) == 'video.') {
-          content.files.video = item;
-        }
-        return content;
-      }, { subfolders: [], files: {} });
+    const subfolders = [];
+    const files = { chart: [], mid: [], audio: [] };
+    const content = await Drive.list({ q: `'${folder.id}' in parents` });
+    content.forEach(item => {
+      // Store subfolders for recursion
+      if (item.mimeType == 'application/vnd.google-apps.folder') return subfolders.push(item);
+      // Store archives for processing
+      // Archives might or might not be songs.
+      // The 200 MB threshold is just mostly here to not kill my bandwidth with multi-GB packs, which are therefore excluded.
+      // The good practice for such packs would be to rehost it (either by individual charters, or independently with separate
+      // folders/archives for each song)
+      if ((['rar', 'zip', '7z'].indexOf(item.fileExtension) >= 0) && item.size < 209715200 && item.webContentLink) return archives.push(item);
+
+      // Otherwise, try to find relevant chart files
+      // (there might be several .mid/.chart files, which is why they're arrays)
+      if (item.name == 'song.ini') return (files.ini = item);
+      if (item.name == 'album.png') return (files.album = item);
+      if (item.fileExtension == 'chart') return files.chart.push(item);
+      if (item.fileExtension == 'mid') return files.mid.push(item);
+      if (item.name.match(/^(guitar|bass|rhythm|drums_?.|vocals|keys|song)\.(ogg|mp3|wav)$/i)) return files.audio.push(item);
+      if (item.name.slice(0, 6) == 'video.') return (files.video = item);
+    });
+    // Find the most recent modification date
+    let lastModified;
+    if (files.album) lastModified = files.album.modifiedTime.slice(0, 19);
+    if (files.ini && lastModified < files.ini.modifiedTime) lastModified = files.ini.modifiedTime.slice(0, 19);
+    if (files.video && lastModified < files.video.modifiedTime) lastModified = files.video.modifiedTime.slice(0, 19);
+    if (files.chart.length) files.chart.forEach(({ modifiedTime }) => {
+      if (lastModified < modifiedTime) lastModified = modifiedTime.slice(0, 19);
+    });
+    if (files.mid.length) files.mid.forEach(({ modifiedTime }) => {
+      if (lastModified < modifiedTime) lastModified = modifiedTime.slice(0, 19);
+    });
+    if (files.audio.length) files.audio.forEach(({ modifiedTime }) => {
+      if (lastModified < modifiedTime) lastModified = modifiedTime.slice(0, 19);
+    });
+
+    // If the folder link was already indexed and the modification date is the same, do not reprocess it
+    // (i.e. re-insert it with the same metadata as before)
+    if (
+      linksMap[folder.webViewLink] &&
+      (linksMap[folder.webViewLink].lastModified || '').slice(0, 19) == lastModified
+    ) songs.push(Object.assign(linksMap[folder.webViewLink], {
+      source, parent: folder.canBeParent ? {
+        name: folder.name,
+        link: folder.webViewLink
+      } : null
+    })); else {
+      // Check if this is a song folder
+      const meta = await getMetaFromFolder(files);
+      if (meta) {
+        // Computing default artist and song names in case there's no song.ini file,
+        // and also inputing already available metadata
+        const { artist: defaultArtist, name: defaultName } = defaultNameParser(folder.name);
+        // The parent of a folder is its own parent folder
+        const song = {
+          defaultArtist, defaultName, lastModified, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
+            name: folder.parentFolder.name,
+            link: folder.parentFolder.webViewLink
+          } : null
+        };
+        console.log(`> Found "${
+          meta.name || (meta.chartMeta || {}).Name || defaultName
+          }" by "${
+          meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
+          }"`);
+        songs.push(Object.assign(song, meta));
+      }
+    }
     
     // Process archives
     for (let i = 0; i < archives.length; i++) {
       const file = archives[i];
-      if (linksMap[file.webViewLink] && linksMap[file.webViewLink].ignore) continue;
+      if (linksMap[file.webViewLink]) {
+        if (linksMap[file.webViewLink].ignore) continue;
+        if (linksMap[file.webViewLink].lastModified == file.modifiedTime) songs.push(Object.assign(linksMap[file.webViewLink], {
+          source, parent: file.canBeParent ? {
+            name: file.name,
+            link: file.webViewLink
+          } : null
+        }));
+      }
       console.log('Extracting', file.name);
       const archive = await download(file.webContentLink);
       const metaList = await getMetaFromArchive(archive, file.fileExtension);
@@ -128,6 +154,7 @@ module.exports = async ({ name, link, proxy }) => {
         const { artist: defaultArtist, name: defaultName } = defaultNameParser(file.name);
         const song = {
           defaultArtist, defaultName, lastModified: file.modifiedTime, source, link: file.webViewLink,
+          directLinks: { archive: file.webContentLink },
           isPack: metaList.length > 1, parent: folder.canBeParent ? {
             name: folder.name,
             link: folder.webViewLink
@@ -143,28 +170,6 @@ module.exports = async ({ name, link, proxy }) => {
           songs.push(Object.assign({}, song, meta, { link: song.isPack ? `${song.link}&i=${index+1}` : song.link }));
         });
       }
-    }
-
-    // If the folder contains a "song.ini", a .chart or a .mid,
-    // it's probably a chart folder (maybe without audio in rare cases)
-    const meta = await getMetaFromFolder(files);
-    if (meta) {
-      // Computing default artist and song names in case there's no song.ini file,
-      // and also inputing already available metadata
-      const { artist: defaultArtist, name: defaultName } = defaultNameParser(folder.name);
-      // The parent of a folder is its own parent folder
-      const song = {
-        defaultArtist, defaultName, lastModified: folder.modifiedTime, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
-          name: folder.parentFolder.name,
-          link: folder.parentFolder.webViewLink
-        } : null
-      };
-      console.log(`> Found "${
-        meta.name || (meta.chartMeta || {}).Name || defaultName
-      }" by "${
-        meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
-      }"`);
-      songs.push(Object.assign(song, meta));
     }
 
     // Recurse on subfolders

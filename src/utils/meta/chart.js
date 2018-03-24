@@ -1,12 +1,7 @@
 const Iconv = require('iconv-lite');
 const crypto = require('crypto');
-if (!process.env.HASH_SECRET) console.log('WARNING: HASH_SECRET not defined for sha256');
-const getSha = txt => {
-  const hash = crypto.createHmac(
-    'sha256',
-    process.env.HASH_SECRET ||
-    'this should really be defined for production runs'
-  );
+const getMD5 = txt => {
+  const hash = crypto.createHash('md5');
   hash.update(txt);
   return hash.digest('hex');
 };
@@ -94,6 +89,8 @@ module.exports = chart => {
     if (eventsIndex < 0) return { chartMeta };
     const hasSections = lines[eventsIndex + 2] != '}';
     // Detect features
+    let firstNoteIndex = 0;
+    let lastNoteIndex = 0;
     let currentStatus;
     let hasStarPower = false, hasForced = false,
       hasTap = false, hasOpen = {},
@@ -117,11 +114,44 @@ module.exports = chart => {
       // Detect new notes
       const [, index, note] = line.match(/(\d+) = N ([0-4]|7|8) /) || [];
       if (note && currentStatus) {
+        if (!firstNoteIndex) firstNoteIndex = +index;
+        if (+index > lastNoteIndex) lastNoteIndex = +index;
         notes[currentStatus][index] = `${(notes[currentStatus][index] || '')}${notesMap[note]}`;
       }
     }
+
+    // Get Tempo map [SyncTrack] to get effective song length
+    const tempoMap = lines.slice(lines.indexOf('[SyncTrack]'), lines.indexOf('[Events]'))
+      .reduce((arr, line) => {
+        const [, index, bpm] = line.match(/\s*(\d+) = B (\d+)/) || [];
+        if (index) arr.push([+index, +bpm / 1000]);
+        return arr;
+      }, []);
+    let time = 0;
+    let timeToFirstNote = 0;
+    let isFirstNoteFound;
+    let currentIndex;
+    let currentBpm;
+    tempoMap.forEach(([index, bpm]) => {
+      if (currentIndex != null) {
+        // does it look like I pulled this formula from my ass? because I kinda did tbh
+        time += (((index - currentIndex) * 60) / (currentBpm * 192));
+        // Calculate the timestamp of the first note
+        if (index <= firstNoteIndex) timeToFirstNote += (((index - currentIndex) * 60) / (currentBpm * 192));
+        else if (!isFirstNoteFound) {
+          isFirstNoteFound = true;
+          timeToFirstNote += (((firstNoteIndex - currentIndex) * 60) / (currentBpm * 192));
+        }
+      }
+      currentIndex = index;
+      currentBpm = bpm;
+    });
+    // do it one last time against the last note
+    time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * 192));
+    // "Effective song length" = time between first and last note
+
     // Compute the hash of the .chart itself first
-    const hashes = { file: getSha(chart) };
+    const hashes = { file: getMD5(chart) };
     const noteCounts = {};
     let earliestNote = +Infinity, latestNote = 0;
     for (let part in notes) {
@@ -141,9 +171,9 @@ module.exports = chart => {
       }
       // Compute the hashes and note counts of individual difficulties/instruments
       noteCounts[instrument][difficulty] = notesArray.length;
-      hashes[instrument][difficulty] = getSha(notesArray.join(' '));
+      hashes[instrument][difficulty] = getMD5(notesArray.join(' '));
     }
-    return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, hasSoloSections, noteCounts, hashes, chartMeta };
+    return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, hasSoloSections, noteCounts, hashes, chartMeta, length: time >> 0, effectiveLength: (time - timeToFirstNote) >> 0 };
   } catch (err) {
     console.error(err.stack);
     return {};

@@ -6,12 +6,8 @@
 const crypto = require('crypto');
 const MIDIFile = require('midifile');
 const fs = require('fs');
-const getSha = txt => {
-  const hash = crypto.createHmac(
-    'sha256',
-    process.env.HASH_SECRET ||
-    'this should really be defined for production runs'
-  );
+const getMD5 = txt => {
+  const hash = crypto.createHash('md5');
   hash.update(txt);
   return hash.digest('hex');
 };
@@ -31,6 +27,7 @@ const parse = midiFile => {
   const midi = new MIDIFile(midiFile.buffer);
   let hasSections = false, hasStarPower = false, hasForced = false, hasTap = false, hasOpen = {};
   let isOpen = false;
+  let firstNoteTime, lastNoteTime = 0;
   const tracks = {};
   const notes = {};
   midi.getEvents().forEach(event => {
@@ -61,6 +58,8 @@ const parse = midiFile => {
         // event.subtype == 9 is the note being on,
         // event.subtype == 8 is the note being off... I think?
         if (diff && event.subtype == 9) {
+          if (!firstNoteTime) firstNoteTime = event.playTime;
+          if (event.playTime > lastNoteTime) lastNoteTime = event.playTime;
           if (!notes[`${tracks[event.track]}.${diff}`]) notes[`${tracks[event.track]}.${diff}`] = {};
           notes[`${tracks[event.track]}.${diff}`][event.playTime] = `${notes[`${tracks[event.track]}.${diff}`][event.playTime] || ''}${isOpen ? 7 : event.param1 - diffOffsets[diff]}`;
         }
@@ -72,6 +71,8 @@ const parse = midiFile => {
         else if (event.param1 >= 70) diff = 'm';
         else if (event.param1) diff = 'e';
         if (diff && event.subtype == 9) {
+          if (!firstNoteTime) firstNoteTime = event.playTime;
+          if (event.playTime > lastNoteTime) lastNoteTime = event.playTime;
           if (!notes[`${tracks[event.track]}.${diff}`]) notes[`${tracks[event.track]}.${diff}`] = {};
           // GHL notes are offset by 2. If the ensuing result equals 0, it's an open note.
           notes[`${tracks[event.track]}.${diff}`][event.playTime] = `${notes[`${tracks[event.track]}.${diff}`][event.playTime] || ''}${+(event.param1 - diffOffsets[diff] + 1) || 7}`;
@@ -81,7 +82,7 @@ const parse = midiFile => {
   });
 
   // Compute the hash of the .mid itself first
-  const hashes = { file: getSha(midiFile) };
+  const hashes = { file: getMD5(midiFile) };
   const noteCounts = {};
   let earliestNote = +Infinity, latestNote = 0;
   for (let part in notes) {
@@ -101,17 +102,17 @@ const parse = midiFile => {
     }
     // Compute the hashes and note counts of individual difficulties/instruments
     noteCounts[instrument][difficulty] = notesArray.length;
-    hashes[instrument][difficulty] = getSha(notesArray.join(' '));
+    hashes[instrument][difficulty] = getMD5(notesArray.join(' '));
   }
 
-  return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, noteCounts, hashes };
+  return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, noteCounts, hashes, length: lastNoteTime / 1000 >> 0, effectiveLength: (lastNoteTime - firstNoteTime) / 1000 >> 0 };
 };
 
 module.exports = midiFile => {
   try {
     return parse(midiFile);
   } catch (err) {
-    console.error(err.stack);
+    console.error(err.stack || err);
     return {};
   }
 };

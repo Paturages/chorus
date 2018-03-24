@@ -33,6 +33,8 @@ module.exports = async () => {
       "genre" text,
       "year" text,
       "charter" text,
+      "length" integer,
+      "effectiveLength" integer,
       "tier_band" smallint,
       "tier_guitar" smallint,
       "tier_bass" smallint,
@@ -61,6 +63,7 @@ module.exports = async () => {
       "noteCounts" jsonb,
       "lastModified" timestamp,
       "link" text,
+      "directLinks" jsonb,
       "words" text
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON public."Songs_new" USING btree(link)`;

@@ -1,13 +1,22 @@
 const getMetaFromMidi = require('../src/utils/meta/midi');
 const fs = require('fs');
-const ls = require('ls');
+const Glob = require('glob');
 const path = require('path');
+const ls = (folder, pattern) => new Promise((resolve, reject) =>
+  Glob(pattern, {
+    absolute: true,
+    realpath: true,
+    cwd: folder
+  }, (err, res) => err ? reject(err) : resolve(res))
+);
 
-ls(path.resolve(__dirname, 'mids', '*'))
-.forEach(async file => {
-  const content = await new Promise(
-    (resolve, reject) =>
-    fs.readFile(file.full, { encoding: null }, (err, res) => err ? reject(err) : resolve(res))
-  );
-  console.log(file.file, getMetaFromMidi(content));
-});
+(async () => {
+  (await ls(path.resolve(__dirname, 'mids'), '6-frets*'))
+  .forEach(async path => {
+    const content = await new Promise(
+      (resolve, reject) =>
+        fs.readFile(path, { encoding: null }, (err, res) => err ? reject(err) : resolve(res))
+    );
+    console.log(path, getMetaFromMidi(content));
+  });
+})();

@@ -16,7 +16,20 @@ const getFiles = async ({ iniFile, chartFile, midFile }) => {
   const chart = chartFile && (await p(Fs.readFile, chartFile));
   let mid;
   if (!chart) mid = midFile && (await p(Fs.readFile, midFile));
-  return { ini, chart, mid };
+  let lastModified;
+  if (iniFile) {
+    const file = await p(Fs.stat, iniFile);
+    lastModified = file.mtime.toISOString().slice(0, 19);
+  }
+  if (chartFile) {
+    const file = await p(Fs.stat, chartFile);
+    if (file.mtime > lastModified) lastModified = file.mtime.toISOString().slice(0, 19);
+  }
+  if (midFile) {
+    const file = await p(Fs.stat, midFile);
+    if (file.mtime > lastModified) lastModified = file.mtime.toISOString().slice(0, 19);
+  }
+  return { ini, chart, mid, lastModified };
 };
 const ls = (folder, pattern) => new Promise((resolve, reject) =>
   Glob(pattern, {
@@ -52,22 +65,29 @@ module.exports = async (archive, extension) => {
       const files = (await ls(folder, '*')) || [];
       const subfolders = (await ls(folder, '*/')) || [];
       if (!files.length && !subfolders.length) return;
+      
+      const chartFiles = files.filter(path => path.slice(-6) == '.chart');
+      const midFiles = files.filter(path => path.slice(-4) == '.mid');
+      // Order of priority: "notes.chart" > files with "[Y]" in it > first one we can find
+      const chartFile = chartFiles.find(path => getFileName(path) == "notes.chart") ||
+        chartFiles.find(path => path.indexOf('[Y]') > -1) ||
+        chartFiles[0];
+      // Order of priority: "notes.mid" > first one we can find
+      const midFile = midFiles.find(path => getFileName(path) == "notes.mid") || midFiles[0];
 
-      iniFile = files.find(path => getFileName(path).slice(-8) == 'song.ini');
-      chartFile = files.find(path => path.slice(-6) == '.chart');
-      midFile = files.find(path => path.slice(-4) == '.mid');
-      hasVideo = files.find(path => getFileName(path).slice(0, 6) == 'video.');
-      hasStems = files.filter(path => getFileName(path).match(
-        /(guitar|bass|rhythm|drums|vocals|keys|song)\.(ogg|mp3|wav)$/i
+      const iniFile = files.find(path => getFileName(path).slice(-8) == 'song.ini');
+      const hasVideo = files.find(path => getFileName(path).slice(0, 6) == 'video.');
+      const hasStems = files.filter(path => getFileName(path).match(
+        /(guitar|bass|rhythm|drums_.|vocals|keys|song)\.(ogg|mp3|wav)$/i
       )).length > 1;
       // If this matches a song folder
       if (iniFile || chartFile || midFile) {
         const meta = {};
-        const { ini, chart, mid } = await getFiles({ iniFile, chartFile, midFile });
+        const { ini, chart, mid, lastModified } = await getFiles({ iniFile, chartFile, midFile });
         if (ini) Object.assign(meta, getMetaFromIni(ini));
         if (chart) Object.assign(meta, getMetaFromChart(chart));
         else if (mid) Object.assign(meta, getMetaFromMidi(mid));
-        songs.push(Object.assign(meta, { hasStems, hasVideo: !!hasVideo }));
+        songs.push(Object.assign(meta, { hasStems, hasVideo: !!hasVideo, lastModified }));
       }
       // Recurse in subfolders
       for (let i = 0; i < subfolders.length; i++) {

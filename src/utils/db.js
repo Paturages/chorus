@@ -141,6 +141,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "diff_drums", "diff_keys", "diff_guitarghl", "diff_bassghl",
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
         "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
+        "directLinks", "length", "effectiveLength",
         "lastModified", "isPack", "words"
       )
       VALUES
@@ -152,7 +153,8 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_drums = -1, diff_vocals = -1, diff_keys = -1, diff_guitarghl = -1,
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
-          hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack
+          hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack,
+          directLinks, length, effectiveLength
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -188,6 +190,9 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             hasVideo,
             noteCounts ? JSON.stringify(noteCounts) : null,
             link,
+            directLinks ? JSON.stringify(directLinks) : null,
+            length,
+            effectiveLength,
             lastModified,
             isPack,
             {
@@ -213,6 +218,9 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "genre" = EXCLUDED."genre",
         "year" = EXCLUDED."year",
         "charter" = EXCLUDED."charter",
+        "length" = EXCLUDED."length",
+        "effectiveLength" = EXCLUDED."effectiveLength",
+        "directLinks" = EXCLUDED."directLinks",
         "tier_band" = EXCLUDED."tier_band",
         "tier_guitar" = EXCLUDED."tier_guitar",
         "tier_bass" = EXCLUDED."tier_bass",
