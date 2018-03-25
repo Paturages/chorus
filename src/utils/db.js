@@ -531,6 +531,8 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
     genre: song.meta.genre,
     year: song.meta.year,
     charter: song.meta.charter,
+    length: song.meta.length,
+    effectiveLength: song.meta.effectiveLength,
     diff_band: '' + (song.meta.tier_band == null ? -1 : song.meta.tier_band),
     diff_guitar: '' + (song.meta.tier_guitar == null ? -1 : song.meta.tier_guitar),
     diff_bass: '' + (song.meta.tier_bass == null ? -1 : song.meta.tier_bass),
@@ -550,7 +552,9 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
     hasVideo: song.meta.hasVideo,
     noteCounts: song.meta.noteCounts,
     link: song.meta.link,
+    directLinks: song.meta.directLinks,
     lastModified: song.meta.lastModified,
+    indexedTime: song.meta.indexedTime,
     hashes: (() => {
       const parts = {};
       song.hashes.forEach(({ hash, part, difficulty }) => {

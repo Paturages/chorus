@@ -85,7 +85,7 @@ module.exports = async ({ name, link, proxy }) => {
       if (item.name.slice(0, 6) == 'video.') return (files.video = item);
     });
     // Find the most recent modification date
-    let lastModified = folder.modifiedTime.slice(0, 19);
+    let lastModified = (folder.modifiedTime || '').slice(0, 19);
     if (files.album && lastModified < files.album.modifiedTime) lastModified = files.album.modifiedTime.slice(0, 19);
     if (files.ini && lastModified < files.ini.modifiedTime) lastModified = files.ini.modifiedTime.slice(0, 19);
     if (files.video && lastModified < files.video.modifiedTime) lastModified = files.video.modifiedTime.slice(0, 19);
@@ -135,14 +135,18 @@ module.exports = async ({ name, link, proxy }) => {
     // Process archives
     for (let i = 0; i < archives.length; i++) {
       const file = archives[i];
+      file.webViewLink = file.webViewLink.replace(/&i=\d+$/, '');
       if (linksMap[file.webViewLink]) {
         if (linksMap[file.webViewLink].ignore) continue;
-        if (linksMap[file.webViewLink].lastModified == file.modifiedTime) songs.push(Object.assign(linksMap[file.webViewLink], {
-          source, parent: file.canBeParent ? {
-            name: file.name,
-            link: file.webViewLink
-          } : null
-        }));
+        if (linksMap[file.webViewLink].lastModified == file.modifiedTime) {
+          songs.push(Object.assign(linksMap[file.webViewLink], {
+            source, parent: file.canBeParent ? {
+              name: file.name,
+              link: file.webViewLink
+            } : null
+          }));
+          continue;
+        }
       }
       console.log('Extracting', file.name);
       const archive = await download(file.webContentLink);

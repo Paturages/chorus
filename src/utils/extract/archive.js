@@ -16,18 +16,21 @@ const getFiles = async ({ iniFile, chartFile, midFile }) => {
   const chart = chartFile && (await p(Fs.readFile, chartFile));
   let mid;
   if (!chart) mid = midFile && (await p(Fs.readFile, midFile));
-  let lastModified;
+  let lastModified = '';
   if (iniFile) {
     const file = await p(Fs.stat, iniFile);
-    lastModified = file.mtime.toISOString().slice(0, 19);
+    const time = file.mtime.toISOString();
+    if (time > lastModified) lastModified = time.toISOString().slice(0, 19);
   }
   if (chartFile) {
     const file = await p(Fs.stat, chartFile);
-    if (file.mtime > lastModified) lastModified = file.mtime.toISOString().slice(0, 19);
+    const time = file.mtime.toISOString();
+    if (time > lastModified) lastModified = time.toISOString().slice(0, 19);
   }
   if (midFile) {
     const file = await p(Fs.stat, midFile);
-    if (file.mtime > lastModified) lastModified = file.mtime.toISOString().slice(0, 19);
+    const time = file.mtime.toISOString();
+    if (time > lastModified) lastModified = time.toISOString().slice(0, 19);
   }
   return { ini, chart, mid, lastModified };
 };
@@ -87,7 +90,7 @@ module.exports = async (archive, extension) => {
         if (ini) Object.assign(meta, getMetaFromIni(ini));
         if (chart) Object.assign(meta, getMetaFromChart(chart));
         else if (mid) Object.assign(meta, getMetaFromMidi(mid));
-        songs.push(Object.assign(meta, { hasStems, hasVideo: !!hasVideo, lastModified }));
+        songs.push(Object.assign(meta, { hasStems, hasVideo: !!hasVideo }, lastModified && { lastModified }));
       }
       // Recurse in subfolders
       for (let i = 0; i < subfolders.length; i++) {
