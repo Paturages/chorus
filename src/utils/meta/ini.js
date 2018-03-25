@@ -8,12 +8,12 @@ const fieldBlacklist = {
 
 module.exports = ini => {
   try {
-    const utf8 = Iconv.decode(ini, 'utf8');
-    return (
-      utf8.indexOf('�') >= 0 ?
-        Iconv.decode(ini, 'latin-1') :
-        utf8
-    ).split('\n')
+    let source = Iconv.decode(ini, 'utf8');
+    // Windows Notepad default encoding
+    if (source.indexOf('�') > -1) source = Iconv.decode(ini, 'latin-1');
+    // Unicode encoding is used to actually display weird characters in CH
+    if (source.indexOf('\u0000') > -1) source = Iconv.decode(ini, 'utf16');
+    return source.split('\n')
     .reduce((meta, line) => {
       let [param, value] = line.split('=');
       if (!value || !value.trim() || fieldBlacklist[param]) return meta;

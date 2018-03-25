@@ -1,9 +1,18 @@
-const Iconv = require('iconv-lite');
-const Fs = require('fs');
-const Path = require('path');
+const getMetaFromIni = require('../src/utils/meta/ini');
+const fs = require('fs');
+const Glob = require('glob');
+const path = require('path');
+const ls = (folder, pattern) => new Promise((resolve, reject) =>
+  Glob(pattern, {
+    absolute: true,
+    realpath: true,
+    cwd: folder
+  }, (err, res) => err ? reject(err) : resolve(res))
+);
 
-const utf8 = Fs.readFileSync(Path.resolve(__dirname, 'ini', 'song.ini'), 'utf8');
-const latin1 = Iconv.decode(Fs.readFileSync(Path.resolve(__dirname, 'ini', 'song.ini')), 'latin1');
-
-// console.log(utf8, utf8.indexOf('�'));
-console.log(latin1, latin1.indexOf('�'));
+(async () => {
+  (await ls(path.resolve(__dirname, 'ini'), `${process.argv[2] || ''}*`))
+  .forEach(path => {
+    console.log(process.argv[2], getMetaFromIni(fs.readFileSync(path)));
+  });
+})();
