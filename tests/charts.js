@@ -11,7 +11,7 @@ const ls = (folder, pattern) => new Promise((resolve, reject) =>
 );
 
 (async () => {
-  (await ls(path.resolve(__dirname, 'charts'), 'reality*'))
+  (await ls(path.resolve(__dirname, 'charts'), `${process.argv[2] || ''}*`))
   .forEach(path => {
     console.log(path, getMetaFromChart(fs.readFileSync(path, { encoding: 'utf8' })));
   });

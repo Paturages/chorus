@@ -102,7 +102,7 @@ module.exports = chart => {
       if (last5 == 'N 5 0') hasForced = true;
       else if (last5 == 'N 6 0') hasTap = true;
       // Just flag open notes for the whole instrument
-      else if (last5 == 'N 7 0') hasOpen[currentStatus.slice(0, currentStatus.indexOf('.'))] = true;
+      else if (last5 == 'N 7 0' && currentStatus) hasOpen[currentStatus.slice(0, currentStatus.indexOf('.'))] = true;
       else if (last5 == ' solo') hasSoloSections = true;
       else if (line.match(/S 2/)) hasStarPower = true;
 
@@ -132,35 +132,33 @@ module.exports = chart => {
     let isFirstNoteFound;
     let currentIndex;
     let currentBpm;
+    chartMeta.Resolution = +chartMeta.Resolution;
     tempoMap.forEach(([index, bpm]) => {
       if (currentIndex != null) {
         // does it look like I pulled this formula from my ass? because I kinda did tbh
-        time += (((index - currentIndex) * 60) / (currentBpm * 192));
+        // (the "Resolution" parameter defines how many "units" there are in a beat)
+        time += (((index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
         // Calculate the timestamp of the first note
-        if (index <= firstNoteIndex) timeToFirstNote += (((index - currentIndex) * 60) / (currentBpm * 192));
+        if (index <= firstNoteIndex) timeToFirstNote += (((index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
         else if (!isFirstNoteFound) {
           isFirstNoteFound = true;
-          timeToFirstNote += (((firstNoteIndex - currentIndex) * 60) / (currentBpm * 192));
+          timeToFirstNote += (((firstNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
         }
       }
       currentIndex = index;
       currentBpm = bpm;
     });
     // do it one last time against the last note
-    time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * 192));
-    // "Effective song length" = time between first and last note
+    time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
 
     // Compute the hash of the .chart itself first
     const hashes = { file: getMD5(chart) };
     const noteCounts = {};
-    let earliestNote = +Infinity, latestNote = 0;
     for (let part in notes) {
       const [instrument, difficulty] = part.split('.');
       // We have to reorder the values by ascending index (Object.values gets by "alphabetical" order of index)
       const notesArray = Object.keys(notes[part]).sort((a, b) => +a < +b ? -1 : 1).map(index => {
         index = +index;
-        if (index < earliestNote) earliestNote = index;
-        if (index > latestNote) latestNote = index;
         return notes[part][index];
       });
       // Ignore tracks with less than 10 notes
@@ -173,7 +171,13 @@ module.exports = chart => {
       noteCounts[instrument][difficulty] = notesArray.length;
       hashes[instrument][difficulty] = getMD5(notesArray.join(' '));
     }
-    return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, hasSoloSections, noteCounts, hashes, chartMeta, length: time >> 0, effectiveLength: (time - timeToFirstNote) >> 0 };
+    return {
+      hasSections, hasStarPower, hasForced,
+      hasTap, hasOpen, hasSoloSections,
+      noteCounts, hashes, chartMeta,
+      // "Effective song length" = time between first and last note
+      length: time >> 0, effectiveLength: (time - timeToFirstNote) >> 0
+    };
   } catch (err) {
     console.error(err.stack);
     return {};
