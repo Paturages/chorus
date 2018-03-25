@@ -34,6 +34,26 @@
     font-size: 1.25em;
   }
 
+  &__length {
+    position: relative;
+    color: #ccc;
+    &-tooltip {
+      display: none;
+      z-index: 1;
+      font-size: .8em;
+      position: absolute;
+      top: 1.75em;
+      left: -1em;
+      max-width: 40em;
+      color: #fff;
+      background: rgba(50, 50, 50, .8);
+      padding: .5em;
+      &-trigger:hover + .Song__length-tooltip {
+        display: block;
+      }
+    }
+  }
+
   &__album, &__genre {
     font-size: .8em;
     opacity: .6;
@@ -93,5 +113,9 @@
 
   &__tiers-column {
     margin-right: 1em;
+  }
+
+  .NoteDensity {
+    margin-top: .5em;
   }
 }

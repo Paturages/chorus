@@ -1,0 +1,20 @@
+@import 'variables';
+
+.NoteDensity {
+  font-size: .8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__bar {
+    height: 3px;
+    width: 100%;
+    background: #eee;
+    &-filler {
+      height: 3px;
+      background: $color--link;
+      &--maxxed {
+        background: #ff0033;
+      }
+    }
+  }
+}

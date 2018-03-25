@@ -2,14 +2,23 @@ import Inferno from "inferno";
 
 import DownloadLink from "components/atoms/DownloadLink";
 import TierPills from "components/molecules/TierPills";
+import NoteDensity from "components/molecules/NoteDensity";
 
 import "./style.scss";
+
+const toTime = fullSeconds => {
+  const minutes = (fullSeconds / 60) >> 0;
+  const seconds = fullSeconds % 60;
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+};
 
 export default ({
   name,
   artist,
   album,
   genre,
+  length,
+  effectiveLength,
   year,
   charter,
   roles,
@@ -52,6 +61,19 @@ export default ({
     <div className="Song__meta">
       <div className="Song__artist">{artist}</div>
       <div className="Song__name">{name}</div>
+      {length && (
+        <div className="Song__length">
+          {toTime(length)}{" "}
+          <span className="Song__length-tooltip-trigger">
+            ({toTime(effectiveLength)})
+          </span>
+          <div className="Song__length-tooltip">
+            Between brackets is the effective length, which is the duration
+            between the first and the last note. This duration is used in the
+            note density calculation.
+          </div>
+        </div>
+      )}
       {genre && <div className="Song__genre">{genre}</div>}
       <div className="Song__album">
         {album || "Unknown album"}
@@ -250,6 +272,7 @@ export default ({
                 </div>
               </div>
             </div>
+            <NoteDensity length={effectiveLength} noteCounts={noteCounts} />
           </div>
         </div>
       )}

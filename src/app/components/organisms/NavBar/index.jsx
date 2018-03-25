@@ -1,7 +1,7 @@
 import Inferno from "inferno";
 
 import Logo from "components/atoms/Logo";
-import DonationButton from "components/atoms/DonationButton";
+// import DonationButton from "components/atoms/DonationButton";
 // import Login from "components/molecules/Login";
 
 import ohMyGood from "assets/images/ohmygood.png";
@@ -30,7 +30,7 @@ export default ({ count }) => (
   <div className="NavBar">
     <div className="NavBar__head">
       <Logo />
-      <DonationButton />
+      {/* <DonationButton /> */}
       <div className="NavBar__head-spacer" />
       {/*
         TODO: Uncomment when feeling like implementing Discord auth
@@ -56,7 +56,7 @@ export default ({ count }) => (
       )}
       <div className="NavBar__item">
         <a
-          href="https://www.youtube.com/watch?v=RgXoakBVAgc"
+          href="https://www.youtube.com/channel/UCc3IfdqGZjhdgQbi_EpfuYg"
           target="_blank"
           rel="noopener noreferrer"
         >
