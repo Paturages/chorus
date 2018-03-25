@@ -6,8 +6,8 @@ module.exports.getLatestCharts = (offset = 0, limit = 20) =>
   Pg.q`
     SELECT *
     FROM "Songs"
-    ORDER BY "lastModified"
-    DESC LIMIT 20
+    ORDER BY "indexedTime" DESC
+    LIMIT 20
     OFFSET ${+offset || 0}`
   .then(songs =>
     Promise.all([
@@ -142,7 +142,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
         "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
         "directLinks", "length", "effectiveLength",
-        "lastModified", "isPack", "words"
+        "lastModified", "indexedTime", "isPack", "words"
       )
       VALUES
       ${songs.slice(i, i + 50).map(
@@ -154,7 +154,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
           hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack,
-          directLinks, length, effectiveLength
+          directLinks, length, effectiveLength, indexedTime
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -194,6 +194,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             length,
             effectiveLength,
             lastModified,
+            indexedTime || new Date().toISOString(),
             isPack,
             {
               sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)), ' ')`,

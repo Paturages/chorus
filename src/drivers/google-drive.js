@@ -85,8 +85,8 @@ module.exports = async ({ name, link, proxy }) => {
       if (item.name.slice(0, 6) == 'video.') return (files.video = item);
     });
     // Find the most recent modification date
-    let lastModified;
-    if (files.album) lastModified = files.album.modifiedTime.slice(0, 19);
+    let lastModified = folder.modifiedTime.slice(0, 19);
+    if (files.album && lastModified < files.album.modifiedTime) lastModified = files.album.modifiedTime.slice(0, 19);
     if (files.ini && lastModified < files.ini.modifiedTime) lastModified = files.ini.modifiedTime.slice(0, 19);
     if (files.video && lastModified < files.video.modifiedTime) lastModified = files.video.modifiedTime.slice(0, 19);
     if (files.chart.length) files.chart.forEach(({ modifiedTime }) => {

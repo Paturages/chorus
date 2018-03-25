@@ -62,6 +62,7 @@ module.exports = async () => {
       "hasVideo" boolean,
       "noteCounts" jsonb,
       "lastModified" timestamp,
+      "indexedTime" timestamp,
       "link" text,
       "directLinks" jsonb,
       "words" text
