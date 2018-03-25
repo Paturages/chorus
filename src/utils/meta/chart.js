@@ -85,10 +85,10 @@ module.exports = chart => {
       }
     */
     const eventsIndex = lines.indexOf('[Events]');
-    // Catch invalid files
-    if (eventsIndex < 0) return { chartMeta };
-    const hasSections = lines[eventsIndex + 2] != '}';
+    const hasSections = eventsIndex > -1 && lines[eventsIndex + 2] != '}';
     // Detect features
+    const notesIndex = lines.findIndex(line => diffMap[line.trim()]);
+    if (!notesIndex || notesIndex < 0) return chartMeta;
     let firstNoteIndex = 0;
     let lastNoteIndex = 0;
     let currentStatus;
@@ -96,7 +96,7 @@ module.exports = chart => {
       hasTap = false, hasOpen = {},
       hasSoloSections = false;
     const notes = {};
-    for (let i = eventsIndex; i < lines.length; i++) {
+    for (let i = notesIndex; i < lines.length; i++) {
       const line = lines[i];
       const last5 = line.slice(-5);
       if (last5 == 'N 5 0') hasForced = true;
@@ -121,7 +121,9 @@ module.exports = chart => {
     }
 
     // Get Tempo map [SyncTrack] to get effective song length
-    const tempoMap = lines.slice(lines.indexOf('[SyncTrack]'), lines.indexOf('[Events]'))
+    const syncTrackIndexStart = lines.indexOf('[SyncTrack]');
+    const syncTrackIndexEnd = lines.indexOf('}', syncTrackIndexStart);
+    const tempoMap = lines.slice(syncTrackIndexStart, syncTrackIndexEnd)
       .reduce((arr, line) => {
         const [, index, bpm] = line.match(/\s*(\d+) = B (\d+)/) || [];
         if (index) arr.push([+index, +bpm / 1000]);

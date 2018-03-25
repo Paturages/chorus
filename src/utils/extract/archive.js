@@ -20,17 +20,17 @@ const getFiles = async ({ iniFile, chartFile, midFile }) => {
   if (iniFile) {
     const file = await p(Fs.stat, iniFile);
     const time = file.mtime.toISOString();
-    if (time > lastModified) lastModified = time.toISOString().slice(0, 19);
+    if (time > lastModified) lastModified = time.slice(0, 19);
   }
   if (chartFile) {
     const file = await p(Fs.stat, chartFile);
     const time = file.mtime.toISOString();
-    if (time > lastModified) lastModified = time.toISOString().slice(0, 19);
+    if (time > lastModified) lastModified = time.slice(0, 19);
   }
   if (midFile) {
     const file = await p(Fs.stat, midFile);
     const time = file.mtime.toISOString();
-    if (time > lastModified) lastModified = time.toISOString().slice(0, 19);
+    if (time > lastModified) lastModified = time.slice(0, 19);
   }
   return { ini, chart, mid, lastModified };
 };
