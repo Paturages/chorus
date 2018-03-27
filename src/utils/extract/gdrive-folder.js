@@ -1,4 +1,6 @@
 const Request = require('request');
+const fs = require('fs');
+const { promisify } = require('util');
 const getMetaFromChart = require('../meta/chart');
 const getMetaFromMidi = require('../meta/midi');
 const getMetaFromIni = require('../meta/ini');
@@ -26,9 +28,19 @@ module.exports = async ({ ini: iniItem, chart: chartItems = [], mid: midItems = 
   if (chartItem) chart = await download(chartItem.webContentLink);
   else if (midItem) mid = await download(midItem.webContentLink);
   const meta = {};
-  if (ini) Object.assign(meta, getMetaFromIni(ini));
-  if (chart) Object.assign(meta, getMetaFromChart(chart));
-  else if (mid) Object.assign(meta, getMetaFromMidi(mid));
+  if (ini) {
+    Object.assign(meta, getMetaFromIni(ini));
+    meta.lastModified = (await promisify(fs.stat)(ini)).mtime.toISOString().slice(0, 19);
+  }
+  if (chart) {
+    Object.assign(meta, getMetaFromChart(chart));
+    const mtime = (await promisify(fs.stat)(chart)).mtime.toISOString().slice(0, 19);
+    if (!meta || meta.lastModified < mtime) meta.lastModified = mtime;
+  } else if (mid) {
+    Object.assign(meta, getMetaFromMidi(mid));
+    const mtime = (await promisify(fs.stat)(mid)).mtime.toISOString().slice(0, 19);
+    if (!meta || meta.lastModified < mtime) meta.lastModified = mtime;
+  }
   // Store direct download links
   const directLinks = {};
   if (album) directLinks.album = album.webContentLink;

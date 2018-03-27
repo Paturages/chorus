@@ -85,25 +85,25 @@ module.exports = async ({ name, link, proxy }) => {
       if (item.name.slice(0, 6) == 'video.') return (files.video = item);
     });
     // Find the most recent modification date
-    let lastModified = (folder.modifiedTime || '').slice(0, 19);
-    if (files.album && lastModified < files.album.modifiedTime) lastModified = files.album.modifiedTime.slice(0, 19);
-    if (files.ini && lastModified < files.ini.modifiedTime) lastModified = files.ini.modifiedTime.slice(0, 19);
-    if (files.video && lastModified < files.video.modifiedTime) lastModified = files.video.modifiedTime.slice(0, 19);
+    let uploadedAt = (folder.modifiedTime || '').slice(0, 19);
+    if (files.album && uploadedAt < files.album.modifiedTime) uploadedAt = files.album.modifiedTime.slice(0, 19);
+    if (files.ini && uploadedAt < files.ini.modifiedTime) uploadedAt = files.ini.modifiedTime.slice(0, 19);
+    if (files.video && uploadedAt < files.video.modifiedTime) uploadedAt = files.video.modifiedTime.slice(0, 19);
     if (files.chart.length) files.chart.forEach(({ modifiedTime }) => {
-      if (lastModified < modifiedTime) lastModified = modifiedTime.slice(0, 19);
+      if (uploadedAt < modifiedTime) uploadedAt = modifiedTime.slice(0, 19);
     });
     if (files.mid.length) files.mid.forEach(({ modifiedTime }) => {
-      if (lastModified < modifiedTime) lastModified = modifiedTime.slice(0, 19);
+      if (uploadedAt < modifiedTime) uploadedAt = modifiedTime.slice(0, 19);
     });
     if (files.audio.length) files.audio.forEach(({ modifiedTime }) => {
-      if (lastModified < modifiedTime) lastModified = modifiedTime.slice(0, 19);
+      if (uploadedAt < modifiedTime) uploadedAt = modifiedTime.slice(0, 19);
     });
 
     // If the folder link was already indexed and the modification date is the same, do not reprocess it
     // (i.e. re-insert it with the same metadata as before)
     if (
       linksMap[folder.webViewLink] &&
-      (linksMap[folder.webViewLink].lastModified || '').slice(0, 19) == lastModified
+      (linksMap[folder.webViewLink].uploadedAt || '').slice(0, 19) == uploadedAt
     ) songs.push(Object.assign(linksMap[folder.webViewLink], {
       source, parent: folder.canBeParent ? {
         name: folder.name,
@@ -118,7 +118,7 @@ module.exports = async ({ name, link, proxy }) => {
         const { artist: defaultArtist, name: defaultName } = defaultNameParser(folder.name);
         // The parent of a folder is its own parent folder
         const song = {
-          defaultArtist, defaultName, lastModified, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
+          defaultArtist, defaultName, lastModified: uploadedAt, uploadedAt, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
             name: folder.parentFolder.name,
             link: folder.parentFolder.webViewLink
           } : null
@@ -138,7 +138,7 @@ module.exports = async ({ name, link, proxy }) => {
       file.webViewLink = file.webViewLink.replace(/&i=\d+$/, '');
       if (linksMap[file.webViewLink]) {
         if (linksMap[file.webViewLink].ignore) continue;
-        if (linksMap[file.webViewLink].lastModified == file.modifiedTime) {
+        if (linksMap[file.webViewLink].uploadedAt == file.modifiedTime) {
           songs.push(Object.assign(linksMap[file.webViewLink], {
             source, parent: file.canBeParent ? {
               name: file.name,
@@ -157,7 +157,7 @@ module.exports = async ({ name, link, proxy }) => {
         // and also inputing already available metadata
         const { artist: defaultArtist, name: defaultName } = defaultNameParser(file.name);
         const song = {
-          defaultArtist, defaultName, lastModified: file.modifiedTime, source, link: file.webViewLink,
+          defaultArtist, defaultName, lastModified: file.modifiedTime, uploadedAt: file.modifiedTime, source, link: file.webViewLink,
           directLinks: { archive: file.webContentLink },
           isPack: metaList.length > 1, parent: folder.canBeParent ? {
             name: folder.name,

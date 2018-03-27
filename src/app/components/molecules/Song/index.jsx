@@ -69,8 +69,8 @@ export default ({
           </span>
           <div className="Song__length-tooltip">
             Between brackets is the effective length, which is the duration
-            between the first and the last note. This duration is used in the
-            note density calculation.
+            between the first and the last note. This duration is the one used
+            in the NPS calculation.
           </div>
         </div>
       )}

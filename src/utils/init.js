@@ -63,6 +63,7 @@ module.exports = async () => {
       "noteCounts" jsonb,
       "lastModified" timestamp,
       "indexedTime" timestamp,
+      "uploadedAt" timestamp,
       "link" text,
       "directLinks" jsonb,
       "words" text

@@ -75,7 +75,7 @@ module.exports = async ({ name, link, proxy }) => {
       // and also inputing already available metadata
       const { artist: defaultArtist, name: defaultName } = defaultNameParser(Name);
       const song = {
-        defaultArtist, defaultName, lastModified: ModTime, source, link: url,
+        defaultArtist, defaultName, lastModified: ModTime, uploadedAt: ModTime, source, link: url,
         directLinks: { archive: url },
         parent: parent ? {
           name: parent.name,
