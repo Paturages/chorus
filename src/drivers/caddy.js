@@ -62,7 +62,7 @@ module.exports = async ({ name, link, proxy }) => {
   for (let i = 0; i < songList.length; i++) {
     const { Name, URL, ModTime, parent } = songList[i];
     const url = `${(parent || {}).link || link}${URL.slice(2)}`;
-    if (linksMap[url] && ModTime.slice(0, 19) == (linksMap[url].lastModified || '').slice(0, 19)) {
+    if (linksMap[url] && ModTime.slice(0, 19) == (linksMap[url].uploadedAt || '').slice(0, 19)) {
       songs.push(Object.assign(linksMap[url], { source, parent }));
       continue;
     }

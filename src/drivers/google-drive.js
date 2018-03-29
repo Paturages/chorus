@@ -118,7 +118,9 @@ module.exports = async ({ name, link, proxy }) => {
         const { artist: defaultArtist, name: defaultName } = defaultNameParser(folder.name);
         // The parent of a folder is its own parent folder
         const song = {
-          defaultArtist, defaultName, lastModified: uploadedAt, uploadedAt, source, link: folder.webViewLink, parent: folder.canBeParent && folder.parentFolder ? {
+          defaultArtist, defaultName, lastModified: null, // unfortunately, it looks like it's impossible to get the real last file modification time from single files...
+          uploadedAt, source, link: folder.webViewLink,
+          parent: folder.canBeParent && folder.parentFolder ? {
             name: folder.parentFolder.name,
             link: folder.parentFolder.webViewLink
           } : null
@@ -138,7 +140,7 @@ module.exports = async ({ name, link, proxy }) => {
       file.webViewLink = file.webViewLink.replace(/&i=\d+$/, '');
       if (linksMap[file.webViewLink]) {
         if (linksMap[file.webViewLink].ignore) continue;
-        if (linksMap[file.webViewLink].uploadedAt == file.modifiedTime) {
+        if ((linksMap[file.webViewLink].uploadedAt || '').slice(0, 19) == file.modifiedTime.slice(0, 19)) {
           songs.push(Object.assign(linksMap[file.webViewLink], {
             source, parent: file.canBeParent ? {
               name: file.name,

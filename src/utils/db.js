@@ -142,7 +142,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
         "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
         "directLinks", "length", "effectiveLength",
-        "lastModified", "indexedTime", "isPack", "words"
+        "lastModified", "indexedTime", "uploadedAt", "isPack", "words"
       )
       VALUES
       ${songs.slice(i, i + 50).map(
@@ -154,7 +154,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
           hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack,
-          directLinks, length, effectiveLength, indexedTime
+          directLinks, length, effectiveLength, indexedTime, uploadedAt
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -195,6 +195,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             effectiveLength,
             lastModified,
             indexedTime || new Date().toISOString(),
+            uploadedAt || new Date().toISOString(),
             isPack,
             {
               sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)), ' ')`,
