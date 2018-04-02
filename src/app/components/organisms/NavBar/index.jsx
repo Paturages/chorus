@@ -65,14 +65,20 @@ export default ({ count }) => (
       </div>
       <br />
       <div className="NavBar__item">
-        Ever wonder how your favorite streamer got custom note colors and stuff?
-        Here's a shoutout to <b>Zerotica</b> and{" "}
+        Did you like the custom background? You can define your own one by{" "}
         <a
-          href="https://www.youtube.com/watch?v=TZKwk-ebh1g"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="javasript:void(0)"
+          onClick={() => {
+            const bg = window.prompt(
+              "Paste in a direct link to an image (e.g. https://chorus.fightthe.pw/assets/images/monika.jpg)"
+            );
+            window.localStorage.setItem("bg", bg);
+            document.getElementsByClassName(
+              "Background"
+            )[0].style.backgroundImage = `url(${bg})`;
+          }}
         >
-          CHLauncher
+          clicking here
         </a>!
       </div>
       <div className="NavBar__item">

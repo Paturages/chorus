@@ -22,7 +22,7 @@ export default class Search extends Component {
       ga("set", "page", `/search?query=${props.query}`);
       ga("send", "pageview");
     }
-    Http.get("/api/search", { query: props.query }).then(({ songs, roles }) =>
+    Http.get("/api/search", { query: props.query }).then(({ songs, roles }) => {
       this.setState({
         roles,
         songs,
@@ -36,8 +36,8 @@ export default class Search extends Component {
           }
           return null;
         })()
-      })
-    );
+      });
+    });
   }
   render() {
     const {

@@ -49,6 +49,7 @@ export default ({
   hasVideo,
   noteCounts,
   lastModified,
+  uploadedAt,
   link,
   parent,
   hashes,
@@ -56,7 +57,9 @@ export default ({
 }) => (
   <div className="Song">
     <div className="Song__modified">
-      {new Date(lastModified).toISOString().replace(/T|\.\d+Z$/g, " ")}
+      {new Date(lastModified || uploadedAt)
+        .toISOString()
+        .replace(/T|\.\d+Z$/g, " ")}
     </div>
     <div className="Song__meta">
       <div className="Song__artist">{artist}</div>

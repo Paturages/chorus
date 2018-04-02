@@ -107,7 +107,7 @@ module.exports = async () => {
       ON DELETE CASCADE
     )`;
     await Pg.q`CREATE TABLE "Songs_Hashes_new" (
-      "hash" char(64),
+      "hash" char(32),
       "part" text,
       "difficulty" char(1),
       "songId" integer,

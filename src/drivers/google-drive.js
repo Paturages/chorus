@@ -105,9 +105,9 @@ module.exports = async ({ name, link, proxy }) => {
       linksMap[folder.webViewLink] &&
       (linksMap[folder.webViewLink].uploadedAt || '').slice(0, 19) == uploadedAt
     ) songs.push(Object.assign(linksMap[folder.webViewLink], {
-      source, parent: folder.canBeParent ? {
-        name: folder.name,
-        link: folder.webViewLink
+      source, parent: folder.canBeParent && folder.parentFolder ? {
+        name: folder.parentFolder.name,
+        link: folder.parentFolder.webViewLink
       } : null
     })); else {
       // Check if this is a song folder
@@ -137,7 +137,7 @@ module.exports = async ({ name, link, proxy }) => {
     // Process archives
     for (let i = 0; i < archives.length; i++) {
       const file = archives[i];
-      file.webViewLink = file.webViewLink.replace(/&i=\d+$/, '');
+      // Single songs
       if (linksMap[file.webViewLink]) {
         if (linksMap[file.webViewLink].ignore) continue;
         if ((linksMap[file.webViewLink].uploadedAt || '').slice(0, 19) == file.modifiedTime.slice(0, 19)) {
@@ -148,6 +148,17 @@ module.exports = async ({ name, link, proxy }) => {
             } : null
           }));
           continue;
+        }
+      }
+      // Packs
+      if (linksMap[`${file.webViewLink}&i=1`] && (linksMap[`${file.webViewLink}&i=1`].uploadedAt || '').slice(0, 19) == file.modifiedTime.slice(0, 19)) {
+        for (let i = 1; linksMap[`${file.webViewLink}&i=${i}`]; i++) {
+          songs.push(Object.assign(linksMap[`${file.webViewLink}&i=${i}`], {
+            source, parent: file.canBeParent ? {
+              name: file.name,
+              link: file.webViewLink
+            } : null
+          }));
         }
       }
       console.log('Extracting', file.name);
