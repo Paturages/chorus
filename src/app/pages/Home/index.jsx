@@ -100,7 +100,7 @@ export default class Home extends Component {
           </a>
         </div>
         <SongList
-          title="Latest indexed charts"
+          title="Latest charts"
           roles={roles}
           songs={songs}
           hasMore={hasMore}

@@ -6,7 +6,7 @@ module.exports.getLatestCharts = (offset = 0, limit = 20) =>
   Pg.q`
     SELECT *
     FROM "Songs"
-    ORDER BY "indexedTime" DESC
+    ORDER BY COALESCE("lastModified", "uploadedAt") DESC
     LIMIT 20
     OFFSET ${+offset || 0}`
   .then(songs =>
@@ -142,7 +142,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
         "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
         "directLinks", "length", "effectiveLength",
-        "lastModified", "indexedTime", "uploadedAt", "isPack", "words"
+        "lastModified", "uploadedAt", "isPack", "words"
       )
       VALUES
       ${songs.slice(i, i + 50).map(
@@ -154,7 +154,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
           hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack,
-          directLinks, length, effectiveLength, indexedTime, uploadedAt
+          directLinks, length, effectiveLength, uploadedAt
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -194,7 +194,6 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             length,
             effectiveLength,
             lastModified,
-            indexedTime || new Date().toISOString(),
             uploadedAt || new Date().toISOString(),
             isPack,
             {
@@ -555,7 +554,6 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
     link: song.meta.link,
     directLinks: song.meta.directLinks,
     lastModified: song.meta.lastModified,
-    indexedTime: song.meta.indexedTime,
     uploadedAt: song.meta.uploadedAt,
     hashes: (() => {
       const parts = {};

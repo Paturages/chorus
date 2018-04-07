@@ -22,7 +22,7 @@ module.exports = async fileName => {
       const name = lines[index+1].slice(6).trim();
       const link = lines[index+2].slice(6).trim();
       const charter = lines[index+3].slice(9).trim() || sourceCharter;
-      songs.push({ name, artist, link, charter, lastModified, uploadedAt: lastModified, indexedAt: lastModified });
+      songs.push({ name, artist, link, charter, lastModified, uploadedAt: lastModified });
     }
   });
   
