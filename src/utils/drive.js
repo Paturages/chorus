@@ -18,7 +18,7 @@ const init = async () => {
   } catch (err) {
     try {
       // Get a new OAuth token if none found
-      const authUrl = oAuth2.generateAuthUrl({ access_type: 'offline', scope: ['https://www.googleapis.com/auth/drive.metadata.readonly'] });
+      const authUrl = oAuth2.generateAuthUrl({ access_type: 'offline', scope: ['https://www.googleapis.com/auth/drive'] });
       const readline = Readline.createInterface({ input: process.stdin, output: process.stdout });
   
       console.log('Authorize this app by visiting', authUrl);
@@ -92,7 +92,7 @@ const list = (args, files, retry) => new Promise((resolve, reject) => throttle('
   }
 }));
 
-const get = fileId => new Promise((resolve, reject) => throttle('get', { auth: oAuth2, fileId }, async (err, payload) => {
+const get = fileId => new Promise((resolve, reject) => throttle('get', { auth: oAuth2, fileId, alt: 'media' }, async (err, payload) => {
   if (err) return reject(err);
   resolve(payload);
 }));

@@ -77,13 +77,7 @@ module.exports = chart => {
       if (param == 'Year') value = value.replace(', ', '');
       chartMeta[param] = value;
     }
-    /*
-      Detect sections:
-      A song with no sections matches the following:
-      [Events]
-      {
-      }
-    */
+    // Detect sections
     const eventsIndex = lines.indexOf('[Events]');
     const hasSections = eventsIndex > -1 && lines[eventsIndex + 2] != '}';
     // Detect features
