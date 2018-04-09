@@ -20,7 +20,8 @@ const download = url => new Promise((resolve, reject) =>
     // Bypass the download warning page if there's one
     if (res.body.slice(0, 15) == '<!DOCTYPE html>') {
       return Drive.get(url.slice(prefixLength, url.indexOf('/', prefixLength)))
-      .then(body => resolve(body));
+      .then(body => resolve(body))
+      .catch(() => resolve(res.body));
     }
     resolve(res.body);
   })
