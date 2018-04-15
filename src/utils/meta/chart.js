@@ -92,12 +92,11 @@ module.exports = chart => {
     const notes = {};
     for (let i = notesIndex; i < lines.length; i++) {
       const line = lines[i];
-      const last5 = line.slice(-5);
-      if (last5 == 'N 5 0') hasForced = true;
-      else if (last5 == 'N 6 0') hasTap = true;
+      if (line.match(/N 5 /)) hasForced = true;
+      else if (line.match(/N 6 /)) hasTap = true;
       // Just flag open notes for the whole instrument
-      else if (last5 == 'N 7 0' && currentStatus) hasOpen[currentStatus.slice(0, currentStatus.indexOf('.'))] = true;
-      else if (last5 == ' solo') hasSoloSections = true;
+      else if (line.match(/N 7 /) && currentStatus) hasOpen[currentStatus.slice(0, currentStatus.indexOf('.'))] = true;
+      else if (line.match(/ solo/)) hasSoloSections = true;
       else if (line.match(/S 2/)) hasStarPower = true;
 
       // Detect new difficulty
