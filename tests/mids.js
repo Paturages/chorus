@@ -11,7 +11,7 @@ const ls = (folder, pattern) => new Promise((resolve, reject) =>
 );
 
 (async () => {
-  (await ls(path.resolve(__dirname, 'mids'), '6-frets*'))
+  (await ls(path.resolve(__dirname, 'mids'), `${process.argv[2] || ''}*`))
   .forEach(async path => {
     const content = await new Promise(
       (resolve, reject) =>

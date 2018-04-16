@@ -143,6 +143,9 @@ module.exports = chart => {
       currentIndex = index;
       currentBpm = bpm;
     });
+    // If the current index is 0 (beginning of chart) and the BPM is 120 ("B 120000"),
+    // it's most likely cancer (not beat mapped) and has to be checked by physicians
+    const is120 = currentIndex == 0 && currentBpm == 120
     // do it one last time against the last note
     time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
 
@@ -169,7 +172,7 @@ module.exports = chart => {
     return {
       hasSections, hasStarPower, hasForced,
       hasTap, hasOpen, hasSoloSections,
-      noteCounts, hashes, chartMeta,
+      noteCounts, hashes, chartMeta, is120,
       // "Effective song length" = time between first and last note
       length: time >> 0, effectiveLength: (time - timeToFirstNote) >> 0
     };

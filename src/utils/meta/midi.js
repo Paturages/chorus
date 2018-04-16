@@ -30,6 +30,9 @@ const parse = midiFile => {
   let firstNoteTime, lastNoteTime = 0;
   const tracks = {};
   const notes = {};
+  // Detect 120 BPM charts because fuck that shit seriously
+  const bpmEvents = midi.getTrackEvents(0).filter(({ tempoBPM }) => tempoBPM);
+  const is120 = bpmEvents.length == 1 && bpmEvents[0].tempoBPM == 120;
   midi.getEvents().forEach(event => {
     // data is a string attached to the MIDI event.
     // It generally denotes chart events (sections, lighting...)
@@ -105,7 +108,12 @@ const parse = midiFile => {
     hashes[instrument][difficulty] = getMD5(notesArray.join(' '));
   }
 
-  return { hasSections, hasStarPower, hasForced, hasTap, hasOpen, noteCounts, hashes, length: lastNoteTime / 1000 >> 0, effectiveLength: (lastNoteTime - firstNoteTime) / 1000 >> 0 };
+  return {
+    hasSections, hasStarPower, hasForced,
+    hasTap, hasOpen, noteCounts, is120,
+    hashes, length: lastNoteTime / 1000 >> 0,
+    effectiveLength: (lastNoteTime - firstNoteTime) / 1000 >> 0
+  };
 };
 
 module.exports = midiFile => {
