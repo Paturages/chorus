@@ -58,6 +58,7 @@ module.exports = async () => {
       "hasSections" boolean,
       "hasStarPower" boolean,
       "hasSoloSections" boolean,
+      "is120" boolean,
       "hasStems" boolean,
       "hasVideo" boolean,
       "noteCounts" jsonb,

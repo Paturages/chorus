@@ -141,7 +141,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "diff_drums", "diff_keys", "diff_guitarghl", "diff_bassghl",
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
         "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
-        "directLinks", "length", "effectiveLength",
+        "directLinks", "length", "effectiveLength", "is120",
         "lastModified", "uploadedAt", "isPack", "words"
       )
       VALUES
@@ -154,7 +154,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
           hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack,
-          directLinks, length, effectiveLength, uploadedAt
+          directLinks, length, effectiveLength, uploadedAt, is120
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -193,6 +193,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             directLinks ? JSON.stringify(directLinks) : null,
             length,
             effectiveLength,
+            is120,
             lastModified,
             uploadedAt || new Date().toISOString(),
             isPack,
@@ -322,6 +323,7 @@ module.exports.search = async (query, offset, limit) => {
   const [, hasSoloSections] = query.match(/hasSoloSections=(\d)/) || [];
   const [, hasStems] = query.match(/hasStems=(\d)/) || [];
   const [, hasVideo] = query.match(/hasVideo=(\d)/) || [];
+  const [, is120] = query.match(/is120=(\d)/) || [];
   let songs;
   if (name || artist || album || genre || charter ||
     tier_band || tier_guitar || tier_bass || tier_rhythm ||
@@ -329,7 +331,7 @@ module.exports.search = async (query, offset, limit) => {
     tier_bassghl || diff_guitar || diff_bass || diff_rhythm ||
     diff_drums || diff_keys || diff_guitarghl || diff_bassghl ||
     hasForced || hasOpen || hasTap || hasSections || hasStarPower ||
-    hasSoloSections || hasStems || hasVideo) {
+    hasSoloSections || hasStems || hasVideo || is120) {
     // Advanced search: detected.
     let queryIndex = 1;
     const queryParams = [];
@@ -428,6 +430,11 @@ module.exports.search = async (query, offset, limit) => {
         and (
           "hasVideo" is ${hasVideo == 1 ? 'not' : ''} null
           ${hasVideo == 1 ? 'and' : 'or'} "hasVideo" = $${queryIndex++}
+        )` : ''}
+      ${is120 ? queryParams.push(!!+is120) && `
+        and (
+          "is120" is ${is120 == 1 ? 'not' : ''} null
+          ${is120 == 1 ? 'and' : 'or'} "is120" = $${queryIndex++}
         )` : ''}
       limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
       ${+offset ? `OFFSET ${+offset}` : ''}
