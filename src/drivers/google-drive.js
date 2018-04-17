@@ -13,15 +13,15 @@ const {
   getLinksMapBySource,
 } = require('../utils/db');
 
-const prefixLength = "https://drive.google.com/file/d/".length;
+const prefixLength = "https://drive.google.com/uc?id=".length;
 const download = url => new Promise((resolve, reject) =>
   Request.get(url, { encoding: null }, (err, res) => {
     if (err) return reject(err);
     // Bypass the download warning page if there's one
     if (res.body.toString('utf8', 0, 15) == '<!DOCTYPE html>') {
-      return Drive.get(url.slice(prefixLength, url.indexOf('/', prefixLength)))
+      return Drive.get(url.slice(prefixLength, url.indexOf('&', prefixLength)))
       .then(body => resolve(body))
-      .catch(() => resolve(res.body));
+      .catch(err => console.error(err) || resolve(res.body));
     }
     resolve(res.body);
   })

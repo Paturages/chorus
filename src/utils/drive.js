@@ -52,7 +52,8 @@ const processQueue = () => {
   if (!queue.length) return timeout = null;
   const { method, args, callback } = queue.shift();
   timeout = setTimeout(() => processQueue(), DELAY);
-  Drive.files[method](args, callback);
+  if (method == 'get') Drive.files.get(args, { encoding: null }, callback);
+  else Drive.files[method](args, callback);
 };
 const throttle = (method, args, callback) => {
   queue.push({ method, args, callback });
@@ -92,9 +93,13 @@ const list = (args, files, retry) => new Promise((resolve, reject) => throttle('
   }
 }));
 
-const get = fileId => new Promise((resolve, reject) => throttle('get', { auth: oAuth2, fileId, alt: 'media' }, async (err, payload) => {
-  if (err) return reject(err);
-  resolve(payload);
-}));
+const get = fileId => new Promise((resolve, reject) => throttle(
+  'get',
+  { auth: oAuth2, fileId, alt: 'media' },
+  async (err, payload) => {
+    if (err) return reject(err);
+    resolve(payload);
+  }
+));
 
 module.exports = { init, list, get };
