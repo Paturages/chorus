@@ -167,6 +167,7 @@ module.exports = async ({ name, link, proxy }) => {
             } : null
           }));
         }
+        continue;
       }
       console.log('Extracting', file.name);
       const archive = await download(file.webContentLink);

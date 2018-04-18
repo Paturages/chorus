@@ -562,6 +562,8 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
     directLinks: song.meta.directLinks,
     lastModified: song.meta.lastModified,
     uploadedAt: song.meta.uploadedAt,
+    is120: song.meta.is120,
+    isPack: song.meta.isPack,
     hashes: (() => {
       const parts = {};
       song.hashes.forEach(({ hash, part, difficulty }) => {
