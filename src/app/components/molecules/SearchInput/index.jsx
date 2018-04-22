@@ -22,6 +22,7 @@ export default class SearchInput extends Component {
         }}
       >
         <TextInput
+          autofocus
           className="SearchInput__input"
           type="search"
           label={label}

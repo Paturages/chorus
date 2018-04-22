@@ -21,10 +21,20 @@ const ACRONYMS = [
         <img className="NavBar__oh-my-good" src={ohMyGood} alt="Oh my good!" />
       ))
       .concat(<small>(no, you won't find GH2 ISOs here)</small>)}
-  </div>
+  </div>,
+  "we are solo",
+  "FLEE THE BURNING"
   // TODO: I need more! Send pull requests!
 ];
-const ACRONYM = ACRONYMS[(Math.random() * ACRONYMS.length) >> 0];
+let ACRONYM;
+const now = new Date();
+if (now.getHours() == 21 && now.getMinutes() > 30) {
+  ACRONYM = "holy shit its almost 10pm, I can be a Charter";
+} else if (Math.random() < 0.1) {
+  ACRONYM = ACRONYMS[(Math.random() * ACRONYMS.length) >> 0];
+} else {
+  ACRONYM = ACRONYMS[0];
+}
 
 export default ({ count }) => (
   <div className="NavBar">
@@ -38,9 +48,7 @@ export default ({ count }) => (
       */}
     </div>
     <div className="NavBar__text">
-      <div className="NavBar__item">
-        {Math.random() < 0.1 ? ACRONYM : ACRONYMS[0]}
-      </div>
+      <div className="NavBar__item">{ACRONYM}</div>
       {count && (
         <div className="NavBar__item">
           featuring <b>{count}</b> charts scraped from&nbsp;
