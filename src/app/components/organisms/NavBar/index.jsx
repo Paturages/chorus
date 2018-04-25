@@ -75,7 +75,7 @@ export default ({ count }) => (
       <div className="NavBar__item">
         Did you like the custom background? You can define your own one by{" "}
         <a
-          href="javasript:void(0)"
+          href="javascript:void(0)"
           onClick={() => {
             const bg = window.prompt(
               "Paste in a direct link to an image (e.g. https://chorus.fightthe.pw/assets/images/monika.jpg)"
