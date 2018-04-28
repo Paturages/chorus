@@ -13,7 +13,8 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify("dev")
+        NODE_ENV: JSON.stringify("dev"),
+        FRONTEND: JSON.stringify(process.env.FRONTEND)
       }
     })
   ]

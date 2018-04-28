@@ -17,7 +17,7 @@
     "midifile": "^1.0.4",
     "node-7z": "^0.4.0",
     "pg": "^7.4.0",
-    "request": "^2.83.0",
+    "request": "^2.85.0",
     "rimraf": "^2.6.2",
     "xlsx": "^0.11.15"
   },
@@ -52,9 +52,11 @@
     "import": "node index.js",
     "import:arcturus": "node --optimize_for_size --max-old-space-size=64 index.js",
     "start": "npm-run-all --parallel server webpack-dev browser-sync",
+    "start:frontend": "FRONTEND=1 npm-run-all --parallel webpack-dev browser-sync:frontend",
     "server": "nodemon server.js --watch server.js --watch dist/index.html --watch src/utils",
     "webpack-dev": "webpack --config webpack/dev.conf.js --watch",
     "browser-sync": "browser-sync start --config browser-sync.json",
+    "browser-sync:frontend": "browser-sync start --config browser-sync.frontend.json",
     "build": "webpack --config webpack/build.conf.js",
     "postinstall": "webpack --config webpack/dev.conf.js"
   },
