@@ -79,7 +79,13 @@ module.exports = {
           {
             loader: "babel-loader",
             query: {
-              presets: ["es2015"],
+              presets: [
+                ["env", {
+                  "targets": {
+                    "browsers": ["last 2 versions"]
+                  }
+                }],
+              ],
               plugins: ["inferno", "transform-object-rest-spread"]
             }
           },
