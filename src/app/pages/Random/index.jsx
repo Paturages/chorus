@@ -1,5 +1,4 @@
-import Inferno from "inferno";
-import Component from "inferno-component";
+import { Component } from "inferno";
 
 import Logo from "components/atoms/Logo";
 import SongList from "components/organisms/SongList";
