@@ -1,4 +1,4 @@
-import Inferno from "inferno";
+import { render } from "inferno";
 
 import Home from "pages/Home";
 import Search from "pages/Search";
@@ -92,7 +92,7 @@ const page = window.location.pathname.slice(
   indexOfQuestionMark < 0 ? undefined : indexOfQuestionMark
 );
 
-Inferno.render(
+render(
   {
     "/search": (
       <Search

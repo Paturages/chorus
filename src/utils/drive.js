@@ -1,14 +1,13 @@
 const Fs = require('fs');
 const Path = require('path');
 const Readline = require('readline');
-const Google = require('googleapis');
-const Auth = require('google-auth-library');
+const { google } = require('googleapis');
+const { OAuth2Client } = require('google-auth-library');
 
 const CLIENT = require('../../conf/client_id.json');
 
 // Auth to Google APIs
-const auth = new Auth();
-const oAuth2 = new auth.OAuth2(CLIENT.web.client_id, CLIENT.web.client_secret, 'https://chorus.fightthe.pw');
+const oAuth2 = new OAuth2Client(CLIENT.web.client_id, CLIENT.web.client_secret, 'https://chorus.fightthe.pw');
 let Drive;
 
 const init = async () => {
@@ -37,7 +36,7 @@ const init = async () => {
     }
   } finally {
     console.log('Google Drive API initiated');
-    Drive = Google.drive('v3');
+    Drive = google.drive('v3');
     return Drive;
   }
 };
@@ -48,12 +47,18 @@ const init = async () => {
 const queue = [];
 let timeout;
 const DELAY = 200;
-const processQueue = () => {
+const processQueue = async () => {
   if (!queue.length) return timeout = null;
   const { method, args, callback } = queue.shift();
   timeout = setTimeout(() => processQueue(), DELAY);
-  if (method == 'get') Drive.files.get(args, { encoding: null }, callback);
-  else Drive.files[method](args, callback);
+  if (method == 'get') {
+    try {
+      const res = await Drive.files.get(args, { responseType: 'arraybuffer' });
+      callback(null, res);
+    } catch (err) {
+      console.error(err.stack);
+    }
+  } else Drive.files[method](args, callback);
 };
 const throttle = (method, args, callback) => {
   queue.push({ method, args, callback });
@@ -64,7 +69,7 @@ const list = (args, files, retry) => new Promise((resolve, reject) => throttle('
   auth: oAuth2,
   pageSize: 1000,
   fields: 'nextPageToken, files(id, name, mimeType, fileExtension, size, webContentLink, modifiedTime, webViewLink)'
-}, args), async (err, payload) => {
+}, args), async (err, { data: payload }) => {
   if (err) {
     // If Google Drive fails (e.g. 500 Internal Error),
     // try 5 more times before giving up and yielding nothing.
@@ -96,7 +101,7 @@ const list = (args, files, retry) => new Promise((resolve, reject) => throttle('
 const get = fileId => new Promise((resolve, reject) => throttle(
   'get',
   { auth: oAuth2, fileId, alt: 'media' },
-  async (err, payload) => {
+  async (err, { data: payload }) => {
     if (err) return reject(err);
     resolve(payload);
   }

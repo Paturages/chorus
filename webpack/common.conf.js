@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
-const ExtractText = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   target: "web",
@@ -14,13 +14,19 @@ module.exports = {
     modules: [
       path.resolve(__dirname, "..", "node_modules"),
       path.resolve(__dirname, "..", "src", "app")
-    ]
+    ],
+    /* When doing development workflow we want to make sure webpack picks up development build of inferno */
+    alias: {
+      inferno: path.resolve(__dirname, "..", "node_modules", "inferno", "dist", "index.dev.esm.js")
+    }
   },
   entry: {
     polyfills: ["es5-shim", "es6-shim"],
     bundle: "index.jsx"
   },
-  plugins: [new ExtractText("styles.css")],
+  plugins: [
+    new MiniCssExtractPlugin({ filename: "styles.css" })
+  ],
   module: {
     rules: [
       {
@@ -47,29 +53,28 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ExtractText.extract({
-          use: [
-            {
-              loader: "css-loader",
-              query: {
-                sourceMap: true
-              }
-            },
-            {
-              loader: "postcss-loader",
-              query: {
-                sourceMap: true
-              }
-            },
-            {
-              loader: "sass-loader",
-              query: {
-                sourceMap: true,
-                includePaths: [path.resolve(__dirname, "..", "src", "app", "scss")]
-              }
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            query: {
+              sourceMap: true
             }
-          ]
-        })
+          },
+          {
+            loader: "postcss-loader",
+            query: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: "sass-loader",
+            query: {
+              sourceMap: true,
+              includePaths: [path.resolve(__dirname, "..", "src", "app", "scss")]
+            }
+          }
+        ]
       },
       {
         test: /\.jsx?$/,
