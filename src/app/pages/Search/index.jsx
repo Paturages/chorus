@@ -1,5 +1,4 @@
-import Inferno from "inferno";
-import Component from "inferno-component";
+import { Component } from "inferno";
 
 import Logo from "components/atoms/Logo";
 import SearchBox from "components/organisms/SearchBox";
@@ -17,12 +16,13 @@ const substitutes = {
 export default class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { songs: [], query: props.query, from: 0 };
+    const query = new URLSearchParams(props.location.search).get("query");
+    this.state = { songs: [], query, from: 0 };
     if (typeof ga !== "undefined") {
-      ga("set", "page", `/search?query=${props.query}`);
+      ga("set", "page", `/search?query=${query}`);
       ga("send", "pageview");
     }
-    Http.get("/api/search", { query: props.query }).then(({ songs, roles }) => {
+    Http.get("/api/search", { query }).then(({ songs, roles }) => {
       this.setState({
         roles,
         songs,
@@ -30,7 +30,7 @@ export default class Search extends Component {
         hasMore: songs.length == 20,
         substituteResult: (() => {
           for (let phrase in substitutes) {
-            if (props.query.toLowerCase().indexOf(phrase) > -1) {
+            if (query.toLowerCase().indexOf(phrase) > -1) {
               return substitutes[phrase];
             }
           }
@@ -59,9 +59,7 @@ export default class Search extends Component {
               this.setState(
                 { query, hasNothing: null, songs: [], from: 0 },
                 () => {
-                  window.history.pushState(
-                    null,
-                    "Search",
+                  this.props.history.push(
                     `${
                       process.env.TESTING ? "/testing" : ""
                     }/search?query=${encodeURIComponent(query)}`

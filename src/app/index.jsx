@@ -1,4 +1,5 @@
 import { render } from "inferno";
+import { BrowserRouter, Route, Link } from "inferno-router";
 
 import Home from "pages/Home";
 import Search from "pages/Search";
@@ -92,15 +93,14 @@ const page = window.location.pathname.slice(
   indexOfQuestionMark < 0 ? undefined : indexOfQuestionMark
 );
 
-render(
-  {
-    "/search": (
-      <Search
-        query={decodeURIComponent(query.value)}
-        // discord={{ accessToken: accessToken.value }}
-      />
-    ),
-    "/random": <Random />
-  }[page] || <Home />,
-  document.getElementById("root")
+const ChorusApp = () => (
+  <BrowserRouter>
+    <div>
+      <Route exact path="/" component={Home} />
+      <Route path="/random" component={Random} />
+      <Route path="/search" component={Search} />
+    </div>
+  </BrowserRouter>
 );
+
+render(<ChorusApp />, document.getElementById("root"));

@@ -1,5 +1,4 @@
-import Inferno from "inferno";
-import Component from "inferno-component";
+import { Component } from "inferno";
 
 import NavBar from "components/organisms/NavBar";
 import SearchBox from "components/organisms/SearchBox";
@@ -7,9 +6,6 @@ import SongList from "components/organisms/SongList";
 import AdvancedSearch from "components/organisms/AdvancedSearch";
 
 import Http from "utils/Http";
-
-import Search from "pages/Search";
-import Random from "pages/Random";
 
 import "./style.scss";
 
@@ -33,44 +29,30 @@ export default class Home extends Component {
     );
   }
   render() {
-    const {
-      count,
-      roles,
-      songs,
-      query,
-      random,
-      advanced,
-      hasMore,
-      from
-    } = this.state;
-    const onQuery = query =>
-      this.setState({ query }, () => {
-        window.history.pushState(
-          null,
-          "Search",
-          `${
-            process.env.TESTING ? "/testing" : ""
-          }/search?query=${encodeURIComponent(query)}`
-        );
-        if (typeof ga !== "undefined") {
-          ga("set", "page", `/search?query=${encodeURIComponent(query)}`);
-          ga("send", "pageview");
-        }
-      });
-    if (query) return <Search query={query} />;
-    if (random) return <Random />;
+    const { count, roles, songs, advanced, hasMore, from } = this.state;
+    const onQuery = query => {
+      this.props.history.push(
+        `${
+          process.env.TESTING ? "/testing" : ""
+        }/search?query=${encodeURIComponent(query)}`
+      );
+      if (typeof ga !== "undefined") {
+        ga("set", "page", `/search?query=${encodeURIComponent(query)}`);
+        ga("send", "pageview");
+      }
+    };
     return (
       <div className="Home">
         <NavBar count={count} />
         {!advanced && (
           <SearchBox
             label="What do you feel like playing today?"
-            onQuery={onQuery}
+            onQuery={onQuery.bind(this)}
           />
         )}
         {advanced && (
           <AdvancedSearch
-            onQuery={onQuery}
+            onQuery={onQuery.bind(this)}
             onSimple={() => this.setState({ advanced: false })}
           />
         )}
@@ -81,19 +63,15 @@ export default class Home extends Component {
           >
             {advanced ? "Back to quick search" : "Advanced search"}
           </a>&nbsp;-&nbsp;<a
-            onClick={() =>
-              this.setState({ random: true }, () => {
-                window.history.pushState(
-                  null,
-                  "Random",
-                  `${process.env.TESTING ? "/testing" : ""}/random`
-                );
-                if (typeof ga !== "undefined") {
-                  ga("set", "page", `/random`);
-                  ga("send", "pageview");
-                }
-              })
-            }
+            onClick={() => {
+              this.props.history.push(
+                `${process.env.TESTING ? "/testing" : ""}/random`
+              );
+              if (typeof ga !== "undefined") {
+                ga("set", "page", `/random`);
+                ga("send", "pageview");
+              }
+            }}
             href="javascript:void(0)"
           >
             {RANDOM_LABEL} (random songs)
