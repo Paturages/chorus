@@ -69,7 +69,8 @@ const list = (args, files, retry) => new Promise((resolve, reject) => throttle('
   auth: oAuth2,
   pageSize: 1000,
   fields: 'nextPageToken, files(id, name, mimeType, fileExtension, size, webContentLink, modifiedTime, webViewLink)'
-}, args), async (err, { data: payload }) => {
+}, args), async (err, res) => {
+  const { data: payload } = res || {};
   if (err) {
     // If Google Drive fails (e.g. 500 Internal Error),
     // try 5 more times before giving up and yielding nothing.
@@ -101,7 +102,8 @@ const list = (args, files, retry) => new Promise((resolve, reject) => throttle('
 const get = fileId => new Promise((resolve, reject) => throttle(
   'get',
   { auth: oAuth2, fileId, alt: 'media' },
-  async (err, { data: payload }) => {
+  async (err, res) => {
+    const { data: payload } = res || {};
     if (err) return reject(err);
     resolve(payload);
   }
