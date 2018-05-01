@@ -1,6 +1,7 @@
+@import "mixins";
+
 .Random {
-  max-width: 1280px;
-  margin: auto;
+  @include page-styles;
   
   &__header {
     display: flex;

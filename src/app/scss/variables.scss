@@ -1,7 +1,16 @@
 $font-family: 'Roboto', 'Arial', sans-serif;
 
-$color--bg: #494949;
+$color--bg: #2c3e50;
+
 $color--text: #fff;
 $color--link: #ffb300;
 $color--link-hover: #ff8300;
-$color--link-visited: #ff5300;
+
+$color--nav-bg: #34495e;
+$color--nav-text: #f3f5fb;
+$color--nav-link: $color--nav-text;
+$color--nav-link-hover: $color--nav-text;
+
+$size--max-width: 72rem;
+$size--page-padding: .5rem 1rem;
+$size--page-margin: 1em auto 0;

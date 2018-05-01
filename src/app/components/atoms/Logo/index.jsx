@@ -1,5 +1,3 @@
-import Inferno from "inferno";
-
 import logo from "assets/images/logo.png"; // credits for the logo go to TheFilyng!
 
 import "./style.scss";

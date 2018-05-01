@@ -1,7 +1,6 @@
 import { Component } from "inferno";
 
-import Logo from "components/atoms/Logo";
-import SearchBox from "components/organisms/SearchBox";
+import LoadingIndicator from "components/atoms/LoadingIndicator";
 import SongList from "components/organisms/SongList";
 
 import Http from "utils/Http";
@@ -16,14 +15,28 @@ const substitutes = {
 export default class Search extends Component {
   constructor(props) {
     super(props);
-    const query = new URLSearchParams(props.location.search).get("query");
-    this.state = { songs: [], query, from: 0 };
+    this.state = this.getLoadingState();
+    this.fetchData(props);
+  }
+  componentWillReceiveProps(props) {
+    this.setState(this.getLoadingState());
+    this.fetchData(props);
+  }
+  getLoadingState() {
+    return { songs: [], from: 0, hasMore: false, isLoading: true };
+  }
+  getQuery(props) {
+    return new URLSearchParams(props.location.search).get("query");
+  }
+  fetchData(props) {
+    const query = this.getQuery(props);
     if (typeof ga !== "undefined") {
       ga("set", "page", `/search?query=${query}`);
       ga("send", "pageview");
     }
     Http.get("/api/search", { query }).then(({ songs, roles }) => {
       this.setState({
+        isLoading: false,
         roles,
         songs,
         hasNothing: !songs.length,
@@ -40,10 +53,11 @@ export default class Search extends Component {
     });
   }
   render() {
+    const query = this.getQuery(this.props);
     const {
+      isLoading,
       songs,
       roles,
-      query,
       from,
       hasMore,
       hasNothing,
@@ -51,53 +65,12 @@ export default class Search extends Component {
     } = this.state;
     return (
       <div className="Search">
-        <div className="Search__header">
-          <Logo simple />
-          <SearchBox
-            query={query}
-            onQuery={query =>
-              this.setState(
-                { query, hasNothing: null, songs: [], from: 0 },
-                () => {
-                  this.props.history.push(
-                    `${
-                      process.env.TESTING ? "/testing" : ""
-                    }/search?query=${encodeURIComponent(query)}`
-                  );
-                  if (typeof ga !== "undefined") {
-                    ga(
-                      "set",
-                      "page",
-                      `/search?query=${encodeURIComponent(query)}`
-                    );
-                    ga("send", "pageview");
-                  }
-                  Http.get("/api/search", { query }).then(({ songs, roles }) =>
-                    this.setState({
-                      songs,
-                      roles,
-                      hasNothing: !songs.length,
-                      hasMore: songs.length == 20,
-                      substituteResult: (() => {
-                        for (let phrase in substitutes) {
-                          if (
-                            this.state.query.toLowerCase().indexOf(phrase) > -1
-                          ) {
-                            return substitutes[phrase];
-                          }
-                        }
-                        return null;
-                      })()
-                    })
-                  );
-                }
-              )
-            }
-          />
-        </div>
-        {!hasNothing &&
+        {isLoading && <LoadingIndicator />}
+        {!isLoading &&
+          !hasNothing &&
           !substituteResult && (
             <SongList
+              title="Search results"
               roles={roles}
               songs={songs}
               hasMore={hasMore}
@@ -114,15 +87,17 @@ export default class Search extends Component {
               }
             />
           )}
-        {hasNothing &&
+        {!isLoading &&
+          hasNothing &&
           !substituteResult && (
             <div className="Search__nothing">
               Sorry, we couldn't find anything!
             </div>
           )}
-        {substituteResult && (
-          <div className="Search__nothing">{substituteResult}</div>
-        )}
+        {!isLoading &&
+          substituteResult && (
+            <div className="Search__nothing">{substituteResult}</div>
+          )}
       </div>
     );
   }

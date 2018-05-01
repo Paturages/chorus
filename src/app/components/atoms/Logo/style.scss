@@ -1,13 +1,7 @@
 @import 'variables';
 
 .Logo {
-  font-size: 3em;
-  margin-bottom: .125em;
-  a {
-    color: $color--text !important;
-    text-decoration: none;
-  }
   &__image {
-    width: 4.5em;
+    width: 8em;
   }
 }

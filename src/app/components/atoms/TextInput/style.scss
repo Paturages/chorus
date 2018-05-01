@@ -3,10 +3,6 @@
 .TextInput {
   text-align: left;
 
-  &__label {
-    font-size: .8em;
-  }
-
   &__input {
     border: 1px solid $color--text;
     appearance: none;

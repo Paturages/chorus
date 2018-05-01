@@ -10,7 +10,7 @@ export default class SearchInput extends Component {
     this.state = { query: props.query || "" };
   }
   render() {
-    const { label, onQuery } = this.props;
+    const { label, placeholder, onQuery } = this.props;
     const { query } = this.state;
     return (
       <form
@@ -25,6 +25,7 @@ export default class SearchInput extends Component {
           className="SearchInput__input"
           type="search"
           label={label}
+          placeholder={placeholder}
           defaultValue={query}
           onInput={$event => this.setState({ query: $event.target.value })}
         />
