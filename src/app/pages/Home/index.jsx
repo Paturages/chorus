@@ -25,6 +25,7 @@ export default class Home extends Component {
     );
   }
   loadMore() {
+    const { songs, roles, from } = this.state;
     Http.get("/api/latest", { from: from + 20 }).then(
       ({ songs: newSongs, roles: newRoles }) =>
         this.setState({

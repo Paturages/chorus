@@ -9,6 +9,12 @@ export default class SearchInput extends Component {
     super(props);
     this.state = { query: props.query || "" };
   }
+  componentWillReceiveProps(props) {
+    this.setState({ query: props.query || "" });
+  }
+  handleChange(evt) {
+    this.setState({ query: evt.target.value });
+  }
   render() {
     const { label, placeholder, onQuery } = this.props;
     const { query } = this.state;
@@ -26,7 +32,8 @@ export default class SearchInput extends Component {
           type="search"
           label={label}
           placeholder={placeholder}
-          defaultValue={query}
+          value={this.state.query}
+          onChange={this.handleChange.bind(this)}
           onInput={$event => this.setState({ query: $event.target.value })}
         />
         <button className="SearchInput__button" type="submit">

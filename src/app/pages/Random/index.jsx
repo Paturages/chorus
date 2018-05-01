@@ -14,11 +14,14 @@ export default class Random extends Component {
     this.fetchRandom();
   }
   componentWillReceiveProps(props) {
-    this.setState(this.getLoadingState());
-    this.fetchRandom();
+    this.reroll();
   }
   getLoadingState() {
     return { songs: [], isLoading: true };
+  }
+  reroll() {
+    this.setState(this.getLoadingState());
+    this.fetchRandom();
   }
   fetchRandom() {
     if (typeof ga !== "undefined") {
@@ -27,7 +30,6 @@ export default class Random extends Component {
     }
     Http.get("/api/random").then(({ songs, roles }) => {
       this.setState({ roles, songs, isLoading: false });
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
   }
   render() {
@@ -41,7 +43,7 @@ export default class Random extends Component {
             roles={roles}
             songs={songs}
             hasMore={true}
-            onMore={this.fetchRandom.bind(this)}
+            onMore={this.reroll.bind(this)}
             moreLabel="Gimme moar random"
           />
         )}

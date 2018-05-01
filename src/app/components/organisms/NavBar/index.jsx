@@ -35,10 +35,14 @@ if (now.getHours() == 21 && now.getMinutes() > 30) {
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: new URLSearchParams(props.location.search).get("query")
-    };
+    this.state = { query: this.getQuery(props) };
     Http.get("/api/count").then(count => this.setState({ count }));
+  }
+  componentWillReceiveProps(props) {
+    this.setState({ query: this.getQuery(props) });
+  }
+  getQuery(props) {
+    return new URLSearchParams(props.location.search).get("query");
   }
   onQuery(query) {
     this.props.history.push(
@@ -102,7 +106,7 @@ class NavBar extends Component {
         <div className="NavBar__main">
           <div className="NavBar__inner">
             <div className="NavBar__item NavBar__item-logo">
-              <Logo />
+              <Logo history={this.props.history} />
             </div>
             <div className="NavBar__item NavBar__item-input">
               <SearchInput
