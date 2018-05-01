@@ -18,5 +18,6 @@ module.exports = webpackMerge(commonConfig, {
         FRONTEND: JSON.stringify(process.env.FRONTEND)
       }
     })
-  ]
+  ],
+  stats: "errors-only",
 });
