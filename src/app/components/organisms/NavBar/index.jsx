@@ -122,6 +122,21 @@ class NavBar extends Component {
             >
               Randomizer!
             </a>
+            <a
+              class="NavBar__item NavBar__item-link"
+              href="javascript:void(0)"
+              onClick={() => {
+                const bg = window.prompt(
+                  "Paste in a direct link to an image (e.g. https://chorus.fightthe.pw/assets/images/monika.jpg) to set it as a custom background. (Note: You can reset this by clearing your browser's cache)"
+                );
+                window.localStorage.bg = bg;
+                document.getElementById(
+                  "background"
+                ).style.backgroundImage = `url(${bg})`;
+              }}
+            >
+              Set Background
+            </a>
             {/* <DonationButton /> */}
             {/*
               TODO: Uncomment when feeling like implementing Discord auth

@@ -17,12 +17,10 @@ import "scss/fonts.scss";
 
 import "./index.html";
 
-// Custom background, because I actually liked how it looked for April Fools
-const bg = window.localStorage.getItem("bg");
+// Set a custom background if set by the user
+const bg = window.localStorage.bg;
 if (bg) {
-  document.getElementsByClassName(
-    "Background"
-  )[0].style.backgroundImage = `url(${bg})`;
+  document.getElementById("background").style.backgroundImage = `url(${bg})`;
 }
 
 // Evil good ol' spying Google Analytics >:)
