@@ -7,13 +7,15 @@ import Search from "pages/Search";
 import Random from "pages/Random";
 import Http from "utils/Http";
 
-import "assets/fonts/roboto/regular.ttf";
-import "assets/fonts/roboto/bold.ttf";
-import "assets/fonts/roboto/light.ttf";
 import "assets/images/favicon_128.png";
 
 import "scss/global.scss";
-import "scss/fonts.scss";
+
+// Un-comment in development mode if working without internet.
+// import "assets/fonts/roboto/regular.ttf";
+// import "assets/fonts/roboto/bold.ttf";
+// import "assets/fonts/roboto/light.ttf";
+// import "scss/fonts.scss";
 
 import "./index.html";
 
