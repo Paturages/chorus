@@ -1,7 +1,8 @@
+@import 'mixins';
+
 .Home {
-  max-width: 1280px;
-  margin: auto;
-  
+  @include page-styles;
+
   .SearchBox, .AdvancedSearch {
     margin: 3em auto 0;
     max-width: 800px;
@@ -17,7 +18,7 @@
   }
 
   &__links {
+    font-size: .9em;
     text-align: center;
-    margin: 2em 0;
   }
 }

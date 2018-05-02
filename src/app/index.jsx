@@ -1,6 +1,7 @@
 import { render } from "inferno";
 import { BrowserRouter, Route, Link } from "inferno-router";
 
+import NavBar from "components/organisms/NavBar";
 import Home from "pages/Home";
 import Search from "pages/Search";
 import Random from "pages/Random";
@@ -8,6 +9,7 @@ import Http from "utils/Http";
 
 import "assets/fonts/roboto/regular.ttf";
 import "assets/fonts/roboto/bold.ttf";
+import "assets/fonts/roboto/light.ttf";
 import "assets/images/favicon_128.png";
 
 import "scss/global.scss";
@@ -96,6 +98,7 @@ const page = window.location.pathname.slice(
 const ChorusApp = () => (
   <BrowserRouter>
     <div>
+      <NavBar />
       <Route exact path="/" component={Home} />
       <Route path="/random" component={Random} />
       <Route path="/search" component={Search} />

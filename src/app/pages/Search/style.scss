@@ -1,36 +1,11 @@
+@import 'mixins';
+
 .Search {
-  max-width: 1280px;
-  margin: auto;
-  
-  &__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 800px;
-    margin-bottom: 3em;
-  }
-  .Logo {
-    font-size: 2.5em;
-    margin-right: 1em;
-    margin-top: .5em;
-  }
-  .SearchBox {
-    flex: 1;
-  }
+  @include page-styles;
+
   @media (max-width: 740px) {
-    &__header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
     &__nothing {
       margin: 0 1.5em;
-    }
-    .Logo {
-      margin: 0 1em 1em;
-    }
-    .SearchBox {
-      margin: 0 1em;
-      width: calc(100% - 2em);
     }
   }
 }

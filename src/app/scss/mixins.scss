@@ -1,6 +1,14 @@
+@import "variables";
+
 $breakpoint--tablet: 768;
 $breakpoint--desktop: 980;
 $breakpoint--widescreen: 1180;
+
+@mixin page-styles {
+  max-width: $size--max-width;
+  padding: $size--page-padding;
+  margin: $size--page-margin;
+}
 
 @mixin breakpoint($point) {
   @if $point == widescreen {

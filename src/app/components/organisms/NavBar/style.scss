@@ -1,21 +1,70 @@
+@import 'variables';
+
 .NavBar {
-  &__head {
+  box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  color: $color--nav-text;
+  font-size: 0.9em;
+  &__links {
+    background-color: #2980b9;
+    .NavBar__item-link {
+      color: $color--nav-link;
+      &:hover, &:focus {
+        color: $color--nav-link-hover;
+        transition: color .15s ease-in;
+      }
+    }
+  }
+  &__main {
+    background-color: $color--nav-bg;
+    padding: 0.5em 0;
+  }
+  &__inner {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    &-spacer {
-      flex: 1;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: $size--max-width;
+    @media (max-width: 740px) {
+      justify-content: center;
+      padding: 0 1em;
+    }
+  }
+  &__spacer {
+    flex: 1;
+    @media (max-width: 740px) {
+      display: none;
     }
   }
   &__item {
-    font-style: italic;
-    font-size: .8em;
-  }
-  &__oh-my-good {
-    width: 4em;
-    margin-top: -1em;
-    + small {
-      position: relative;
-      top: -1.5em;
+    padding: .8em .4em;
+    &-acronym {
+      font-size: 0.85rem;
+    }
+    &-link {
+      flex-grow: 0;
+      margin-left: .5em;
+    }
+    &-logo {
+      flex-grow: 0;
+      @media (max-width: 740px) {
+        flex: 1;
+      }
+    }
+    &-input {
+      flex: 1 1 auto;
+      padding: 1em 0;
+      margin: 0 1em 0 2em;
+      @media (max-width: 740px) {
+        order: 2;
+      }
+      input {
+        background: #fff;
+        border-radius: .25em;
+        color: rgba(0,0,0,.87);
+        padding: .6em 1em;
+        transition: box-shadow .1s ease, border-color .1s ease;
+      }
     }
   }
 }
