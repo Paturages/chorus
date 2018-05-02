@@ -1,6 +1,5 @@
 import { Component } from "inferno";
 
-import LoadingIndicator from "components/atoms/LoadingIndicator";
 import SongList from "components/organisms/SongList";
 
 import Http from "utils/Http";
@@ -52,39 +51,42 @@ export default class Search extends Component {
       });
     });
   }
+  nextPage() {
+    const { from, query, roles, songs } = this.state;
+    this.setState({ isLoading: true });
+    document.documentElement.scrollTop = document.documentElement.scrollHeight;
+    Http.get("/api/search", { query, from: from + 20 }).then(
+      ({ songs: newSongs, roles: newRoles }) =>
+        this.setState({
+          isLoading: false,
+          hasMore: newSongs.length == 20,
+          songs: songs.concat(newSongs),
+          roles: Object.assign(roles, newRoles),
+          from: from + 20
+        })
+    );
+  }
   render() {
     const query = this.getQuery(this.props);
     const {
       isLoading,
       songs,
       roles,
-      from,
       hasMore,
       hasNothing,
       substituteResult
     } = this.state;
     return (
       <div className="Search">
-        {isLoading && <LoadingIndicator />}
-        {!isLoading &&
-          !hasNothing &&
+        {!hasNothing &&
           !substituteResult && (
             <SongList
+              isLoading={isLoading}
               title="Search results"
               roles={roles}
               songs={songs}
               hasMore={hasMore}
-              onMore={() =>
-                Http.get("/api/search", { query, from: from + 20 }).then(
-                  ({ songs: newSongs, roles: newRoles }) =>
-                    this.setState({
-                      hasMore: newSongs.length == 20,
-                      songs: songs.concat(newSongs),
-                      roles: Object.assign(roles, newRoles),
-                      from: from + 20
-                    })
-                )
-              }
+              onMore={this.nextPage.bind(this)}
             />
           )}
         {!isLoading &&
