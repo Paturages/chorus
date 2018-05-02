@@ -52,7 +52,8 @@ export default class Search extends Component {
     });
   }
   nextPage() {
-    const { from, query, roles, songs } = this.state;
+    const query = this.getQuery(this.props);
+    const { from, roles, songs } = this.state;
     this.setState({ isLoading: true });
     document.documentElement.scrollTop = document.documentElement.scrollHeight;
     Http.get("/api/search", { query, from: from + 20 }).then(
@@ -67,7 +68,6 @@ export default class Search extends Component {
     );
   }
   render() {
-    const query = this.getQuery(this.props);
     const {
       isLoading,
       songs,
