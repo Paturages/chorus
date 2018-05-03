@@ -19,6 +19,7 @@
     "pg": "^7.4.1",
     "request": "^2.85.0",
     "rimraf": "^2.6.2",
+    "url-search-params": "^0.10.0",
     "xlsx": "^0.12.11"
   },
   "devDependencies": {

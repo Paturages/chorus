@@ -13,20 +13,27 @@
   <link rel="shortcut icon" href="/assets/images/favicon_128.png">
   <link rel="icon" href="/assets/images/favicon_128.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
-  <link rel="stylesheet" href="styles.css?t=2018-04-30T00-54-00" />
+  <link rel="stylesheet" href="styles.css?t=2018-05-03T10:31:00" />
   <script type="text/javascript">
-    if (!Object.assign) {
+    if (!('searchParams' in HTMLAnchorElement.prototype)) {
       var el = document.createElement('script');
       el.async = false;
-      el.src = 'polyfills.js';
+      el.src = 'urlsearchparams.js';
       el.type = 'text/javascript';
       (document.getElementsByTagName('HEAD')[0]||document.body).appendChild(el);
     }
-    var el2 = document.createElement('script');
-    el2.async = false;
-    el2.src = 'bundle.js?t=2018-04-30T00-54-00';
-    el2.type = 'text/javascript';
-    (document.getElementsByTagName('HEAD')[0] || document.body).appendChild(el2);
+    if (!Object.assign) {
+      var el2 = document.createElement('script');
+      el2.async = false;
+      el2.src = 'polyfills.js';
+      el2.type = 'text/javascript';
+      (document.getElementsByTagName('HEAD')[0]||document.body).appendChild(el2);
+    }
+    var el3 = document.createElement('script');
+    el3.async = false;
+    el3.src = 'bundle.js?t=2018-05-03T10:31:00';
+    el3.type = 'text/javascript';
+    (document.getElementsByTagName('HEAD')[0] || document.body).appendChild(el3);
   </script>
 </head>
 <body>

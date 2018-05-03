@@ -11,6 +11,12 @@ module.exports = webpackMerge(commonConfig, {
     publicPath: "http://localhost:8080/",
     filename: "[name].js"
   },
+  resolve: {
+    /* When doing development workflow we want to make sure webpack picks up development build of inferno */
+    alias: {
+      inferno: path.resolve(__dirname, "..", "node_modules", "inferno", "dist", "index.dev.esm.js")
+    }
+  },
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {

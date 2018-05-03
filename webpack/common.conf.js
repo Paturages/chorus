@@ -14,13 +14,10 @@ module.exports = {
     modules: [
       path.resolve(__dirname, "..", "node_modules"),
       path.resolve(__dirname, "..", "src", "app")
-    ],
-    /* When doing development workflow we want to make sure webpack picks up development build of inferno */
-    alias: {
-      inferno: path.resolve(__dirname, "..", "node_modules", "inferno", "dist", "index.dev.esm.js")
-    }
+    ]
   },
   entry: {
+    urlsearchparams: "urlsearchparams.polyfill",
     polyfills: ["es5-shim", "es6-shim"],
     bundle: "index.jsx"
   },
