@@ -149,9 +149,9 @@ module.exports = async ({ name, link, proxy }) => {
         if (linksMap[file.webViewLink].ignore) continue;
         if ((linksMap[file.webViewLink].uploadedAt || '').slice(0, 19) == file.modifiedTime.slice(0, 19)) {
           songs.push(Object.assign(linksMap[file.webViewLink], {
-            source, parent: file.canBeParent ? {
-              name: file.name,
-              link: file.webViewLink
+            source, parent: folder.canBeParent ? {
+              name: folder.name,
+              link: folder.webViewLink
             } : null
           }));
           continue;
@@ -161,9 +161,9 @@ module.exports = async ({ name, link, proxy }) => {
       if (linksMap[`${file.webViewLink}&i=1`] && (linksMap[`${file.webViewLink}&i=1`].uploadedAt || '').slice(0, 19) == file.modifiedTime.slice(0, 19)) {
         for (let i = 1; linksMap[`${file.webViewLink}&i=${i}`]; i++) {
           songs.push(Object.assign(linksMap[`${file.webViewLink}&i=${i}`], {
-            source, parent: file.canBeParent ? {
-              name: file.name,
-              link: file.webViewLink
+            source, parent: folder.canBeParent ? {
+              name: folder.name,
+              link: folder.webViewLink
             } : null
           }));
         }
