@@ -1,7 +1,24 @@
 # Wanna add some charts?
 
-# Get your GitHub account and edit this file!
-# (or just DM Paturages#9405 on Discord with your drive link and how you wanna name it)
+# Starting from 2018-05-23, you will have to have at least 10 charts in the drive you're submitting.
+# They will have to abide by decent charting standards: good beatmapping is a must, note placement and accuracy
+# must be backed up by at least some musical logic. It's fine if you're not pitch perfect, we all have room for
+# improvement: the requirements to get approved in here are lower than for the "charter role" on the CH Discord.
+
+# If you feel like you apply to these guidelines, either submit a pull request by editing this file with
+# a GitHub account or feel free to DM me on Discord (Paturages#9405) or a "chart reviewer" on the CH Discord
+# server (type !charter in #charting for an up-to-date list of reviewers) with your drive link and how you wanna name it.
+
+# Having the "charter role" on the CH Discord basically guarantees you getting on this list, so do mention that
+# in the commit message when you're submitting, it will definitely help.
+
+# Keep in mind that by editing this file through GitHub, you're not directly editing it,
+# you are submitting a change that will have to go through my approval. 
+
+# --------------------------------- #
+
+# Source file guidelines
+# (When in doubt, just follow the other examples, they work for a reason!)
 
 # The format matches the following fields:
 # <drive_name> :: <link> [:: <custom_script>]
