@@ -277,10 +277,12 @@ Anime Mega-Pack :: https://drive.google.com/drive/folders/16b6qn3RQCshuPWEcRpGUi
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
 
 # Re-hosts
+# (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
 
 Random rehosts :: https://public.fightthe.pw/rehosts/randomshit/ :: caddy
 Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1/ :: caddy/proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
 Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2/ :: caddy/proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
+Vortex Hero :: https://public.fightthe.pw/rehosts/vortex/ :: caddy/proxy:https://www.youtube.com/watch?v=a-6g3qW-g34
 Acai's setlist :: https://public.fightthe.pw/rehosts/acai/ :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
 Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets/ :: caddy/proxy:https://docs.google.com/spreadsheets/d/1jylytDh7E7kcLwvDGGk-2ScWbt9AqABLeEu5Bz490E8/edit#gid=0
 Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
