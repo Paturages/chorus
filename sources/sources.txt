@@ -7,7 +7,7 @@
 
 # If you feel like you apply to these guidelines, either submit a pull request by editing this file with
 # a GitHub account or feel free to DM me on Discord (Paturages#9405) or a "chart reviewer" on the CH Discord
-# server (type !charter in #charting for an up-to-date list of reviewers) with your drive link and how you wanna name it.
+# server (type !charter in #general-charting for an up-to-date list of reviewers) with your drive link and how you wanna name it.
 
 # Having the "charter role" on the CH Discord basically guarantees you getting on this list, so do mention that
 # in the commit message when you're submitting, it will definitely help.
