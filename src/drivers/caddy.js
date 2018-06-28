@@ -21,12 +21,12 @@ const {
   getLinksMapBySource,
 } = require('../utils/db');
 
-module.exports = async ({ name, link, proxy }) => {
+module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) => {
   console.log('Adding', name);
   // 1. Registering the source, or finding its ID if it already exists
   console.log('Registering/finding source');
   // `proxy` is a link that will be displayed instead of the link as a source (useful for rehosts)
-  const source = await upsertSource({ name, link: proxy || link });
+  const source = await upsertSource({ name, link: proxy || link, isSetlist, hideSingleDownloads });
   source.chorusId = source.id;
   if (source.proxy) source.link = link;
   // 2. Get the map of already indexed links so that they don't get parsed again

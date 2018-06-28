@@ -34,14 +34,14 @@ const defaultNameParser = txt => {
   return { artist: artist.trim(), name: name.trim() };
 };
 
-module.exports = async ({ name, link, proxy }) => {
+module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) => {
   console.log('Adding', name);
   // Supporting both https://drive.google.com/open?id=<drive_id>
   // and https://drive.google.com/drive/folders/<drive_id> syntaxes
   // `proxy` is a link that will be displayed instead of the link as a source (useful for rehosts)
   const questionMarkIndex = link.indexOf('?');
   const source = {
-    name, link: proxy || link,
+    name, link: proxy || link, isSetlist, hideSingleDownloads,
     id: link.indexOf('/open?id=') > -1 ?
       link.slice(link.indexOf('/open?id=') + 9) :
       link.slice(link.lastIndexOf('/') + 1, questionMarkIndex < 0 ? undefined : questionMarkIndex)

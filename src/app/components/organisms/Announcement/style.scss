@@ -1,0 +1,9 @@
+@import 'variables';
+
+.Announcement {
+  width: 100%;
+  font-size: .8em;
+  padding: .5em;
+  text-align: center;
+  background: $color--announcement-bg;
+}

@@ -21,7 +21,9 @@ module.exports = async () => {
     await Pg.q`CREATE TABLE "Sources_new" (
       "id" SERIAL NOT NULL PRIMARY KEY,
       "name" text,
-      "link" text
+      "link" text,
+      "isSetlist" boolean,
+      "hideSingleDownloads" boolean
     )`;
     await Pg.q`CREATE UNIQUE INDEX ON public."Sources_new" USING btree(link)`;
     await Pg.q`CREATE INDEX ON public."Sources_new" USING gin(name gin_trgm_ops)`;

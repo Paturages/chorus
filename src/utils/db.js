@@ -12,7 +12,7 @@ module.exports.getLatestCharts = (offset = 0, limit = 20) =>
   .then(songs =>
     Promise.all([
       Pg.q`
-        SELECT ss."songId", s."id", s."name", s."link", ss."parent"
+        SELECT ss."songId", s."id", s."name", s."link", ss."parent", s."isSetlist", s."hideSingleDownloads"
         FROM "Songs_Sources" ss
         JOIN "Sources" s ON ss."sourceId" = s."id"
         WHERE "songId" IN (${songs.map(({ id }) => id)})
@@ -41,10 +41,11 @@ module.exports.getLatestCharts = (offset = 0, limit = 20) =>
         delete song.words; // Users don't need them.
         return { [song.id]: song };
       }));
-      sources.forEach(({ songId, id, name, link, parent }) => {
+      sources.forEach(({ songId, id, name, link, parent, isSetlist, hideSingleDownloads }) => {
+        if (hideSingleDownloads) songMap[songId].link = null;
         if (!songMap[songId].sources) songMap[songId].sources = [];
         if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
-        songMap[songId].sources.push({ id, name, link, parent });
+        songMap[songId].sources.push({ id, name, link, parent, isSetlist });
       });
       hashes.forEach(({ songId, hash, part, difficulty }) => {
         if (!songMap[songId].hashes) songMap[songId].hashes = {};
@@ -456,7 +457,7 @@ module.exports.search = async (query, offset, limit) => {
   // Populate the results with sources and hashes
   return Promise.all([
     Pg.q`
-      SELECT ss."songId", s."id", s."name", s."link", ss."parent"
+      SELECT ss."songId", s."id", s."name", s."link", ss."parent", s."isSetlist", s."hideSingleDownloads"
       FROM "Songs_Sources" ss
       JOIN "Sources" s ON ss."sourceId" = s."id"
       WHERE "songId" IN (${songs.map(({ id }) => id)})
@@ -486,10 +487,11 @@ module.exports.search = async (query, offset, limit) => {
       delete song.words; // Users don't need them.
       return { [song.id]: song };
     }));
-    sources.forEach(({ songId, id, name, link, parent }) => {
+    sources.forEach(({ songId, id, name, link, parent, isSetlist, hideSingleDownloads }) => {
+      if (hideSingleDownloads) songMap[songId].link = null;
       if (!songMap[songId].sources) songMap[songId].sources = [];
       if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
-      songMap[songId].sources.push({ id, name, link, parent });
+      songMap[songId].sources.push({ id, name, link, parent, isSetlist });
     });
     hashes.forEach(({ songId, hash, part, difficulty }) => {
       if (!songMap[songId].hashes) songMap[songId].hashes = {};
@@ -581,7 +583,7 @@ module.exports.getSongsSample = () => Pg.q`select * from "Songs" tablesample ber
 .then(songs =>
   Promise.all([
     Pg.q`
-      SELECT ss."songId", s."id", s."name", s."link", ss."parent"
+      SELECT ss."songId", s."id", s."name", s."link", ss."parent", s."isSetlist", s."hideSingleDownloads"
       FROM "Songs_Sources" ss
       JOIN "Sources" s ON ss."sourceId" = s."id"
       WHERE "songId" IN (${songs.map(({ id }) => id)})
@@ -610,10 +612,11 @@ module.exports.getSongsSample = () => Pg.q`select * from "Songs" tablesample ber
       delete song.words; // Users don't need them.
       return { [song.id]: song };
     }));
-    sources.forEach(({ songId, id, name, link, parent }) => {
+    sources.forEach(({ songId, id, name, link, parent, isSetlist }) => {
+      if (hideSingleDownloads) songMap[songId].link = null;
       if (!songMap[songId].sources) songMap[songId].sources = [];
       if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
-      songMap[songId].sources.push({ id, name, link, parent });
+      songMap[songId].sources.push({ id, name, link, parent, isSetlist });
     });
     hashes.forEach(({ songId, hash, part, difficulty }) => {
       if (!songMap[songId].hashes) songMap[songId].hashes = {};

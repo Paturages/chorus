@@ -43,6 +43,10 @@
 # - caddy: if you are using https://caddyserver.com/docs/browse to serve your files
 
 # Lines that start with a # are comments and will not be parsed. Neither will empty lines.
+# Lines that start with "$ " are setlists, which means that the link (which will be in 99% of cases a "proxy" link)
+# leads to a full setlist download (in one archive).
+# "$! " denotes a setlist that will be indexed but will not display its individual song downloads.
+# This is used for recently released setlists to promote fully downloading them.
 
 # --------------------------------- #
 
@@ -289,12 +293,12 @@ Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWR
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
 
 Random rehosts :: https://public.fightthe.pw/rehosts/randomshit/ :: caddy
-Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1/ :: caddy/proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
-Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2/ :: caddy/proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
-Vortex Hero :: https://public.fightthe.pw/rehosts/vortex/ :: caddy/proxy:https://www.youtube.com/watch?v=a-6g3qW-g34
-Acai's setlist :: https://public.fightthe.pw/rehosts/acai/ :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
-Official GHL/CHL spreadsheet :: https://public.fightthe.pw/rehosts/6frets/ :: caddy/proxy:https://docs.google.com/spreadsheets/d/1jylytDh7E7kcLwvDGGk-2ScWbt9AqABLeEu5Bz490E8/edit#gid=0
-Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
+$ Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1/ :: caddy/proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
+$ Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2/ :: caddy/proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
+$ Vortex Hero :: https://public.fightthe.pw/rehosts/vortex/ :: caddy/proxy:https://www.youtube.com/watch?v=a-6g3qW-g34
+$ Acai's setlist :: https://public.fightthe.pw/rehosts/acai/ :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
+GHL/CHL Discord Community (check #6_fret_charts in this Discord!) :: https://public.fightthe.pw/rehosts/6frets/ :: caddy/proxy:https://discord.gg/hmtaBTp
+$ Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
 Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
 Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
 Community Track Pack 1 :: https://public.fightthe.pw/rehosts/ctp1/ :: caddy
@@ -302,4 +306,4 @@ Community Track Pack 2 :: https://public.fightthe.pw/rehosts/ctp2/ :: caddy
 Community Track Pack 3 :: https://public.fightthe.pw/rehosts/ctp3/ :: caddy
 Community Track Pack 4 :: https://public.fightthe.pw/rehosts/ctp4/ :: caddy
 Community Track Pack 5 :: https://public.fightthe.pw/rehosts/ctp5/ :: caddy
-Community Track Pack 6 :: https://public.fightthe.pw/rehosts/ctp6/ :: caddy/proxy:https://www.youtube.com/watch?v=0qnYxeBclHc
+$ Community Track Pack 6 :: https://public.fightthe.pw/rehosts/ctp6/ :: caddy/proxy:https://www.youtube.com/watch?v=0qnYxeBclHc

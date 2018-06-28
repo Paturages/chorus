@@ -44,18 +44,12 @@ class NavBar extends Component {
   getQuery(props) {
     return new URLSearchParams(props.location.search).get("query");
   }
-  onQuery(query) {
-    this.props.history.push(
-      `${process.env.TESTING ? "/testing" : ""}/${(query &&
-        `search?query=${encodeURIComponent(query)}`) ||
-        ""}`
-    );
-  }
   goToRandom(evt) {
     evt.preventDefault();
     this.props.history.push(`${process.env.TESTING ? "/testing" : ""}/random`);
   }
   render() {
+    const { onQuery, onAdvancedSearchToggle, showAdvanced } = this.props;
     const { count } = this.state;
     return (
       <div className="NavBar">
@@ -112,13 +106,20 @@ class NavBar extends Component {
               <SearchInput
                 placeholder="What do you feel like playing today?"
                 query={this.state.query}
-                onQuery={this.onQuery.bind(this)}
+                onQuery={onQuery}
               />
             </div>
             <a
               class="NavBar__item NavBar__item-link"
+              onClick={onAdvancedSearchToggle}
+              href="javascript:void(0)"
+            >
+              {showAdvanced ? "Back to Normal Search" : "Advanced Search"}
+            </a>
+            <a
+              class="NavBar__item NavBar__item-link"
               onClick={this.goToRandom.bind(this)}
-              href="#"
+              href="javascript:void(0)"
             >
               Randomizer!
             </a>

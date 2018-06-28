@@ -5,7 +5,7 @@
   color: $color--nav-text;
   font-size: 0.9em;
   &__links {
-    background-color: #2980b9;
+    background-color: $color--nav-top-bg;
     .NavBar__item-link {
       color: $color--nav-link;
       &:hover, &:focus {

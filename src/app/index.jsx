@@ -1,11 +1,13 @@
-import { render } from "inferno";
-import { BrowserRouter, Route, Link } from "inferno-router";
+import { Component, render } from "inferno";
+import { BrowserRouter, Route, withRouter } from "inferno-router";
 
 import NavBar from "components/organisms/NavBar";
+import AdvancedSearch from "components/organisms/AdvancedSearch";
+import Announcement from "components/organisms/Announcement";
+
 import Home from "pages/Home";
 import Search from "pages/Search";
 import Random from "pages/Random";
-import Http from "utils/Http";
 
 import "assets/images/favicon_128.png";
 
@@ -95,15 +97,50 @@ const page = window.location.pathname.slice(
   indexOfQuestionMark < 0 ? undefined : indexOfQuestionMark
 );
 
-const ChorusApp = () => (
+class ChorusApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showAdvanced: false };
+    this.query = this.query.bind(this);
+    this.onAdvancedSearchToggle = this.onAdvancedSearchToggle.bind(this);
+  }
+  query(query) {
+    this.setState({ showAdvanced: false });
+    this.props.history.push(
+      `${
+        process.env.TESTING ? "/testing" : ""
+      }/search?query=${encodeURIComponent(query)}`
+    );
+  }
+  onAdvancedSearchToggle() {
+    const { showAdvanced } = this.state;
+    this.setState({ showAdvanced: !showAdvanced });
+  }
+  render() {
+    const { showAdvanced } = this.state;
+    return (
+      <div>
+        <NavBar
+          onQuery={this.query}
+          onAdvancedSearchToggle={this.onAdvancedSearchToggle}
+          showAdvanced={showAdvanced}
+        />
+        <Announcement />
+        {showAdvanced && <AdvancedSearch onQuery={this.query} />}
+      </div>
+    );
+  }
+}
+
+const ChorusWithRouter = withRouter(ChorusApp);
+render(
   <BrowserRouter>
     <div>
-      <NavBar />
+      <ChorusWithRouter />
       <Route exact path="/" component={Home} />
       <Route path="/random" component={Random} />
       <Route path="/search" component={Search} />
     </div>
-  </BrowserRouter>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
-render(<ChorusApp />, document.getElementById("root"));

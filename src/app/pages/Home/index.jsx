@@ -1,9 +1,6 @@
 import { Component } from "inferno";
 
-import NavBar from "components/organisms/NavBar";
-import SearchBox from "components/organisms/SearchBox";
 import SongList from "components/organisms/SongList";
-import AdvancedSearch from "components/organisms/AdvancedSearch";
 
 import Http from "utils/Http";
 
@@ -39,34 +36,9 @@ export default class Home extends Component {
     );
   }
   render() {
-    const { isLoading, roles, songs, advanced, hasMore, from } = this.state;
-    const onQuery = query => {
-      this.props.history.push(
-        `${
-          process.env.TESTING ? "/testing" : ""
-        }/search?query=${encodeURIComponent(query)}`
-      );
-      if (typeof ga !== "undefined") {
-        ga("set", "page", `/search?query=${encodeURIComponent(query)}`);
-        ga("send", "pageview");
-      }
-    };
+    const { isLoading, roles, songs, hasMore } = this.state;
     return (
       <div className="Home">
-        {advanced && (
-          <AdvancedSearch
-            onQuery={onQuery.bind(this)}
-            onSimple={() => this.setState({ advanced: false })}
-          />
-        )}
-        <div className="Home__links">
-          <a
-            onClick={() => this.setState({ advanced: !advanced })}
-            href="javascript:void(0)"
-          >
-            {advanced ? "Close" : "Advanced search"}
-          </a>
-        </div>
         <SongList
           isLoading={isLoading}
           title="Latest charts"

@@ -34,9 +34,15 @@ process.on("unhandledRejection", (err, promise) => {
       .split('\n')
       .map(line => {
         if (!line.trim() || line.trim()[0] == '#') return;
+        const isSetlist = line[0] == "$";
+        let hideSingleDownloads = false;
+        if (isSetlist) {
+          hideSingleDownloads = line[1] == '!';
+          line = line.slice(hideSingleDownloads ? 3 : 2);
+        }
         const [name, link, script] = line.split('::');
         if (!name || !link) return;
-        return { name: name.trim(), link: link.trim(), script: (script || '').trim() };
+        return { name: name.trim(), link: link.trim(), script: (script || '').trim(), isSetlist, hideSingleDownloads };
       });
     const txtSources = (await ls(path.resolve(__dirname, 'sources', 'txt'), '*')).map(full => ({
       name: full.slice(full.lastIndexOf('/') + 1, full.lastIndexOf('.')),

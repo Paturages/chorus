@@ -1,14 +1,18 @@
-.Charter {
-  &--roled {
+.DownloadLink {
+  &--no-link a,
+  &--no-link a:hover {
+    color: #fff;
+  }
+  &--verified {
     position: relative;
-    a:hover + .Charter__tooltip {
+    a:hover + .DownloadLink__tooltip {
       display: block;
     }
   }
 
   &__charter {
     &--roled {
-      .Charter__charter-name {
+      .DownloadLink__charter-name {
         color: #BBDEFB;
         &:hover {
           color: #64B5F6;
