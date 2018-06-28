@@ -2,10 +2,10 @@
   padding: 1em 2em;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
 
-  @media (max-width: 740px) {
+  @media (max-width: 1023px) {
     display: block;
     padding: 1em;
   }
@@ -17,14 +17,9 @@
   &__modified {
     font-size: .5em;
     opacity: .6;
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    text-align: right;
   }
 
   &__hash {
-    margin-top: 1rem;
     font-size: .5em;
     opacity: .6;
   }
@@ -44,7 +39,7 @@
       position: absolute;
       top: 1.75em;
       left: -1em;
-      max-width: 40em;
+      width: 20em;
       color: #fff;
       background: rgba(50, 50, 50, .8);
       padding: .5em;
@@ -60,62 +55,35 @@
   }
 
   &__charter {
-    margin: 1em 0;
+    margin: .5em 0;
   }
 
   &__sources {
     font-size: .8em;
-  }
-
-  &__features {
-    width: 11em;
-    flex-shrink: 0;
-    font-size: .8em;
-    margin: 0 1.5em;
-    text-align: right;
-    text-transform: uppercase;
-    @media (max-width: 740px) {
-      flex: 1;
-      width: auto;
-      font-size: .6em;
-    }
+    margin-bottom: .5rem;
   }
 
   &__chart-info {
+    width: 30em;
+    display: flex;
+    flex-direction: column;
+    .SongParts {
+      margin-bottom: .5em;
+    }
+    @media (max-width: 1023px) {
+      width: auto;
+    }
+  }
+
+  &__misc {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    @media (max-width: 740px) {
-      margin-top: 1em;
-    }
-  }
-
-  &__feature {
-    margin: .25em 0;
-    &--disabled {
-      opacity: .25;
-    }
-    &-items {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      font-size: .6em;
-    }
-    &-item {
-      margin-left: .5em;
-    }
-  }
-
-  &__tiers-columns {
-    display: flex;
-    flex-direction: row;
-  }
-
-  &__tiers-column {
-    margin-right: 1em;
   }
 
   .NoteDensity {
+    width: 100%;
     margin-top: .5em;
   }
 }

@@ -35,7 +35,6 @@ export default ({ length, noteCounts = {} }) => {
   const rating = ratings[density >> 0] || ratings[NPS_CAP];
   return (
     <div className="NoteDensity">
-      <div className="NoteDensity__label">{density} average NPS</div>
       <div className="NoteDensity__bar">
         <div
           className={`NoteDensity__bar-filler ${
@@ -44,7 +43,10 @@ export default ({ length, noteCounts = {} }) => {
           style={{ width: `${width}%` }}
         />
       </div>
-      <div className="NoteDensity__rating">{rating}</div>
+      <div className="NoteDensity__text">
+        <div className="NoteDensity__rating">{rating}</div>
+        <div className="NoteDensity__label">{density} average NPS</div>
+      </div>
     </div>
   );
 };

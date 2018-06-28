@@ -5,6 +5,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  &__text {
+    margin-top: .5em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   &__bar {
     height: 3px;
     width: 100%;
@@ -16,5 +23,9 @@
         background: #ff0033;
       }
     }
+  }
+  &__rating {
+    font-size: 1.125em;
+    font-weight: 600;
   }
 }

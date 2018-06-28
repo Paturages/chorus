@@ -1,0 +1,18 @@
+.SongParts {
+  display: flex;
+  flex-direction: row;
+  &__part + &__part {
+    margin-left: .5em;
+  }
+}
+
+.Song {
+  &__tiers-columns {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__tiers-column {
+    margin-right: 1em;
+  }
+}
