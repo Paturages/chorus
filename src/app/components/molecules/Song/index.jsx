@@ -39,6 +39,24 @@ export default props => {
       <div className="Song__meta">
         <div className="Song__artist">{artist}</div>
         <div className="Song__name">{name}</div>
+        <div className="Song__album">
+          {album || "Unknown album"}
+          {year ? ` (${year})` : ""}
+        </div>
+        {genre && <div className="Song__genre">{genre}</div>}
+        {length && (
+          <div className="Song__length">
+            {toTime(length)}{" "}
+            <span className="Song__length-tooltip-trigger">
+              ({toTime(effectiveLength)})
+            </span>
+            <div className="Song__length-tooltip">
+              Between brackets is the effective length, which is the duration
+              between the first and the last note. This duration is the one used
+              in the NPS calculation.
+            </div>
+          </div>
+        )}
         <div className="Song__charter">
           <DownloadLink
             link={link}
@@ -87,31 +105,11 @@ export default props => {
       </div>
       {noteCounts && (
         <div className="Song__chart-info">
-          <div className="Song__misc">
-            <div>
-              {length && (
-                <div className="Song__length">
-                  {toTime(length)}{" "}
-                  <span className="Song__length-tooltip-trigger">
-                    ({toTime(effectiveLength)})
-                  </span>
-                  <div className="Song__length-tooltip">
-                    Between brackets is the effective length, which is the
-                    duration between the first and the last note. This duration
-                    is the one used in the NPS calculation.
-                  </div>
-                </div>
-              )}
-              {genre && <div className="Song__genre">{genre}</div>}
-              <div className="Song__album">
-                {album || "Unknown album"}
-                {year ? ` (${year})` : ""}
-              </div>
-            </div>
-            <SongParts {...props} />
-          </div>
           <SongFeatures {...props} />
-          <NoteDensity length={effectiveLength} noteCounts={noteCounts} />
+          <div>
+            <SongParts {...props} />
+            <NoteDensity length={effectiveLength} noteCounts={noteCounts} />
+          </div>
         </div>
       )}
     </div>

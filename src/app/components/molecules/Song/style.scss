@@ -2,7 +2,6 @@
   padding: 1em 2em;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
   position: relative;
 
   @media (max-width: 1023px) {
@@ -30,6 +29,7 @@
   }
 
   &__length {
+    font-size: .8em;
     position: relative;
     color: #ccc;
     &-tooltip {
@@ -64,26 +64,30 @@
   }
 
   &__chart-info {
-    width: 30em;
+    margin-right: 1em;
+    position: relative;
+    align-self: flex-end;
     display: flex;
-    flex-direction: column;
-    .SongParts {
-      margin-bottom: .5em;
+    flex-direction: row;
+    align-items: flex-end;
+    &-misc {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
     @media (max-width: 1023px) {
       width: auto;
+      margin-top: 1em;
     }
   }
 
-  &__misc {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .SongFeatures {
+    margin-right: 1em;
   }
 
   .NoteDensity {
-    width: 100%;
     margin-top: .5em;
+    white-space: nowrap;
   }
 }

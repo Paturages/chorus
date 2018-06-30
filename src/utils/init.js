@@ -63,6 +63,7 @@ module.exports = async () => {
       "is120" boolean,
       "hasStems" boolean,
       "hasVideo" boolean,
+      "hasLyrics" boolean,
       "noteCounts" jsonb,
       "lastModified" timestamp,
       "uploadedAt" timestamp,

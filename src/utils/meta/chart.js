@@ -57,6 +57,13 @@ const diffMap = {
 const notesMap = { 0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 8: 6, 7: 7 };
 
 module.exports = chart => {
+  let hasStarPower = false;
+  let hasForced = false;
+  let hasTap = false;
+  let hasOpen = {};
+  let hasSoloSections = false;
+  let hasLyrics = false;
+  let hasSections = false;
   try {
     const utf8 = Iconv.decode(chart, 'utf8');
     chart = utf8.indexOf('�') >= 0 ? Iconv.decode(chart, 'latin1') : utf8;
@@ -77,18 +84,20 @@ module.exports = chart => {
       if (param == 'Year') value = value.replace(', ', '');
       chartMeta[param] = value;
     }
-    // Detect sections
+    // Detect sections and lyrics
     const eventsIndex = lines.indexOf('[Events]');
-    const hasSections = eventsIndex > -1 && lines[eventsIndex + 2] != '}';
+    for (let i = eventsIndex; lines[i] != null && lines[i] != '}'; i++) {
+      let [, value] = lines[i].split(' = ');
+      if (!value) continue;
+      if (value.match(/"lyric /)) hasLyrics = true;
+      else if (value.match(/"section /)) hasSections = true;
+    }
     // Detect features
     const notesIndex = lines.findIndex(line => diffMap[line.trim()]);
     if (!notesIndex || notesIndex < 0) return chartMeta;
     let firstNoteIndex = 0;
     let lastNoteIndex = 0;
     let currentStatus;
-    let hasStarPower = false, hasForced = false,
-      hasTap = false, hasOpen = {},
-      hasSoloSections = false;
     const notes = {};
     for (let i = notesIndex; i < lines.length; i++) {
       const line = lines[i];
@@ -171,7 +180,7 @@ module.exports = chart => {
     }
     return {
       hasSections, hasStarPower, hasForced,
-      hasTap, hasOpen, hasSoloSections,
+      hasTap, hasOpen, hasSoloSections, hasLyrics,
       noteCounts, hashes, chartMeta, is120,
       // "Effective song length" = time between first and last note
       length: time >> 0, effectiveLength: (time - timeToFirstNote) >> 0

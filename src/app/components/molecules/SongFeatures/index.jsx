@@ -11,7 +11,7 @@ const FEATURES = [
   "star power",
   "stems (multi-track)",
   "video background",
-  "lyrics" // TODO
+  "lyrics"
 ];
 
 export default ({
@@ -22,7 +22,8 @@ export default ({
   hasStarPower,
   hasSoloSections,
   hasStems,
-  hasVideo
+  hasVideo,
+  hasLyrics
 }) => {
   const flags = [
     hasOpen && Object.keys(hasOpen).length > 0,
@@ -32,20 +33,20 @@ export default ({
     hasSoloSections,
     hasStarPower,
     hasStems,
-    hasVideo
+    hasVideo,
+    hasLyrics
   ];
   return (
     <div className="SongFeatures">
-      {flags
-        .map(
-          (flag, index) =>
-            !!flag &&
-            `${FEATURES[index]}${
-              index ? "" : ` (${Object.keys(hasOpen).join(", ")})`
-            }`
-        )
-        .filter(x => x)
-        .join(", ")}
+      {flags.map(
+        (flag, index) =>
+          !!flag && (
+            <div>
+              {FEATURES[index]}
+              {index ? "" : ` (${Object.keys(hasOpen).join(", ")})`}
+            </div>
+          )
+      )}
     </div>
   );
 };

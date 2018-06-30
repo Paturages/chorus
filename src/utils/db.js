@@ -141,7 +141,8 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "tier_bassghl", "diff_guitar", "diff_bass", "diff_rhythm",
         "diff_drums", "diff_keys", "diff_guitarghl", "diff_bassghl",
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
-        "hasSoloSections", "hasStems", "hasVideo", "noteCounts", "link",
+        "hasSoloSections", "hasStems", "hasVideo", "hasLyrics",
+        "noteCounts", "link",
         "directLinks", "length", "effectiveLength", "is120",
         "lastModified", "uploadedAt", "isPack", "words"
       )
@@ -152,9 +153,9 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           name = '', artist = '', album = '', genre = '', year = '', charter = '',
           diff_band = -1, diff_guitar = -1, diff_bass = -1, diff_rhythm = -1,
           diff_drums = -1, diff_vocals = -1, diff_keys = -1, diff_guitarghl = -1,
-          diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections,
+          diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections, hasLyrics,
           hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
-          hashes, link, chartMeta = {}, source, parent = {}, frets = '', isPack,
+          link, chartMeta = {}, source, parent = {}, frets = '', isPack,
           directLinks, length, effectiveLength, uploadedAt, is120
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
@@ -189,6 +190,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             hasSoloSections,
             hasStems,
             hasVideo,
+            hasLyrics,
             noteCounts ? JSON.stringify(noteCounts) : null,
             link,
             directLinks ? JSON.stringify(directLinks) : null,
@@ -324,6 +326,7 @@ module.exports.search = async (query, offset, limit) => {
   const [, hasSoloSections] = query.match(/hasSoloSections=(\d)/) || [];
   const [, hasStems] = query.match(/hasStems=(\d)/) || [];
   const [, hasVideo] = query.match(/hasVideo=(\d)/) || [];
+  const [, hasLyrics] = query.match(/hasLyrics=(\d)/) || [];
   const [, is120] = query.match(/is120=(\d)/) || [];
   let songs;
   if (name || artist || album || genre || charter ||
@@ -332,7 +335,7 @@ module.exports.search = async (query, offset, limit) => {
     tier_bassghl || diff_guitar || diff_bass || diff_rhythm ||
     diff_drums || diff_keys || diff_guitarghl || diff_bassghl ||
     hasForced || hasOpen || hasTap || hasSections || hasStarPower ||
-    hasSoloSections || hasStems || hasVideo || is120) {
+    hasSoloSections || hasStems || hasVideo || hasLyrics || is120) {
     // Advanced search: detected.
     let queryIndex = 1;
     const queryParams = [];
@@ -431,6 +434,11 @@ module.exports.search = async (query, offset, limit) => {
         and (
           "hasVideo" is ${hasVideo == 1 ? 'not' : ''} null
           ${hasVideo == 1 ? 'and' : 'or'} "hasVideo" = $${queryIndex++}
+        )` : ''}
+      ${hasLyrics ? queryParams.push(!!+hasLyrics) && `
+        and (
+          "hasLyrics" is ${hasLyrics == 1 ? 'not' : ''} null
+          ${hasLyrics == 1 ? 'and' : 'or'} "hasLyrics" = $${queryIndex++}
         )` : ''}
       ${is120 ? queryParams.push(!!+is120) && `
         and (

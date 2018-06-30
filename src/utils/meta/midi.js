@@ -19,13 +19,13 @@ const partMap = {
   'PART KEYS': 'keys',
   'PART DRUMS': 'drums',
   'PART GUITAR GHL': 'guitarghl',
-  'PART BASS GHL': 'bassghl',
+  'PART BASS GHL': 'bassghl'
 };
 const diffOffsets = { e: 59, m: 71, h: 83, x: 95 };
 
 const parse = midiFile => {
   const midi = new MIDIFile(midiFile.buffer);
-  let hasSections = false, hasStarPower = false, hasForced = false, hasTap = false, hasOpen = {};
+  let hasSections = false, hasSoloSections = false, hasStarPower = false, hasForced = false, hasTap = false, hasLyrics = false, hasOpen = {};
   let isOpen = false;
   let firstNoteTime, lastNoteTime = 0;
   const tracks = {};
@@ -37,7 +37,12 @@ const parse = midiFile => {
     // data is a string attached to the MIDI event.
     // It generally denotes chart events (sections, lighting...)
     const data = event.data ? event.data.map(d => String.fromCharCode(d)).join('') : null;
-    if (data && data.slice(1, 8) == 'section') hasSections = true;
+    // Let's hope I'm not wrong
+    if (event.param1 == 103) hasSoloSections = true;
+    // prc? different standards for .mids smh, that's most likely from RB though
+    else if (data && data.match(/^\[(section|prc)/)) hasSections = true;
+    // CH lyrics take from the vocals part
+    else if (data && data.trim() == 'PART VOCALS') hasLyrics = true;
     else if (data && partMap[data]) tracks[event.track] = partMap[data];
     // If that ain't black magic, I don't know what it is. But it works.
     else if (data == "PS\u0000\u0000ÿ\u0004\u0001÷") hasTap = true;
@@ -48,7 +53,7 @@ const parse = midiFile => {
 
     // param1 is the note being played.
     // The interesting things happen here...
-    if (event.param1) {
+    if (event.param1 && event.param1 != 103) {
       if (event.param1 == 116) hasStarPower = true;
       else if ([65, 66, 77, 78, 89, 90, 101, 102].indexOf(event.param1) > -1) hasForced = true;
       else if (tracks[event.track] != 'guitarghl' && tracks[event.track] != 'bassghl') {
@@ -109,8 +114,8 @@ const parse = midiFile => {
   }
 
   return {
-    hasSections, hasStarPower, hasForced,
-    hasTap, hasOpen, noteCounts, is120,
+    hasSections, hasStarPower, hasForced, hasSoloSections,
+    hasTap, hasOpen, noteCounts, is120, hasLyrics,
     hashes, length: lastNoteTime / 1000 >> 0,
     effectiveLength: (lastNoteTime - firstNoteTime) / 1000 >> 0
   };

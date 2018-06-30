@@ -1,12 +1,4 @@
 .SongFeatures {
   font-size: .8em;
-  &__feature {
-    text-align: center;
-    &::after {
-      content: ', ';
-    }
-    &:last-child::after {
-      content: '';
-    }
-  }
+  text-align: right;
 }

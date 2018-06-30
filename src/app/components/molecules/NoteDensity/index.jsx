@@ -30,17 +30,17 @@ export default ({ length, noteCounts = {} }) => {
   const part = noteCounts.guitar ? "guitar" : Object.keys(noteCounts)[0];
   const difficulty = ["x", "h", "m", "e"].find(diff => noteCounts[part][diff]);
   const density = (noteCounts[part][difficulty] / length).toFixed(2);
-  let width = (100 * density / NPS_CAP).toFixed(2);
-  if (width > 100) width = 100;
+  let height = (100 * density / NPS_CAP).toFixed(2);
+  if (height > 100) height = 100;
   const rating = ratings[density >> 0] || ratings[NPS_CAP];
   return (
     <div className="NoteDensity">
       <div className="NoteDensity__bar">
         <div
           className={`NoteDensity__bar-filler ${
-            width == 100 ? "NoteDensity__bar-filler--maxxed" : ""
+            height == 100 ? "NoteDensity__bar-filler--maxxed" : ""
           }`}
-          style={{ width: `${width}%` }}
+          style={{ height: `${height}%` }}
         />
       </div>
       <div className="NoteDensity__text">

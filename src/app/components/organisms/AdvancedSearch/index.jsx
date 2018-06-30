@@ -79,7 +79,8 @@ export default class AdvancedSearch extends Component {
       hasStarPower,
       hasSoloSections,
       hasStems,
-      hasVideo
+      hasVideo,
+      hasLyrics
     } = this.state;
     const { onQuery } = this.props;
     return (
@@ -116,6 +117,7 @@ export default class AdvancedSearch extends Component {
             queries.push(`hasSoloSections=${+hasSoloSections}`);
           if (hasStems != null) queries.push(`hasStems=${+hasStems}`);
           if (hasVideo != null) queries.push(`hasVideo=${+hasVideo}`);
+          if (hasLyrics != null) queries.push(`hasLyrics=${+hasLyrics}`);
           onQuery(queries.join(" "));
         }}
       >
@@ -320,7 +322,20 @@ export default class AdvancedSearch extends Component {
               this.setState({ hasVideo: status });
             }}
           />
-          <div style={{ flex: 1, margin: "0 3em" }} />
+          <FeatureSelector
+            status={hasLyrics}
+            labels={{
+              default: "Lyrics",
+              disabled: "No lyrics"
+            }}
+            onToggle={() => {
+              let status;
+              if (hasLyrics == null) status = true;
+              else if (hasLyrics) status = false;
+              else status = null;
+              this.setState({ hasLyrics: status });
+            }}
+          />
         </div>
         <div className="AdvancedSearch__submit">
           <button type="submit">Submit</button>

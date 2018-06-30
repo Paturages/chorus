@@ -4,24 +4,27 @@
   font-size: .8em;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   &__text {
-    margin-top: .5em;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    text-align: right;
   }
   &__bar {
-    height: 3px;
-    width: 100%;
+    width: 5px;
+    height: 9.5em;
     background: #eee;
+    position: absolute;
+    bottom: 0;
+    right: -1.5em;
+    transform: scale(1, -1);
     &-filler {
-      height: 3px;
+      width: 5px;
       background: $color--link;
       &--maxxed {
         background: #ff0033;
       }
+    }
+    @media (max-width: 1023px) {
+      display: none;
     }
   }
   &__rating {
