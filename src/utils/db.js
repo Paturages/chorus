@@ -64,12 +64,12 @@ module.exports.getLatestCharts = (offset = 0, limit = 20) =>
   )
 ;
 
-module.exports.upsertSource = ({ name, link }) =>
+module.exports.upsertSource = ({ name, link, isSetlist, hideSingleDownloads }) =>
   Pg.q`
     INSERT INTO "Sources${{ sql: process.argv[2] ? '' : '_new' }}"
-    ("name", "link")
+    ("name", "link", "isSetlist", "hideSingleDownloads")
     VALUES
-    (${name}, ${link})
+    (${name}, ${link}, ${isSetlist}, ${hideSingleDownloads})
     ON CONFLICT ("link") DO UPDATE
     SET "name" = EXCLUDED."name"
     RETURNING *
@@ -142,7 +142,8 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
         "diff_drums", "diff_keys", "diff_guitarghl", "diff_bassghl",
         "hasForced", "hasOpen", "hasTap", "hasSections", "hasStarPower",
         "hasSoloSections", "hasStems", "hasVideo", "hasLyrics",
-        "noteCounts", "link",
+        "hasNoAudio", "needsRenaming", "isFolder",
+        "hasBrokenNotes", "hasBackground", "noteCounts", "link",
         "directLinks", "length", "effectiveLength", "is120",
         "lastModified", "uploadedAt", "isPack", "words"
       )
@@ -154,7 +155,10 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           diff_band = -1, diff_guitar = -1, diff_bass = -1, diff_rhythm = -1,
           diff_drums = -1, diff_vocals = -1, diff_keys = -1, diff_guitarghl = -1,
           diff_bassghl = -1, hasForced, hasOpen, hasTap, hasSections, hasLyrics,
-          hasStarPower, hasSoloSections, hasStems, hasVideo, noteCounts, lastModified,
+          song_length, hasStarPower, hasSoloSections, hasStems, hasVideo,
+          hasNoAudio, needsRenaming,
+          isFolder, hasBrokenNotes, hasBackground,
+          noteCounts, lastModified,
           link, chartMeta = {}, source, parent = {}, frets = '', isPack,
           directLinks, length, effectiveLength, uploadedAt, is120
         }) => {
@@ -191,11 +195,16 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             hasStems,
             hasVideo,
             hasLyrics,
+            hasNoAudio,
+            needsRenaming,
+            isFolder,
+            hasBrokenNotes,
+            hasBackground,
             noteCounts ? JSON.stringify(noteCounts) : null,
             link,
             directLinks ? JSON.stringify(directLinks) : null,
-            length,
-            effectiveLength,
+            song_length ? song_length / 1000 >> 0 : chartMeta.length,
+            chartMeta.effectiveLength,
             is120,
             lastModified,
             uploadedAt || new Date().toISOString(),

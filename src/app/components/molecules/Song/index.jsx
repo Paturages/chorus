@@ -106,7 +106,7 @@ export default props => {
       {noteCounts && (
         <div className="Song__chart-info">
           <SongFeatures {...props} />
-          <div>
+          <div className="Song__chart-metrics">
             <SongParts {...props} />
             <NoteDensity length={effectiveLength} noteCounts={noteCounts} />
           </div>

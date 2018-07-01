@@ -9,7 +9,7 @@ const download = url => new Promise((resolve, reject) =>
   })
 );
 
-module.exports = async ({ ini: iniItem, chart: chartItems = [], mid: midItems = [], audio, video, album }) => {
+module.exports = async ({ ini: iniItem, chart: chartItems = [], mid: midItems = [], audio, video, album, background = [] }) => {
   if (
     !iniItem &&
     !chartItems.length &&
@@ -42,9 +42,13 @@ module.exports = async ({ ini: iniItem, chart: chartItems = [], mid: midItems = 
   if (midItem) directLinks.mid = midItem.webContentLink;
   if (video) directLinks.video = video.webContentLink;
   if (audio && audio.length) audio.forEach(file => Object.assign(directLinks, { [file.name]: file.webContentLink }));
+  if (background && background.length) background.forEach(file => Object.assign(directLinks, { [file.name]: file.webContentLink }));
   return Object.assign(meta, {
     hasVideo: !!video,
     hasStems: audio && audio.length > 1,
+    hasNoAudio: !audio || !audio.length,
+    hasBackground: background && background.length,
+    needsRenaming: (chartItem && chartItem.name != 'notes.chart') || (midItem && midItem.name != 'notes.mid'),
     directLinks
   });
 };

@@ -82,6 +82,12 @@
     }
   }
 
+  &__chart-metrics {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   .SongFeatures {
     margin-right: 1em;
   }

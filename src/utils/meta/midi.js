@@ -25,9 +25,17 @@ const diffOffsets = { e: 59, m: 71, h: 83, x: 95 };
 
 const parse = midiFile => {
   const midi = new MIDIFile(midiFile.buffer);
-  let hasSections = false, hasSoloSections = false, hasStarPower = false, hasForced = false, hasTap = false, hasLyrics = false, hasOpen = {};
+  let hasSections = false,
+    hasSoloSections = false,
+    hasStarPower = false,
+    hasForced = false,
+    hasTap = false,
+    hasLyrics = false,
+    hasBrokenNotes = false,
+    hasOpen = {};
   let isOpen = false;
   let firstNoteTime, lastNoteTime = 0;
+  let previous;
   const tracks = {};
   const notes = {};
   // Detect 120 BPM charts because fuck that shit seriously
@@ -66,6 +74,16 @@ const parse = midiFile => {
         // event.subtype == 9 is the note being on,
         // event.subtype == 8 is the note being off... I think?
         if (diff && event.subtype == 9) {
+          // Broken note logic
+          // Check chart.js for the logic behind broken notes,
+          // I can't be bothered to copy/paste/adapt
+          if (previous) {
+            const distance = event.playTime - previous.time;
+            if (distance > 0 && distance < 5) {
+              hasBrokenNotes = true;
+            }
+          }
+          if (!previous || previous.time != event.playTime) previous = { time: event.playTime };
           if (!firstNoteTime) firstNoteTime = event.playTime;
           if (event.playTime > lastNoteTime) lastNoteTime = event.playTime;
           if (!notes[`${tracks[event.track]}.${diff}`]) notes[`${tracks[event.track]}.${diff}`] = {};
@@ -79,6 +97,13 @@ const parse = midiFile => {
         else if (event.param1 >= 70) diff = 'm';
         else if (event.param1) diff = 'e';
         if (diff && event.subtype == 9) {
+          if (previous) {
+            const distance = event.playTime - previous.time;
+            if (distance > 0 && distance < 5) {
+              hasBrokenNotes = true;
+            }
+          }
+          if (!previous || previous.time != event.playTime) previous = { time: event.playTime };
           if (!firstNoteTime) firstNoteTime = event.playTime;
           if (event.playTime > lastNoteTime) lastNoteTime = event.playTime;
           if (!notes[`${tracks[event.track]}.${diff}`]) notes[`${tracks[event.track]}.${diff}`] = {};
@@ -116,8 +141,11 @@ const parse = midiFile => {
   return {
     hasSections, hasStarPower, hasForced, hasSoloSections,
     hasTap, hasOpen, noteCounts, is120, hasLyrics,
-    hashes, length: lastNoteTime / 1000 >> 0,
-    effectiveLength: (lastNoteTime - firstNoteTime) / 1000 >> 0
+    hashes, hasBrokenNotes,
+    chartMeta: {
+      length: lastNoteTime / 1000 >> 0,
+      effectiveLength: (lastNoteTime - firstNoteTime) / 1000 >> 0
+    }
   };
 };
 

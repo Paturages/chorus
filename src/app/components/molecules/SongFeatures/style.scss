@@ -1,4 +1,8 @@
 .SongFeatures {
   font-size: .8em;
   text-align: right;
+  &__warning {
+    color: #E91E63;
+    white-space: pre;
+  }
 }

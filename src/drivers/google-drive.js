@@ -70,7 +70,7 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
     // List files inside the folder
     const archives = [];
     const subfolders = [];
-    const files = { chart: [], mid: [], audio: [] };
+    const files = { chart: [], mid: [], audio: [], background: [] };
     const content = await Drive.list({ q: `'${folder.id}' in parents` });
     content.forEach(item => {
       // Store subfolders for recursion
@@ -85,7 +85,10 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
       // Otherwise, try to find relevant chart files
       // (there might be several .mid/.chart files, which is why they're arrays)
       if (item.name == 'song.ini') return (files.ini = item);
-      if (item.name == 'album.png') return (files.album = item);
+      if (item.fileExtension.match(/png|jpe?g/)) {
+        if (!item.name.match(/^album\./)) return (files.album = item);
+        if (!item.name.match(/^background(\d+)?\./)) return files.background.push(item);
+      }
       if (item.fileExtension == 'chart') return files.chart.push(item);
       if (item.fileExtension == 'mid') return files.mid.push(item);
       if (item.name.match(/^(guitar|bass|rhythm|drums_?.|vocals|keys|song)\.(ogg|mp3|wav)$/i)) return files.audio.push(item);
@@ -137,7 +140,7 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
           }" by "${
           meta.artist || (meta.chartMeta || {}).Artist || defaultArtist || '???'
           }"`);
-        songs.push(Object.assign(song, meta));
+        songs.push(Object.assign(song, meta, { isFolder: true }));
       }
     }
     

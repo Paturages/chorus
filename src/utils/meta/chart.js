@@ -64,6 +64,7 @@ module.exports = chart => {
   let hasSoloSections = false;
   let hasLyrics = false;
   let hasSections = false;
+  let hasBrokenNotes = false;
   try {
     const utf8 = Iconv.decode(chart, 'utf8');
     chart = utf8.indexOf('�') >= 0 ? Iconv.decode(chart, 'latin1') : utf8;
@@ -97,6 +98,7 @@ module.exports = chart => {
     if (!notesIndex || notesIndex < 0) return chartMeta;
     let firstNoteIndex = 0;
     let lastNoteIndex = 0;
+    let previous;
     let currentStatus;
     const notes = {};
     for (let i = notesIndex; i < lines.length; i++) {
@@ -120,6 +122,17 @@ module.exports = chart => {
         if (+index > lastNoteIndex) lastNoteIndex = +index;
         notes[currentStatus][index] = `${(notes[currentStatus][index] || '')}${notesMap[note]}`;
       }
+      // Detect broken notes (i.e. very small distance between notes)
+      // Abysmal @ 64000 and 64768 (1:10'ish) has broken GR chords (distance = 4)
+      // Down Here @ 116638 (1:24) has a double orange (distance = 2)
+      // I'm in the Band very first note is a doubled yellow (distance = 1)
+      // There's likely gonna be some false positives, but this is likely to help setlist makers
+      // for proofchecking stuff.
+      if (previous) {
+        const distance = index - previous.index;
+        if (distance > 0 && distance < 5) hasBrokenNotes = true;
+      }
+      if (+index && (!previous || previous.index != index)) previous = { index, note };
     }
 
     // Get Tempo map [SyncTrack] to get effective song length
@@ -178,12 +191,14 @@ module.exports = chart => {
       noteCounts[instrument][difficulty] = notesArray.length;
       hashes[instrument][difficulty] = getMD5(notesArray.join(' '));
     }
+    chartMeta.length = time >> 0;
+    // "Effective song length" = time between first and last note
+    chartMeta.effectiveLength = (time - timeToFirstNote) >> 0;
     return {
       hasSections, hasStarPower, hasForced,
       hasTap, hasOpen, hasSoloSections, hasLyrics,
       noteCounts, hashes, chartMeta, is120,
-      // "Effective song length" = time between first and last note
-      length: time >> 0, effectiveLength: (time - timeToFirstNote) >> 0
+      hasBrokenNotes
     };
   } catch (err) {
     console.error(err.stack);
