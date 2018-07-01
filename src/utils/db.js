@@ -649,3 +649,12 @@ module.exports.getSongsSample = () => Pg.q`select * from "Songs" tablesample ber
     };
   })
 )
+
+module.exports.trackClick = ({ id }) => Pg.q`
+  INSERT INTO "Clicks"
+  ("link", "count")
+  VALUES
+  ((SELECT "link" FROM "Songs" WHERE "id" = ${id}), 1)
+  ON CONFLICT ("link")
+  do update set "count" = "Clicks"."count" + 1
+`;

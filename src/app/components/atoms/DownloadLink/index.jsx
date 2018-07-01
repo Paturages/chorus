@@ -14,7 +14,7 @@ export default class DownloadLink extends Component {
     };
   }
   render() {
-    const { link, charter, roles, isPack } = this.props;
+    const { link, charter, roles, isPack, onDownload } = this.props;
     const { roleText } = this.state;
     const entityLabel = isPack ? " pack" : " chart";
 
@@ -39,7 +39,12 @@ export default class DownloadLink extends Component {
         );
       return (
         <div className="DownloadLink">
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={link}
+            onClick={onDownload}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Download{" "}
             <b>
               {charter}'{charter.slice(-1) == "s" ? "" : "s"}
@@ -89,7 +94,12 @@ export default class DownloadLink extends Component {
       );
     return (
       <div className="DownloadLink--verified">
-        <a href={link} target="_blank" rel="noopener noreferrer">
+        <a
+          href={link}
+          onClick={onDownload}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Download {chartersElt}
           {entityLabel}
         </a>

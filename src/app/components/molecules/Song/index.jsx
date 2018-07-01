@@ -30,7 +30,8 @@ export default props => {
     uploadedAt,
     link,
     hashes,
-    sources: fullSources = []
+    sources: fullSources = [],
+    onDownload
   } = props;
   const playlist = fullSources.find(source => source.isSetlist);
   const sources = fullSources.filter(source => !source.isSetlist);
@@ -59,6 +60,7 @@ export default props => {
         )}
         <div className="Song__charter">
           <DownloadLink
+            onDownload={onDownload}
             link={link}
             charter={charter}
             roles={roles}
@@ -66,7 +68,7 @@ export default props => {
           />
           {playlist && (
             <div>
-              <a href={playlist.link}>
+              <a href={playlist.link} onClick={onDownload}>
                 Download the full <b>{playlist.name}</b> setlist
               </a>
             </div>

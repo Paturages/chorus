@@ -1,11 +1,9 @@
 const {
   search,
-  getByCharter,
-  getByArtist,
-  getBySource,
   getLatestCharts,
   getSongsSample,
-  getNbSongs
+  getNbSongs,
+  trackClick
 } = require('./src/utils/db');
 const Express = require('express');
 const { Server } = require('http');
@@ -64,6 +62,11 @@ express.get('/api/search', async (req, res) => {
     console.error(err.stack);
     res.sendStatus(500);
   }
+});
+
+express.post('/api/click', async (req, res) => {
+  trackClick({ id: req.query.id }).catch(err => console.error(err.stack));
+  res.sendStatus(200);
 });
 
 server.listen(port, () => console.log(`Server: Listening to http://localhost:${port}`));

@@ -135,6 +135,10 @@ module.exports = async () => {
       ON UPDATE NO ACTION
       ON DELETE CASCADE
     )`;
+    await Pg.q`CREATE TABLE "Clicks" (
+      link text PRIMARY KEY,
+      count integer
+    )`;
   } catch (err) {
     console.error(err.stack);
     process.exit(1);
