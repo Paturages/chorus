@@ -4,7 +4,7 @@ const readline = require('readline');
 
 module.exports = async () => {
   await Drive.init();
-  if (process.argv[2]) return;
+  if (process.argv[2] || process.env.RECOVER) return;
   try {
     console.log("Creating necessary tables and indexes");
     await Pg.q`DROP TABLE IF EXISTS "Sources_new" CASCADE`;
@@ -134,10 +134,6 @@ module.exports = async () => {
       REFERENCES public."Sources_new" (id) MATCH SIMPLE
       ON UPDATE NO ACTION
       ON DELETE CASCADE
-    )`;
-    await Pg.q`CREATE TABLE "Clicks" (
-      link text PRIMARY KEY,
-      count integer
     )`;
   } catch (err) {
     console.error(err.stack);

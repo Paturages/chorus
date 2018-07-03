@@ -658,3 +658,13 @@ module.exports.trackClick = ({ id }) => Pg.q`
   ON CONFLICT ("link")
   do update set "count" = "Clicks"."count" + 1
 `;
+
+module.exports.checkIfSourceExistsInNew = ({ link }) => Pg.q`
+  SELECT 1
+  FROM "Sources_new"
+  WHERE "link" = ${link}
+  AND "id" IN (
+    SELECT "sourceId"
+    FROM "Songs_Sources_new"
+  )
+`.then(([exists]) => exists);

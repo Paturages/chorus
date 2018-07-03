@@ -46,7 +46,8 @@ export default ({
   hasNoAudio,
   hasBrokenNotes,
   length,
-  effectiveLength
+  effectiveLength,
+  link
 }) => {
   const flags = [
     hasOpen && Object.keys(hasOpen).length > 0,
@@ -60,7 +61,7 @@ export default ({
     hasLyrics
   ];
   const warningFlags = [
-    isFolder,
+    isFolder && link,
     needsRenaming,
     is120,
     !noteCounts || !noteCounts.guitar,

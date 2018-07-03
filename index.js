@@ -2,11 +2,9 @@ const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
 const drive = require('./src/drivers/google-drive');
-const txt = require('./src/drivers/txt');
-const excel = require('./src/drivers/excel');
 const init = require('./src/utils/init');
 const exit = require('./src/utils/exit');
-const { updateWords } = require('./src/utils/db');
+const { checkIfSourceExistsInNew } = require('./src/utils/db');
 const ls = (folder, pattern) => new Promise((resolve, reject) =>
   glob(pattern, {
     absolute: true,
@@ -44,15 +42,13 @@ process.on("unhandledRejection", (err, promise) => {
         if (!name || !link) return;
         return { name: name.trim(), link: link.trim(), script: (script || '').trim(), isSetlist, hideSingleDownloads };
       });
-    const txtSources = (await ls(path.resolve(__dirname, 'sources', 'txt'), '*')).map(full => ({
-      name: full.slice(full.lastIndexOf('/') + 1, full.lastIndexOf('.')),
-      path: full,
-      txt: true
-    }));
-    if (txtSources && txtSources.length) sources.push(...txtSources);
     const failed = [];
     for (let i = 0; i < sources.length; i++) {
-      if (!sources[i] || (process.argv[2] && sources[i].name.toLowerCase().indexOf(process.argv[2].toLowerCase()) < 0)) continue;
+      if (
+        !sources[i] ||
+        (process.argv[2] && sources[i].name.toLowerCase().indexOf(process.argv[2].toLowerCase()) < 0) ||
+        (process.env.RECOVER && (await checkIfSourceExistsInNew(sources[i])))
+      ) continue;
       try {
         if (sources[i].txt) await txt(sources[i].path);
         else if (sources[i].script) {

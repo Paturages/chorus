@@ -14,18 +14,29 @@ const {
 } = require('../utils/db');
 
 const prefixLength = "https://drive.google.com/uc?id=".length;
-const download = url => new Promise((resolve, reject) =>
-  Request.get(url, { encoding: null }, (err, res) => {
-    if (err) return reject(err);
-    // Bypass the download warning page if there's one
-    if (res.body.toString('utf8', 0, 15) == '<!DOCTYPE html>') {
-      return Drive.get(url.slice(prefixLength, url.indexOf('&', prefixLength)))
-      .then(body => resolve(body))
-      .catch(err => console.error(err) || resolve(res.body));
-    }
-    resolve(res.body);
-  })
-);
+
+// Max timeout = 5 minutes
+// Retry 5 times maximum
+const download = (url, attempt) => Promise.race([
+  new Promise((resolve, reject) =>
+    Request.get(url, { encoding: null }, (err, res) => {
+      if (err) return reject(err);
+      // Bypass the download warning page if there's one
+      if (res.body.toString('utf8', 0, 15) == '<!DOCTYPE html>') {
+        return Drive.get(url.slice(prefixLength, url.indexOf('&', prefixLength)))
+          .then(body => resolve(body))
+          .catch(err => console.error(err) || resolve(res.body));
+      }
+      resolve(res.body);
+    })
+  ),
+  new Promise((_, reject) => setTimeout(() => reject('TIMEOUT'), 300000))
+])
+.catch(err => {
+  if (attempt > 5) return err;
+  console.log(`Attempt n°${(attempt || 1) + 1}`);
+  return download(url, (attempt || 1) + 1);
+});
 
 const defaultNameParser = txt => {
   let [artist, ...songParts] = txt.split(' - ');
@@ -85,14 +96,16 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
       // Otherwise, try to find relevant chart files
       // (there might be several .mid/.chart files, which is why they're arrays)
       if (item.name == 'song.ini') return (files.ini = item);
-      if (item.fileExtension.match(/png|jpe?g/)) {
-        if (!item.name.match(/^album\./)) return (files.album = item);
-        if (!item.name.match(/^background(\d+)?\./)) return files.background.push(item);
-      }
-      if (item.fileExtension == 'chart') return files.chart.push(item);
-      if (item.fileExtension == 'mid') return files.mid.push(item);
-      if (item.name.match(/^(guitar|bass|rhythm|drums_?.|vocals|keys|song)\.(ogg|mp3|wav)$/i)) return files.audio.push(item);
       if (item.name.slice(0, 6) == 'video.') return (files.video = item);
+      if (item.name.match(/^(guitar|bass|rhythm|drums_?.|vocals|keys|song)\.(ogg|mp3|wav)$/i)) return files.audio.push(item);
+      if (item.fileExtension) {
+        if (item.fileExtension.match(/png|jpe?g/)) {
+          if (!item.name.match(/^album\./)) return (files.album = item);
+          if (!item.name.match(/^background(\d+)?\./)) return files.background.push(item);
+        }
+        if (item.fileExtension == 'chart') return files.chart.push(item);
+        if (item.fileExtension == 'mid') return files.mid.push(item);
+      }
     });
     // Find the most recent modification date
     let uploadedAt = (folder.modifiedTime || '').slice(0, 19);
