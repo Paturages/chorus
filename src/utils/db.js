@@ -629,7 +629,7 @@ module.exports.getSongsSample = () => Pg.q`select * from "Songs" tablesample ber
       delete song.words; // Users don't need them.
       return { [song.id]: song };
     }));
-    sources.forEach(({ songId, id, name, link, parent, isSetlist }) => {
+    sources.forEach(({ songId, id, name, link, parent, isSetlist, hideSingleDownloads }) => {
       if (hideSingleDownloads) songMap[songId].link = null;
       if (!songMap[songId].sources) songMap[songId].sources = [];
       if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
