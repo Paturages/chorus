@@ -44,20 +44,21 @@ process.on("unhandledRejection", (err, promise) => {
       });
     const failed = [];
     for (let i = 0; i < sources.length; i++) {
+      if (!sources[i]) continue;
+      const proxy = sources[i].script && sources[i].script.indexOf('proxy:') > -1 ? sources[i].script.slice(
+        sources[i].script.indexOf(':') + 1
+      ) : null;
       if (
         !sources[i] ||
         (process.argv[2] && sources[i].name.toLowerCase().indexOf(process.argv[2].toLowerCase()) < 0) ||
-        (process.env.RECOVER && (await checkIfSourceExistsInNew(sources[i])))
+        (process.env.RECOVER && (await checkIfSourceExistsInNew(proxy ? { link: proxy } : sources[i])))
       ) continue;
       try {
         if (sources[i].txt) await txt(sources[i].path);
         else if (sources[i].script) {
-          if (sources[i].script.indexOf('proxy:') > -1)
-            await require(`./src/drivers/${
+          if (proxy) await require(`./src/drivers/${
               sources[i].script.split('/', 1)[0]
-            }`)(Object.assign(sources[i], { proxy: sources[i].script.slice(
-              sources[i].script.indexOf(':') + 1
-            ) }));
+            }`)(Object.assign(sources[i], { proxy }));
           else await require(`./src/drivers/${sources[i].script}`)(sources[i]);
         } else await drive(sources[i]);
       } catch (err) {

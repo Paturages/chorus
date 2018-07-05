@@ -53,7 +53,10 @@ const processQueue = async () => {
   timeout = setTimeout(() => processQueue(), DELAY);
   if (method == 'get') {
     try {
-      const res = await Drive.files.get(args, { responseType: 'arraybuffer' });
+      const res = await Drive.files.get(args, {
+        responseType: 'arraybuffer',
+        onDownloadProgress: $event => process.env.CLI && console.log($event)
+      });
       callback(null, res);
     } catch (err) {
       console.error(err.stack);

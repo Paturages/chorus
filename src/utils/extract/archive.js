@@ -75,7 +75,7 @@ module.exports = async (archive, extension) => {
         /\.(ogg|mp3|wav)$/i
       ));
       const stemFiles = audioFiles.filter(path => getFileName(path).match(
-        /(guitar|bass|rhythm|drums_.|vocals|keys|song)/i
+        /(guitar|bass|rhythm|drums_.|vocals|keys|song)\.(ogg|mp3|wav)$/i
       ));
 
       // Order of priority: "notes.chart" > files with "[Y]" in it > first one we can find
@@ -94,8 +94,8 @@ module.exports = async (archive, extension) => {
       const hasVideo = !!files.find(path => getFileName(path).slice(0, 6) == 'video.');
       const hasNoAudio = !audioFiles.length;
       let needsRenaming;
-      if (chartFile) needsRenaming = getFileName(chartFile) != "notes.chart";
-      else if (midFile) needsRenaming = getFileName(midFile) != "notes.mid";
+      if (chartFile) needsRenaming = getFileName(chartFile).toLowerCase() != "notes.chart";
+      else if (midFile) needsRenaming = getFileName(midFile).toLowerCase() != "notes.mid";
       const hasStems = stemFiles.length > 1;
       // If this matches a song folder
       if (iniFile || chartFile || midFile) {

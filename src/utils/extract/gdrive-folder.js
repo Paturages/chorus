@@ -45,10 +45,13 @@ module.exports = async ({ ini: iniItem, chart: chartItems = [], mid: midItems = 
   if (background && background.length) background.forEach(file => Object.assign(directLinks, { [file.name]: file.webContentLink }));
   return Object.assign(meta, {
     hasVideo: !!video,
-    hasStems: audio && audio.length > 1,
+    hasStems: audio && audio.filter(
+      ({ name }) =>
+        name.match(/^(guitar|bass|rhythm|drums_?.|vocals|keys|song)\.(ogg|mp3|wav)$/i)
+    ).length > 1,
     hasNoAudio: !audio || !audio.length,
     hasBackground: background && background.length,
-    needsRenaming: (chartItem && chartItem.name != 'notes.chart') || (midItem && midItem.name != 'notes.mid'),
+    needsRenaming: (chartItem && chartItem.toLowerCase().name != 'notes.chart') || (midItem && midItem.toLowerCase().name != 'notes.mid'),
     directLinks
   });
 };
