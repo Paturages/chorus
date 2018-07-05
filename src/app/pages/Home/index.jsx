@@ -11,13 +11,15 @@ export default class Home extends Component {
     super(props);
     this.state = { songs: [], from: 0, isLoading: true };
 
-    Http.get("/api/latest").then(({ roles, songs }) =>
-      this.setState({
-        isLoading: false,
-        roles,
-        songs,
-        hasMore: songs.length == 20
-      })
+    Promise.all([Http.get("/api/latest"), Http.get("/lastupdate.json").catch(() => ({}))]).then(
+      ([{ roles, songs }, { lastUpdate }]) =>
+        this.setState({
+          isLoading: false,
+          lastUpdate,
+          roles,
+          songs,
+          hasMore: songs.length == 20
+        })
     );
   }
   loadMore() {
@@ -36,12 +38,13 @@ export default class Home extends Component {
     );
   }
   render() {
-    const { isLoading, roles, songs, hasMore } = this.state;
+    const { isLoading, roles, songs, hasMore, lastUpdate } = this.state;
     return (
       <div className="Home">
         <SongList
           isLoading={isLoading}
           title="Latest charts"
+          subtitle={`last update: ${new Date(lastUpdate)}`}
           roles={roles}
           songs={songs}
           hasMore={hasMore}

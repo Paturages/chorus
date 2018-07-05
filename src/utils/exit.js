@@ -1,4 +1,7 @@
 const Pg = require('./pg');
+const Fs = require('fs');
+const Path = require('path');
+const { promisify } = require('util');
 
 module.exports = async () => {
   if (!process.argv[2]) {
@@ -13,5 +16,8 @@ module.exports = async () => {
     await Pg.q`ALTER TABLE "Songs_Hashes_new" RENAME TO "Songs_Hashes"`;
     await Pg.q`ALTER TABLE "Songs_Sources_new" RENAME TO "Songs_Sources"`;
   }
+  await promisify(Fs.writeFile)(Path.resolve(__dirname, '..', '..', 'build', 'lastupdate.json'), JSON.stringify({
+    lastUpdate: new Date().toISOString()
+  }), 'utf8');
   process.exit(0);
 };

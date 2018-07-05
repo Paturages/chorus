@@ -551,14 +551,7 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
   `
 ]).then(
   ([songs, toIgnore]) => Object.assign({}, ...songs.concat(toIgnore).map(song => ({ [song.link]: song.meta ? {
-    name: song.meta.name,
-    artist: song.meta.artist,
-    album: song.meta.album,
-    genre: song.meta.genre,
-    year: song.meta.year,
-    charter: song.meta.charter,
-    length: song.meta.length,
-    effectiveLength: song.meta.effectiveLength,
+    ...song.meta,
     diff_band: '' + (song.meta.tier_band == null ? -1 : song.meta.tier_band),
     diff_guitar: '' + (song.meta.tier_guitar == null ? -1 : song.meta.tier_guitar),
     diff_bass: '' + (song.meta.tier_bass == null ? -1 : song.meta.tier_bass),
@@ -568,21 +561,6 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
     diff_keys: '' + (song.meta.tier_keys == null ? -1 : song.meta.tier_keys),
     diff_guitarghl: '' + (song.meta.tier_guitarghl == null ? -1 : song.meta.tier_guitarghl),
     diff_bassghl: '' + (song.meta.tier_bassghl == null ? -1 : song.meta.tier_bassghl),
-    hasForced: song.meta.hasForced,
-    hasOpen: song.meta.hasOpen,
-    hasTap: song.meta.hasTap,
-    hasSections: song.meta.hasSections,
-    hasStarPower: song.meta.hasStarPower,
-    hasSoloSections: song.meta.hasSoloSections,
-    hasStems: song.meta.hasStems,
-    hasVideo: song.meta.hasVideo,
-    noteCounts: song.meta.noteCounts,
-    link: song.meta.link,
-    directLinks: song.meta.directLinks,
-    lastModified: song.meta.lastModified,
-    uploadedAt: song.meta.uploadedAt,
-    is120: song.meta.is120,
-    isPack: song.meta.isPack,
     hashes: (() => {
       const parts = {};
       song.hashes.forEach(({ hash, part, difficulty }) => {
@@ -591,7 +569,7 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
         else parts[part][difficulty] = hash;
       });
       return parts;
-    })(),
+    })()
   } : { ignore: true } })))
 )
 .catch(err => console.error(err.stack) || {});

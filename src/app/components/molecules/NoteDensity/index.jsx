@@ -28,6 +28,7 @@ const NPS_CAP = 15;
 export default ({ length, noteCounts = {} }) => {
   // Preferred referential for note density is "Expert Guitar"
   const part = noteCounts.guitar ? "guitar" : Object.keys(noteCounts)[0];
+  if (!part || !noteCounts[part]) return;
   const difficulty = ["x", "h", "m", "e"].find(diff => noteCounts[part][diff]);
   const density = (noteCounts[part][difficulty] / length).toFixed(2);
   let height = (100 * density / NPS_CAP).toFixed(2);

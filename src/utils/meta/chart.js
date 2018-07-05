@@ -170,6 +170,7 @@ module.exports = chart => {
     const is120 = currentIndex == 0 && currentBpm == 120
     // do it one last time against the last note
     time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+    console.log(time, lastNoteIndex, currentIndex, currentBpm, chartMeta.Resolution);
 
     // Compute the hash of the .chart itself first
     const hashes = { file: getMD5(chart) };
