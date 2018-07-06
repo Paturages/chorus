@@ -67,11 +67,13 @@ module.exports = chart => {
   let hasBrokenNotes = false;
   try {
     const utf8 = Iconv.decode(chart, 'utf8');
-    chart = utf8.indexOf('�') >= 0 ? Iconv.decode(chart, 'latin1') : utf8;
+    if (utf8.indexOf('\u0000') >= 0) chart = Iconv.decode(chart, 'utf16');
+    else if (utf8.indexOf('�') >= 0) chart = Iconv.decode(chart, 'latin1');
+    else chart = utf8;
     // Trim each line because of Windows \r\n shenanigans
     const lines = chart.split('\n').map(line => line.trim());
     // Get song metadata from the [Song] section as a backup to the song.ini
-    const songIndex = lines.indexOf('[Song]');
+    const songIndex = lines.find(line => line.match(/\[Song\]/));
     // Catch invalid files
     if (songIndex < 0) return {};
     const chartMeta = {};

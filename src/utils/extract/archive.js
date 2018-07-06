@@ -123,7 +123,7 @@ module.exports = async (archive, extension) => {
     // Corrupted archives happen, sometimes.
     // More often than not, the archive is actually extractable on Windows (don't ask me why or how).
     // Therefore, we give benefit of doubt and fall back to parsing from the file name.
-    console.error(err && err.stack);
+    console.error(err);
     return [{}];
   }
 };
