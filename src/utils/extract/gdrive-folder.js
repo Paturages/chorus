@@ -51,7 +51,7 @@ module.exports = async ({ ini: iniItem, chart: chartItems = [], mid: midItems = 
     ).length > 1,
     hasNoAudio: !audio || !audio.length,
     hasBackground: background && background.length,
-    needsRenaming: (chartItem && chartItem.toLowerCase().name != 'notes.chart') || (midItem && midItem.toLowerCase().name != 'notes.mid'),
+    needsRenaming: (chartItem && (chartItem.name || '').toLowerCase() != 'notes.chart') || (midItem && (midItem.name || '').toLowerCase() != 'notes.mid'),
     directLinks
   });
 };

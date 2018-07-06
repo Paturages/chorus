@@ -45,7 +45,7 @@ export default props => {
           {year ? ` (${year})` : ""}
         </div>
         {genre && <div className="Song__genre">{genre}</div>}
-        {length && (
+        {!!length && (
           <div className="Song__length">
             {toTime(length)}{" "}
             <span className="Song__length-tooltip-trigger">

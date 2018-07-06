@@ -11,15 +11,17 @@ export default class Home extends Component {
     super(props);
     this.state = { songs: [], from: 0, isLoading: true };
 
-    Promise.all([Http.get("/api/latest"), Http.get("/lastupdate.json").catch(() => ({}))]).then(
-      ([{ roles, songs }, { lastUpdate }]) =>
-        this.setState({
-          isLoading: false,
-          lastUpdate,
-          roles,
-          songs,
-          hasMore: songs.length == 20
-        })
+    Promise.all([
+      Http.get("/api/latest"),
+      Http.get("/lastupdate.json").catch(() => ({}))
+    ]).then(([{ roles, songs }, { lastUpdate }]) =>
+      this.setState({
+        isLoading: false,
+        lastUpdate,
+        roles,
+        songs,
+        hasMore: songs.length == 20
+      })
     );
   }
   loadMore() {

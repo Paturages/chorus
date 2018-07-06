@@ -67,7 +67,7 @@ export default ({
     !noteCounts || !noteCounts.guitar,
     hasNoAudio,
     hasBrokenNotes,
-    effectiveLength > length
+    length && effectiveLength && effectiveLength > length
   ];
   return (
     <div className="SongFeatures">
