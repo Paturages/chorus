@@ -73,7 +73,7 @@ class NavBar extends Component {
             <div className="NavBar__spacer" />
             <a
               class="NavBar__item NavBar__item-link"
-              href="https://www.youtube.com/channel/UCc3IfdqGZjhdgQbi_EpfuYg"
+              href="https://clonehero.net/"
               target="_blank"
               rel="noopener noreferrer"
             >
