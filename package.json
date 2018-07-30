@@ -66,5 +66,5 @@
     "postinstall": "webpack --config webpack/dev.conf.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "GPL-3.0"
 }
