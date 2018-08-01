@@ -53,7 +53,7 @@
 # Custom Songs Central
 
 Angevil's charts :: https://drive.google.com/drive/folders/1olQexhSVSD6MRQraOsyYmRdeLdMKneC8
-Aren's charts :: https://drive.google.com/drive/folders/1FZp2hIpuB-wrz7Htl2ces6TCugzvas94
+Aren's charts :: https://drive.google.com/drive/folders/1FZp2hIpuB-wrz7Htl2ces6TCugzvas94 :: google-drive/proxy:http://bit.ly/AECharts
 Big Whoop Magazine's charts :: https://drive.google.com/open?id=1hGFRYrzaeWufS4xdnd9SSSZN8X94be7R
 Brutal's charts :: https://drive.google.com/drive/folders/17vc_Ncv0ErgbCZNCWsSdWIR3GYk-5ize
 ChemFinal's charts :: https://drive.google.com/drive/folders/0BxwFbK1RPXa7NktEZ0VacVAxRkE
@@ -74,7 +74,7 @@ ParallaxDG's charts :: https://drive.google.com/drive/folders/0B9c6s3i6iVBIaHFjR
 Paturages' charts :: https://public.fightthe.pw/clonehero/ :: caddy
 Rek3dge's charts :: https://drive.google.com/drive/folders/1p2j6q-xBis9eWERZpWdxEOQAChDBc2MC
 ShadeGH's charts :: https://drive.google.com/drive/folders/0B60cVxSWmZPcOHJkbWRkQkc1YWs
-Siavash's charts :: https://drive.google.com/drive/folders/0B2RLHuNpuW16UnhnNFUxVXBOamc
+Siavash's charts :: https://drive.google.com/drive/folders/0B2RLHuNpuW16UnhnNFUxVXBOamc :: google-drive/proxy:http://bit.ly/SiavashCharts
 Siavash's Anti Hero charts :: https://drive.google.com/drive/folders/1nIIO3CJ3WmICHAMQEoaN63RoStUn3UF-
 Supah's charts :: https://drive.google.com/drive/folders/0B1O7vQQXwpsSbjdMWldKR0xRLVE
 Sygenysis's charts :: https://drive.google.com/drive/folders/0B8ZIiYD-xI8RN1VaUXUzYXMyVkU
