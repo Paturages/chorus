@@ -315,6 +315,7 @@ $ Vortex Hero :: https://public.fightthe.pw/rehosts/vortex/ :: caddy/proxy:https
 $ Acai (partial) :: https://public.fightthe.pw/rehosts/acai/ :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
 GHL/CHL Discord Community (check #6_fret_charts in this Discord!) :: https://public.fightthe.pw/rehosts/6frets/ :: caddy/proxy:https://discord.gg/hmtaBTp
 $ Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
+$! Guitar Hero X :: https://public.fightthe.pw/rehosts/ghx/ :: caddy/proxy:https://www.youtube.com/watch?v=KvrHvkth0_A
 Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
 Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
 Community Track Pack 1 :: https://public.fightthe.pw/rehosts/ctp1/ :: caddy
