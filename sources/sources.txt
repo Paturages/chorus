@@ -296,6 +296,7 @@ $ Anti Hero: Beach Episode :: https://drive.google.com/drive/folders/10IgIFd5wmY
 $ CSC June Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06/ :: caddy/proxy:https://www.youtube.com/watch?v=ZYU83pV8Ax0
 $! CSC July Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: caddy/proxy:https://youtube.com/watch?v=W-ge6kJIC8Q
 
+
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Charts from this month :: https://drive.google.com/drive/folders/1fA7Y81CurMlNe_FcsGElJhnAOU-NAxRq
 Guitarmaggedon :: https://drive.google.com/drive/folders/1N58FEcWidA4dEe7N0bpiKB3Hq3iXbOIe
@@ -312,6 +313,7 @@ Overcharts :: https://drive.google.com/drive/folders/1rfpaYmO5_fXNxG3TxtMkdrVYeo
 Rap & Hip-hop :: https://drive.google.com/drive/folders/12sQo6ghHBXeXDE3iN3k8CNNmjprwVKUM
 Anime Mega-Pack :: https://drive.google.com/drive/folders/16b6qn3RQCshuPWEcRpGUi2L2nBFNHivu
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
+Mania Hero Track Packs :: https://drive.google.com/open?id=1_vNwoXUUBEHrPuNtFcyDCs8P4leMauw6
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
