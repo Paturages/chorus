@@ -40,21 +40,25 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
     })
   );
   // 4. Get the songs: they're either all in the source folder (/clonehero/),
-  // or they're in "game folders" (/ghrb/). Oh, and they're all .zips.
-  // (I'm probably gonna be the only one using it, so whatever)
+  // or they're in "game folders" (/ghrb/).
   const songList = [];
   console.log('Fetching list of songs');
   // Difference between my charter drive (/clonehero) and games drive (/ghrb)
-  if (folders[0].Name.slice(-4) == '.zip') songList.push(...folders);
+  if (folders[0].Name.match(/\.(zip|7z|rar)$/)) songList.push(...folders);
   else for (let i = 0; i < folders.length; i++) {
     const { Name, URL } = folders[i];
-    const content = await new Promise((resolve, reject) =>
-      Request.get(`${link}${URL.slice(2)}`, { headers: { Accept: 'application/json' } }, (err, res) => {
-        if (err) reject(err);
-        else resolve(JSON.parse(res.body));
-      })
-    );
-    songList.push(...content.map(item => Object.assign(item, { parent: { name: Name, link: `${link}${URL.slice(2)}` } })));
+    console.log(Name);
+    try {
+      const content = await new Promise((resolve, reject) =>
+        Request.get(`${link}${URL.slice(2)}`, { headers: { Accept: 'application/json' } }, (err, res) => {
+          if (err) reject(err);
+          else try {
+            resolve(JSON.parse(res.body));
+          } catch (err) { reject(err); }
+        })
+      );
+      songList.push(...content.map(item => Object.assign(item, { parent: { name: Name, link: `${link}${URL.slice(2)}` } })));
+    } catch (e) {}
   }
   const songs = [];
   const toIgnore = [];

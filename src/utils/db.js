@@ -160,7 +160,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
           isFolder, hasBrokenNotes, hasBackground,
           noteCounts, lastModified,
           link, chartMeta = {}, source, parent = {}, frets = '', isPack,
-          directLinks, length, effectiveLength, uploadedAt, is120
+          directLinks, uploadedAt, is120
         }) => {
           const diffs = getDiffsFromNoteCounts(noteCounts);
           return [
@@ -186,20 +186,20 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             diffs.keys,
             diffs.guitarghl,
             diffs.bassghl,
-            hasForced,
+            !!hasForced,
             hasOpen,
-            hasTap,
-            hasSections,
-            hasStarPower,
-            hasSoloSections,
-            hasStems,
-            hasVideo,
-            hasLyrics,
-            hasNoAudio,
-            needsRenaming,
-            isFolder,
-            hasBrokenNotes,
-            hasBackground,
+            !!hasTap,
+            !!hasSections,
+            !!hasStarPower,
+            !!hasSoloSections,
+            !!hasStems,
+            !!hasVideo,
+            !!hasLyrics,
+            !!hasNoAudio,
+            !!needsRenaming,
+            !!isFolder,
+            !!hasBrokenNotes,
+            !!hasBackground,
             noteCounts ? JSON.stringify(noteCounts) : null,
             link,
             directLinks ? JSON.stringify(directLinks) : null,
@@ -208,7 +208,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             is120,
             lastModified,
             uploadedAt || new Date().toISOString(),
-            isPack,
+            !!isPack,
             {
               sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)), ' ')`,
               param: [

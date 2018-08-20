@@ -223,3 +223,4 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
   // 5. Insert the songs with their metadata into the database
   if (songs.length) await upsertSongs(songs);
 };
+

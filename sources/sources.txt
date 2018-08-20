@@ -326,6 +326,8 @@ $ Mario Kart 8 Track Pack :: https://drive.google.com/drive/u/0/folders/1paxRjY2
 $ Anti Hero: Beach Episode :: https://drive.google.com/drive/folders/10IgIFd5wmYKPenVegJAMFHuWRKVpBHvf :: google-drive/proxy:https://youtu.be/9hvmhVv3iYE
 $ CSC June Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06/ :: caddy/proxy:https://www.youtube.com/watch?v=ZYU83pV8Ax0
 $ CSC July Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: caddy/proxy:https://youtube.com/watch?v=W-ge6kJIC8Q
+$ CSC August Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-08/ :: caddy/proxy:https://www.youtube.com/watch?v=MEMEMvo4vCE
+$ Marathon Hero :: https://public.fightthe.pw/rehosts/mh/ :: caddy/proxy:https://www.youtube.com/watch?v=MhTF4yxAxQ4
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Charts from this month :: https://drive.google.com/drive/folders/1fA7Y81CurMlNe_FcsGElJhnAOU-NAxRq
@@ -344,6 +346,7 @@ Rap & Hip-hop :: https://drive.google.com/drive/folders/12sQo6ghHBXeXDE3iN3k8CNN
 Anime Mega-Pack :: https://drive.google.com/drive/folders/16b6qn3RQCshuPWEcRpGUi2L2nBFNHivu
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
 CHTV :: https://drive.google.com/drive/folders/1i9nyKqpS2Uc2W3srPDh8C-ET3aaJ-AZv
+FamilyJules Track Pack :: https://drive.google.com/drive/folders/1SO4ZLb5cXNRsQGhpTi3q04hntRz_8yet
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
