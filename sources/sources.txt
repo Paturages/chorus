@@ -58,7 +58,6 @@ Big Whoop Magazine's charts :: https://drive.google.com/open?id=1hGFRYrzaeWufS4x
 Brutal's charts :: https://drive.google.com/drive/folders/17vc_Ncv0ErgbCZNCWsSdWIR3GYk-5ize
 ChemFinal's charts :: https://drive.google.com/drive/folders/0BxwFbK1RPXa7NktEZ0VacVAxRkE
 Chezy's charts :: https://drive.google.com/drive/folders/1GMWUS_9lttQktzTeek1J14rFfFI16pFG
-Cukin's charts :: https://drive.google.com/drive/u/4/folders/11MktKjlsC6XgFbIMXt_2FVbv0vV_rdYZ
 CyclopsDragon's charts :: https://drive.google.com/drive/folders/0B4vo9ev8ymFsMTBwWGVlM3dtUUE
 Dillski's charts :: https://drive.google.com/drive/folders/0Bzm5KFgFuIEocmoxVElkS3dhUGs
 DigitalSquirrel's charts :: https://drive.google.com/drive/folders/0B2cTDJt4RaShTFBxak9nM212T0U
@@ -113,8 +112,6 @@ Yenlow73's charts :: https://drive.google.com/drive/folders/1vKoFl4Z-CiQxh44R3IF
 
 # Other charter drives
 
-Derpo1's charts :: https://drive.google.com/drive/folders/1tjWEe22sgUVzmRwOuRCCp11w-I57UGZa
-
 ActuallyAsriel's charts :: https://drive.google.com/drive/folders/0B6c1Qr_ru7pfTFRVeXZuT1NOWm8
 AdamantSpartan's charts :: https://drive.google.com/open?id=1XrvvC_v7cL-MNeaQNp55umlQQi3jtLxy
 Aesirix's Charts :: https://drive.google.com/open?id=1QOItK4-jwLNNHu64QBhdaUKKkfn2C5sc
@@ -143,10 +140,12 @@ Cosmic Latte's (non-meme) charts :: https://drive.google.com/drive/folders/1at6H
 Countess' charts :: https://drive.google.com/drive/folders/19LAzEQ8f1Mj_WzaBBOgf_YLPIsbr9tK-
 Count Tolvaly's charts :: https://drive.google.com/drive/folders/1-F-9isR3G5ArCQI9uRfN2KpWVeydpKwy
 Cryptrik's charts :: https://drive.google.com/drive/folders/1ioI_XZvEjU_E7RTuYzbI4ICuWvqlwhNL
+Cukin's charts :: https://drive.google.com/drive/u/4/folders/11MktKjlsC6XgFbIMXt_2FVbv0vV_rdYZ
 DarkAngel2096's charts :: https://drive.google.com/drive/folders/1pG14-8pjKKYdWxijPx1Oa7GOyAWkZfO9
 DavidToma's Charts :: https://drive.google.com/open?id=1LyR5zjhheoh_o3Q7vp8idj9Df55iyjjm
 Delcatty16's charts :: https://drive.google.com/open?id=0BwKjmavWXYIfeUJVbDh1UlBSS1E
 Dercen's charts :: https://drive.google.com/drive/folders/1M9VImE6QY-3efcJKZeanxg-LWmPYZVSi
+Derpo1's charts :: https://drive.google.com/drive/folders/1tjWEe22sgUVzmRwOuRCCp11w-I57UGZa
 DiamondRivlz's charts :: https://drive.google.com/drive/folders/10ZRHY-5kqHW28_4rW_aV3Q4iM301Y6Lj
 Doodled's charts :: https://drive.google.com/drive/folders/1jm700XG3aqecmdLUU211rhiNpQKUGRqT
 DriestYosho's charts :: https://drive.google.com/drive/folders/175GvHWWpaOnCIzdAARovFvEx7540mq8z
@@ -280,7 +279,6 @@ ZukeG's Charts :: https://drive.google.com/drive/folders/12vUPQ-HzibbSdlt2wS5I6w
 
 # Packs
 
-C3 conversions :: https://drive.google.com/drive/folders/0B1lvPFfHBT2LTFN0ODh3OHdJdUk
 Plumato's drive :: https://drive.google.com/drive/folders/0B3cd4Ad4P4NiNUx3dEJtWnIxREU
 331erock discography :: https://drive.google.com/drive/folders/1nS8e3XE-2eew57pzn0N648xeF4MPqiEo
 Exilelord setlist :: https://drive.google.com/drive/folders/1CK7XDRxH3zyIZgbta1PbSzCeZXXk1uNV
@@ -297,11 +295,16 @@ TriggerTheDragon's Any Given Day :: https://drive.google.com/drive/folders/1ltjM
 DJ Hero Conversions :: https://drive.google.com/open?id=10DYhgC1M9qlPXS8Bdl_L1FutKBNC_2-Z
 The Meme Team Supreme Setlist :: https://drive.google.com/open?id=1IUJ5XZGSx31dg-5jG-nATAmURZE_AsUA
 Phase Shift Setlist :: https://drive.google.com/drive/folders/1UQ9Okd-FvjIBaH_W1m4dPnxs7CHxJmXz
+Guitar Hero: Megadeth :: https://drive.google.com/open?id=1JwAWl11oaEe1MA-ngXELjHm7mFM_iI00
+House of Customs :: https://drive.google.com/open?id=1PFw7gjt1DhHSXTjsHK4zrKTR4nqe5ZAX
+Intense Subby Hero :: https://drive.google.com/open?id=1X96kANR6UcAQNqRopBTM5eeKnQLEEimH
+farrotone's Rock Band Party Songs :: https://drive.google.com/open?id=1Dp2KH6T9YsDFgoonw7HwEzgkSckK2l04
+Mania Hero Track Packs :: https://drive.google.com/open?id=1_vNwoXUUBEHrPuNtFcyDCs8P4leMauw6
+
 $ Mario Kart 8 Track Pack :: https://drive.google.com/drive/u/0/folders/1paxRjY2LIkwP_VgB4h12075tBexslwlP :: google-drive/proxy:https://www.youtube.com/watch?v=QQpJJHIHMmw
 $ Anti Hero: Beach Episode :: https://drive.google.com/drive/folders/10IgIFd5wmYKPenVegJAMFHuWRKVpBHvf :: google-drive/proxy:https://youtu.be/9hvmhVv3iYE
 $ CSC June Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06/ :: caddy/proxy:https://www.youtube.com/watch?v=ZYU83pV8Ax0
-$! CSC July Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: caddy/proxy:https://youtube.com/watch?v=W-ge6kJIC8Q
-
+$ CSC July Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: caddy/proxy:https://youtube.com/watch?v=W-ge6kJIC8Q
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Charts from this month :: https://drive.google.com/drive/folders/1fA7Y81CurMlNe_FcsGElJhnAOU-NAxRq
@@ -319,7 +322,6 @@ Overcharts :: https://drive.google.com/drive/folders/1rfpaYmO5_fXNxG3TxtMkdrVYeo
 Rap & Hip-hop :: https://drive.google.com/drive/folders/12sQo6ghHBXeXDE3iN3k8CNNmjprwVKUM
 Anime Mega-Pack :: https://drive.google.com/drive/folders/16b6qn3RQCshuPWEcRpGUi2L2nBFNHivu
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
-Mania Hero Track Packs :: https://drive.google.com/open?id=1_vNwoXUUBEHrPuNtFcyDCs8P4leMauw6
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
