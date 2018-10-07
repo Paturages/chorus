@@ -6,7 +6,7 @@ module.exports.getLatestCharts = (offset = 0, limit = 20) =>
   Pg.q`
     SELECT *
     FROM "Songs"
-    ORDER BY COALESCE("lastModified", "uploadedAt") DESC
+    ORDER BY COALESCE("lastModified", "uploadedAt") DESC, "id" DESC
     LIMIT 20
     OFFSET ${+offset || 0}`
   .then(songs =>
