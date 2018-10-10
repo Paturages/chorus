@@ -7,3 +7,9 @@
   text-align: center;
   background: $color--announcement-bg;
 }
+
+.Countdown {
+  &__field {
+    margin-right: .25em;
+  }
+}

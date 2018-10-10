@@ -22,10 +22,10 @@ const WARNINGS = [
     how to download a google drive folder
   </a>,
   "needs renaming\n(to notes.chart/song.mp3)",
-  "120 bpm alert",
+  // "120 bpm alert",
   "no 5-fret lead guitar chart",
   "no audio",
-  "possible broken notes\n(e.g. notes hidden behind others, broken chords)",
+  // "possible broken notes\n(e.g. notes hidden behind others, broken chords)",
   "might have notes after end of song"
 ];
 
@@ -63,10 +63,10 @@ export default ({
   const warningFlags = [
     isFolder && link,
     needsRenaming,
-    is120,
+    // is120,
     !noteCounts || !noteCounts.guitar,
     hasNoAudio,
-    hasBrokenNotes,
+    // hasBrokenNotes,
     length && effectiveLength && effectiveLength > length
   ];
   return (
