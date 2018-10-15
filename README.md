@@ -10,7 +10,7 @@ The current state of Guitar Hero/Rock Band/Clone Hero custom songs aggregation i
 
 A good part of the sources are based on the
 [official CH charts spreadsheet](https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o)
-with a ton of songs from talented charters, including conversions from C3, as well as the official GH/RB setlists. [Props to everyone who has added to the list as well!](sources/sources.txt) There are currently more than 25,000 charts indexed, and the number is still growing!
+with a ton of songs from talented charters, including conversions from C3, as well as the official GH/RB setlists. [Props to everyone who has added to the list as well!](sources/sources.txt) There are currently more than 20,000 charts indexed, and the number is still growing!
 
 *Disclaimer: I am not responsible of the charts and songs that are indexed by chorus (except the charts that are attributed to "Paturages"). If you have an issue with any of those, please contact the charters and/or the source owners (links to sources are provided for every song).*
 
