@@ -36,7 +36,13 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
   const folders = await new Promise((resolve, reject) =>
     Request.get(link, { headers: { Accept: 'application/json' } }, (err, res) => {
       if (err) reject(err);
-      else resolve(JSON.parse(res.body));
+      else try {
+        resolve(JSON.parse(res.body));
+      } catch (err) {
+        // The "index.html" I put in order to prevent people from browsing
+        // the "official games" directory triggers that.
+        resolve([]);
+      }
     })
   );
   // 4. Get the songs: they're either all in the source folder (/clonehero/),
