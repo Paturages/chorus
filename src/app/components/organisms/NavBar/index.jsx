@@ -56,7 +56,8 @@ class NavBar extends Component {
         <div className="NavBar__links">
           <div className="NavBar__inner">
             <div className="NavBar__item NavBar__item-acronym">
-              {ACRONYM}&nbsp;
+              {ACRONYM}
+              &nbsp;
               {count && (
                 <span>
                   <a

@@ -91,7 +91,12 @@ module.exports = {
               plugins: ["inferno", "transform-object-rest-spread"]
             }
           },
-          "prettier-loader"
+          {
+            loader: "prettier-loader",
+            query: {
+              parser: "babylon"
+            }
+          }
         ]
       }
     ]

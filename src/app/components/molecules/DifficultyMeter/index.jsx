@@ -72,9 +72,13 @@ export default ({ tier, diff, label, hashes, counts, hideDiffs }) => {
             diff =>
               hashes[diff] && (
                 <div className="DifficultyMeter__detail">
-                  {diffFullLabels[diff]}:&nbsp;{counts[diff]}&nbsp;notes
+                  {diffFullLabels[diff]}
+                  :&nbsp;
+                  {counts[diff]}
+                  &nbsp;notes
                   <div className="DifficultyMeter__detail-hash">
-                    Checksum:&nbsp;{hashes[diff]}
+                    Checksum:&nbsp;
+                    {hashes[diff]}
                   </div>
                 </div>
               )

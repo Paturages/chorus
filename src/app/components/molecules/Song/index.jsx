@@ -82,7 +82,8 @@ export default props => {
         </div>
         {!!sources.length && (
           <div className="Song__sources">
-            Source{sources.length == 1 ? "" : "s"}:
+            Source
+            {sources.length == 1 ? "" : "s"}:
             {sources.map(({ name, link, parent }) => (
               <div className="Song__source">
                 {parent && (
