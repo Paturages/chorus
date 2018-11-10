@@ -20,6 +20,7 @@ export default class AdvancedSearch extends Component {
       album: "",
       genre: "",
       charter: "",
+      md5: "",
       tiers: {
         band: null,
         guitar: null,
@@ -69,6 +70,7 @@ export default class AdvancedSearch extends Component {
       album,
       genre,
       charter,
+      md5,
       tiers,
       comparators,
       diffs,
@@ -95,6 +97,7 @@ export default class AdvancedSearch extends Component {
           if (album) queries.push(`album="${album}"`);
           if (genre) queries.push(`genre="${genre}"`);
           if (charter) queries.push(`charter="${charter}"`);
+          if (md5) queries.push(`md5=${md5.replace(/ /g, "")}`);
           for (let part in tiers) {
             if (tiers[part] || comparators[part] == -1) {
               queries.push(
@@ -149,7 +152,12 @@ export default class AdvancedSearch extends Component {
             onInput={$event => this.updateField("charter", $event)}
             label="Charter"
           />
-          <div style={{ flex: 1, margin: "0 .5em" }} />
+          <TextInput
+            maxLength={32}
+            defaultValue={md5}
+            onInput={$event => this.updateField("md5", $event)}
+            label="MD5 checksum"
+          />
         </div>
         <div className="AdvancedSearch__tier-row">
           {["band", "guitar", "bass"].map(part => (

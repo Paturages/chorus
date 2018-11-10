@@ -337,6 +337,7 @@ module.exports.search = async (query, offset, limit) => {
   const [, hasVideo] = query.match(/hasVideo=(\d)/) || [];
   const [, hasLyrics] = query.match(/hasLyrics=(\d)/) || [];
   const [, is120] = query.match(/is120=(\d)/) || [];
+  const [, md5] = query.match(/md5=([^ ]+)/) || [];
   let songs;
   if (name || artist || album || genre || charter ||
     tier_band || tier_guitar || tier_bass || tier_rhythm ||
@@ -344,12 +345,19 @@ module.exports.search = async (query, offset, limit) => {
     tier_bassghl || diff_guitar || diff_bass || diff_rhythm ||
     diff_drums || diff_keys || diff_guitarghl || diff_bassghl ||
     hasForced || hasOpen || hasTap || hasSections || hasStarPower ||
-    hasSoloSections || hasStems || hasVideo || hasLyrics || is120) {
+    hasSoloSections || hasStems || hasVideo || hasLyrics || is120 || md5)
+  {
     // Advanced search: detected.
     let queryIndex = 1;
     const queryParams = [];
     songs = await Pg.query(`
-      select * from "Songs"
+      select *
+      from "Songs" s
+      ${md5 ? queryParams.push(md5) && `join (
+        select "songId"
+        from "Songs_Hashes"
+        where "hash" = $${queryIndex++}::text
+      ) sh on sh."songId" = s."id"` : ''}
       where 1 = 1
       ${name ? queryParams.push(name) && `and name ilike concat('%', $${queryIndex++}::text, '%')` : ''}
       ${artist ? queryParams.push(artist) && `and artist ilike concat('%', $${queryIndex++}::text, '%')` : ''}
