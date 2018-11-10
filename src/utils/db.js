@@ -544,10 +544,6 @@ module.exports.getLinksMapBySource = ({ link }) => process.env.REFRESH ? Promise
   Pg.q`
     select "link"
     from "LinksToIgnore"
-    where "sourceId" = (
-      select "id" from "Sources"
-      where "link" = ${link}
-    )
   `
 ]).then(
   ([songs, toIgnore]) => Object.assign({}, ...songs.concat(toIgnore).map(song => ({ [song.link]: song.meta ? {

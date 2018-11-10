@@ -65,7 +65,9 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
   */
   console.log('Looking for chart folders and archives');
   const songs = [];
-  const toIgnore = [];
+  const toIgnore = Object.keys(linksMap)
+    .filter(link => linksMap[link].ignore)
+    .map(link => ({ sourceId: source.chorusId, link }));
   const searchSongFolders = async folder => {
     console.log('Looking inside', folder.name);
     // If this belongs to the blacklist, skip
