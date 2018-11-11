@@ -79,16 +79,15 @@ module.exports.upsertSource = ({ name, link, isSetlist, hideSingleDownloads }) =
 module.exports.upsertLinksToIgnore = (toIgnore) => Promise.all([
   Pg.q`
     INSERT INTO "LinksToIgnore${{ sql: process.argv[2] ? '' : '_new' }}"
-    ("link", "sourceId")
+    ("link")
     VALUES
-    ${toIgnore.map(({ link, sourceId }) => [link, sourceId])}
+    ${toIgnore.map(({ link }) => [link])}
     ON CONFLICT DO NOTHING
   `,
   !process.argv[2] && Pg.q`
     INSERT INTO "LinksToIgnore_new"
-    ("link", "sourceId")
-    SELECT "link", "sourceId" FROM "LinksToIgnore"
-    WHERE "sourceId" = ${toIgnore[0].sourceId}
+    ("link")
+    SELECT "link" FROM "LinksToIgnore"
     ON CONFLICT DO NOTHING
   `
 ])

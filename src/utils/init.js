@@ -128,12 +128,7 @@ module.exports = async () => {
     await Pg.q`CREATE INDEX ON "Songs_Hashes_new" USING hash("hash")`;
     await Pg.q`CREATE TABLE "LinksToIgnore_new" (
       "link" text,
-      "sourceId" integer,
-      PRIMARY KEY ("sourceId", "link"),
-      FOREIGN KEY ("sourceId")
-      REFERENCES public."Sources_new" (id) MATCH SIMPLE
-      ON UPDATE NO ACTION
-      ON DELETE CASCADE
+      PRIMARY KEY ("link")
     )`;
   } catch (err) {
     console.error(err.stack);
