@@ -73,12 +73,11 @@ export default props => {
               </a>
             </div>
           )}
-          {playlist &&
-            playlist.parent && (
-              <div className="Song__playlist-source">
-                (from <b>{playlist.parent.name}</b>)
-              </div>
-            )}
+          {playlist && playlist.parent && (
+            <div className="Song__playlist-source">
+              (from <b>{playlist.parent.name}</b>)
+            </div>
+          )}
         </div>
         {!!sources.length && (
           <div className="Song__sources">

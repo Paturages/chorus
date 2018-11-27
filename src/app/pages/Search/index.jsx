@@ -78,28 +78,24 @@ export default class Search extends Component {
     } = this.state;
     return (
       <div className="Search">
-        {!hasNothing &&
-          !substituteResult && (
-            <SongList
-              isLoading={isLoading}
-              title="Search results"
-              roles={roles}
-              songs={songs}
-              hasMore={hasMore}
-              onMore={this.nextPage.bind(this)}
-            />
-          )}
-        {!isLoading &&
-          hasNothing &&
-          !substituteResult && (
-            <div className="Search__nothing">
-              Sorry, we couldn't find anything!
-            </div>
-          )}
-        {!isLoading &&
-          substituteResult && (
-            <div className="Search__nothing">{substituteResult}</div>
-          )}
+        {!hasNothing && !substituteResult && (
+          <SongList
+            isLoading={isLoading}
+            title="Search results"
+            roles={roles}
+            songs={songs}
+            hasMore={hasMore}
+            onMore={this.nextPage.bind(this)}
+          />
+        )}
+        {!isLoading && hasNothing && !substituteResult && (
+          <div className="Search__nothing">
+            Sorry, we couldn't find anything!
+          </div>
+        )}
+        {!isLoading && substituteResult && (
+          <div className="Search__nothing">{substituteResult}</div>
+        )}
       </div>
     );
   }

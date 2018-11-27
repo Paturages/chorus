@@ -26,14 +26,13 @@ export default ({
         songs.map(song => (
           <Song roles={roles} onDownload={() => trackClick(song)} {...song} />
         ))}
-      {onMore &&
-        hasMore && (
-          <div className="SongList__more">
-            <a href="javascript:void(0)" onClick={onMore}>
-              {moreLabel || "More songs"}
-            </a>
-          </div>
-        )}
+      {onMore && hasMore && (
+        <div className="SongList__more">
+          <a href="javascript:void(0)" onClick={onMore}>
+            {moreLabel || "More songs"}
+          </a>
+        </div>
+      )}
       {isLoading && <LoadingIndicator />}
     </div>
   );
