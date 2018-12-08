@@ -34,11 +34,12 @@ export default class Announcement extends Component {
     return (
       <div className="Announcement">
         <div>
-          The <b>CSC November Monthly Pack</b> is up, with the most original
-          theme ever: <b>Covers!</b>{" "}
-          <a href="https://www.youtube.com/watch?v=7W-yeFGS2mg">
+          🎄Christmas is coming early, with the <b>CSC December Monthly Pack</b>
+          !{" "}
+          <a href="https://www.youtube.com/watch?v=JRqb_ICcURA">
             Release video
-          </a>
+          </a>{" "}
+          🎄
         </div>
         <div>
           <b>Djent Hero</b> is coming very soon!{" "}

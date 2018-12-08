@@ -344,7 +344,8 @@ $ CSC July Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: ca
 $ CSC August Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-08/ :: caddy/proxy:https://www.youtube.com/watch?v=MEMEMvo4vCE
 $ CSC September Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-09/ :: caddy/proxy:https://www.youtube.com/watch?v=HSvHFyAO4BE
 $ CSC October Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-10/ :: caddy/proxy:https://www.youtube.com/watch?v=QorGdosedHE
-$! CSC November Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-11/ :: caddy/proxy:https://www.youtube.com/watch?v=7W-yeFGS2mg
+$ CSC November Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-11/ :: caddy/proxy:https://www.youtube.com/watch?v=7W-yeFGS2mg
+$! CSC December Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-12/ :: caddy/proxy:https://www.youtube.com/watch?v=JRqb_ICcURA
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Charts from this month :: https://drive.google.com/drive/folders/1fA7Y81CurMlNe_FcsGElJhnAOU-NAxRq

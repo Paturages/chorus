@@ -64,7 +64,7 @@ module.exports = chart => {
   let hasSoloSections = false;
   let hasLyrics = false;
   let hasSections = false;
-  let hasBrokenNotes = false;
+  let brokenNotes = [];
   try {
     const utf8 = Iconv.decode(chart, 'utf8');
     if (utf8.indexOf('\u0000') >= 0) chart = Iconv.decode(chart, 'utf16');
@@ -132,7 +132,9 @@ module.exports = chart => {
       // for proofchecking stuff.
       if (previous) {
         const distance = index - previous.index;
-        if (distance > 0 && distance < 5) hasBrokenNotes = true;
+        if (distance > 0 && distance < 5) brokenNotes.push({
+          index: previous.index
+        });
       }
       if (+index && (!previous || previous.index != index)) previous = { index, note };
     }
@@ -163,6 +165,10 @@ module.exports = chart => {
           isFirstNoteFound = true;
           timeToFirstNote += (((firstNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
         }
+        // Compute timestamp of broken notes
+        brokenNotes.forEach(note => {
+          if (index <= note.index) note.time = time + (((note.index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+        });
       }
       currentIndex = index;
       currentBpm = bpm;
@@ -200,7 +206,8 @@ module.exports = chart => {
       hasSections, hasStarPower, hasForced,
       hasTap, hasOpen, hasSoloSections, hasLyrics,
       noteCounts, hashes, chartMeta, is120,
-      hasBrokenNotes
+      hasBrokenNotes: !!brokenNotes.length,
+      brokenNotes
     };
   } catch (err) {
     console.error(err.stack);

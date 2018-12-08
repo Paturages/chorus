@@ -31,7 +31,7 @@ const parse = midiFile => {
     hasForced = false,
     hasTap = false,
     hasLyrics = false,
-    hasBrokenNotes = false,
+    brokenNotes = [],
     hasOpen = {};
   let isOpen = false;
   let firstNoteTime, lastNoteTime = 0;
@@ -80,7 +80,7 @@ const parse = midiFile => {
           if (previous) {
             const distance = event.playTime - previous.time;
             if (distance > 0 && distance < 5) {
-              hasBrokenNotes = true;
+              brokenNotes.push({ time: previous.time, nextTime: event.playTime });
             }
           }
           if (!previous || previous.time != event.playTime) previous = { time: event.playTime };
@@ -100,7 +100,7 @@ const parse = midiFile => {
           if (previous) {
             const distance = event.playTime - previous.time;
             if (distance > 0 && distance < 5) {
-              hasBrokenNotes = true;
+              brokenNotes.push({ time: previous.time });
             }
           }
           if (!previous || previous.time != event.playTime) previous = { time: event.playTime };
@@ -141,7 +141,7 @@ const parse = midiFile => {
   return {
     hasSections, hasStarPower, hasForced, hasSoloSections,
     hasTap, hasOpen, noteCounts, is120, hasLyrics,
-    hashes, hasBrokenNotes,
+    hashes, hasBrokenNotes: !!brokenNotes.length, brokenNotes,
     chartMeta: {
       length: lastNoteTime / 1000 >> 0,
       effectiveLength: (lastNoteTime - firstNoteTime) / 1000 >> 0
