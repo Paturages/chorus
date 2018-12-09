@@ -4,7 +4,7 @@
   flex-direction: row;
   position: relative;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 839px) {
     display: block;
     padding: 1em;
   }
@@ -80,7 +80,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    @media (max-width: 1023px) {
+    @media (max-width: 839px) {
       width: auto;
       margin-top: 1em;
       justify-content: flex-end;
