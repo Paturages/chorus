@@ -19,10 +19,11 @@ module.exports = {
   entry: {
     urlsearchparams: "urlsearchparams.polyfill",
     polyfills: ["es5-shim", "es6-shim"],
-    bundle: "index.jsx"
+    bundle: "index.jsx",
+    "embed/bundle": "embed/embed.jsx"
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "styles.css" })
+    new MiniCssExtractPlugin({ filename: "[name].css" })
   ],
   module: {
     rules: [
@@ -32,7 +33,7 @@ module.exports = {
         use: {
           loader: "file-loader",
           query: {
-            name: "[name].html"
+            name: "[path][name].html"
           }
         }
       },

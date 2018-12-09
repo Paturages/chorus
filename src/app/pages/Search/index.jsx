@@ -76,12 +76,13 @@ export default class Search extends Component {
       hasNothing,
       substituteResult
     } = this.state;
+    const { pageName = "Search results" } = this.props;
     return (
       <div className="Search">
         {!hasNothing && !substituteResult && (
           <SongList
             isLoading={isLoading}
-            title="Search results"
+            title={pageName}
             roles={roles}
             songs={songs}
             hasMore={hasMore}

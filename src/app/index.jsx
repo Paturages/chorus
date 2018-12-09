@@ -52,15 +52,6 @@ if (process.env.NODE_ENV === "production" && !process.env.TESTING) {
   ga("send", "pageview");
 }
 
-const queryParts = (window.location.search || "")
-  .slice(1)
-  .split("&")
-  .map(x => {
-    const [key, value] = x.split("=");
-    return { key, value };
-  });
-const query = queryParts.find(x => x.key == "query") || {};
-
 /*
 
 --- TODO: Uncomment when feeling like implementing Discord auth ---
@@ -90,12 +81,6 @@ accessToken.value &&
   });
 
 */
-
-const indexOfQuestionMark = window.location.pathname.indexOf("?");
-const page = window.location.pathname.slice(
-  process.env.TESTING ? 9 : 0,
-  indexOfQuestionMark < 0 ? undefined : indexOfQuestionMark
-);
 
 class ChorusApp extends Component {
   constructor(props) {
