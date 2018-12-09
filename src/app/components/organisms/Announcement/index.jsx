@@ -41,10 +41,20 @@ export default class Announcement extends Component {
           </a>{" "}
           🎄
         </div>
-        <div>
-          <b>Djent Hero</b> is coming very soon!{" "}
-          <b>{getHumanTime(this.state.left)}</b>
-        </div>
+        {this.state.left > 0 ? (
+          <div>
+            <b>Djent Hero</b> is coming very soon!{" "}
+            <b>{getHumanTime(this.state.left)}</b>
+          </div>
+        ) : (
+          <div>
+            Djent. Pronunciation: /dʒɛnt/. Origin: Thall. If that interests you,{" "}
+            <b>Djent Hero</b> is out!{" "}
+            <a href="https://www.youtube.com/watch?v=p0YDCB_TMMg">
+              Release video
+            </a>
+          </div>
+        )}
       </div>
     );
   }
