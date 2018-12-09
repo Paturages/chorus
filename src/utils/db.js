@@ -374,13 +374,29 @@ module.exports.search = async (query, offset, limit) => {
   }
 
   let songs;
-  if (name || artist || album || genre || charter ||
+  if (md5) {
+    const md5s = md5.split(',');
+    let queryIndex = 1;
+    const queryParams = md5s;
+    songs = await Pg.query(`
+      select *
+      from "Songs" s
+      join (
+        select "songId"
+        from "Songs_Hashes"
+        where
+        ${md5s
+          .map(() => `"hash" = $${queryIndex++}::text`)
+          .join(' or ')}
+      ) sh on sh."songId" = s."id"
+    `, queryParams);
+  } else if (name || artist || album || genre || charter ||
     tier_band || tier_guitar || tier_bass || tier_rhythm ||
     tier_drums || tier_vocals || tier_keys || tier_guitarghl ||
     tier_bassghl || diff_guitar || diff_bass || diff_rhythm ||
     diff_drums || diff_keys || diff_guitarghl || diff_bassghl ||
     hasForced || hasOpen || hasTap || hasSections || hasStarPower ||
-    hasSoloSections || hasStems || hasVideo || hasLyrics || is120 || md5)
+    hasSoloSections || hasStems || hasVideo || hasLyrics || is120)
   {
     // Advanced search: detected.
     let queryIndex = 1;
@@ -388,11 +404,6 @@ module.exports.search = async (query, offset, limit) => {
     songs = await Pg.query(`
       select *
       from "Songs" s
-      ${md5 ? queryParams.push(md5) && `join (
-        select "songId"
-        from "Songs_Hashes"
-        where "hash" = $${queryIndex++}::text
-      ) sh on sh."songId" = s."id"` : ''}
       where 1 = 1
       ${name ? queryParams.push(name) && `and name ilike concat('%', $${queryIndex++}::text, '%')` : ''}
       ${artist ? queryParams.push(artist) && `and artist ilike concat('%', $${queryIndex++}::text, '%')` : ''}
