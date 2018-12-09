@@ -337,6 +337,42 @@ module.exports.search = async (query, offset, limit) => {
   const [, hasLyrics] = query.match(/hasLyrics=(\d)/) || [];
   const [, is120] = query.match(/is120=(\d)/) || [];
   const [, md5] = query.match(/md5=([^ ]+)/) || [];
+  
+  const [, sort] = query.match(/sort=([^ ]+)/) || [];
+  let sortSql = [];
+  if (sort) {
+    const fields = sort.split(',').filter(field => field.match(new RegExp(`^-?${[
+      "name",
+      "artist",
+      "album",
+      "genre",
+      "charter",
+      "tier_band",
+      "tier_guitar",
+      "tier_bass",
+      "tier_rhythm",
+      "tier_drums",
+      "tier_vocals",
+      "tier_keys",
+      "tier_guitarghl",
+      "tier_bassghl",
+      "noteCount",
+      "date"
+    ].join('|')}$`)));
+    for (let field of fields) {
+      const isDescending = field[0] == "-";
+      if (isDescending) field = field.slice(1);
+
+      if (field == "noteCount") {
+        field = `"noteCounts"->'guitar'->'x'`;
+      } else if (field == "date") {
+        field = `COALESCE("lastModified", "uploadedAt")`
+      }
+
+      sortSql.push(`${field} ${isDescending ? "DESC" : "ASC"}`);
+    }
+  }
+
   let songs;
   if (name || artist || album || genre || charter ||
     tier_band || tier_guitar || tier_bass || tier_rhythm ||
@@ -461,6 +497,10 @@ module.exports.search = async (query, offset, limit) => {
           "is120" is ${is120 == 1 ? 'not' : ''} null
           ${is120 == 1 ? 'and' : 'or'} "is120" = $${queryIndex++}
         )` : ''}
+      ${sortSql.length ? `
+        ORDER BY
+        ${sortSql.join(",")}
+      ` : ""}
       limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
       ${+offset ? `OFFSET ${+offset}` : ''}
     `, queryParams);
