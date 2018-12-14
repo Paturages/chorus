@@ -17,10 +17,17 @@ const ACRONYMS = [
   "Cool Hats On Randyladyman's Unlisted Stream",
   "Clown Harmonica Olympics: a Really Useless Sport",
   "Cars Honking Over a Rare Utopian Speedway",
-  "No, you won't find GH2 ISOs here",
   "we are solo",
-  "FLEE THE BURNING"
-  // TODO: I need more! Send pull requests!
+  "h",
+  "intake remedy",
+  "consume prescription",
+  "take meds",
+  "薬忘れない",
+  "Home of Guitar Hero: High Tech 3",
+  "!chorusstatus",
+  "Daily reminder that stealing charts is wrong and there will be retaliation",
+  "honk",
+  "6-frets is not dead"
 ];
 let ACRONYM;
 const now = new Date();
@@ -64,7 +71,7 @@ class NavBar extends Component {
                     href="https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o/edit#gid=0"
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="Shoutouts to ZeroHearts and tons more from the Clone Hero community!"
+                    title="Link to CH customs spreadsheet. Shoutouts to all contributing charters!"
                   >
                     (<b>{count}</b> songs and counting)
                   </a>
@@ -129,7 +136,7 @@ class NavBar extends Component {
               href="javascript:void(0)"
               onClick={() => {
                 const bg = window.prompt(
-                  "Paste in a direct link to an image (e.g. https://chorus.fightthe.pw/assets/images/monika.jpg) to set it as a custom background. (Note: You can reset this by clearing your browser's cache)"
+                  "Paste in a direct link to an image (e.g. https://chorus.fightthe.pw/assets/images/monika.jpg) to set it as a custom background. (Note: You can reset this by clicking OK without any text)"
                 );
                 window.localStorage.bg = bg;
                 document.getElementById(

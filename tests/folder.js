@@ -12,22 +12,30 @@ const ls = (folder, pattern) => new Promise((resolve, reject) =>
     cwd: folder
   }, (err, res) => err ? reject(err) : resolve(res))
 );
+const stat = path => util.promisify(fs.stat)(path);
+
 const read = util.promisify(fs.readFile);
 
-(async () => {
-  const folders = await ls(path.resolve(__dirname, 'csc-december'), "*");
-  for (let folder of folders) {
-    const files = await ls(folder, "*");
-    for (let file of files) {
-      if (file.match(/\.mid$/)) {
-        const buffer = await read(file, { encoding: null });
-        console.log(file);
-        console.log(getMetaFromMidi(buffer).brokenNotes);
-      } else if (file.match(/\.chart$/)) {
-        const buffer = await read(file, { encoding: null });
-        console.log(file);
-        console.log(getMetaFromChart(buffer).brokenNotes);
-      }
-    }
+const ORIGIN = process.argv[2] || __dirname;
+
+const crawl = async root => {
+  const files = await ls(root, "*");
+  for (let file of files) {
+    const stats = await stat(file);
+    if (stats.isDirectory()) {
+      await crawl(file);
+    } else if (file.match(/\.mid$/)) {
+      const buffer = await read(file, { encoding: null });
+      console.log(file, "(mid)");
+      console.log(getMetaFromMidi(buffer).brokenNotes);
+    } else if (file.match(/\.chart$/)) {
+      const buffer = await read(file, { encoding: null });
+      console.log(file, "(chart)");
+      console.log(getMetaFromChart(buffer).brokenNotes);
+    } 
   }
+}
+
+(async () => {
+  await crawl(ORIGIN);
 })();
