@@ -22,7 +22,7 @@ const getHumanTime = time => {
     .join(" ");
 };
 
-const RELEASE = new Date("2018-12-10T10:00:00Z");
+const RELEASE = new Date("2019-01-07T23:00:00Z");
 
 export default class Announcement extends Component {
   constructor(props) {
@@ -34,25 +34,19 @@ export default class Announcement extends Component {
     return (
       <div className="Announcement">
         <div>
-          🎄Christmas is coming early, with the <b>CSC December Monthly Pack</b>
-          !{" "}
-          <a href="https://www.youtube.com/watch?v=JRqb_ICcURA">
-            Release video
-          </a>{" "}
-          🎄
+          Welcome to 2019, and happy new year! The{" "}
+          <b>CSC January Monthly Pack</b> is out to reminisce about <b>2018</b>!{" "}
+          <a href="https://www.youtube.com/watch?v=6UJSnXaokaA">Release video</a>{" "}
         </div>
         {this.state.left > 0 ? (
           <div>
-            <b>Djent Hero</b> is coming very soon!{" "}
-            <b>{getHumanTime(this.state.left)}</b>
+            CSC Anniversary week is on! Prepare yourself for{" "}
+            <b>Redemption Arc</b>! <b>{getHumanTime(this.state.left)}</b>
           </div>
         ) : (
           <div>
-            Djent. Pronunciation: /dʒɛnt/. Origin: Thall. If that interests you,{" "}
-            <b>Djent Hero</b> is out!{" "}
-            <a href="https://www.youtube.com/watch?v=p0YDCB_TMMg">
-              Release video
-            </a>
+            The past is the past, and we shall look towards the future.{" "}
+            <b>Redemption Arc</b> is out! <a href="#">Release video</a>
           </div>
         )}
       </div>
