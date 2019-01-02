@@ -36,7 +36,9 @@ export default class Announcement extends Component {
         <div>
           Welcome to 2019, and happy new year! The{" "}
           <b>CSC January Monthly Pack</b> is out to reminisce about <b>2018</b>!{" "}
-          <a href="https://www.youtube.com/watch?v=6UJSnXaokaA">Release video</a>{" "}
+          <a href="https://www.youtube.com/watch?v=6UJSnXaokaA">
+            Release video
+          </a>{" "}
         </div>
         {this.state.left > 0 ? (
           <div>
