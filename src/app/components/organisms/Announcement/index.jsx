@@ -28,7 +28,7 @@ export default class Announcement extends Component {
   constructor(props) {
     super(props);
     this.state = { left: RELEASE - new Date() };
-    if (this.state.left > 0) setInterval(() => this.setState({ left: RELEASE - new Date() }), 333);
+    // if (this.state.left > 0) setInterval(() => this.setState({ left: RELEASE - new Date() }), 333);
   }
   render() {
     return (
@@ -40,17 +40,14 @@ export default class Announcement extends Component {
             Release video
           </a>{" "}
         </div>
-        {this.state.left > 0 ? (
-          <div>
-            CSC Anniversary week is on! Prepare yourself for{" "}
-            <b>Redemption Arc</b>! <a href="https://www.youtube.com/watch?v=rzW4C9uQMv0">Join us on the Premiere! <b>{getHumanTime(this.state.left)}</b></a>
-          </div>
-        ) : (
-          <div>
-            The past is the past, and we shall look towards the future.{" "}
-            <b>Redemption Arc</b> is out! <a href="https://www.youtube.com/watch?v=rzW4C9uQMv0">Release video</a>
-          </div>
-        )}
+        <div>
+          The past is the past, and we shall look towards the future.{" "}
+          <b>Redemption Arc</b> is out! <a href="https://www.youtube.com/watch?v=rzW4C9uQMv0">Release video</a>
+        </div>
+        <div>
+          <a href="https://fightthe.pw/2019/01/10/1-year-of-chorus.html">1 year of chorus: a history of looking for charts</a>&nbsp;-&nbsp;
+          <a href="https://www.reddit.com/r/CloneHero/comments/aeo35n/1_year_of_chorus_a_history_of_looking_for_charts/">Discuss on reddit</a>
+        </div>
       </div>
     );
   }
