@@ -27,7 +27,8 @@ const ACRONYMS = [
   "!chorusstatus",
   "Daily reminder that stealing charts is wrong and there will be retaliation",
   "honk",
-  "6-frets is not dead"
+  "6-frets is not dead",
+  "Chezy's Amazingly Rad Setli- wait, hold on a second"
 ];
 let ACRONYM;
 const now = new Date();

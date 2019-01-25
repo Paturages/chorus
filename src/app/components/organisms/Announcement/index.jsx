@@ -42,11 +42,26 @@ export default class Announcement extends Component {
         </div>
         <div>
           The past is the past, and we shall look towards the future.{" "}
-          <b>Redemption Arc</b> is out! <a href="https://www.youtube.com/watch?v=rzW4C9uQMv0">Release video</a>
+          <b>Redemption Arc</b> is out!{" "}
+          <a href="https://www.youtube.com/watch?v=rzW4C9uQMv0">
+            Release video
+          </a>
         </div>
         <div>
-          <a href="https://fightthe.pw/2019/01/10/1-year-of-chorus.html">1 year of chorus: a history of looking for charts</a>&nbsp;-&nbsp;
-          <a href="https://www.reddit.com/r/CloneHero/comments/aeo35n/1_year_of_chorus_a_history_of_looking_for_charts/">Discuss on reddit</a>
+          Looking for some... <b>CHARTS?</b> Here's 600 of them: the entire
+          repertoire of charter extraordinaire: <b>Chezy</b>.{" "}
+          <a href="https://www.youtube.com/watch?v=VDcxcRTH954">
+            Release video
+          </a>
+        </div>
+        <div>
+          <a href="https://fightthe.pw/2019/01/10/1-year-of-chorus.html">
+            1 year of chorus: a history of looking for charts
+          </a>
+          &nbsp;-&nbsp;
+          <a href="https://www.reddit.com/r/CloneHero/comments/aeo35n/1_year_of_chorus_a_history_of_looking_for_charts/">
+            Discuss on reddit
+          </a>
         </div>
       </div>
     );
