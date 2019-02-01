@@ -34,33 +34,15 @@ export default class Announcement extends Component {
     return (
       <div className="Announcement">
         <div>
-          Welcome to 2019, and happy new year! The{" "}
-          <b>CSC January Monthly Pack</b> is out to reminisce about <b>2018</b>!{" "}
-          <a href="https://www.youtube.com/watch?v=6UJSnXaokaA">
+          No vocals. Full difficulty. Only instrumentals.{" "}
+          <b>CSC February Monthly Pack.</b>{" "}
+          <a href="https://www.youtube.com/watch?v=nPvA7r5RyD8">
             Release video
           </a>{" "}
         </div>
         <div>
-          The past is the past, and we shall look towards the future.{" "}
-          <b>Redemption Arc</b> is out!{" "}
-          <a href="https://www.youtube.com/watch?v=rzW4C9uQMv0">
-            Release video
-          </a>
-        </div>
-        <div>
-          Looking for some... <b>CHARTS?</b> Here's 600 of them: the entire
-          repertoire of charter extraordinaire: <b>Chezy</b>.{" "}
-          <a href="https://www.youtube.com/watch?v=VDcxcRTH954">
-            Release video
-          </a>
-        </div>
-        <div>
-          <a href="https://fightthe.pw/2019/01/10/1-year-of-chorus.html">
-            1 year of chorus: a history of looking for charts
-          </a>
-          &nbsp;-&nbsp;
-          <a href="https://www.reddit.com/r/CloneHero/comments/aeo35n/1_year_of_chorus_a_history_of_looking_for_charts/">
-            Discuss on reddit
+          <a href="https://fightthe.pw/2019/01/30/behind-the-searching-platform.html">
+            1 year of chorus: behind the searching platform
           </a>
         </div>
       </div>
