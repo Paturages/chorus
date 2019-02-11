@@ -65,6 +65,7 @@ module.exports = chart => {
   let hasLyrics = false;
   let hasSections = false;
   let brokenNotes = [];
+  const sections = [];
   try {
     const utf8 = Iconv.decode(chart, 'utf8');
     if (utf8.indexOf('\u0000') >= 0) chart = Iconv.decode(chart, 'utf16');
@@ -90,10 +91,16 @@ module.exports = chart => {
     // Detect sections and lyrics
     const eventsIndex = lines.indexOf('[Events]');
     for (let i = eventsIndex; lines[i] != null && lines[i] != '}'; i++) {
-      let [, value] = lines[i].split(' = ');
+      let [index, value] = lines[i].split(' = ');
       if (!value) continue;
       if (value.match(/"lyric /)) hasLyrics = true;
-      else if (value.match(/"section /)) hasSections = true;
+      else if (value.match(/"section /)) {
+        hasSections = true;
+        sections.push({
+          index: +index.trim(),
+          section: value
+        });
+      }
     }
     // Detect features
     const notesIndex = lines.findIndex(line => diffMap[line.trim()]);
@@ -133,7 +140,9 @@ module.exports = chart => {
       if (previous) {
         const distance = index - previous.index;
         if (distance > 0 && distance < 5) brokenNotes.push({
-          index: previous.index
+          index: +previous.index,
+          section: sections[sections.findIndex(section => +section.index > +previous.index) - 1],
+          time: 0
         });
       }
       if (+index && (!previous || previous.index != index)) previous = { index, note };
@@ -160,14 +169,20 @@ module.exports = chart => {
         // (the "Resolution" parameter defines how many "units" there are in a beat)
         time += (((index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
         // Calculate the timestamp of the first note
-        if (index <= firstNoteIndex) timeToFirstNote += (((index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
-        else if (!isFirstNoteFound) {
+        if (index <= firstNoteIndex) {
+          timeToFirstNote += (((index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+        } else if (!isFirstNoteFound) {
           isFirstNoteFound = true;
           timeToFirstNote += (((firstNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
         }
         // Compute timestamp of broken notes
         brokenNotes.forEach(note => {
-          if (index <= note.index) note.time = time + (((note.index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+          if (index <= note.index) {
+            note.time += (((index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+          } else if (!note.found) {
+            note.found = true;
+            note.time += (((note.index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+          }
         });
       }
       currentIndex = index;
@@ -178,6 +193,10 @@ module.exports = chart => {
     const is120 = currentIndex == 0 && currentBpm == 120
     // do it one last time against the last note
     time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+
+    brokenNotes.forEach(note => {
+      delete note.found;
+    });
 
     // Compute the hash of the .chart itself first
     const hashes = { file: getMD5(chart) };
