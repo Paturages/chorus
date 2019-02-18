@@ -41,8 +41,8 @@ export default class Announcement extends Component {
           </a>{" "}
         </div>
         <div>
-          <a href="https://fightthe.pw/2019/01/30/behind-the-searching-platform.html">
-            1 year of chorus: behind the searching platform
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSceW3Ir2cOmsGX-7GC3_Y3YfUid_UhrSrR3JHB2yjpz7zN16w/viewform">
+            <b>chorus needs your feedback!</b> Contribute to the future development of chorus with your insight and ideas!
           </a>
         </div>
       </div>
