@@ -354,16 +354,18 @@ $ Mario Kart 8 Track Pack :: https://drive.google.com/drive/u/0/folders/1paxRjY2
 $ Anti Hero: Beach Episode :: https://drive.google.com/drive/folders/10IgIFd5wmYKPenVegJAMFHuWRKVpBHvf :: google-drive/proxy:https://youtu.be/9hvmhVv3iYE
 $ Anti Hero: Beach Episode - The Beach Sides :: https://drive.google.com/drive/folders/1dn-VRfo9RSPJizC4HblMQvNcttdC6cyW :: google-drive/proxy:https://www.youtube.com/watch?v=phvIrLp0wpo
 $ Marathon Hero :: https://public.fightthe.pw/rehosts/mh/ :: caddy/proxy:https://www.youtube.com/watch?v=MhTF4yxAxQ4
-$! Djent Hero :: https://public.fightthe.pw/rehosts/djent/ :: caddy/proxy:https://www.youtube.com/watch?v=p0YDCB_TMMg
+$ Djent Hero :: https://public.fightthe.pw/rehosts/djent/ :: caddy/proxy:https://www.youtube.com/watch?v=p0YDCB_TMMg
+$ Redemption Arc :: https://drive.google.com/drive/folders/1KasBj2cs8zzL_nGdVdMkVgJbB9uqeN4q?usp=sharing :: google-drive/proxy:https://www.youtube.com/watch?v=rzW4C9uQMv0
 
-$ CSC June Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06/ :: caddy/proxy:https://www.youtube.com/watch?v=ZYU83pV8Ax0
-$ CSC July Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: caddy/proxy:https://youtube.com/watch?v=W-ge6kJIC8Q
-$ CSC August Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-08/ :: caddy/proxy:https://www.youtube.com/watch?v=MEMEMvo4vCE
-$ CSC September Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-09/ :: caddy/proxy:https://www.youtube.com/watch?v=HSvHFyAO4BE
-$ CSC October Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-10/ :: caddy/proxy:https://www.youtube.com/watch?v=QorGdosedHE
-$ CSC November Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-11/ :: caddy/proxy:https://www.youtube.com/watch?v=7W-yeFGS2mg
-$ CSC December Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-12/ :: caddy/proxy:https://www.youtube.com/watch?v=JRqb_ICcURA
-$! CSC January Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-01/ :: caddy/proxy:https://www.youtube.com/watch?v=6UJSnXaokaA
+$ CSC June 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06/ :: caddy/proxy:https://www.youtube.com/watch?v=ZYU83pV8Ax0
+$ CSC July 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: caddy/proxy:https://youtube.com/watch?v=W-ge6kJIC8Q
+$ CSC August 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-08/ :: caddy/proxy:https://www.youtube.com/watch?v=MEMEMvo4vCE
+$ CSC September 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-09/ :: caddy/proxy:https://www.youtube.com/watch?v=HSvHFyAO4BE
+$ CSC October 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-10/ :: caddy/proxy:https://www.youtube.com/watch?v=QorGdosedHE
+$ CSC November 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-11/ :: caddy/proxy:https://www.youtube.com/watch?v=7W-yeFGS2mg
+$ CSC December 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-12/ :: caddy/proxy:https://www.youtube.com/watch?v=JRqb_ICcURA
+$ CSC January 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-01/ :: caddy/proxy:https://www.youtube.com/watch?v=6UJSnXaokaA
+$! CSC February 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-02/ :: caddy/proxy:https://www.youtube.com/watch?v=nPvA7r5RyD8
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Charts from this month :: https://drive.google.com/drive/folders/1fA7Y81CurMlNe_FcsGElJhnAOU-NAxRq
@@ -383,6 +385,7 @@ Anime Mega-Pack :: https://drive.google.com/drive/folders/16b6qn3RQCshuPWEcRpGUi
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
 CHTV :: https://drive.google.com/drive/folders/1i9nyKqpS2Uc2W3srPDh8C-ET3aaJ-AZv
 FamilyJules Track Pack :: https://drive.google.com/drive/folders/1SO4ZLb5cXNRsQGhpTi3q04hntRz_8yet
+Sunrise :: https://public.fightthe.pw/rehosts/sunrise/ :: caddy/proxy:https://www.youtube.com/watch?v=BfjNFCqGe3Y
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
@@ -403,3 +406,4 @@ Community Track Pack 3 :: https://public.fightthe.pw/rehosts/ctp3/ :: caddy
 Community Track Pack 4 :: https://public.fightthe.pw/rehosts/ctp4/ :: caddy
 Community Track Pack 5 :: https://public.fightthe.pw/rehosts/ctp5/ :: caddy
 $ Community Track Pack 6 :: https://public.fightthe.pw/rehosts/ctp6/ :: caddy/proxy:https://www.youtube.com/watch?v=0qnYxeBclHc
+$ Community Track Pack 7 :: https://public.fightthe.pw/rehosts/ctp7/ :: caddy/proxy:https://youtu.be/NgWxblWx5rA
