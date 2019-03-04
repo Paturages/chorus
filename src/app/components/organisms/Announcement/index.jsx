@@ -34,9 +34,9 @@ export default class Announcement extends Component {
     return (
       <div className="Announcement">
         <div>
-          No vocals. Full difficulty. Only instrumentals.{" "}
-          <b>CSC February Monthly Pack.</b>{" "}
-          <a href="https://www.youtube.com/watch?v=nPvA7r5RyD8">
+          To celebrate Women's History Month, the{" "}
+          <b>CSC March Monthly Pack</b> features <b>Female-Fronted bands and artists!</b>{" "}
+          <a href="https://www.youtube.com/watch?v=nPJAKqiEjU0">
             Release video
           </a>{" "}
         </div>
