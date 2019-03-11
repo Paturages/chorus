@@ -63,13 +63,11 @@ Chezy's charts :: https://drive.google.com/drive/folders/1GMWUS_9lttQktzTeek1J14
 CyclopsDragon's charts :: https://drive.google.com/drive/folders/0B4vo9ev8ymFsMTBwWGVlM3dtUUE
 Dillski's charts :: https://drive.google.com/drive/folders/0Bzm5KFgFuIEocmoxVElkS3dhUGs
 DigitalSquirrel's charts :: https://drive.google.com/drive/folders/0B2cTDJt4RaShTFBxak9nM212T0U
-FrOoGle's charts :: https://drive.google.com/drive/folders/1symlLzFGlBm8fGbP6bl8MMLFtWgrnO8u
 Gabe's charts :: https://drive.google.com/drive/folders/1eJa7sdE-A4sLhqg9jkYvNMxLqFdpuJ9h :: google-drive/proxy:http://bit.ly/gaebpls
 GanonMetroid's charts :: https://drive.google.com/drive/folders/1y2-NuFvYzacLxMiNlc_0yjFB69lF2LHL
 HellAshes' charts :: https://drive.google.com/drive/folders/10hYY-KbjtJ8vXxEY1eiHsQtG2zN8VSjA
 Hellrock120's charts :: https://drive.google.com/drive/folders/0B5wk-b9mhFVwa3VMYkJiWFk3VTQ
 Jaded's charts :: https://drive.google.com/drive/folders/1cz5TL94WpSDcBsks6UBpcbYjZgT9zW4Z
-Jackie's charts :: https://drive.google.com/drive/folders/16fNARud-Z7HZoT6H-TKV3y6j2qGX0fke
 Jarvis9999's charts :: https://drive.google.com/open?id=1-UfAiPlFQr260xPJ-ML2G4W7eOCeLDQA
 JoeyD's charts :: https://drive.google.com/drive/folders/1P424TQxsmzzDUOygVggFvVTXN7CGY2dT
 MercuryHg34's charts :: https://drive.google.com/drive/folders/1YpdTC-v8O2gRaJHAvjofORfZ6bWUSC3M
@@ -80,7 +78,6 @@ Paturages' charts :: https://public.fightthe.pw/clonehero/ :: caddy
 Rek3dge's charts :: https://drive.google.com/drive/folders/1p2j6q-xBis9eWERZpWdxEOQAChDBc2MC
 Riddo's charts :: https://drive.google.com/drive/folders/0B-q881cf9RQmNjlnaGowbnN2V1k
 Roy's charts :: https://drive.google.com/drive/folders/1lUZD1gnEc6hIv5UN0xoB1LeVZGrzoq9Q
-sadyanx's charts:: https://drive.google.com/drive/folders/1mUznC_XU-a2wbZLJCcdZAaQTnI1irwG1
 ShadeGH's charts :: https://drive.google.com/drive/folders/0B60cVxSWmZPcOHJkbWRkQkc1YWs
 Siavash's charts :: https://drive.google.com/drive/folders/0B2RLHuNpuW16UnhnNFUxVXBOamc :: google-drive/proxy:http://bit.ly/SiavashCharts
 Siavash's Anti Hero charts :: https://drive.google.com/drive/folders/1nIIO3CJ3WmICHAMQEoaN63RoStUn3UF-
@@ -97,6 +94,8 @@ xX760Xx's charts :: https://drive.google.com/drive/folders/0B5LGIoSN3SrkQm1EZjhl
 
 capta1n_guitarhero's charts :: https://drive.google.com/drive/folders/1kazNw6LPjnbahS5s1iKAGhNkNeLDpxDW
 CaptainToasty's charts :: https://drive.google.com/drive/folders/0B7sLCPWoM-w3aDVLdUV2YmZ5ejg
+FrOoGle's charts :: https://drive.google.com/drive/folders/1symlLzFGlBm8fGbP6bl8MMLFtWgrnO8u
+Jackie's charts :: https://drive.google.com/drive/folders/16fNARud-Z7HZoT6H-TKV3y6j2qGX0fke
 JaysonTM's charts :: https://drive.google.com/drive/u/0/folders/0B6v9d_hMqZXRQzJxRUVMMVRITEE
 # No more single category FeelsBadMan
 JRabes' setlist :: https://drive.google.com/drive/folders/1luidkgov8xZSr__GLtFiwmqsVs95gpcj
@@ -266,6 +265,7 @@ robhard97's charts :: https://drive.google.com/drive/folders/1vJzJ4iWIOTbQIiZYXG
 Romart's charts :: https://drive.google.com/drive/folders/1V6akv7_IZ8NZL4nvQnSY7JUPlppU0I8d
 ryanoat's charts :: https://drive.google.com/drive/folders/1g_7RPBL4812Ygf1za4nyDA9XLB62LImF
 Rifampin's charts :: https://drive.google.com/drive/folders/1kHwKX3odO5A77HGAHnJ8Av3wkPOTHOe-
+sadyanx's charts:: https://drive.google.com/drive/folders/1mUznC_XU-a2wbZLJCcdZAaQTnI1irwG1
 Sailing Whisper's Charts :: https://drive.google.com/open?id=1CPwuad14uwAGxDOv2rdgHjBio3qpeRyR
 Salt's Charts :: https://drive.google.com/drive/folders/1Ol0EzeoiYMywnfKlMsKk0gzW0GC9zKed?usp=sharing
 SamLittlehorn's charts :: https://drive.google.com/drive/folders/1JABwBdzetl8rvNAJmBINNVqnQKTBdxQL
