@@ -22,7 +22,7 @@ const getHumanTime = time => {
     .join(" ");
 };
 
-const RELEASE = new Date("2019-03-15T20:00:00Z");
+const RELEASE = new Date("2019-03-15T19:00:00Z");
 
 export default class Announcement extends Component {
   constructor(props) {
