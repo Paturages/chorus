@@ -400,6 +400,7 @@ CHTV :: https://drive.google.com/drive/folders/1i9nyKqpS2Uc2W3srPDh8C-ET3aaJ-AZv
 FamilyJules Track Pack :: https://drive.google.com/drive/folders/1SO4ZLb5cXNRsQGhpTi3q04hntRz_8yet
 $ Sunrise :: https://public.fightthe.pw/rehosts/sunrise/ :: caddy/proxy:https://www.youtube.com/watch?v=BfjNFCqGe3Y
 $! The Fall of Troy Hero :: https://public.fightthe.pw/rehosts/tfot/ :: caddy/proxy:http://bit.ly/TFoTHero
+311 Hero :: https://drive.google.com/open?id=1GRV0bsc8b4-3hfsKGpjouRcHwGO4Y1fC
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
