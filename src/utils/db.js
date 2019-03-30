@@ -568,14 +568,20 @@ module.exports.search = async (query, offset, limit) => {
       if (parent) delete parent.parent; // We don't need the grand-parent. (yes this is ageist)
       songMap[songId].sources.push({ id, name, link, parent, isSetlist });
     });
+    // If MD5 is defined, sort by order provided
+    const md5s = md5 ? md5.split(",") : null;
+    const sortedSongs = [];
     hashes.forEach(({ songId, hash, part, difficulty }) => {
       if (!songMap[songId].hashes) songMap[songId].hashes = {};
-      if (part == 'file') songMap[songId].hashes.file = hash;
-      else {
+      if (part == 'file') {
+        songMap[songId].hashes.file = hash;
+        if (md5) sortedSongs[md5s.indexOf(hash)] = songMap[songId];
+      } else {
         if (!songMap[songId].hashes[part]) songMap[songId].hashes[part] = {};
         songMap[songId].hashes[part][difficulty] = hash;
       }
     });
+    if (md5) songs = sortedSongs;
     return {
       // songs is still sorted by the proper filter
       songs: songs.map(({ id }) => songMap[id]),
