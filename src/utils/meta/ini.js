@@ -15,7 +15,7 @@ module.exports = ini => {
     if (source.indexOf('\u0000') > -1) source = Iconv.decode(ini, 'utf16');
     return source.split('\n')
     .reduce((meta, line) => {
-      let [param, value] = line.split('=');
+      let [, param, value] = line.match(/([^=]+)=(.+)/) || [];
       if (!value || !value.trim() || fieldBlacklist[param]) return meta;
       // Trim because of stupid Windows whitespace things
       param = param.trim();
