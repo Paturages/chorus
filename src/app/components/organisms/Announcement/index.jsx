@@ -32,23 +32,19 @@ export default class Announcement extends Component {
       setInterval(() => this.setState({ left: RELEASE - new Date() }), 333);
   }
   render() {
-    const tfotCountdown = (
+    const cbBlurb = (
       <div>
-        ...Troy will fall in <b>{getHumanTime(this.state.left)}</b>
-      </div>
-    );
-    const tfotBlurb = (
-      <div>
-        Charter extraordinaire <b>xX760Xx</b> presents to you: the{" "}
-        <b>full discography of The Fall of Troy</b>!{" "}
-        <a href="http://bit.ly/TFoTHero" target="_blank">
-          Download here!
+        Are you ready to get your circuits broken? Introducing the highly
+        anticipated <b>Circuit Breaker</b>: a full difficulty and all{" "}
+        <b>electronic</b> setlist!{" "}
+        <a href="https://www.youtube.com/watch?v=sAWyK-YVRRQ" target="_blank">
+          Release video
         </a>
       </div>
     );
     return (
       <div className="Announcement">
-        {this.state.left > 0 ? tfotCountdown : tfotBlurb}
+        {cbBlurb}
         <div>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSceW3Ir2cOmsGX-7GC3_Y3YfUid_UhrSrR3JHB2yjpz7zN16w/viewform">
             <b>chorus needs your feedback!</b> Contribute to the future
