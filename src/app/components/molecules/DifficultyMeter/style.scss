@@ -59,3 +59,12 @@
     opacity: .6;
   }
 }
+
+.GH3 .DifficultyMeter {
+  svg {
+    background: none;
+    path {
+      fill: rgba($color--difficulty, .3);
+    }
+  }
+}

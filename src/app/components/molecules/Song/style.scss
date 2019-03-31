@@ -1,3 +1,5 @@
+@import "variables";
+
 .Song {
   padding: 1em 2em;
   display: flex;
@@ -100,5 +102,12 @@
   .NoteDensity {
     margin-top: .5em;
     white-space: nowrap;
+  }
+}
+
+.GH3 .Song {
+  padding: 0;
+  &__length {
+    color: $color--text;
   }
 }

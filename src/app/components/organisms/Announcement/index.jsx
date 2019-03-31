@@ -43,12 +43,18 @@ export default class Announcement extends Component {
       </div>
     );
     return (
-      <div className="Announcement">
+      <div
+        className={
+          this.props.theme
+            ? `Announcement--${this.props.theme}`
+            : "Announcement"
+        }
+      >
         {cbBlurb}
         <div>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSceW3Ir2cOmsGX-7GC3_Y3YfUid_UhrSrR3JHB2yjpz7zN16w/viewform">
-            <b>chorus needs your feedback!</b> Contribute to the future
-            development of chorus with your insight and ideas!
+            <b>gh3orus needs your feedback!</b> Contribute to the future
+            development of gh3orus with your insight and ideas!
           </a>
         </div>
       </div>

@@ -12,11 +12,11 @@ import "./style.scss";
 
 // Of course there's an easter egg.
 const ACRONYMS = [
-  "Clone Hero-friendly Organized Repository of User-provided Songs",
-  "Charting Habitat Of Real Unsettling Secrets",
-  "Cool Hats On Randyladyman's Unlisted Stream",
-  "Clown Harmonica Olympics: a Really Useless Sport",
-  "Cars Honking Over a Rare Utopian Speedway",
+  "Guitar Hero 3-friendly Organized Repository of User-provided Songs",
+  "Guilty Habitat 3 Of Real Unsettling Secrets",
+  "Gnarly Hats (3) On Randyladyman's Unlisted Stream",
+  "Gorgon Harmonica 3 Olympics: a Really Useless Sport",
+  "Giraffes Honking 3 Over a Rare Utopian Speedway",
   "we are solo",
   "h",
   "intake remedy",
@@ -24,11 +24,11 @@ const ACRONYMS = [
   "take meds",
   "薬忘れない",
   "Home of Guitar Hero: High Tech 3",
-  "!chorusstatus",
+  "!gh3orusstatus",
   "Daily reminder that stealing charts is wrong and there will be retaliation",
   "honk",
   "6-frets is not dead",
-  "Chezy's Amazingly Rad Setli- wait, hold on a second"
+  // "Chezy's Amazingly Rad Setli- wait, hold on a second"
 ];
 let ACRONYM;
 const now = new Date();

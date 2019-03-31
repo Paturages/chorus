@@ -35,3 +35,16 @@
     max-width: 20rem;
   }
 }
+
+.GH3 .DownloadLink {
+  &__charter {
+    &--roled {
+      .DownloadLink__charter-name {
+        color: #a5a7c8;
+        &:hover {
+          color: #4e4c70;
+        }
+      }
+    }
+  }
+}

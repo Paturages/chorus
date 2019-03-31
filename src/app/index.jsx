@@ -1,11 +1,13 @@
 import { Component, render } from "inferno";
 import { BrowserRouter, Route, withRouter } from "inferno-router";
 
-import NavBar from "components/organisms/NavBar";
+import SearchInput from "components/molecules/SearchInput";
 import AdvancedSearch from "components/organisms/AdvancedSearch";
-import Announcement from "components/organisms/Announcement";
+import Logo from "components/atoms/Logo";
 
-import Home from "pages/Home";
+// import Home from "pages/Home";
+import Base from "pages/gh3/Base";
+import Home from "pages/gh3/Home";
 import Search from "pages/Search";
 import Random from "pages/Random";
 
@@ -85,7 +87,8 @@ accessToken.value &&
 class ChorusApp extends Component {
   constructor(props) {
     super(props);
-    this.state = { showAdvanced: false };
+    this.state = { showAdvanced: false, query: "" };
+    this.goToRandom = this.goToRandom.bind(this);
     this.query = this.query.bind(this);
     this.onAdvancedSearchToggle = this.onAdvancedSearchToggle.bind(this);
   }
@@ -97,6 +100,10 @@ class ChorusApp extends Component {
       }/search?query=${encodeURIComponent(query)}`
     );
   }
+  goToRandom(evt) {
+    evt.preventDefault();
+    this.props.history.push(`${process.env.TESTING ? "/testing" : ""}/random`);
+  }
   onAdvancedSearchToggle() {
     const { showAdvanced } = this.state;
     this.setState({ showAdvanced: !showAdvanced });
@@ -105,12 +112,28 @@ class ChorusApp extends Component {
     const { showAdvanced } = this.state;
     return (
       <div>
-        <NavBar
+        <SearchInput
+          placeholder="What do you feel like playing today?"
+          query={this.state.query}
           onQuery={this.query}
-          onAdvancedSearchToggle={this.onAdvancedSearchToggle}
-          showAdvanced={showAdvanced}
         />
-        <Announcement />
+        <Logo history={this.props.history} />
+        <a
+          className="GH3__advanced"
+          href="javascript:void(0)"
+          onClick={this.onAdvancedSearchToggle}
+        >
+          Advanced
+          <br />
+          Search
+        </a>
+        <a
+          className="GH3__random"
+          href="javascript:void(0)"
+          onClick={this.goToRandom}
+        >
+          Random
+        </a>
         {showAdvanced && <AdvancedSearch onQuery={this.query} />}
       </div>
     );
@@ -120,12 +143,12 @@ class ChorusApp extends Component {
 const ChorusWithRouter = withRouter(ChorusApp);
 render(
   <BrowserRouter>
-    <div>
+    <Base>
       <ChorusWithRouter />
       <Route exact path="/" component={Home} />
       <Route path="/random" component={Random} />
       <Route path="/search" component={Search} />
-    </div>
+    </Base>
   </BrowserRouter>,
   document.getElementById("root")
 );

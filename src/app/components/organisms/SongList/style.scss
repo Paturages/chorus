@@ -20,3 +20,18 @@
     text-align: center;
   }
 }
+
+.GH3 .SongList {
+  &__title {
+    opacity: .8;
+    font-size: 4em;
+    font-weight: bold;
+    margin: 0 .25em .5em;
+  }
+  .Song {
+    background: none;
+    margin: 1em 0;
+    padding: 1em 2em 1em 1em;
+    border-top: 3px solid #95988899;
+  }
+}
