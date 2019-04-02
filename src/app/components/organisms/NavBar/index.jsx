@@ -147,6 +147,12 @@ class NavBar extends Component {
             >
               Set Background
             </a>
+            <a
+              class="NavBar__item NavBar__item-link"
+              href="https://gh3orus.fightthe.pw"
+            >
+              gh3orus
+            </a>
             {/* <DonationButton /> */}
             {/*
               TODO: Uncomment when feeling like implementing Discord auth
