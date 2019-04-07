@@ -386,6 +386,7 @@ $ CSC March 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-03/
 $! CSC April 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-04/ :: caddy/proxy:https://www.youtube.com/watch?v=n-OUi_xDQSQ
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
+Guitar Hero 3 :: https://drive.google.com/drive/folders/1_NrkZiYXgcYDlT1EbePQRRsfqLUJwbaS
 Charts from this month :: https://drive.google.com/drive/folders/1fA7Y81CurMlNe_FcsGElJhnAOU-NAxRq
 Guitarmaggedon :: https://drive.google.com/drive/folders/1N58FEcWidA4dEe7N0bpiKB3Hq3iXbOIe
 Holiday Songs :: https://drive.google.com/drive/folders/1KQhZgffuchPqle0EA9B9o7ne25ZoEQ4v
