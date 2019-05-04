@@ -32,44 +32,27 @@ export default class Announcement extends Component {
       setInterval(() => this.setState({ left: RELEASE - new Date() }), 333);
   }
   render() {
-    const cbBlurb = (
+    const cowBlurb = (
       <div>
-        Are you ready to get your circuits broken? Introducing the highly
-        anticipated <b>Circuit Breaker</b>: a full difficulty and all{" "}
-        <b>electronic</b> setlist!{" "}
-        <a href="https://www.youtube.com/watch?v=sAWyK-YVRRQ" target="_blank">
+        A free shoutout to <b>Cow Hero</b>, just because I can.{" "}
+        <a href="https://www.youtube.com/watch?v=vLrhWHcEr1I" target="_blank">
           Release video
         </a>
       </div>
     );
-    const monthlyBlub =
-      this.state.left > 0 ? (
-        <div>
-          <b>{getHumanTime(this.state.left)}</b> before my weeb shit comes out
-          of the closet.{" "}
-          <a href="https://www.youtube.com/watch?v=n-OUi_xDQSQ" target="_blank">
-            Come join us!
-          </a>
-        </div>
-      ) : (
-        <div>
-          I swear I'm not a fucking weeb, but here's the{" "}
-          <b>CSC April Monthly Pack</b>, full of <b>guilty pleasures!</b>{" "}
-          <a href="https://www.youtube.com/watch?v=n-OUi_xDQSQ" target="_blank">
-            Release video
-          </a>
-        </div>
-      );
+    const monthlyBlub = (
+      <div>
+        Do you miss skateboards, sitcoms, and the feeling of happiness? Go back
+        to the <b>90's</b> with this <b>CSC May Monthly Pack</b>!{" "}
+        <a href="https://www.youtube.com/watch?v=h_iLyypN98M" target="_blank">
+          Release video
+        </a>
+      </div>
+    );
     return (
       <div className="Announcement">
-        {cbBlurb}
         {monthlyBlub}
-        <div>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSceW3Ir2cOmsGX-7GC3_Y3YfUid_UhrSrR3JHB2yjpz7zN16w/viewform">
-            <b>chorus needs your feedback!</b> Contribute to the future
-            development of chorus with your insight and ideas!
-          </a>
-        </div>
+        {cowBlurb}
       </div>
     );
   }
