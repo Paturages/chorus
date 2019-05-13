@@ -49,10 +49,16 @@ export default class Announcement extends Component {
         </a>
       </div>
     );
+    const chanBlurb = (
+      <div>
+        Still in search of a waifu who isn't trash? Behold <b>CHAN</b>, a brand new <b>anime-based</b> setlist. <a href="https://www.youtube.com/watch?v=hfRjeDjn9zA" target="_blank">Release video</a>
+      </div>
+    );
     return (
       <div className="Announcement">
         {monthlyBlub}
         {cowBlurb}
+        {chanBlurb}
       </div>
     );
   }
