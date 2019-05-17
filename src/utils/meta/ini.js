@@ -19,7 +19,10 @@ module.exports = ini => {
       if (!value || !value.trim() || fieldBlacklist[param]) return meta;
       // Trim because of stupid Windows whitespace things
       param = param.trim();
-      value = value.trim();
+      value = value
+        .trim()
+        .replace(/<[^>]*(b|i|color|size|material|quad)[^>]*>/g, "")
+      ;
       return Object.assign(meta, { [param]: value });
     }, {})
   } catch (err) {
