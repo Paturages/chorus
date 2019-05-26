@@ -204,6 +204,7 @@ module.exports = chart => {
     // the last BPM change
     if (currentIndex < lastNoteIndex) {
       time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+      timeToLastNote += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
     }
 
     brokenNotes.forEach(note => {
