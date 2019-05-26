@@ -159,7 +159,9 @@ module.exports = chart => {
       }, []);
     let time = 0;
     let timeToFirstNote = 0;
+    let timeToLastNote = 0;
     let isFirstNoteFound;
+    let isLastNoteFound;
     let currentIndex;
     let currentBpm;
     chartMeta.Resolution = +chartMeta.Resolution;
@@ -174,6 +176,13 @@ module.exports = chart => {
         } else if (!isFirstNoteFound) {
           isFirstNoteFound = true;
           timeToFirstNote += (((firstNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+        }
+        // Calculate the timestamp of the last note
+        if (index <= lastNoteIndex) {
+          timeToLastNote += (((index - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+        } else if (!isLastNoteFound) {
+          isLastNoteFound = true;
+          timeToLastNote += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
         }
         // Compute timestamp of broken notes
         brokenNotes.forEach(note => {
@@ -191,8 +200,11 @@ module.exports = chart => {
     // If the current index is 0 (beginning of chart) and the BPM is 120 ("B 120000"),
     // it's most likely cancer (not beat mapped) and has to be checked by physicians
     const is120 = currentIndex == 0 && currentBpm == 120
-    // do it one last time against the last note
-    time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+    // do it one last time against the last note if the last note is after
+    // the last BPM change
+    if (currentIndex < lastNoteIndex) {
+      time += (((lastNoteIndex - currentIndex) * 60) / (currentBpm * chartMeta.Resolution));
+    }
 
     brokenNotes.forEach(note => {
       delete note.found;
@@ -220,7 +232,7 @@ module.exports = chart => {
     }
     chartMeta.length = time >> 0;
     // "Effective song length" = time between first and last note
-    chartMeta.effectiveLength = (time - timeToFirstNote) >> 0;
+    chartMeta.effectiveLength = (timeToLastNote - timeToFirstNote) >> 0;
     return {
       hasSections, hasStarPower, hasForced,
       hasTap, hasOpen, hasSoloSections, hasLyrics,
