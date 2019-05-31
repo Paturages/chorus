@@ -95,7 +95,7 @@ module.exports = {
           {
             loader: "prettier-loader",
             query: {
-              parser: "babylon"
+              parser: "babel"
             }
           }
         ]

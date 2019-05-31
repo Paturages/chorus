@@ -22,43 +22,61 @@ const getHumanTime = time => {
     .join(" ");
 };
 
-const RELEASE = new Date("2019-04-05T22:02:00Z");
+const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
+const RELEASE_MONTHLY = new Date("2019-06-07T19:02:00Z");
 
 export default class Announcement extends Component {
   constructor(props) {
     super(props);
-    this.state = { left: RELEASE - new Date() };
-    if (this.state.left > 0)
-      setInterval(() => this.setState({ left: RELEASE - new Date() }), 333);
+    this.state = {
+      leftBS: RELEASE_BS - new Date(),
+      leftMonthly: RELEASE_MONTHLY - new Date()
+    };
+    if (this.state.leftBS > 0 || this.state.leftMonthly > 0)
+      setInterval(
+        () =>
+          this.setState({
+            leftBS: RELEASE_BS - new Date(),
+            leftMonthly: RELEASE_MONTHLY - new Date()
+          }),
+        333
+      );
   }
   render() {
-    const cowBlurb = (
+    const monthlyCountdown = (
       <div>
-        A free shoutout to <b>Cow Hero</b>, just because I can.{" "}
-        <a href="https://www.youtube.com/watch?v=vLrhWHcEr1I" target="_blank">
-          Release video
-        </a>
+        <b>{getHumanTime(this.state.leftMonthly)}</b> until next CSC Monthly
+        Pack: <b>Anything but Metal 2</b>!
       </div>
     );
-    const monthlyBlub = (
+    const monthlyBlurb = (
       <div>
-        Do you miss skateboards, sitcoms, and the feeling of happiness? Go back
-        to the <b>90's</b> with this <b>CSC May Monthly Pack</b>!{" "}
+        1 year of <b>CSC Monthly Packs</b>, and we're back full circle, with{" "}
+        <b>Anything But Metal 2</b>!
         <a href="https://www.youtube.com/watch?v=h_iLyypN98M" target="_blank">
           Release video
         </a>
       </div>
     );
-    const chanBlurb = (
+    const bsCountdown = (
       <div>
-        Still in search of a waifu who isn't trash? Behold <b>CHAN</b>, a brand new <b>anime-based</b> setlist. <a href="https://www.youtube.com/watch?v=hfRjeDjn9zA" target="_blank">Release video</a>
+        <b>{getHumanTime(this.state.leftBS)}</b> before everything gets
+        uncovered...
+      </div>
+    );
+    const bsBlurb = (
+      <div>
+        No BS, this setlist smacks and <i>covers</i> everything you need. This
+        is <b>Blanket Statement</b>.{" "}
+        <a href="http://bit.ly/BSsetlist" target="_blank">
+          Release link
+        </a>
       </div>
     );
     return (
       <div className="Announcement">
-        {monthlyBlub}
-        {cowBlurb}
-        {chanBlurb}
+        {this.state.leftBS > 0 ? bsCountdown : bsBlurb}
+        {this.state.leftMonthly > 0 ? monthlyCountdown : monthlyBlurb}
       </div>
     );
   }
