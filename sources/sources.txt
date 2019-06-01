@@ -420,7 +420,8 @@ FamilyJules Track Pack :: https://drive.google.com/drive/folders/1SO4ZLb5cXNRsQG
 $ Sunrise :: https://public.fightthe.pw/rehosts/sunrise/ :: caddy/proxy:https://www.youtube.com/watch?v=BfjNFCqGe3Y
 $ The Fall of Troy Hero :: https://public.fightthe.pw/rehosts/tfot/ :: caddy/proxy:http://bit.ly/TFoTHero
 311 Hero :: https://drive.google.com/open?id=1GRV0bsc8b4-3hfsKGpjouRcHwGO4Y1fC
-$! CHAN :: https://public.fightthe.pw/rehosts/chan/ :: caddy/proxy:https://www.youtube.com/watch?v=hfRjeDjn9zA
+$ CHAN :: https://public.fightthe.pw/rehosts/chan/ :: caddy/proxy:https://www.youtube.com/watch?v=hfRjeDjn9zA
+$! Blanket Statement :: https://drive.google.com/drive/folders/112uikdRhUYK4dAe1KIgOWiGnjWkuSxnX :: google-drive/proxy:https://bit.ly/BSsetlist
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
