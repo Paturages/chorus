@@ -23,7 +23,7 @@ const getHumanTime = time => {
 };
 
 const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
-const RELEASE_MONTHLY = new Date("2019-06-07T19:02:00Z");
+const RELEASE_MONTHLY = new Date("2019-06-08T02:02:00Z");
 
 export default class Announcement extends Component {
   constructor(props) {
