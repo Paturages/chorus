@@ -581,7 +581,7 @@ module.exports.search = async (query, offset, limit) => {
         songMap[songId].hashes[part][difficulty] = hash;
       }
     });
-    if (md5) songs = sortedSongs;
+    if (md5) songs = sortedSongs.filter(x => x);
     return {
       // songs is still sorted by the proper filter
       songs: songs.map(({ id }) => songMap[id]),
