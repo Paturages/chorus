@@ -418,6 +418,7 @@ Guitar Hero Metallica :: https://drive.google.com/drive/folders/1BEIElbgWxObPEyJ
 Guitar Hero Metallica DLC :: https://drive.google.com/drive/folders/1zCHkUvGaBorxny97uAvikYSAHsRkHCY6
 Guitar Hero: Smash Hits :: https://drive.google.com/drive/u/2/folders/1E_wHncEu8V1ZBRWJ_enWt4wB_fGxfSd_
 Guitar Hero 5 Hidden Songs :: https://drive.google.com/drive/folders/1Le2GRPigc-1Dvx73tSLXhrz6qAMffD-g
+Neversoft/Harmonix Series Extras :: https://drive.google.com/drive/folders/1T3CIpvVK6IvFOGkPljCo5ljUkCzwWrKb
 
 Guitarmaggedon :: https://drive.google.com/drive/folders/1N58FEcWidA4dEe7N0bpiKB3Hq3iXbOIe
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
@@ -427,7 +428,7 @@ $ Sunrise :: https://public.fightthe.pw/rehosts/sunrise/ :: caddy/proxy:https://
 $ The Fall of Troy Hero :: https://public.fightthe.pw/rehosts/tfot/ :: caddy/proxy:http://bit.ly/TFoTHero
 311 Hero :: https://drive.google.com/open?id=1GRV0bsc8b4-3hfsKGpjouRcHwGO4Y1fC
 $ CHAN :: https://public.fightthe.pw/rehosts/chan/ :: caddy/proxy:https://www.youtube.com/watch?v=hfRjeDjn9zA
-$! Blanket Statement :: https://drive.google.com/drive/folders/112uikdRhUYK4dAe1KIgOWiGnjWkuSxnX :: google-drive/proxy:https://bit.ly/BSsetlist
+$ Blanket Statement :: https://drive.google.com/drive/folders/112uikdRhUYK4dAe1KIgOWiGnjWkuSxnX :: google-drive/proxy:https://bit.ly/BSsetlist
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
