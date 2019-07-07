@@ -43,41 +43,15 @@ export default class Announcement extends Component {
       );
   }
   render() {
-    const monthlyCountdown = (
-      <div>
-        <b>{getHumanTime(this.state.leftMonthly)}</b> until next CSC Monthly
-        Pack: <b>Anything but Metal 2</b>!
-      </div>
-    );
     const monthlyBlurb = (
-      <div>
-        1 year of <b>CSC Monthly Packs</b>, and we're back full circle, with{" "}
-        <b>Anything But Metal 2</b>!
+      <div className="Announcement__csc-july">
+        <img src="https://public.fightthe.pw/images/lick.png" alt="lick" />
+        <br />
         <a href="https://www.youtube.com/watch?v=h_iLyypN98M" target="_blank">
-          Release video
+          CSC Monthly Pack, July 2019: Jazz.
         </a>
       </div>
     );
-    const bsCountdown = (
-      <div>
-        <b>{getHumanTime(this.state.leftBS)}</b> before everything gets
-        uncovered...
-      </div>
-    );
-    const bsBlurb = (
-      <div>
-        No BS, this setlist smacks and <i>covers</i> everything you need. This
-        is <b>Blanket Statement</b>.{" "}
-        <a href="http://bit.ly/BSsetlist" target="_blank">
-          Release link
-        </a>
-      </div>
-    );
-    return (
-      <div className="Announcement">
-        {this.state.leftBS > 0 ? bsCountdown : bsBlurb}
-        {this.state.leftMonthly > 0 ? monthlyCountdown : monthlyBlurb}
-      </div>
-    );
+    return <div className="Announcement">{monthlyBlurb}</div>;
   }
 }

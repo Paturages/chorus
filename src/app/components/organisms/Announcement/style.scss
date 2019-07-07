@@ -2,14 +2,21 @@
 
 .Announcement {
   width: 100%;
-  font-size: .8em;
-  padding: .5em;
+  font-size: 0.8em;
+  padding: 0.5em;
   text-align: center;
   background: $color--announcement-bg;
+
+  &__csc-july {
+    img {
+      height: 2em;
+      margin: 0 1em;
+    }
+  }
 }
 
 .Countdown {
   &__field {
-    margin-right: .25em;
+    margin-right: 0.25em;
   }
 }
