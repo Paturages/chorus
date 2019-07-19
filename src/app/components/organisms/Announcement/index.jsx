@@ -52,6 +52,15 @@ export default class Announcement extends Component {
         </a>
       </div>
     );
-    return <div className="Announcement">{monthlyBlurb}</div>;
+    const fpBlurb = (
+      <div>
+        Filled to the brim with top tier metal picks, supreme solos, and diverse
+        variety, Focal Point is a setlist that's sure to hold your attention!{' '}
+        <a href="https://www.youtube.com/watch?v=TTg0gzLK5eo" target="_blank">
+          Release video
+        </a>
+      </div>
+    );
+    return <div className="Announcement">{monthlyBlurb}{fpBlurb}</div>;
   }
 }
