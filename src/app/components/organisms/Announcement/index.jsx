@@ -47,7 +47,7 @@ export default class Announcement extends Component {
       <div className="Announcement__csc-july">
         <img src="https://public.fightthe.pw/images/lick.png" alt="lick" />
         <br />
-        <a href="https://www.youtube.com/watch?v=h_iLyypN98M" target="_blank">
+        <a href="https://www.youtube.com/watch?v=9kveg6Mb4TA" target="_blank">
           CSC Monthly Pack, July 2019: Jazz.
         </a>
       </div>
