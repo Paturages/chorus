@@ -20,7 +20,7 @@
 # (When in doubt, just follow the other examples, they work for a reason!)
 
 # The format matches the following fields:
-# <drive_name> :: <link> [:: <custom_script>]
+# Horse Head & YAWNS - Such A Drag : https://drive.google.com/file/d/1Oviff1DQwBRkiSLukFASqCdUnVYzcEd6/view?usp=sharing
 
 # <drive_name> will show up on chorus as the label for the source link, along with the name of the subfolder it's in.
 # It is searchable, so choose accordingly. Obviously, don't put "::" in it. I added the second ":"
