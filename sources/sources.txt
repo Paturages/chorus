@@ -371,7 +371,9 @@ $ CSC January 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-0
 $ CSC February 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-02/ :: caddy/proxy:https://www.youtube.com/watch?v=nPvA7r5RyD8
 $ CSC March 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-03/ :: caddy/proxy:https://www.youtube.com/watch?v=nPJAKqiEjU0
 $ CSC April 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-04/ :: caddy/proxy:https://www.youtube.com/watch?v=n-OUi_xDQSQ
-$! CSC May 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-05/ :: caddy/proxy:https://www.youtube.com/watch?v=h_iLyypN98M
+$ CSC May 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-05/ :: caddy/proxy:https://www.youtube.com/watch?v=h_iLyypN98M
+$ CSC June 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-06/ :: caddy/proxy:https://www.youtube.com/watch?v=6ENRHDRfI7Y
+$! CSC July 2019 Monthly Pack :: https://drive.google.com/drive/folders/1VRkNiWdTiu5sfRsUWO1HiF-yUlsaHwd8 :: google-drive/proxy:https://www.youtube.com/watch?v=9kveg6Mb4TA
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Guitar Hero 3 :: https://drive.google.com/drive/folders/1_NrkZiYXgcYDlT1EbePQRRsfqLUJwbaS
