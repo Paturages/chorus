@@ -22,45 +22,64 @@ const getHumanTime = time => {
     .join(" ");
 };
 
-const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
-const RELEASE_MONTHLY = new Date("2019-06-08T02:02:00Z");
+// const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
+// const RELEASE_MONTHLY = new Date("2019-06-08T02:02:00Z");
 
 export default class Announcement extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      leftBS: RELEASE_BS - new Date(),
-      leftMonthly: RELEASE_MONTHLY - new Date()
-    };
-    if (this.state.leftBS > 0 || this.state.leftMonthly > 0)
-      setInterval(
-        () =>
-          this.setState({
-            leftBS: RELEASE_BS - new Date(),
-            leftMonthly: RELEASE_MONTHLY - new Date()
-          }),
-        333
-      );
+    // this.state = {
+    //   leftBS: RELEASE_BS - new Date(),
+    //   leftMonthly: RELEASE_MONTHLY - new Date()
+    // };
+    // if (this.state.leftBS > 0 || this.state.leftMonthly > 0)
+    //   setInterval(
+    //     () =>
+    //       this.setState({
+    //         leftBS: RELEASE_BS - new Date(),
+    //         leftMonthly: RELEASE_MONTHLY - new Date()
+    //       }),
+    //     333
+    //   );
   }
   render() {
     const monthlyBlurb = (
-      <div className="Announcement__csc-july">
-        <img src="https://public.fightthe.pw/images/lick.png" alt="lick" />
-        <br />
-        <a href="https://www.youtube.com/watch?v=9kveg6Mb4TA" target="_blank">
-          CSC Monthly Pack, July 2019: Jazz.
+      <div>
+        What's up nerds, are ya ready to play sum <b>vidya gaems</b>? Go ahead
+        and grind the{" "}
+        <a href="https://www.youtube.com/watch?v=8MuWrceJ2VY" target="_blank">
+          CSC Monthly Pack, August 2019
+        </a>
+        !
+      </div>
+    );
+    const ahBlurb = (
+      <div>
+        The <b>Anti Hero</b> Team is doing a fundraiser for the{" "}
+        <b>JED Foundation</b>!{" "}
+        <a
+          href="https://donate.jedfoundation.org/fundraiser/2169886"
+          target="_blank"
+        >
+          More details here
         </a>
       </div>
     );
     const fpBlurb = (
       <div>
         Filled to the brim with top tier metal picks, supreme solos, and diverse
-        variety, Focal Point is a setlist that's sure to hold your attention!{' '}
+        variety, Focal Point is a setlist that's sure to hold your attention!{" "}
         <a href="https://www.youtube.com/watch?v=TTg0gzLK5eo" target="_blank">
           Release video
         </a>
       </div>
     );
-    return <div className="Announcement">{monthlyBlurb}{fpBlurb}</div>;
+    return (
+      <div className="Announcement">
+        {monthlyBlurb}
+        {ahBlurb}
+        {fpBlurb}
+      </div>
+    );
   }
 }
