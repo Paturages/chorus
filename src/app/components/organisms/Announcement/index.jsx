@@ -3,6 +3,8 @@ import Component from "inferno-component";
 
 import "./style.scss";
 
+import "assets/images/ah2__logo.png";
+
 const getHumanTime = time => {
   if (!time || time < 0) return;
   time = (time / 1000) >> 0;
@@ -43,42 +45,48 @@ export default class Announcement extends Component {
     //   );
   }
   render() {
-    const monthlyBlurb = (
-      <div>
-        What's up nerds, are ya ready to play sum <b>vidya gaems</b>? Go ahead
-        and grind the{" "}
-        <a href="https://www.youtube.com/watch?v=8MuWrceJ2VY" target="_blank">
-          CSC Monthly Pack, August 2019
-        </a>
-        !
-      </div>
-    );
-    const ahBlurb = (
-      <div>
-        The <b>Anti Hero</b> Team is doing a fundraiser for the{" "}
-        <b>JED Foundation</b>!{" "}
-        <a
-          href="https://donate.jedfoundation.org/fundraiser/2169886"
-          target="_blank"
-        >
-          More details here
-        </a>
-      </div>
-    );
-    const fpBlurb = (
-      <div>
-        Filled to the brim with top tier metal picks, supreme solos, and diverse
-        variety, Focal Point is a setlist that's sure to hold your attention!{" "}
-        <a href="https://www.youtube.com/watch?v=TTg0gzLK5eo" target="_blank">
-          Release video
-        </a>
-      </div>
-    );
+    // const monthlyBlurb = (
+    //   <div>
+    //     What's up nerds, are ya ready to play sum <b>vidya gaems</b>? Go ahead
+    //     and grind the{" "}
+    //     <a href="https://www.youtube.com/watch?v=8MuWrceJ2VY" target="_blank">
+    //       CSC Monthly Pack, August 2019
+    //     </a>
+    //     !
+    //   </div>
+    // );
+    // const ahBlurb = (
+    //   <div>
+    //     The <b>Anti Hero</b> Team is doing a fundraiser for the{" "}
+    //     <b>JED Foundation</b>!{" "}
+    //     <a
+    //       href="https://donate.jedfoundation.org/fundraiser/2169886"
+    //       target="_blank"
+    //     >
+    //       More details here
+    //     </a>
+    //   </div>
+    // );
+    // const fpBlurb = (
+    //   <div>
+    //     Filled to the brim with top tier metal picks, supreme solos, and diverse
+    //     variety, Focal Point is a setlist that's sure to hold your attention!{" "}
+    //     <a href="https://www.youtube.com/watch?v=TTg0gzLK5eo" target="_blank">
+    //       Release video
+    //     </a>
+    //   </div>
+    // );
     return (
       <div className="Announcement">
-        {monthlyBlurb}
-        {ahBlurb}
-        {fpBlurb}
+        <a href="https://youtu.be/gonlZTylGkg" target="_blank">
+          <img src="/assets/images/ah2__logo.png" alt="" />
+          <br />
+          The most anticipated setlist of the year is here. Just get it. Trust
+          me.
+        </a>
+        <br />
+        (also please bear with me as I struggle to catch up to everything chorus
+        related aaaaaa)
       </div>
     );
   }
