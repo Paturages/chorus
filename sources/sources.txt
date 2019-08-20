@@ -398,6 +398,7 @@ $ The Fall of Troy Hero :: https://public.fightthe.pw/rehosts/tfot/ :: caddy/pro
 311 Hero :: https://drive.google.com/open?id=1GRV0bsc8b4-3hfsKGpjouRcHwGO4Y1fC
 $ CHAN :: https://public.fightthe.pw/rehosts/chan/ :: caddy/proxy:https://drive.google.com/file/d/1RXpXwjCLbVtgX868yvxKe0bcK7a_h1no/view
 $ Blanket Statement :: https://drive.google.com/drive/folders/112uikdRhUYK4dAe1KIgOWiGnjWkuSxnX :: google-drive/proxy:https://bit.ly/BSsetlist
+$! Koreaboo Hero :: https://drive.google.com/drive/folders/1t1XXlatN48beiIjJHcjGQQKzTdoDlKap :: google-drive/proxy:https://www.youtube.com/watch?v=RltxEVS1a2w
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
