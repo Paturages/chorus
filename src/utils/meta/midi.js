@@ -18,6 +18,7 @@ const partMap = {
   'PART RHYTHM': 'rhythm',
   'PART KEYS': 'keys',
   'PART DRUMS': 'drums',
+  'PART VOCALS': 'vocals',
   'PART GUITAR GHL': 'guitarghl',
   'PART BASS GHL': 'bassghl'
 };
@@ -49,11 +50,10 @@ const parse = midiFile => {
     if (event.param1 == 103) hasSoloSections = true;
     // prc? different standards for .mids smh, that's most likely from RB though
     else if (data && data.match(/^\[(section|prc)/)) hasSections = true;
-    // CH lyrics take from the vocals part
-    else if (data && data.trim() == 'PART VOCALS') hasLyrics = true;
-    else if (data && partMap[data]) tracks[event.track] = partMap[data];
-    // If that ain't black magic, I don't know what it is. But it works.
-    else if (data == "PS\u0000\u0000ÿ\u0004\u0001÷") hasTap = true;
+    else if (data && partMap[data]) {
+      if (data.trim() == 'PART VOCALS') { hasLyrics = true; } // CH lyrics take from the vocals part
+      tracks[event.track] = partMap[data]; 
+    } else if (data == "PS\u0000\u0000ÿ\u0004\u0001÷") hasTap = true; // If that ain't black magic, I don't know what it is. But it works.
     else if (data == "PS\u0000\u0000\u0003\u0001\u0001÷") {
       hasOpen[tracks[event.track]] = true;
       isOpen = true;
