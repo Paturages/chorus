@@ -45,40 +45,16 @@ export default class Announcement extends Component {
   render() {
     const monthlyBlurb = (
       <div>
-        What's up nerds, are ya ready to play sum <b>vidya gaems</b>? Go ahead
-        and grind the{" "}
+        haha yes comedy very funny{" "}
         <a href="https://www.youtube.com/watch?v=8MuWrceJ2VY" target="_blank">
-          CSC Monthly Pack, August 2019
+          Download the CSC September 2019 Monthly Pack
         </a>
         !
-      </div>
-    );
-    const ahBlurb = (
-      <div>
-        The <b>Anti Hero</b> Team is doing a fundraiser for the{" "}
-        <b>JED Foundation</b>!{" "}
-        <a
-          href="https://donate.jedfoundation.org/fundraiser/2169886"
-          target="_blank"
-        >
-          More details here
-        </a>
-      </div>
-    );
-    const fpBlurb = (
-      <div>
-        Filled to the brim with top tier metal picks, supreme solos, and diverse
-        variety, Focal Point is a setlist that's sure to hold your attention!{" "}
-        <a href="https://www.youtube.com/watch?v=TTg0gzLK5eo" target="_blank">
-          Release video
-        </a>
       </div>
     );
     return (
       <div className="Announcement">
         {monthlyBlurb}
-        {ahBlurb}
-        {fpBlurb}
       </div>
     );
   }
