@@ -22,13 +22,10 @@ import "scss/global.scss";
 import "./index.html";
 
 // Set a custom background if set by the user
-// const bg = window.localStorage.bg;
-// if (bg) {
-//   document.getElementById("background").style.backgroundImage = `url(${bg})`;
-// }
-
-// 2019-08-20: Set the background to the AH one for the special occasion
-import "assets/images/ah2__bg.jpg";
+const bg = window.localStorage.bg;
+if (bg) {
+  document.getElementById("background").style.backgroundImage = `url(${bg})`;
+}
 
 // Evil good ol' spying Google Analytics >:)
 if (process.env.NODE_ENV === "production" && !process.env.TESTING) {
