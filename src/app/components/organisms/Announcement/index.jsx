@@ -46,7 +46,7 @@ export default class Announcement extends Component {
     const monthlyBlurb = (
       <div>
         haha yes comedy very funny{" "}
-        <a href="https://www.youtube.com/watch?v=8MuWrceJ2VY" target="_blank">
+        <a href="https://www.youtube.com/watch?v=F0ijAT9y5gs" target="_blank">
           Download the CSC September 2019 Monthly Pack
         </a>
         !
