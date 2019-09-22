@@ -388,6 +388,7 @@ Guitar Hero: Smash Hits :: https://drive.google.com/drive/u/2/folders/1E_wHncEu8
 Guitar Hero 5 Hidden Songs :: https://drive.google.com/drive/folders/1Le2GRPigc-1Dvx73tSLXhrz6qAMffD-g
 Guitar Hero: Van Halen :: https://drive.google.com/drive/u/1/folders/19FbmC7MxRe4HEGn8Yhrw9c6LSiwNLQ72
 Guitar Hero: Warriors of Rock :: https://drive.google.com/drive/folders/1fcDEsVF8E9zqhi78oy46ARvi6bNsaXbX
+Band Hero :: https://drive.google.com/drive/folders/1qPll_aXJ2cIFez2mDMbjLqMyCvc1HXdQ
 Neversoft/Harmonix Series Extras :: https://drive.google.com/drive/folders/1T3CIpvVK6IvFOGkPljCo5ljUkCzwWrKb
 
 Guitarmaggedon :: https://drive.google.com/drive/folders/1N58FEcWidA4dEe7N0bpiKB3Hq3iXbOIe
@@ -399,7 +400,9 @@ $ The Fall of Troy Hero :: https://public.fightthe.pw/rehosts/tfot/ :: caddy/pro
 311 Hero :: https://drive.google.com/open?id=1GRV0bsc8b4-3hfsKGpjouRcHwGO4Y1fC
 $ CHAN :: https://public.fightthe.pw/rehosts/chan/ :: caddy/proxy:https://drive.google.com/file/d/1RXpXwjCLbVtgX868yvxKe0bcK7a_h1no/view
 $ Blanket Statement :: https://drive.google.com/drive/folders/112uikdRhUYK4dAe1KIgOWiGnjWkuSxnX :: google-drive/proxy:https://bit.ly/BSsetlist
-$! Koreaboo Hero :: https://drive.google.com/drive/folders/1t1XXlatN48beiIjJHcjGQQKzTdoDlKap :: google-drive/proxy:https://www.youtube.com/watch?v=RltxEVS1a2w
+$ Koreaboo Hero :: https://drive.google.com/drive/folders/1t1XXlatN48beiIjJHcjGQQKzTdoDlKap :: google-drive/proxy:https://www.youtube.com/watch?v=RltxEVS1a2w
+$ Cow Hero :: https://drive.google.com/drive/folders/1BK1C5x10is_Dzla7wvvwDfc8KLDvK17f :: google-drive/proxy:https://www.youtube.com/watch?v=vLrhWHcEr1I
+$ Cow Hero DLC 1 :: https://drive.google.com/open?id=1IjTIDGPu-dTlRErkwK1SiEEBDxMLPIIV
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
