@@ -118,7 +118,6 @@ Bumper3241's charts :: https://drive.google.com/drive/folders/1yK1eSPX5-EAghHAlw
 Burning's charts :: https://drive.google.com/drive/folders/1O4YGtkbb2hPwNDHytXir01-Qg0sARCUa
 C4L3N's charts :: https://drive.google.com/drive/folders/1kn6pTZ8Oel0sIXcTyaDb3vAm1nmD85ck
 Castillerian's charts :: https://drive.google.com/drive/folders/1J-I8MoOwEn6xx_IaRMIO6pOGajFQc16C
-clxxiii's charts :: https://drive.google.com/drive/folders/1qkX1t-2DFng7F_xKvVoXQPX0AO5oOrH3
 Cosmic Latte's (non-meme) charts :: https://drive.google.com/drive/folders/1at6HRfZXs-6ZHWY-D-ZpytVKcq4kzbK6
 Countess' charts :: https://drive.google.com/drive/folders/19LAzEQ8f1Mj_WzaBBOgf_YLPIsbr9tK-
 Count Tolvaly's charts :: https://drive.google.com/drive/folders/1-F-9isR3G5ArCQI9uRfN2KpWVeydpKwy
@@ -376,7 +375,8 @@ $ CSC April 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-04/
 $ CSC May 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-05/ :: caddy/proxy:https://www.youtube.com/watch?v=h_iLyypN98M
 $ CSC June 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-06/ :: caddy/proxy:https://www.youtube.com/watch?v=6ENRHDRfI7Y
 $ CSC July 2019 Monthly Pack :: https://drive.google.com/drive/folders/1VRkNiWdTiu5sfRsUWO1HiF-yUlsaHwd8 :: google-drive/proxy:https://www.youtube.com/watch?v=9kveg6Mb4TA
-$! CSC August 2019 Monthly Pack :: https://drive.google.com/drive/folders/1HowORy_6S4x387hDMJ2GjiSpQNGAfhgH :: google-drive/proxy:https://www.youtube.com/watch?v=8MuWrceJ2VY
+$ CSC August 2019 Monthly Pack :: https://drive.google.com/drive/folders/1HowORy_6S4x387hDMJ2GjiSpQNGAfhgH :: google-drive/proxy:https://www.youtube.com/watch?v=8MuWrceJ2VY
+$! CSC September 2019 Monthly Pack :: https://drive.google.com/drive/u/1/folders/11zYifhT0XnROwWIUdOzrPMsEjrwUtzMc :: google-drive/proxy:https://youtu.be/F0ijAT9y5gs
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Guitar Hero 3 :: https://drive.google.com/drive/folders/1_NrkZiYXgcYDlT1EbePQRRsfqLUJwbaS
@@ -403,6 +403,7 @@ $ Blanket Statement :: https://drive.google.com/drive/folders/112uikdRhUYK4dAe1K
 $ Koreaboo Hero :: https://drive.google.com/drive/folders/1t1XXlatN48beiIjJHcjGQQKzTdoDlKap :: google-drive/proxy:https://www.youtube.com/watch?v=RltxEVS1a2w
 $ Cow Hero :: https://drive.google.com/drive/folders/1BK1C5x10is_Dzla7wvvwDfc8KLDvK17f :: google-drive/proxy:https://www.youtube.com/watch?v=vLrhWHcEr1I
 $ Cow Hero DLC 1 :: https://drive.google.com/open?id=1IjTIDGPu-dTlRErkwK1SiEEBDxMLPIIV
+$ Anti Hero 2 :: https://drive.google.com/drive/folders/1hIEmkWjXr7qrYnkGEEEbIAfGZ0BR5Lis?usp=sharing :: google-drive/proxy:https://youtu.be/gonlZTylGkg
 
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)

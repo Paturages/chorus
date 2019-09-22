@@ -86,7 +86,7 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
       // The good practice for such packs would be to rehost it (either by individual charters, or independently with separate
       // folders/archives for each song)
       // 2019-03-31: Increasing it to 500 MB to attempt taking modcharts/video backgrounds into account
-      if ((['rar', 'zip', '7z'].indexOf(item.fileExtension) >= 0) && item.size < 524288000 && item.webContentLink) return archives.push(item);
+      if ((['rar', 'zip', '7z'].indexOf(item.fileExtension) >= 0) && item.size < 52428800 && item.webContentLink) return archives.push(item);
 
       // Otherwise, try to find relevant chart files
       // (there might be several .mid/.chart files, which is why they're arrays)
