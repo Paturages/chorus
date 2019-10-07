@@ -381,7 +381,7 @@ $ CSC June 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-06/ 
 $ CSC July 2019 Monthly Pack :: https://drive.google.com/drive/folders/1VRkNiWdTiu5sfRsUWO1HiF-yUlsaHwd8 :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-july-2019/
 $ CSC August 2019 Monthly Pack :: https://drive.google.com/drive/folders/1HowORy_6S4x387hDMJ2GjiSpQNGAfhgH :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-august-2019/
 $ CSC September 2019 Monthly Pack :: https://drive.google.com/drive/u/1/folders/11zYifhT0XnROwWIUdOzrPMsEjrwUtzMc :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-september-2019/
-$ CSC October 2019 Monthly Pack :: https://drive.google.com/open?id=1KTm48QJFFtwvMu1Xi0IOYzrBJpl3vOAK :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-october-2019/
+$! CSC October 2019 Monthly Pack :: https://drive.google.com/open?id=1KTm48QJFFtwvMu1Xi0IOYzrBJpl3vOAK :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-october-2019/
 
 Official games :: https://public.fightthe.pw/ghrb/ :: caddy
 Rock Band :: https://drive.google.com/drive/folders/1GgPj9Pg-vmB_1xTUoccyma2cxmDKwhjm
