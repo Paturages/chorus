@@ -45,17 +45,17 @@ export default class Announcement extends Component {
   render() {
     const monthlyBlurb = (
       <div>
-        haha yes comedy very funny{" "}
-        <a href="https://www.youtube.com/watch?v=F0ijAT9y5gs" target="_blank">
-          Download the CSC September 2019 Monthly Pack
+        The night is dark and full of surprises. And apparently people like
+        surprises.{" "}
+        <a
+          href="https://customsongscentral.com/csc-monthly-pack-october-2019/"
+          target="_blank"
+        >
+          Download the CSC October 2019 Monthly Pack
         </a>
         !
       </div>
     );
-    return (
-      <div className="Announcement">
-        {monthlyBlurb}
-      </div>
-    );
+    return <div className="Announcement">{monthlyBlurb}</div>;
   }
 }
