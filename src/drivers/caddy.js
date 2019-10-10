@@ -56,14 +56,14 @@ module.exports = async ({ name, link, proxy, isSetlist, hideSingleDownloads }) =
     console.log(Name);
     try {
       const content = await new Promise((resolve, reject) =>
-        Request.get(`${link}${URL.slice(2)}`, { headers: { Accept: 'application/json' } }, (err, res) => {
+        Request.get(`${link}/${URL.slice(2)}`, { headers: { Accept: 'application/json' } }, (err, res) => {
           if (err) reject(err);
           else try {
             resolve(JSON.parse(res.body));
           } catch (err) { reject(err); }
         })
       );
-      songList.push(...content.map(item => Object.assign(item, { parent: { name: Name, link: `${link}${URL.slice(2)}` } })));
+      songList.push(...content.map(item => Object.assign(item, { parent: { name: Name, link: `${link}/${URL.slice(2)}` } })));
     } catch (e) {}
   }
   const songs = [];
