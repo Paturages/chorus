@@ -37,7 +37,7 @@ Mintorment's charts :: https://drive.google.com/drive/folders/1SrQTdaySPfB7vOrma
 Miscellany's charts :: https://drive.google.com/drive/folders/1p1XuIwYmndRK8Z0VK-uQtnhQEqCBbM9D
 ΩHM's charts :: https://drive.google.com/drive/folders/1rTOoMstu2bhqHeuNV8wOeoQuz3aYrLkB
 ParallaxDG's charts :: https://drive.google.com/drive/folders/0B9c6s3i6iVBIaHFjR2h1QlZMZVE
-Paturages' charts :: https://public.fightthe.pw/clonehero/ :: caddy
+Paturages' charts :: https://public.fightthe.pw/clonehero :: caddy
 Rek3dge's charts :: https://drive.google.com/drive/folders/1p2j6q-xBis9eWERZpWdxEOQAChDBc2MC
 Riddo's charts :: https://drive.google.com/drive/folders/0B-q881cf9RQmNjlnaGowbnN2V1k
 Roy's charts :: https://drive.google.com/drive/folders/1lUZD1gnEc6hIv5UN0xoB1LeVZGrzoq9Q
@@ -341,7 +341,7 @@ Exilelord setlist :: https://drive.google.com/drive/folders/1CK7XDRxH3zyIZgbta1P
 Pink Floyd discography :: https://drive.google.com/drive/folders/1-sdXHaJYmseTmK_inPKt2q3raYwHdbzI
 Tenacious D discography :: https://drive.google.com/drive/folders/1lBfqXaQDqiYWDi0Qfm1DPiscQiHg89Sp
 Tool discography :: https://drive.google.com/drive/folders/16W44-PmSEZwphYbjlOa1NVL5DPTabkMv
-Dragonforce discography :: https://public.fightthe.pw/rehosts/df/ :: caddy
+Dragonforce discography :: https://public.fightthe.pw/rehosts/df :: caddy
 Nirvana pack :: https://drive.google.com/drive/folders/1HVMdsZ-AUU63zIa2tnxklSYvgu58FnAP
 Pearl Jam pack :: https://drive.google.com/drive/folders/12jkCBpqLeUwCDGC3Ni6selsCbC79E0rl
 Powerglove pack :: https://drive.google.com/drive/folders/17dmYtu3RfENhKbEECU8b3W8mutOFK8oo
@@ -361,29 +361,29 @@ GaMetal Power Pack :: https://drive.google.com/drive/folders/12Bl9FGkBcR-TXhQwvu
 $ Mario Kart 8 Track Pack :: https://drive.google.com/drive/u/0/folders/1paxRjY2LIkwP_VgB4h12075tBexslwlP :: google-drive/proxy:https://www.youtube.com/watch?v=QQpJJHIHMmw
 $ Anti Hero: Beach Episode :: https://drive.google.com/drive/folders/10IgIFd5wmYKPenVegJAMFHuWRKVpBHvf :: google-drive/proxy:https://youtu.be/9hvmhVv3iYE
 $ Anti Hero: Beach Episode - The Beach Sides :: https://drive.google.com/drive/folders/1dn-VRfo9RSPJizC4HblMQvNcttdC6cyW :: google-drive/proxy:https://www.youtube.com/watch?v=phvIrLp0wpo
-$ Marathon Hero :: https://public.fightthe.pw/rehosts/mh/ :: caddy/proxy:https://www.youtube.com/watch?v=MhTF4yxAxQ4
-$ Djent Hero :: https://public.fightthe.pw/rehosts/djent/ :: caddy/proxy:https://www.youtube.com/watch?v=p0YDCB_TMMg
+$ Marathon Hero :: https://public.fightthe.pw/rehosts/mh :: caddy/proxy:https://www.youtube.com/watch?v=MhTF4yxAxQ4
+$ Djent Hero :: https://public.fightthe.pw/rehosts/djent :: caddy/proxy:https://www.youtube.com/watch?v=p0YDCB_TMMg
 $ Redemption Arc :: https://drive.google.com/drive/folders/1KasBj2cs8zzL_nGdVdMkVgJbB9uqeN4q?usp=sharing :: google-drive/proxy:https://www.youtube.com/watch?v=rzW4C9uQMv0
 
-$ CSC June 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-june-2018/
-$ CSC July 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-july-2018/
-$ CSC August 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-08/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-august-2018/
-$ CSC September 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-09/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-september-2018/
-$ CSC October 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-10/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-october-2018/
-$ CSC November 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-11/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-november-2018/
-$ CSC December 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-12/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-december-2018/
-$ CSC January 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-01/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-january-2019/
-$ CSC February 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-02/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-february-2019/
-$ CSC March 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-03/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-march-2019/
-$ CSC April 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-04/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-april-2019/
-$ CSC May 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-05/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-may-2019/
-$ CSC June 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-06/ :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-june-2019/
+$ CSC June 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-june-2018/
+$ CSC July 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-july-2018/
+$ CSC August 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-08 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-august-2018/
+$ CSC September 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-09 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-september-2018/
+$ CSC October 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-10 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-october-2018/
+$ CSC November 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-11 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-november-2018/
+$ CSC December 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-12 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-december-2018/
+$ CSC January 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-01 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-january-2019/
+$ CSC February 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-02 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-february-2019/
+$ CSC March 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-03 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-march-2019/
+$ CSC April 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-04 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-april-2019/
+$ CSC May 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-05 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-may-2019/
+$ CSC June 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-06 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-june-2019/
 $ CSC July 2019 Monthly Pack :: https://drive.google.com/drive/folders/1VRkNiWdTiu5sfRsUWO1HiF-yUlsaHwd8 :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-july-2019/
 $ CSC August 2019 Monthly Pack :: https://drive.google.com/drive/folders/1HowORy_6S4x387hDMJ2GjiSpQNGAfhgH :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-august-2019/
 $ CSC September 2019 Monthly Pack :: https://drive.google.com/drive/u/1/folders/11zYifhT0XnROwWIUdOzrPMsEjrwUtzMc :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-september-2019/
 $! CSC October 2019 Monthly Pack :: https://drive.google.com/open?id=1KTm48QJFFtwvMu1Xi0IOYzrBJpl3vOAK :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-october-2019/
 
-Official games :: https://public.fightthe.pw/ghrb/ :: caddy
+Official games :: https://public.fightthe.pw/ghrb :: caddy
 Rock Band :: https://drive.google.com/drive/folders/1GgPj9Pg-vmB_1xTUoccyma2cxmDKwhjm
 Guitar Hero 3 :: https://drive.google.com/drive/u/0/folders/1NT8N2q7dpYFaucLtOT6N4sKkmJ8-uw8e
 Guitar Hero 3 DLC :: https://drive.google.com/drive/folders/1phqay8Tpj4-3IgcW5Xe5pLLhtQ5DKZ6m
@@ -401,10 +401,10 @@ Guitarmaggedon :: https://drive.google.com/drive/folders/1N58FEcWidA4dEe7N0bpiKB
 Single songs and misc :: https://drive.google.com/drive/folders/0BwrkuuCmkisEcWRYamtXcmFmbGs
 CHTV :: https://drive.google.com/drive/folders/1i9nyKqpS2Uc2W3srPDh8C-ET3aaJ-AZv
 FamilyJules Track Pack :: https://drive.google.com/drive/folders/1SO4ZLb5cXNRsQGhpTi3q04hntRz_8yet
-$ Sunrise :: https://public.fightthe.pw/rehosts/sunrise/ :: caddy/proxy:https://www.youtube.com/watch?v=BfjNFCqGe3Y
-$ The Fall of Troy Hero :: https://public.fightthe.pw/rehosts/tfot/ :: caddy/proxy:http://bit.ly/TFoTHero
+$ Sunrise :: https://public.fightthe.pw/rehosts/sunrise :: caddy/proxy:https://www.youtube.com/watch?v=BfjNFCqGe3Y
+$ The Fall of Troy Hero :: https://public.fightthe.pw/rehosts/tfot :: caddy/proxy:http://bit.ly/TFoTHero
 311 Hero :: https://drive.google.com/open?id=1GRV0bsc8b4-3hfsKGpjouRcHwGO4Y1fC
-$ CHAN :: https://public.fightthe.pw/rehosts/chan/ :: caddy/proxy:https://drive.google.com/file/d/1RXpXwjCLbVtgX868yvxKe0bcK7a_h1no/view
+$ CHAN :: https://public.fightthe.pw/rehosts/chan :: caddy/proxy:https://drive.google.com/file/d/1RXpXwjCLbVtgX868yvxKe0bcK7a_h1no/view
 $ Blanket Statement :: https://drive.google.com/drive/folders/112uikdRhUYK4dAe1KIgOWiGnjWkuSxnX :: google-drive/proxy:https://bit.ly/BSsetlist
 $ Koreaboo Hero :: https://drive.google.com/drive/folders/1t1XXlatN48beiIjJHcjGQQKzTdoDlKap :: google-drive/proxy:https://www.youtube.com/watch?v=RltxEVS1a2w
 $ Cow Hero :: https://drive.google.com/drive/folders/1BK1C5x10is_Dzla7wvvwDfc8KLDvK17f :: google-drive/proxy:https://www.youtube.com/watch?v=vLrhWHcEr1I
@@ -414,20 +414,20 @@ $ Anti Hero 2 :: https://drive.google.com/drive/folders/1hIEmkWjXr7qrYnkGEEEbIAf
 # Re-hosts
 # (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
 
-Random rehosts :: https://public.fightthe.pw/rehosts/randomshit/ :: caddy
-$ Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1/ :: caddy/proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
-$ Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2/ :: caddy/proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
-$ Vortex Hero :: https://public.fightthe.pw/rehosts/vortex/ :: caddy/proxy:https://www.youtube.com/watch?v=a-6g3qW-g34
-$ Acai (partial) :: https://public.fightthe.pw/rehosts/acai/ :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
-GHL/CHL Discord Community (check #6_fret_charts in this Discord!) :: https://public.fightthe.pw/rehosts/6frets/ :: caddy/proxy:https://discord.gg/hmtaBTp
-$ Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
-$ Guitar Hero X :: https://public.fightthe.pw/rehosts/ghx/ :: caddy/proxy:https://www.youtube.com/watch?v=KvrHvkth0_A
-Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz/ :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
-Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4/ :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
-Community Track Pack 1 :: https://public.fightthe.pw/rehosts/ctp1/ :: caddy
-Community Track Pack 2 :: https://public.fightthe.pw/rehosts/ctp2/ :: caddy
-Community Track Pack 3 :: https://public.fightthe.pw/rehosts/ctp3/ :: caddy
-Community Track Pack 4 :: https://public.fightthe.pw/rehosts/ctp4/ :: caddy
-Community Track Pack 5 :: https://public.fightthe.pw/rehosts/ctp5/ :: caddy
-$ Community Track Pack 6 :: https://public.fightthe.pw/rehosts/ctp6/ :: caddy/proxy:https://www.youtube.com/watch?v=0qnYxeBclHc
-$ Community Track Pack 7 :: https://public.fightthe.pw/rehosts/ctp7/ :: caddy/proxy:https://youtu.be/NgWxblWx5rA
+Random rehosts :: https://public.fightthe.pw/rehosts/randomshit :: caddy
+$ Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1 :: caddy/proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
+$ Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2 :: caddy/proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
+$ Vortex Hero :: https://public.fightthe.pw/rehosts/vortex :: caddy/proxy:https://www.youtube.com/watch?v=a-6g3qW-g34
+$ Acai (partial) :: https://public.fightthe.pw/rehosts/acai :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
+GHL/CHL Discord Community (check #6_fret_charts in this Discord!) :: https://public.fightthe.pw/rehosts/6frets :: caddy/proxy:https://discord.gg/hmtaBTp
+$ Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4 :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
+$ Guitar Hero X :: https://public.fightthe.pw/rehosts/ghx :: caddy/proxy:https://www.youtube.com/watch?v=KvrHvkth0_A
+Schmutz06's songs conversions :: https://public.fightthe.pw/rehosts/schmutz :: caddy/proxy:https://drive.google.com/file/d/0B1x7ZZg0d9GmQUN5NFJJNG5qNms/view
+Rock Band 4 (Recreations) :: https://public.fightthe.pw/rehosts/rb4 :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60408&sid=0aa6078b7b79a8a55fb7b69d0963f018
+Community Track Pack 1 :: https://public.fightthe.pw/rehosts/ctp1 :: caddy
+Community Track Pack 2 :: https://public.fightthe.pw/rehosts/ctp2 :: caddy
+Community Track Pack 3 :: https://public.fightthe.pw/rehosts/ctp3 :: caddy
+Community Track Pack 4 :: https://public.fightthe.pw/rehosts/ctp4 :: caddy
+Community Track Pack 5 :: https://public.fightthe.pw/rehosts/ctp5 :: caddy
+$ Community Track Pack 6 :: https://public.fightthe.pw/rehosts/ctp6 :: caddy/proxy:https://www.youtube.com/watch?v=0qnYxeBclHc
+$ Community Track Pack 7 :: https://public.fightthe.pw/rehosts/ctp7 :: caddy/proxy:https://youtu.be/NgWxblWx5rA
