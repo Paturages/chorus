@@ -8,7 +8,7 @@
     "url": "https://github.com/Paturages/chorus"
   },
   "dependencies": {
-    "csv-parse": "^2.2.0",
+    "csv-parse": "^4.4.6",
     "express": "^4.16.3",
     "glob": "^7.1.2",
     "google-auth-library": "^1.4.0",
