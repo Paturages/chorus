@@ -1,7 +1,7 @@
-import Inferno from "inferno";
-import Component from "inferno-component";
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
-import "./style.scss";
+import './style.scss';
 
 const getHumanTime = time => {
   if (!time || time < 0) return;
@@ -19,7 +19,7 @@ const getHumanTime = time => {
     `${seconds}s`
   ]
     .filter(x => x)
-    .join(" ");
+    .join(' ');
 };
 
 // const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
@@ -45,13 +45,13 @@ export default class Announcement extends Component {
   render() {
     const monthlyBlurb = (
       <div>
-        The night is dark and full of surprises. And apparently people like
-        surprises.{" "}
+        Do you like <b>Metal</b>? Do you like <b>Extreme Metal</b>? This pack is
+        most likely for you: <b>Extreme Metal 2</b>!{' '}
         <a
-          href="https://customsongscentral.com/csc-monthly-pack-october-2019/"
+          href="https://customsongscentral.com/november-2019-extreme-metal/"
           target="_blank"
         >
-          Download the CSC October 2019 Monthly Pack
+          Download the CSC November 2019 Monthly Pack
         </a>
         !
       </div>
