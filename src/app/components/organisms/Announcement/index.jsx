@@ -25,6 +25,47 @@ const getHumanTime = time => {
 // const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
 // const RELEASE_MONTHLY = new Date("2019-06-08T02:02:00Z");
 
+const A = ({ href, children }) => (
+  <a href={href} target="_blank" rel="noopener">
+    {children}
+  </a>
+);
+
+const digitizer = (
+  <div>
+    <A href="https://customsongscentral.com/digitizer/">
+      <b>Digitizer</b>
+    </A>
+    : OHM's new <b>EDM-centric</b> setlist, also with guest charts from renowned
+    charters!
+  </div>
+);
+const zg = (
+  <div>
+    <A href="https://www.youtube.com/watch?v=t5RoOh3cYx8">
+      <b>Zero Gravity</b>
+    </A>
+    : <b>170 charts</b> that might or might not be related to <b>space</b>!
+  </div>
+);
+const stargate = (
+  <div>
+    <A href="https://drive.google.com/open?id=1yrzdvaSBHi_IlGj5mP0fGusC-Lv6_O-G">
+      <b>Stargate</b>
+    </A>
+    : <b>29 EDM/VGM charts</b> from rising charter Geo that are not related to
+    the TV series!
+  </div>
+);
+const paradigm = (
+  <div>
+    <A href="https://www.youtube.com/watch?v=Hnp5yQ0DJIs">
+      <b>Paradigm</b>
+    </A>
+    : a <b>career-based</b>, GH-reminiscent experience!
+  </div>
+);
+
 export default class Announcement extends Component {
   constructor(props) {
     super(props);
@@ -45,15 +86,12 @@ export default class Announcement extends Component {
   render() {
     const monthlyBlurb = (
       <div>
-        Do you like <b>Metal</b>? Do you like <b>Extreme Metal</b>? This pack is
-        most likely for you: <b>Extreme Metal 2</b>!{' '}
-        <a
-          href="https://customsongscentral.com/november-2019-extreme-metal/"
-          target="_blank"
-        >
-          Download the CSC November 2019 Monthly Pack
-        </a>
-        !
+        There are so many setlists coming up I can't keep up! Here's a few you
+        (and I) may have missed:
+        {digitizer}
+        {zg}
+        {stargate}
+        {paradigm}
       </div>
     );
     return <div className="Announcement">{monthlyBlurb}</div>;
