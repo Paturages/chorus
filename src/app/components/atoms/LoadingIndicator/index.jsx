@@ -1,4 +1,4 @@
-import "./style.scss";
+import './style.scss';
 
 export default () => (
   <div class="Loader">

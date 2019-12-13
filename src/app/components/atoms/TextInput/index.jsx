@@ -1,6 +1,6 @@
-import Inferno from "inferno";
+import Inferno from 'inferno';
 
-import "./style.scss";
+import './style.scss';
 
 export default ({ label, className, ...props }) => (
   <div className="TextInput">

@@ -31,38 +31,32 @@ const A = ({ href, children }) => (
   </a>
 );
 
-const digitizer = (
+const monthly = (
   <div>
-    <A href="https://customsongscentral.com/digitizer/">
-      <b>Digitizer</b>
+    We're about to see off a decade guys, and what better way than a whopping{' '}
+    <b>65 songs (!)</b> part of the <b>CSC December 2019 monthly pack</b>? The
+    theme is <b>the 2010s</b>!{' '}
+    <A href="https://customsongscentral.com/december-2019-best-of-the-2010s/">
+      <b>Download here!</b>
     </A>
-    : OHM's new <b>EDM-centric</b> setlist, also with guest charts from renowned
-    charters!
   </div>
 );
-const zg = (
+const chartathon = (
   <div>
-    <A href="https://www.youtube.com/watch?v=t5RoOh3cYx8">
-      <b>Zero Gravity</b>
+    This month is a month of <b>charity</b>! Support the ongoing,{' '}
+    <b>cross-community</b> campaign between folks from{' '}
+    <b>Rock Band, Clone Hero, Audica, Beat Saber, Rocksmith and Synth Riders</b>
+    !{' '}
+    <A href="https://charity.gofundme.com/o/en/campaign/chartathon">
+      <b>More information here!</b>
     </A>
-    : <b>170 charts</b> that might or might not be related to <b>space</b>!
   </div>
 );
-const stargate = (
+const advent = (
   <div>
-    <A href="https://drive.google.com/open?id=1yrzdvaSBHi_IlGj5mP0fGusC-Lv6_O-G">
-      <b>Stargate</b>
-    </A>
-    : <b>29 EDM/VGM charts</b> from rising charter Geo that are not related to
-    the TV series!
-  </div>
-);
-const paradigm = (
-  <div>
-    <A href="https://www.youtube.com/watch?v=Hnp5yQ0DJIs">
-      <b>Paradigm</b>
-    </A>
-    : a <b>career-based</b>, GH-reminiscent experience!
+    Not enough charity? Follow the ongoing <b>Advent calendar</b> of Clone Hero
+    streamers raising funds for different charities of their choice!{' '}
+    <A href="https://discord.gg/fNXFt7B">Join the Discord!</A>
   </div>
 );
 
@@ -84,16 +78,12 @@ export default class Announcement extends Component {
     //   );
   }
   render() {
-    const monthlyBlurb = (
-      <div>
-        There are so many setlists coming up I can't keep up! Here's a few you
-        (and I) may have missed:
-        {digitizer}
-        {zg}
-        {stargate}
-        {paradigm}
+    return (
+      <div className="Announcement">
+        {monthly}
+        {chartathon}
+        {advent}
       </div>
     );
-    return <div className="Announcement">{monthlyBlurb}</div>;
   }
 }

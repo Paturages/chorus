@@ -1,11 +1,11 @@
-import { Component } from "inferno";
+import { Component } from 'inferno';
 
-import LoadingIndicator from "components/atoms/LoadingIndicator";
-import SongList from "components/organisms/SongList";
+import LoadingIndicator from 'components/atoms/LoadingIndicator';
+import SongList from 'components/organisms/SongList';
 
-import Http from "utils/Http";
+import Http from 'utils/Http';
 
-import "./style.scss";
+import './style.scss';
 
 export default class Random extends Component {
   constructor(props) {
@@ -24,11 +24,11 @@ export default class Random extends Component {
     this.fetchRandom();
   }
   fetchRandom() {
-    if (typeof ga !== "undefined") {
-      ga("set", "page", `/random`);
-      ga("send", "pageview");
+    if (typeof ga !== 'undefined') {
+      ga('set', 'page', `/random`);
+      ga('send', 'pageview');
     }
-    Http.get("/api/random").then(({ songs, roles }) => {
+    Http.get('/api/random').then(({ songs, roles }) => {
       this.setState({ roles, songs, isLoading: false });
     });
   }

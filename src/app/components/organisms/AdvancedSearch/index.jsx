@@ -1,10 +1,10 @@
-import { Component } from "inferno";
+import { Component } from 'inferno';
 
-import FeatureSelector from "components/atoms/FeatureSelector";
-import TextInput from "components/atoms/TextInput";
-import TierPillSelector from "components/molecules/TierPillSelector";
+import FeatureSelector from 'components/atoms/FeatureSelector';
+import TextInput from 'components/atoms/TextInput';
+import TierPillSelector from 'components/molecules/TierPillSelector';
 
-import "./style.scss";
+import './style.scss';
 
 const updateField = (self, field, $event) =>
   self.setState({
@@ -15,12 +15,12 @@ export default class AdvancedSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      artist: "",
-      album: "",
-      genre: "",
-      charter: "",
-      md5: "",
+      name: '',
+      artist: '',
+      album: '',
+      genre: '',
+      charter: '',
+      md5: '',
       tiers: {
         band: null,
         guitar: null,
@@ -97,11 +97,11 @@ export default class AdvancedSearch extends Component {
           if (album) queries.push(`album="${album}"`);
           if (genre) queries.push(`genre="${genre}"`);
           if (charter) queries.push(`charter="${charter}"`);
-          if (md5) queries.push(`md5=${md5.replace(/ /g, "")}`);
+          if (md5) queries.push(`md5=${md5.replace(/ /g, '')}`);
           for (let part in tiers) {
             if (tiers[part] || comparators[part] == -1) {
               queries.push(
-                `tier_${part}=${comparators[part] == 1 ? "gt" : "lt"}${tiers[
+                `tier_${part}=${comparators[part] == 1 ? 'gt' : 'lt'}${tiers[
                   part
                 ] || 0}`
               );
@@ -121,46 +121,46 @@ export default class AdvancedSearch extends Component {
           if (hasStems != null) queries.push(`hasStems=${+hasStems}`);
           if (hasVideo != null) queries.push(`hasVideo=${+hasVideo}`);
           if (hasLyrics != null) queries.push(`hasLyrics=${+hasLyrics}`);
-          onQuery(queries.join(" "));
+          onQuery(queries.join(' '));
         }}
       >
         <div className="AdvancedSearch__text-row">
           <TextInput
             defaultValue={name}
-            onInput={$event => this.updateField("name", $event)}
+            onInput={$event => this.updateField('name', $event)}
             label="Song name"
           />
           <TextInput
             defaultValue={artist}
-            onInput={$event => this.updateField("artist", $event)}
+            onInput={$event => this.updateField('artist', $event)}
             label="Artist/band name"
           />
           <TextInput
             defaultValue={album}
-            onInput={$event => this.updateField("album", $event)}
+            onInput={$event => this.updateField('album', $event)}
             label="Album name"
           />
         </div>
         <div className="AdvancedSearch__text-row">
           <TextInput
             defaultValue={genre}
-            onInput={$event => this.updateField("genre", $event)}
+            onInput={$event => this.updateField('genre', $event)}
             label="Genre"
           />
           <TextInput
             defaultValue={charter}
-            onInput={$event => this.updateField("charter", $event)}
+            onInput={$event => this.updateField('charter', $event)}
             label="Charter"
           />
           <TextInput
             maxLength={32}
             defaultValue={md5}
-            onInput={$event => this.updateField("md5", $event)}
+            onInput={$event => this.updateField('md5', $event)}
             label="MD5 checksum"
           />
         </div>
         <div className="AdvancedSearch__tier-row">
-          {["band", "guitar", "bass"].map(part => (
+          {['band', 'guitar', 'bass'].map(part => (
             <TierPillSelector
               tier={tiers[part]}
               diffs={diffs[part]}
@@ -185,7 +185,7 @@ export default class AdvancedSearch extends Component {
           ))}
         </div>
         <div className="AdvancedSearch__tier-row">
-          {["rhythm", "drums", "vocals"].map(part => (
+          {['rhythm', 'drums', 'vocals'].map(part => (
             <TierPillSelector
               tier={tiers[part]}
               diffs={diffs[part]}
@@ -210,7 +210,7 @@ export default class AdvancedSearch extends Component {
           ))}
         </div>
         <div className="AdvancedSearch__tier-row">
-          {["keys", "guitarghl", "bassghl"].map(part => (
+          {['keys', 'guitarghl', 'bassghl'].map(part => (
             <TierPillSelector
               tier={tiers[part]}
               diffs={diffs[part]}
@@ -237,7 +237,7 @@ export default class AdvancedSearch extends Component {
         <div className="AdvancedSearch__feature-row">
           <FeatureSelector
             status={hasForced}
-            labels={{ default: "Forced notes", disabled: "No forced notes" }}
+            labels={{ default: 'Forced notes', disabled: 'No forced notes' }}
             onToggle={() => {
               let status;
               if (hasForced == null) status = true;
@@ -248,7 +248,7 @@ export default class AdvancedSearch extends Component {
           />
           <FeatureSelector
             status={hasOpen}
-            labels={{ default: "Open notes", disabled: "No open notes" }}
+            labels={{ default: 'Open notes', disabled: 'No open notes' }}
             onToggle={() => {
               let status;
               if (hasOpen == null) status = true;
@@ -259,7 +259,7 @@ export default class AdvancedSearch extends Component {
           />
           <FeatureSelector
             status={hasTap}
-            labels={{ default: "Tap notes", disabled: "No tap notes" }}
+            labels={{ default: 'Tap notes', disabled: 'No tap notes' }}
             onToggle={() => {
               let status;
               if (hasTap == null) status = true;
@@ -272,7 +272,7 @@ export default class AdvancedSearch extends Component {
         <div className="AdvancedSearch__feature-row">
           <FeatureSelector
             status={hasSections}
-            labels={{ default: "Sections", disabled: "No sections" }}
+            labels={{ default: 'Sections', disabled: 'No sections' }}
             onToggle={() => {
               let status;
               if (hasSections == null) status = true;
@@ -283,7 +283,7 @@ export default class AdvancedSearch extends Component {
           />
           <FeatureSelector
             status={hasStarPower}
-            labels={{ default: "Star power", disabled: "No star power" }}
+            labels={{ default: 'Star power', disabled: 'No star power' }}
             onToggle={() => {
               let status;
               if (hasStarPower == null) status = true;
@@ -294,7 +294,7 @@ export default class AdvancedSearch extends Component {
           />
           <FeatureSelector
             status={hasSoloSections}
-            labels={{ default: "Solo sections", disabled: "No solo sections" }}
+            labels={{ default: 'Solo sections', disabled: 'No solo sections' }}
             onToggle={() => {
               let status;
               if (hasSoloSections == null) status = true;
@@ -307,7 +307,7 @@ export default class AdvancedSearch extends Component {
         <div className="AdvancedSearch__feature-row">
           <FeatureSelector
             status={hasStems}
-            labels={{ default: "Stems", disabled: "No stems" }}
+            labels={{ default: 'Stems', disabled: 'No stems' }}
             onToggle={() => {
               let status;
               if (hasStems == null) status = true;
@@ -319,8 +319,8 @@ export default class AdvancedSearch extends Component {
           <FeatureSelector
             status={hasVideo}
             labels={{
-              default: "Video background",
-              disabled: "No video background"
+              default: 'Video background',
+              disabled: 'No video background'
             }}
             onToggle={() => {
               let status;
@@ -333,8 +333,8 @@ export default class AdvancedSearch extends Component {
           <FeatureSelector
             status={hasLyrics}
             labels={{
-              default: "Lyrics",
-              disabled: "No lyrics"
+              default: 'Lyrics',
+              disabled: 'No lyrics'
             }}
             onToggle={() => {
               let status;

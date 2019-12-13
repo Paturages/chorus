@@ -1,17 +1,17 @@
-import Inferno from "inferno";
+import Inferno from 'inferno';
 
-import "./style.scss";
+import './style.scss';
 
 const FEATURES = [
-  "open notes",
-  "forced notes",
-  "tap notes",
-  "sections",
-  "solo sections",
-  "star power",
-  "stems (multi-track)",
-  "video background",
-  "lyrics"
+  'open notes',
+  'forced notes',
+  'tap notes',
+  'sections',
+  'solo sections',
+  'star power',
+  'stems (multi-track)',
+  'video background',
+  'lyrics'
 ];
 const WARNINGS = [
   <a
@@ -21,12 +21,12 @@ const WARNINGS = [
   >
     how to download a google drive folder
   </a>,
-  "needs renaming\n(to notes.chart/song.mp3)",
+  'needs renaming\n(to notes.chart/song.mp3)',
   // "120 bpm alert",
-  "no 5-fret lead guitar chart",
-  "no audio",
+  'no 5-fret lead guitar chart',
+  'no audio',
   // "possible broken notes\n(e.g. notes hidden behind others, broken chords)",
-  "might have notes after end of song"
+  'might have notes after end of song'
 ];
 
 export default ({
@@ -76,7 +76,7 @@ export default ({
           !!flag && (
             <div>
               {FEATURES[index]}
-              {index ? "" : ` (${Object.keys(hasOpen).join(", ")})`}
+              {index ? '' : ` (${Object.keys(hasOpen).join(', ')})`}
             </div>
           )
       )}

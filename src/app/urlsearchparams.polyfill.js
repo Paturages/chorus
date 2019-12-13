@@ -1,1 +1,1 @@
-window.URLSearchParams = require("url-search-params");
+window.URLSearchParams = require('url-search-params');

@@ -1,14 +1,14 @@
-import { Component } from "inferno";
+import { Component } from 'inferno';
 
-import SongList from "components/organisms/SongList";
+import SongList from 'components/organisms/SongList';
 
-import Http from "utils/Http";
+import Http from 'utils/Http';
 
-import "./style.scss";
+import './style.scss';
 
 const substitutes = {
-  "ugandan knuckles": "No, I don't know the fucking way.",
-  "uganda knuckles": "No, I don't know the fucking way."
+  'ugandan knuckles': "No, I don't know the fucking way.",
+  'uganda knuckles': "No, I don't know the fucking way."
 };
 
 export default class Search extends Component {
@@ -25,15 +25,15 @@ export default class Search extends Component {
     return { songs: [], from: 0, hasMore: false, isLoading: true };
   }
   getQuery(props) {
-    return new URLSearchParams(props.location.search).get("query");
+    return new URLSearchParams(props.location.search).get('query');
   }
   fetchData(props) {
     const query = this.getQuery(props);
-    if (typeof ga !== "undefined") {
-      ga("set", "page", `/search?query=${query}`);
-      ga("send", "pageview");
+    if (typeof ga !== 'undefined') {
+      ga('set', 'page', `/search?query=${query}`);
+      ga('send', 'pageview');
     }
-    Http.get("/api/search", { query }).then(({ songs, roles }) => {
+    Http.get('/api/search', { query }).then(({ songs, roles }) => {
       this.setState({
         isLoading: false,
         roles,
@@ -56,7 +56,7 @@ export default class Search extends Component {
     const { from, roles, songs } = this.state;
     this.setState({ isLoading: true });
     document.documentElement.scrollTop = document.documentElement.scrollHeight;
-    Http.get("/api/search", { query, from: from + 20 }).then(
+    Http.get('/api/search', { query, from: from + 20 }).then(
       ({ songs: newSongs, roles: newRoles }) =>
         this.setState({
           isLoading: false,
@@ -76,7 +76,7 @@ export default class Search extends Component {
       hasNothing,
       substituteResult
     } = this.state;
-    const { pageName = "Search results" } = this.props;
+    const { pageName = 'Search results' } = this.props;
     return (
       <div className="Search">
         {!hasNothing && !substituteResult && (

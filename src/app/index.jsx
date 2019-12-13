@@ -1,17 +1,17 @@
-import { Component, render } from "inferno";
-import { BrowserRouter, Route, withRouter } from "inferno-router";
+import { Component, render } from 'inferno';
+import { BrowserRouter, Route, withRouter } from 'inferno-router';
 
-import NavBar from "components/organisms/NavBar";
-import AdvancedSearch from "components/organisms/AdvancedSearch";
-import Announcement from "components/organisms/Announcement";
+import NavBar from 'components/organisms/NavBar';
+import AdvancedSearch from 'components/organisms/AdvancedSearch';
+import Announcement from 'components/organisms/Announcement';
 
-import Home from "pages/Home";
-import Search from "pages/Search";
-import Random from "pages/Random";
+import Home from 'pages/Home';
+import Search from 'pages/Search';
+import Random from 'pages/Random';
 
-import "assets/images/favicon_128.png";
+import 'assets/images/favicon_128.png';
 
-import "scss/global.scss";
+import 'scss/global.scss';
 
 // Un-comment in development mode if working without internet.
 // import "assets/fonts/roboto/regular.ttf";
@@ -19,18 +19,18 @@ import "scss/global.scss";
 // import "assets/fonts/roboto/light.ttf";
 // import "scss/fonts.scss";
 
-import "./index.html";
+import './index.html';
 
 // Set a custom background if set by the user
 const bg = window.localStorage.bg;
 if (bg) {
-  document.getElementById("background").style.backgroundImage = `url(${bg})`;
+  document.getElementById('background').style.backgroundImage = `url(${bg})`;
 }
 
 // Evil good ol' spying Google Analytics >:)
-if (process.env.NODE_ENV === "production" && !process.env.TESTING) {
+if (process.env.NODE_ENV === 'production' && !process.env.TESTING) {
   (function(i, s, o, g, r, a, m) {
-    i["GoogleAnalyticsObject"] = r;
+    i['GoogleAnalyticsObject'] = r;
     (i[r] =
       i[r] ||
       function() {
@@ -44,12 +44,12 @@ if (process.env.NODE_ENV === "production" && !process.env.TESTING) {
   })(
     window,
     document,
-    "script",
-    "https://www.google-analytics.com/analytics.js",
-    "ga"
+    'script',
+    'https://www.google-analytics.com/analytics.js',
+    'ga'
   );
-  ga("create", "UA-112049887-1", "auto");
-  ga("send", "pageview");
+  ga('create', 'UA-112049887-1', 'auto');
+  ga('send', 'pageview');
 }
 
 /*
@@ -93,7 +93,7 @@ class ChorusApp extends Component {
     this.setState({ showAdvanced: false });
     this.props.history.push(
       `${
-        process.env.TESTING ? "/testing" : ""
+        process.env.TESTING ? '/testing' : ''
       }/search?query=${encodeURIComponent(query)}`
     );
   }
@@ -127,5 +127,5 @@ render(
       <Route path="/search" component={Search} />
     </div>
   </BrowserRouter>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

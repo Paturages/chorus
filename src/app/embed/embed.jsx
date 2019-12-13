@@ -1,14 +1,14 @@
-import { Component, render } from "inferno";
+import { Component, render } from 'inferno';
 
-import Search from "pages/Search";
+import Search from 'pages/Search';
 
-import "./index.html";
-import "./style.scss";
+import './index.html';
+import './style.scss';
 
 // Evil good ol' spying Google Analytics >:)
-if (process.env.NODE_ENV === "production" && !process.env.TESTING) {
+if (process.env.NODE_ENV === 'production' && !process.env.TESTING) {
   (function(i, s, o, g, r, a, m) {
-    i["GoogleAnalyticsObject"] = r;
+    i['GoogleAnalyticsObject'] = r;
     (i[r] =
       i[r] ||
       function() {
@@ -22,17 +22,17 @@ if (process.env.NODE_ENV === "production" && !process.env.TESTING) {
   })(
     window,
     document,
-    "script",
-    "https://www.google-analytics.com/analytics.js",
-    "ga"
+    'script',
+    'https://www.google-analytics.com/analytics.js',
+    'ga'
   );
-  ga("create", "UA-112049887-1", "auto");
-  ga("send", "pageview");
+  ga('create', 'UA-112049887-1', 'auto');
+  ga('send', 'pageview');
 }
 
 render(
   <div className="Embed">
     <Search location={window.location} pageName="" />
   </div>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

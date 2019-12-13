@@ -1,12 +1,12 @@
-import Inferno from "inferno";
-import Http from "utils/Http";
+import Inferno from 'inferno';
+import Http from 'utils/Http';
 
-import LoadingIndicator from "components/atoms/LoadingIndicator";
-import Song from "components/molecules/Song";
+import LoadingIndicator from 'components/atoms/LoadingIndicator';
+import Song from 'components/molecules/Song';
 
 const trackClick = song => Http.post(`/api/click?id=${song.id}`);
 
-import "./style.scss";
+import './style.scss';
 
 export default ({
   isLoading,
@@ -29,7 +29,7 @@ export default ({
       {onMore && hasMore && (
         <div className="SongList__more">
           <a href="javascript:void(0)" onClick={onMore}>
-            {moreLabel || "More songs"}
+            {moreLabel || 'More songs'}
           </a>
         </div>
       )}

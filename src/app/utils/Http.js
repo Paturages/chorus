@@ -14,12 +14,12 @@ const get = (url, params, headers) =>
       }
     };
     const uriParams =
-      params && typeof params === "object"
+      params && typeof params === 'object'
         ? Object.keys(params)
             .map(key => `${key}=${encodeURIComponent(params[key])}`)
-            .join("&")
-        : "";
-    xhr.open("GET", `${url}${uriParams ? `?${uriParams}` : ""}`, true);
+            .join('&')
+        : '';
+    xhr.open('GET', `${url}${uriParams ? `?${uriParams}` : ''}`, true);
     if (headers) {
       for (let header in headers) {
         xhr.setRequestHeader(header, headers[header]);
@@ -41,7 +41,7 @@ const req = method => (url, params, headers) =>
       }
     };
     xhr.open(method.toUpperCase(), url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader('Content-type', 'application/json');
     if (headers) {
       for (let header in headers) {
         xhr.setRequestHeader(header, headers[header]);
@@ -52,7 +52,7 @@ const req = method => (url, params, headers) =>
 
 export default {
   get,
-  post: req("post"),
-  put: req("put"),
-  delete: req("delete")
+  post: req('post'),
+  put: req('put'),
+  delete: req('delete')
 };

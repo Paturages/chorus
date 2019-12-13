@@ -1,23 +1,23 @@
-import Inferno from "inferno";
+import Inferno from 'inferno';
 
-import "./style.scss";
+import './style.scss';
 
 const ratings = [
-  "Are there even any notes?", // 0
-  "First steps", // 1
-  "Warmup", // 2
-  "Apprentice", // 3
-  "Solid", // 4
-  "Moderate", // 5
-  "Challenging", // 6
-  "Nightmare", // 7
-  "Pretty hard", // 8
-  "Pretty damn hard", // 9
+  'Are there even any notes?', // 0
+  'First steps', // 1
+  'Warmup', // 2
+  'Apprentice', // 3
+  'Solid', // 4
+  'Moderate', // 5
+  'Challenging', // 6
+  'Nightmare', // 7
+  'Pretty hard', // 8
+  'Pretty damn hard', // 9
   "It's starting to hurt", // 10
-  "Carpal tunnel", // 11
-  "Basically Soulless 4", // 12
-  "ouch", // 13
-  "God help me", // 14
+  'Carpal tunnel', // 11
+  'Basically Soulless 4', // 12
+  'ouch', // 13
+  'God help me', // 14
   "...I'm out" // 15
 ];
 
@@ -27,9 +27,9 @@ const NPS_CAP = 15;
 
 export default ({ length, noteCounts = {} }) => {
   // Preferred referential for note density is "Expert Guitar"
-  const part = noteCounts.guitar ? "guitar" : Object.keys(noteCounts)[0];
+  const part = noteCounts.guitar ? 'guitar' : Object.keys(noteCounts)[0];
   if (!part || !noteCounts[part]) return;
-  const difficulty = ["x", "h", "m", "e"].find(diff => noteCounts[part][diff]);
+  const difficulty = ['x', 'h', 'm', 'e'].find(diff => noteCounts[part][diff]);
   const density = (noteCounts[part][difficulty] / length).toFixed(2);
   let height = ((100 * density) / NPS_CAP).toFixed(2);
   if (height > 100) height = 100;
@@ -39,7 +39,7 @@ export default ({ length, noteCounts = {} }) => {
       <div className="NoteDensity__bar">
         <div
           className={`NoteDensity__bar-filler ${
-            height == 100 ? "NoteDensity__bar-filler--maxxed" : ""
+            height == 100 ? 'NoteDensity__bar-filler--maxxed' : ''
           }`}
           style={{ height: `${height}%` }}
         />
