@@ -14,9 +14,25 @@ export default class DownloadLink extends Component {
     };
   }
   render() {
-    const { link, charter, roles, isPack, onDownload } = this.props;
+    const {
+      link: originalLink,
+      charter,
+      roles,
+      isPack,
+      onDownload
+    } = this.props;
     const { roleText } = this.state;
     const entityLabel = isPack ? ' pack' : ' chart';
+
+    // The stupidest workaround ever because I don't have time nor motivation to finish
+    // implementing the new importer
+    // TODO: get done with that shit and remove this workaround lol
+    const link = (originalLink || '')
+      .replace('https://public.fightthe.pw/ghrb', 'http://ghrb.fightthe.pw')
+      .replace(
+        'https://public.fightthe.pw/rehosts',
+        'http://rehosts.fightthe.pw'
+      );
 
     if (!charter) {
       if (!link) return <div className="DownloadLink">Unknown charter</div>;
