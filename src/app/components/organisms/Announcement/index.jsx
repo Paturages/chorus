@@ -1,7 +1,7 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import Inferno from "inferno";
+import Component from "inferno-component";
 
-import './style.scss';
+import "./style.scss";
 
 const getHumanTime = time => {
   if (!time || time < 0) return;
@@ -19,7 +19,7 @@ const getHumanTime = time => {
     `${seconds}s`
   ]
     .filter(x => x)
-    .join(' ');
+    .join(" ");
 };
 
 // const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
@@ -33,9 +33,9 @@ const A = ({ href, children }) => (
 
 const monthly = (
   <div>
-    We're about to see off a decade guys, and what better way than a whopping{' '}
+    We're about to see off a decade guys, and what better way than a whopping{" "}
     <b>65 songs (!)</b> part of the <b>CSC December 2019 monthly pack</b>? The
-    theme is <b>the 2010s</b>!{' '}
+    theme is <b>the 2010s</b>!{" "}
     <A href="https://customsongscentral.com/december-2019-best-of-the-2010s/">
       <b>Download here!</b>
     </A>
@@ -43,10 +43,10 @@ const monthly = (
 );
 const chartathon = (
   <div>
-    This month is a month of <b>charity</b>! Support the ongoing,{' '}
-    <b>cross-community</b> campaign between folks from{' '}
+    This month is a month of <b>charity</b>! Support the ongoing,{" "}
+    <b>cross-community</b> campaign between folks from{" "}
     <b>Rock Band, Clone Hero, Audica, Beat Saber, Rocksmith and Synth Riders</b>
-    !{' '}
+    !{" "}
     <A href="https://charity.gofundme.com/o/en/campaign/chartathon">
       <b>More information here!</b>
     </A>
@@ -55,7 +55,7 @@ const chartathon = (
 const advent = (
   <div>
     Not enough charity? Follow the ongoing <b>Advent calendar</b> of Clone Hero
-    streamers raising funds for different charities of their choice!{' '}
+    streamers raising funds for different charities of their choice!{" "}
     <A href="https://discord.gg/fNXFt7B">Join the Discord!</A>
   </div>
 );

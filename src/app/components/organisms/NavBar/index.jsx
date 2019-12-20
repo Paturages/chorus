@@ -1,39 +1,39 @@
-import { Component } from 'inferno';
-import { withRouter } from 'inferno-router';
+import { Component } from "inferno";
+import { withRouter } from "inferno-router";
 
-import Http from 'utils/Http';
+import Http from "utils/Http";
 
-import Logo from 'components/atoms/Logo';
-import SearchInput from 'components/molecules/SearchInput';
+import Logo from "components/atoms/Logo";
+import SearchInput from "components/molecules/SearchInput";
 // import DonationButton from "components/atoms/DonationButton";
 // import Login from "components/molecules/Login";
 
-import './style.scss';
+import "./style.scss";
 
 // Of course there's an easter egg.
 const ACRONYMS = [
-  'Clone Hero-friendly Organized Repository of User-provided Songs',
-  'Charting Habitat Of Real Unsettling Secrets',
+  "Clone Hero-friendly Organized Repository of User-provided Songs",
+  "Charting Habitat Of Real Unsettling Secrets",
   "Cool Hats On Randyladyman's Unlisted Stream",
-  'Clown Harmonica Olympics: a Really Useless Sport',
-  'Cars Honking Over a Rare Utopian Speedway',
-  'we are solo',
-  'h',
-  'intake remedy',
-  'consume prescription',
-  'take meds',
-  '薬忘れない',
-  'Home of Guitar Hero: High Tech 3',
-  '!chorusstatus',
-  'Daily reminder that stealing charts is wrong and there will be retaliation',
-  'honk',
-  '6-frets is not dead',
+  "Clown Harmonica Olympics: a Really Useless Sport",
+  "Cars Honking Over a Rare Utopian Speedway",
+  "we are solo",
+  "h",
+  "intake remedy",
+  "consume prescription",
+  "take meds",
+  "薬忘れない",
+  "Home of Guitar Hero: High Tech 3",
+  "!chorusstatus",
+  "Daily reminder that stealing charts is wrong and there will be retaliation",
+  "honk",
+  "6-frets is not dead",
   "Chezy's Amazingly Rad Setli- wait, hold on a second"
 ];
 let ACRONYM;
 const now = new Date();
 if (now.getHours() == 21 && now.getMinutes() > 30) {
-  ACRONYM = 'holy shit its almost 10pm, I can be a Charter';
+  ACRONYM = "holy shit its almost 10pm, I can be a Charter";
 } else if (Math.random() < 0.1) {
   ACRONYM = ACRONYMS[(Math.random() * ACRONYMS.length) >> 0];
 } else {
@@ -44,17 +44,17 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = { query: this.getQuery(props) };
-    Http.get('/api/count').then(count => this.setState({ count }));
+    Http.get("/api/count").then(count => this.setState({ count }));
   }
   componentWillReceiveProps(props) {
     this.setState({ query: this.getQuery(props) });
   }
   getQuery(props) {
-    return new URLSearchParams(props.location.search).get('query');
+    return new URLSearchParams(props.location.search).get("query");
   }
   goToRandom(evt) {
     evt.preventDefault();
-    this.props.history.push(`${process.env.TESTING ? '/testing' : ''}/random`);
+    this.props.history.push(`${process.env.TESTING ? "/testing" : ""}/random`);
   }
   render() {
     const { onQuery, onAdvancedSearchToggle, showAdvanced } = this.props;
@@ -123,7 +123,7 @@ class NavBar extends Component {
               onClick={onAdvancedSearchToggle}
               href="javascript:void(0)"
             >
-              {showAdvanced ? 'Back to Normal Search' : 'Advanced Search'}
+              {showAdvanced ? "Back to Normal Search" : "Advanced Search"}
             </a>
             <a
               class="NavBar__item NavBar__item-link"
@@ -137,11 +137,11 @@ class NavBar extends Component {
               href="javascript:void(0)"
               onClick={() => {
                 const bg = window.prompt(
-                  'Paste in a direct link to an image (e.g. https://chorus.fightthe.pw/assets/images/monika.jpg) to set it as a custom background. (Note: You can reset this by clicking OK without any text)'
+                  "Paste in a direct link to an image (e.g. https://chorus.fightthe.pw/assets/images/monika.jpg) to set it as a custom background. (Note: You can reset this by clicking OK without any text)"
                 );
                 window.localStorage.bg = bg;
                 document.getElementById(
-                  'background'
+                  "background"
                 ).style.backgroundImage = `url(${bg})`;
               }}
             >

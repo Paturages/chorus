@@ -1,10 +1,10 @@
-import { Component } from 'inferno';
+import { Component } from "inferno";
 
-import SongList from 'components/organisms/SongList';
+import SongList from "components/organisms/SongList";
 
-import Http from 'utils/Http';
+import Http from "utils/Http";
 
-import './style.scss';
+import "./style.scss";
 
 export default class Home extends Component {
   constructor(props) {
@@ -12,8 +12,8 @@ export default class Home extends Component {
     this.state = { songs: [], from: 0, isLoading: true };
 
     Promise.all([
-      Http.get('/api/latest'),
-      Http.get('/lastupdate.json').catch(() => ({}))
+      Http.get("/api/latest"),
+      Http.get("/lastupdate.json").catch(() => ({}))
     ]).then(([{ roles, songs }, { lastUpdate }]) =>
       this.setState({
         isLoading: false,
@@ -28,7 +28,7 @@ export default class Home extends Component {
     const { songs, roles, from } = this.state;
     this.setState({ isLoading: true });
     document.documentElement.scrollTop = document.documentElement.scrollHeight;
-    Http.get('/api/latest', { from: from + 20 }).then(
+    Http.get("/api/latest", { from: from + 20 }).then(
       ({ songs: newSongs, roles: newRoles }) =>
         this.setState({
           isLoading: false,

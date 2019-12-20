@@ -1,16 +1,16 @@
-import { Component } from 'inferno';
+import { Component } from "inferno";
 
-import TextInput from 'components/atoms/TextInput';
+import TextInput from "components/atoms/TextInput";
 
-import './style.scss';
+import "./style.scss";
 
 export default class SearchInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { query: props.query || '' };
+    this.state = { query: props.query || "" };
   }
   componentWillReceiveProps(props) {
-    this.setState({ query: props.query || '' });
+    this.setState({ query: props.query || "" });
   }
   handleChange(evt) {
     this.setState({ query: evt.target.value });

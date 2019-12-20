@@ -1,17 +1,17 @@
-import Inferno from 'inferno';
+import Inferno from "inferno";
 
-import DifficultyMeter from 'components/molecules/DifficultyMeter';
+import DifficultyMeter from "components/molecules/DifficultyMeter";
 
-import './style.scss';
+import "./style.scss";
 
 const PARTS = [
-  'guitar',
-  'guitarghl',
-  'bass',
-  'bassghl',
-  'rhythm',
-  'keys',
-  'drums'
+  "guitar",
+  "guitarghl",
+  "bass",
+  "bassghl",
+  "rhythm",
+  "keys",
+  "drums"
 ];
 
 export default ({

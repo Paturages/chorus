@@ -1,8 +1,8 @@
-import { Component } from 'inferno';
+import { Component } from "inferno";
 
-import logo from 'assets/images/logo.png'; // credits for the logo go to TheFilyng!
+import logo from "assets/images/logo.png"; // credits for the logo go to TheFilyng!
 
-import './style.scss';
+import "./style.scss";
 
 export default class Logo extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class Logo extends Component {
   }
   goHome(evt) {
     evt.preventDefault();
-    this.props.history.push(process.env.TESTING ? '/testing' : '/');
+    this.props.history.push(process.env.TESTING ? "/testing" : "/");
   }
   render() {
     return (

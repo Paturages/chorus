@@ -1,16 +1,16 @@
-import { Component } from 'inferno';
+import { Component } from "inferno";
 
-import './style.scss';
+import "./style.scss";
 
 export default class DownloadLink extends Component {
   constructor(props) {
     super(props);
-    const parts = (props.charter || '')
+    const parts = (props.charter || "")
       .split(/&|,|\+|\//)
       .map(x => x.trim().toLowerCase());
     const firstRoledPart = parts.find(part => props.roles[part]);
     this.state = {
-      roleText: firstRoledPart ? props.roles[firstRoledPart] : ''
+      roleText: firstRoledPart ? props.roles[firstRoledPart] : ""
     };
   }
   render() {
@@ -22,16 +22,16 @@ export default class DownloadLink extends Component {
       onDownload
     } = this.props;
     const { roleText } = this.state;
-    const entityLabel = isPack ? ' pack' : ' chart';
+    const entityLabel = isPack ? " pack" : " chart";
 
     // The stupidest workaround ever because I don't have time nor motivation to finish
     // implementing the new importer
     // TODO: get done with that shit and remove this workaround lol
-    const link = (originalLink || '')
-      .replace('https://public.fightthe.pw/ghrb', 'http://ghrb.fightthe.pw')
+    const link = (originalLink || "")
+      .replace("https://public.fightthe.pw/ghrb", "http://ghrb.fightthe.pw")
       .replace(
-        'https://public.fightthe.pw/rehosts',
-        'http://rehosts.fightthe.pw'
+        "https://public.fightthe.pw/rehosts",
+        "http://rehosts.fightthe.pw"
       );
 
     if (!charter) {
@@ -61,9 +61,9 @@ export default class DownloadLink extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Download{' '}
+            Download{" "}
             <b>
-              {charter}'{charter.slice(-1) == 's' ? '' : 's'}
+              {charter}'{charter.slice(-1) == "s" ? "" : "s"}
             </b>
             {entityLabel}
           </a>
@@ -75,15 +75,15 @@ export default class DownloadLink extends Component {
       <b>
         {parts.map((part, i) => {
           let suffix;
-          if (i == parts.length - 1) suffix = '';
-          else if (i == parts.length - 2) suffix = ' and ';
-          else suffix = ', ';
+          if (i == parts.length - 1) suffix = "";
+          else if (i == parts.length - 2) suffix = " and ";
+          else suffix = ", ";
           return (
             <span
               className={
                 roles[part.toLowerCase()]
-                  ? 'DownloadLink__charter--roled'
-                  : 'DownloadLink__charter'
+                  ? "DownloadLink__charter--roled"
+                  : "DownloadLink__charter"
               }
               onMouseOver={() =>
                 roles[part.toLowerCase()] &&
@@ -97,7 +97,7 @@ export default class DownloadLink extends Component {
             </span>
           );
         })}
-        {link ? (charter.slice(-1) == 's' ? "'" : "'s") : ''}
+        {link ? (charter.slice(-1) == "s" ? "'" : "'s") : ""}
       </b>
     );
 

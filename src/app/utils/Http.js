@@ -4,7 +4,13 @@
 
 const get = (url, params, headers) =>
   new Promise((resolve, reject) => {
-    if (process.env.FRONTEND) url = `https://chorus.fightthe.pw${url}`;
+    if (process.env.FRONTEND) {
+      if (process.env.FRONTEND === "2") {
+        url = `http://localhost:3000${url}`;
+      } else {
+        url = `https://chorus.fightthe.pw${url}`;
+      }
+    }
     if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
     xhr.onreadystatechange = () => {
@@ -14,12 +20,12 @@ const get = (url, params, headers) =>
       }
     };
     const uriParams =
-      params && typeof params === 'object'
+      params && typeof params === "object"
         ? Object.keys(params)
             .map(key => `${key}=${encodeURIComponent(params[key])}`)
-            .join('&')
-        : '';
-    xhr.open('GET', `${url}${uriParams ? `?${uriParams}` : ''}`, true);
+            .join("&")
+        : "";
+    xhr.open("GET", `${url}${uriParams ? `?${uriParams}` : ""}`, true);
     if (headers) {
       for (let header in headers) {
         xhr.setRequestHeader(header, headers[header]);
@@ -30,7 +36,13 @@ const get = (url, params, headers) =>
 
 const req = method => (url, params, headers) =>
   new Promise((resolve, reject) => {
-    if (process.env.FRONTEND) url = `https://chorus.fightthe.pw${url}`;
+    if (process.env.FRONTEND) {
+      if (process.env.FRONTEND === "2") {
+        url = `http://localhost:3000${url}`;
+      } else {
+        url = `https://chorus.fightthe.pw${url}`;
+      }
+    }
     if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
     xhr.onreadystatechange = () => {
@@ -41,7 +53,7 @@ const req = method => (url, params, headers) =>
       }
     };
     xhr.open(method.toUpperCase(), url, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader("Content-type", "application/json");
     if (headers) {
       for (let header in headers) {
         xhr.setRequestHeader(header, headers[header]);
@@ -52,7 +64,7 @@ const req = method => (url, params, headers) =>
 
 export default {
   get,
-  post: req('post'),
-  put: req('put'),
-  delete: req('delete')
+  post: req("post"),
+  put: req("put"),
+  delete: req("delete")
 };

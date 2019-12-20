@@ -1,16 +1,16 @@
-import Inferno from 'inferno';
+import Inferno from "inferno";
 
-import DownloadLink from 'components/atoms/DownloadLink';
-import NoteDensity from 'components/molecules/NoteDensity';
-import SongFeatures from 'components/molecules/SongFeatures';
-import SongParts from 'components/molecules/SongParts';
+import DownloadLink from "components/atoms/DownloadLink";
+import NoteDensity from "components/molecules/NoteDensity";
+import SongFeatures from "components/molecules/SongFeatures";
+import SongParts from "components/molecules/SongParts";
 
-import './style.scss';
+import "./style.scss";
 
 const toTime = fullSeconds => {
   const minutes = (fullSeconds / 60) >> 0;
   const seconds = fullSeconds % 60;
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 };
 
 export default props => {
@@ -41,13 +41,13 @@ export default props => {
         <div className="Song__artist">{artist}</div>
         <div className="Song__name">{name}</div>
         <div className="Song__album">
-          {album || 'Unknown album'}
-          {year ? ` (${year})` : ''}
+          {album || "Unknown album"}
+          {year ? ` (${year})` : ""}
         </div>
         {genre && <div className="Song__genre">{genre}</div>}
         {!!length && (
           <div className="Song__length">
-            {toTime(length)}{' '}
+            {toTime(length)}{" "}
             <span className="Song__length-tooltip-trigger">
               ({toTime(effectiveLength)})
             </span>
@@ -82,7 +82,7 @@ export default props => {
         {!!sources.length && (
           <div className="Song__sources">
             Source
-            {sources.length == 1 ? '' : 's'}:
+            {sources.length == 1 ? "" : "s"}:
             {sources.map(({ name, link, parent }) => (
               <div className="Song__source">
                 {parent && (
@@ -94,7 +94,7 @@ export default props => {
                     {parent.name}
                   </a>
                 )}
-                {parent ? ' in ' : ''}
+                {parent ? " in " : ""}
                 <a href={link} target="_blank" rel="noopener noreferrer">
                   {name}
                 </a>
@@ -105,7 +105,7 @@ export default props => {
         <div className="Song__modified">
           {new Date(lastModified || uploadedAt)
             .toISOString()
-            .replace(/T|\.\d+Z$/g, ' ')}
+            .replace(/T|\.\d+Z$/g, " ")}
         </div>
         {hashes && (
           <div className="Song__hash">Chart checksum: {hashes.file}</div>

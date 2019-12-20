@@ -1,10 +1,10 @@
-import { Component } from 'inferno';
+import { Component } from "inferno";
 
-import './style.scss';
+import "./style.scss";
 
 const tierPlaceholders = [1, 2, 3, 4, 5];
 const diffPlaceholders = [1, 2, 4, 8];
-const diffLetters = 'EMHX';
+const diffLetters = "EMHX";
 
 export default class TierPillSelector extends Component {
   constructor(props) {
@@ -31,28 +31,28 @@ export default class TierPillSelector extends Component {
           className="TierPillSelector__comparator"
           onClick={onToggleComparator}
         >
-          {comparator == 1 ? '≥' : '≤'}
+          {comparator == 1 ? "≥" : "≤"}
         </button>
         <div className="TierPillSelector__label">{label}</div>
         <div
           className={[
-            'TierPillSelector__pills',
+            "TierPillSelector__pills",
             ((tier >= 6 && (!hovered || hovered >= 6)) || hovered >= 6) &&
-              'TierPillSelector__pills--hard-as-fuck'
+              "TierPillSelector__pills--hard-as-fuck"
           ]
             .filter(x => x)
-            .join(' ')}
+            .join(" ")}
           onMouseLeave={() => this.setState({ hovered: null })}
         >
           {tierPlaceholders.map(index => (
             <div
               className={[
-                'TierPillSelector__pill',
-                index <= hovered && 'TierPillSelector__pill--hovered',
-                tier < index && 'TierPillSelector__pill--empty'
+                "TierPillSelector__pill",
+                index <= hovered && "TierPillSelector__pill--hovered",
+                tier < index && "TierPillSelector__pill--empty"
               ]
                 .filter(x => x)
-                .join(' ')}
+                .join(" ")}
               onMouseEnter={() =>
                 this.setState({ hovered: tier == index ? null : index })
               }
@@ -73,13 +73,13 @@ export default class TierPillSelector extends Component {
             }
           />
         </div>
-        {typeof diffs != 'undefined' && (
+        {typeof diffs != "undefined" && (
           <div className="TierPillSelector__diffs">
             {diffPlaceholders.map((flag, index) => (
               <button
                 type="button"
                 className={`TierPillSelector__diff ${
-                  flag & diffs ? 'TierPillSelector__diff--active' : ''
+                  flag & diffs ? "TierPillSelector__diff--active" : ""
                 }`}
                 onClick={() => onDiff(flag)}
               >
