@@ -34,6 +34,7 @@
     "es5-shim": "^4.5.10",
     "es6-shim": "^0.35.3",
     "file-loader": "^1.1.11",
+    "http-proxy-middleware": "^0.20.0",
     "inferno": "^5.0.4",
     "inferno-component": "^5.0.4",
     "inferno-router": "^5.0.4",
@@ -62,9 +63,12 @@
     "server": "nodemon server.js --watch server.js --watch dist/index.html --watch src/utils",
     "webpack-dev": "webpack --config webpack/dev.conf.js --watch",
     "browser-sync": "browser-sync start --config browser-sync.json",
-    "browser-sync:frontend": "browser-sync start --single --config browser-sync.frontend.json",
+    "browser-sync:frontend": "browser-sync start --single --config browser-sync.frontend.js",
     "build": "webpack --config webpack/build.conf.js",
     "postinstall": "webpack --config webpack/dev.conf.js"
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "author": "",
   "license": "GPL-3.0"

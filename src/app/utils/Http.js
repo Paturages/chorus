@@ -4,7 +4,6 @@
 
 const get = (url, params, headers) =>
   new Promise((resolve, reject) => {
-    if (process.env.FRONTEND) url = `https://chorus.fightthe.pw${url}`;
     if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
     xhr.onreadystatechange = () => {
@@ -30,7 +29,6 @@ const get = (url, params, headers) =>
 
 const req = method => (url, params, headers) =>
   new Promise((resolve, reject) => {
-    if (process.env.FRONTEND) url = `https://chorus.fightthe.pw${url}`;
     if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
     xhr.onreadystatechange = () => {
