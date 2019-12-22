@@ -59,6 +59,15 @@ const advent = (
     <A href="https://discord.gg/fNXFt7B">Join the Discord!</A>
   </div>
 );
+const vu = (
+  <div>
+    You know the tedious process I'm getting you to do to even get on here?
+    These people haven't gone through that! Heathens! Introducing{' '}
+    <b>Verified Unverified</b>, a setlist made by promising, yet non-roled
+    charters from the CH community.{' '}
+    <A href="https://www.youtube.com/watch?v=iQVcapBKwYU">Download here!</A>
+  </div>
+);
 
 export default class Announcement extends Component {
   constructor(props) {
@@ -83,6 +92,7 @@ export default class Announcement extends Component {
         {monthly}
         {chartathon}
         {advent}
+        {vu}
       </div>
     );
   }

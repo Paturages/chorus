@@ -1,6 +1,6 @@
 import { Component } from 'inferno';
 
-import LoadingIndicator from 'components/atoms/LoadingIndicator';
+import LoadingSongList from 'components/organisms/LoadingSongList';
 import SongList from 'components/organisms/SongList';
 
 import Http from 'utils/Http';
@@ -36,7 +36,7 @@ export default class Random extends Component {
     const { isLoading, songs, roles } = this.state;
     return (
       <div className="Random">
-        {isLoading && <LoadingIndicator />}
+        {isLoading && <LoadingSongList />}
         {!isLoading && (
           <SongList
             title="Hand-crafted randomness"

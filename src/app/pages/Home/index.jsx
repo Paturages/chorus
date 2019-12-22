@@ -1,5 +1,6 @@
 import { Component } from 'inferno';
 
+import LoadingSongList from 'components/organisms/LoadingSongList';
 import SongList from 'components/organisms/SongList';
 
 import Http from 'utils/Http';
@@ -43,15 +44,18 @@ export default class Home extends Component {
     const { isLoading, roles, songs, hasMore, lastUpdate } = this.state;
     return (
       <div className="Home">
-        <SongList
-          isLoading={isLoading}
-          title="Latest charts"
-          subtitle={`last update: ${new Date(lastUpdate)}`}
-          roles={roles}
-          songs={songs}
-          hasMore={hasMore}
-          onMore={this.loadMore.bind(this)}
-        />
+        {isLoading ? (
+          <LoadingSongList />
+        ) : (
+          <SongList
+            title="Latest charts"
+            subtitle={`last update: ${new Date(lastUpdate)}`}
+            roles={roles}
+            songs={songs}
+            hasMore={hasMore}
+            onMore={this.loadMore.bind(this)}
+          />
+        )}
       </div>
     );
   }
