@@ -1,0 +1,20 @@
+@import 'variables';
+
+.Skeleton {
+  height: 16px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  animation: skeleton-anim 1s infinite;
+}
+
+@keyframes skeleton-anim {
+  0% {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  25% {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
