@@ -387,6 +387,7 @@ $ CSC September 2019 Monthly Pack :: https://drive.google.com/drive/u/1/folders/
 $ CSC October 2019 Monthly Pack :: https://drive.google.com/open?id=1KTm48QJFFtwvMu1Xi0IOYzrBJpl3vOAK :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-october-2019/
 $ CSC November 2019 Monthly Pack :: https://drive.google.com/drive/folders/1SybKW7Ef24C_BUQdNFz5Fe0BDpmMfZR4 :: google-drive/proxy:https://customsongscentral.com/november-2019-extreme-metal/
 $ CSC December 2019 Monthly Pack :: https://drive.google.com/drive/u/1/folders/1uJc6ALxBl689mfnwZp0-QWm3n4U1IZb9 :: google-drive/proxy:https://customsongscentral.com/december-2019-best-of-the-2010s/
+$ CSC January 2020 Monthly Pack :: https://drive.google.com/drive/folders/1aP7eRQynB4WF787Y-JAqnXzk47z9hOnA :: google-drive/proxy:https://customsongscentral.com/january-2020-non-english-songs/
 
 Official games :: https://public.fightthe.pw/ghrb :: caddy
 Rock Band :: https://drive.google.com/drive/folders/1GgPj9Pg-vmB_1xTUoccyma2cxmDKwhjm
