@@ -16,9 +16,7 @@
 
 Angevil's charts :: https://drive.google.com/drive/folders/1olQexhSVSD6MRQraOsyYmRdeLdMKneC8
 Arctan's charts :: https://drive.google.com/drive/folders/1_w8ItKfNIGp5okadtMpAznCmAhAvMj7Q
-Aren's charts :: https://drive.google.com/drive/folders/1FZp2hIpuB-wrz7Htl2ces6TCugzvas94 :: google-drive/proxy:http://bit.ly/AECharts
 Big Whoop Magazine's charts :: https://drive.google.com/open?id=1hGFRYrzaeWufS4xdnd9SSSZN8X94be7R
-Brutal's charts :: https://drive.google.com/drive/folders/17vc_Ncv0ErgbCZNCWsSdWIR3GYk-5ize
 BurpLeTurtle's charts :: https://drive.google.com/drive/folders/0B-93AYpB5GxgUGlyaVRIek1mbnc
 ChemFinal's charts :: https://drive.google.com/drive/folders/0BxwFbK1RPXa7NktEZ0VacVAxRkE
 Chezy's charts :: https://drive.google.com/drive/folders/1GMWUS_9lttQktzTeek1J14rFfFI16pFG
@@ -27,6 +25,7 @@ Dillski's charts :: https://drive.google.com/drive/folders/0Bzm5KFgFuIEocmoxVElk
 DigitalSquirrel's charts :: https://drive.google.com/drive/folders/0B2cTDJt4RaShTFBxak9nM212T0U
 Gabe's charts :: https://drive.google.com/drive/folders/1eJa7sdE-A4sLhqg9jkYvNMxLqFdpuJ9h :: google-drive/proxy:http://bit.ly/gaebpls
 GanonMetroid's charts :: https://drive.google.com/drive/folders/1y2-NuFvYzacLxMiNlc_0yjFB69lF2LHL
+GuitarZero123's charts :: https://drive.google.com/drive/folders/12VYyPOdKGaqN07DtfK2knyUtcuShMvHF
 HellAshes' charts :: https://drive.google.com/drive/folders/10hYY-KbjtJ8vXxEY1eiHsQtG2zN8VSjA
 Hellrock120's charts :: https://drive.google.com/drive/folders/0B5wk-b9mhFVwa3VMYkJiWFk3VTQ
 Jaded's charts :: https://drive.google.com/drive/folders/1cz5TL94WpSDcBsks6UBpcbYjZgT9zW4Z
@@ -38,14 +37,14 @@ Miscellany's charts :: https://drive.google.com/drive/folders/1p1XuIwYmndRK8Z0VK
 ΩHM's charts :: https://drive.google.com/drive/folders/1rTOoMstu2bhqHeuNV8wOeoQuz3aYrLkB
 ParallaxDG's charts :: https://drive.google.com/drive/folders/0B9c6s3i6iVBIaHFjR2h1QlZMZVE
 Paturages' charts :: https://drive.google.com/drive/u/1/folders/1zOyCmyWasNlykkktMWU6tutQtgRivSFw
+Raspberry Ale's charts :: https://drive.google.com/drive/folders/1m-JfuM0z1NP5V--tREiWj-2h-x2RG-Ab :: google-drive/proxy:https://bit.ly/RazzyCH
 Rek3dge's charts :: https://drive.google.com/drive/folders/1p2j6q-xBis9eWERZpWdxEOQAChDBc2MC
 Riddo's charts :: https://drive.google.com/drive/folders/0B-q881cf9RQmNjlnaGowbnN2V1k
-Roy's charts :: https://drive.google.com/drive/folders/1lUZD1gnEc6hIv5UN0xoB1LeVZGrzoq9Q
-ShadeGH's charts :: https://drive.google.com/drive/folders/0B60cVxSWmZPcOHJkbWRkQkc1YWs
 Siavash's charts :: https://drive.google.com/drive/folders/0B2RLHuNpuW16UnhnNFUxVXBOamc :: google-drive/proxy:http://bit.ly/SiavashCharts
 Siavash's Anti Hero charts :: https://drive.google.com/drive/folders/1nIIO3CJ3WmICHAMQEoaN63RoStUn3UF-
 Smoochums' charts :: https://drive.google.com/drive/u/0/folders/1P7ekr0CJ8DfQwhu1L_VbYF6i2ACamAYb
 Supah's charts :: https://drive.google.com/drive/folders/0B1O7vQQXwpsSbjdMWldKR0xRLVE
+Sygenysis's charts :: https://drive.google.com/drive/folders/0B8ZIiYD-xI8RN1VaUXUzYXMyVkU
 torqqes' charts :: https://drive.google.com/open?id=12YGFxgM0H8IzJ01oBdpqQPs70x04IAi-
 TheOrangeHat's charts :: https://drive.google.com/open?id=1ww3PtInba6gIzYTfBt-2Z0YV-vHXMDjQ
 ThundahK's charts :: https://drive.google.com/drive/folders/1t13rjjbPVWzae2gGtUa0DuPPLRT_9tiK :: google-drive/proxy:https://docs.google.com/spreadsheets/d/1xySohFZ2G8FG6jMJ5Ul97XLWz429NJL0oB3viYDaoK0/htmlview?sle=true#gid=0
@@ -56,12 +55,13 @@ xX760Xx's charts :: https://drive.google.com/drive/folders/0B5LGIoSN3SrkQm1EZjhl
 
 3-UP's charts :: https://drive.google.com/drive/folders/1QkE5Wel233I0Cawqv530G0yY8SzreYfs
 Akazu's charts :: https://drive.google.com/drive/folders/10fbg6VcDZmjR-1gkoXFZcx3FNVPkfVBk
+Aren's charts :: https://drive.google.com/drive/folders/1FZp2hIpuB-wrz7Htl2ces6TCugzvas94 :: google-drive/proxy:http://bit.ly/AECharts
+Brutal's charts :: https://drive.google.com/drive/folders/17vc_Ncv0ErgbCZNCWsSdWIR3GYk-5ize
 BulbaSaruman's charts :: https://drive.google.com/drive/folders/16S3je1ThB-uB719gI5epkB7m17_te0sx
 capta1n_guitarhero's charts :: https://drive.google.com/drive/folders/1kazNw6LPjnbahS5s1iKAGhNkNeLDpxDW
 CaptainToasty's charts :: https://drive.google.com/drive/folders/0B7sLCPWoM-w3aDVLdUV2YmZ5ejg
 Chubba247's charts :: https://drive.google.com/drive/folders/1DmzFMlFJKajMngxppoQ0ZBTP6BE4LjEg
 FrOoGle's charts :: https://drive.google.com/drive/folders/1symlLzFGlBm8fGbP6bl8MMLFtWgrnO8u
-GuitarZero123's charts :: https://drive.google.com/drive/folders/12VYyPOdKGaqN07DtfK2knyUtcuShMvHF
 Jackie's charts :: https://drive.google.com/drive/folders/16fNARud-Z7HZoT6H-TKV3y6j2qGX0fke
 JaysonTM's charts :: https://drive.google.com/drive/u/0/folders/0B6v9d_hMqZXRQzJxRUVMMVRITEE
 # No more single category FeelsBadMan
@@ -81,9 +81,9 @@ PeckInkay's charts :: https://drive.google.com/drive/folders/1KnDI0gN4D5DAaSCRGJ
 Peddy's charts :: https://drive.google.com/drive/folders/1Z_AkU3RgzW1tZJXnLMinzeeXRuM1aqG8
 Pizza22's charts :: https://drive.google.com/drive/folders/1SQSwvEQ_j3Oog1TnsoOy2C9dVIC0wIa- :: google-drive/proxy:http://bit.ly/pizza22charts
 Pizzachamp's Charts :: https://drive.google.com/drive/folders/0BwulvdMfrBzQcXBZc3FicGNWWGs :: google-drive/proxy:http://songs.pizzachamp.net
-Raspberry Ale's charts :: https://drive.google.com/drive/folders/1m-JfuM0z1NP5V--tREiWj-2h-x2RG-Ab :: google-drive/proxy:https://bit.ly/RazzyCH
+Roy's charts :: https://drive.google.com/drive/folders/1lUZD1gnEc6hIv5UN0xoB1LeVZGrzoq9Q
+ShadeGH's charts :: https://drive.google.com/drive/folders/0B60cVxSWmZPcOHJkbWRkQkc1YWs
 Supradyke's charts :: https://drive.google.com/drive/folders/1Aazku1hXC3YsPonPHiZ3AGGVBxovMaHr
-Sygenysis's charts :: https://drive.google.com/drive/folders/0B8ZIiYD-xI8RN1VaUXUzYXMyVkU
 UKwonderboy's charts :: https://drive.google.com/drive/folders/197SIUEBpB6wRbEZ9s8yqzwD9RPyxXfhO
 Wumbo's Charts :: https://drive.google.com/open?id=0B6hx1WELEhYPQzBHZ0dXbTk0TWs 
 xShamaNama's Charts :: https://drive.google.com/drive/folders/1X-J95039CVt0I7GcJ0YZ-IxwNdPw-i94
@@ -364,30 +364,10 @@ GaMetal Power Pack :: https://drive.google.com/drive/folders/12Bl9FGkBcR-TXhQwvu
 $ Mario Kart 8 Track Pack :: https://drive.google.com/drive/u/0/folders/1paxRjY2LIkwP_VgB4h12075tBexslwlP :: google-drive/proxy:https://www.youtube.com/watch?v=QQpJJHIHMmw
 $ Anti Hero: Beach Episode :: https://drive.google.com/drive/folders/10IgIFd5wmYKPenVegJAMFHuWRKVpBHvf :: google-drive/proxy:https://youtu.be/9hvmhVv3iYE
 $ Anti Hero: Beach Episode - The Beach Sides :: https://drive.google.com/drive/folders/1dn-VRfo9RSPJizC4HblMQvNcttdC6cyW :: google-drive/proxy:https://www.youtube.com/watch?v=phvIrLp0wpo
-$ Marathon Hero :: https://public.fightthe.pw/rehosts/mh :: caddy/proxy:https://www.youtube.com/watch?v=MhTF4yxAxQ4
 $ Djent Hero :: https://public.fightthe.pw/rehosts/djent :: caddy/proxy:https://www.youtube.com/watch?v=p0YDCB_TMMg
 $ Redemption Arc :: https://drive.google.com/drive/folders/1KasBj2cs8zzL_nGdVdMkVgJbB9uqeN4q?usp=sharing :: google-drive/proxy:https://www.youtube.com/watch?v=rzW4C9uQMv0
 
-$ CSC June 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-06 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-june-2018/
-$ CSC July 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-07 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-july-2018/
-$ CSC August 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-08 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-august-2018/
-$ CSC September 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-09 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-september-2018/
-$ CSC October 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-10 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-october-2018/
-$ CSC November 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-11 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-november-2018/
-$ CSC December 2018 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2018-12 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-december-2018/
-$ CSC January 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-01 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-january-2019/
-$ CSC February 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-02 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-february-2019/
-$ CSC March 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-03 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-march-2019/
-$ CSC April 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-04 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-april-2019/
-$ CSC May 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-05 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-may-2019/
-$ CSC June 2019 Monthly Pack :: https://public.fightthe.pw/rehosts/csc-2019-06 :: caddy/proxy:https://customsongscentral.com/csc-monthly-pack-june-2019/
-$ CSC July 2019 Monthly Pack :: https://drive.google.com/drive/folders/1VRkNiWdTiu5sfRsUWO1HiF-yUlsaHwd8 :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-july-2019/
-$ CSC August 2019 Monthly Pack :: https://drive.google.com/drive/folders/1HowORy_6S4x387hDMJ2GjiSpQNGAfhgH :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-august-2019/
-$ CSC September 2019 Monthly Pack :: https://drive.google.com/drive/u/1/folders/11zYifhT0XnROwWIUdOzrPMsEjrwUtzMc :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-september-2019/
-$ CSC October 2019 Monthly Pack :: https://drive.google.com/open?id=1KTm48QJFFtwvMu1Xi0IOYzrBJpl3vOAK :: google-drive/proxy:https://customsongscentral.com/csc-monthly-pack-october-2019/
-$ CSC November 2019 Monthly Pack :: https://drive.google.com/drive/folders/1SybKW7Ef24C_BUQdNFz5Fe0BDpmMfZR4 :: google-drive/proxy:https://customsongscentral.com/november-2019-extreme-metal/
-$ CSC December 2019 Monthly Pack :: https://drive.google.com/drive/u/1/folders/1uJc6ALxBl689mfnwZp0-QWm3n4U1IZb9 :: google-drive/proxy:https://customsongscentral.com/december-2019-best-of-the-2010s/
-$ CSC January 2020 Monthly Pack :: https://drive.google.com/drive/folders/1aP7eRQynB4WF787Y-JAqnXzk47z9hOnA :: google-drive/proxy:https://customsongscentral.com/january-2020-non-english-songs/
+$ Custom Songs Central :: https://drive.google.com/drive/u/1/folders/1NqgS3ZcgtJkawaptp49WKbXR4MIohoiU :: google-drive/proxy:https://customsongscentral.com
 
 Official games :: https://public.fightthe.pw/ghrb :: caddy
 Rock Band :: https://drive.google.com/drive/folders/1GgPj9Pg-vmB_1xTUoccyma2cxmDKwhjm
@@ -421,12 +401,8 @@ $ Cow Hero DLC 1 :: https://drive.google.com/open?id=1IjTIDGPu-dTlRErkwK1SiEEBDx
 $ Anti Hero 2 :: https://drive.google.com/drive/folders/1hIEmkWjXr7qrYnkGEEEbIAfGZ0BR5Lis?usp=sharing :: google-drive/proxy:https://youtu.be/gonlZTylGkg
 
 # Re-hosts
-# (Anti Hero is not rehosted because it was agreed that the charters would host the charts themselves)
 
 Random rehosts :: https://public.fightthe.pw/rehosts/randomshit :: caddy
-$ Carpal Tunnel Hero :: https://public.fightthe.pw/rehosts/cth1 :: caddy/proxy:https://www.youtube.com/watch?v=s1HRwoG4lCE
-$ Carpal Tunnel Hero 2 :: https://public.fightthe.pw/rehosts/cth2 :: caddy/proxy:https://www.youtube.com/watch?v=THT1d5bp-Ro
-$ Vortex Hero :: https://public.fightthe.pw/rehosts/vortex :: caddy/proxy:https://www.youtube.com/watch?v=a-6g3qW-g34
 $ Acai (partial) :: https://public.fightthe.pw/rehosts/acai :: caddy/proxy:http://www.mediafire.com/file/48flww5k4yd06h3/Acai%27s+Setlist%2B+.rar
 GHL/CHL Discord Community (check #6_fret_charts in this Discord!) :: https://public.fightthe.pw/rehosts/6frets :: caddy/proxy:https://discord.gg/hmtaBTp
 $ Phase Shift Guitar Project 4 :: https://public.fightthe.pw/rehosts/psgp4 :: caddy/proxy:https://www.fretsonfire.org/forums/viewtopic.php?f=5&t=60752
