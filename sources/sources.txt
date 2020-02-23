@@ -1,14 +1,11 @@
 # Wanna add some charts?
 
-# Update 2019-08-01
-# Due to time constraints, I'm gonna have to stop going through reviews just by myself.
-# From now on, you're gonna have to rely on the standard charter role application process: http://bit.ly/CHCharter
+# Update 2020-02-23
+# Form for new submissions, all the info should be inside there:
+# https://docs.google.com/forms/d/e/1FAIpQLScjIfhEPp5rT1kNNJJINTYDpU2DmqpLOBSw06O9cu39xrr5Gw/viewform
 
-# It doesn't mean that you have to get the charter role to be eligible for chorus, you will still be eligible if
-# you come close enough to the charter role requirements. You are guaranteed to get in if you get the role though.
-
-# If you were reviewed for the role but were denied and still wanna get in, DM me (Paturages#9405) and I can at least
-# look through the reasons of your denial and see if it's still close enough to the role requirements.
+# The approved drives are going to end up in the following folder for now:
+Promising charters :: https://drive.google.com/drive/u/1/folders/1EdPkQHUjZBiApDpW5umAWBIEn29J_tmY
 
 # --------------------------------- #
 
