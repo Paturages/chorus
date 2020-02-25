@@ -22,7 +22,7 @@ const getHumanTime = time => {
     .join(' ');
 };
 
-// const RELEASE_BS = new Date("2019-05-31T23:00:00Z");
+// const RELEASE_DJENT = new Date('2020-01-16T09:00:00Z');
 // const RELEASE_MONTHLY = new Date("2019-06-08T02:02:00Z");
 
 const A = ({ href, children }) => (
@@ -33,39 +33,22 @@ const A = ({ href, children }) => (
 
 const monthly = (
   <div>
-    We're about to see off a decade guys, and what better way than a whopping{' '}
-    <b>65 songs (!)</b> part of the <b>CSC December 2019 monthly pack</b>? The
-    theme is <b>the 2010s</b>!{' '}
-    <A href="https://customsongscentral.com/december-2019-best-of-the-2010s/">
+    Have you found your Valentine's yet? It's not too late, you can get the{' '}
+    <b>CSC February Monthly Pack</b> to help you! (it's also not too late for me
+    to put this announcement){' '}
+    <A href="https://customsongscentral.com/csc-monthly-pack-february-2020/">
       <b>Download here!</b>
     </A>
   </div>
 );
-const chartathon = (
+
+const review = (
   <div>
-    This month is a month of <b>charity</b>! Support the ongoing,{' '}
-    <b>cross-community</b> campaign between folks from{' '}
-    <b>Rock Band, Clone Hero, Audica, Beat Saber, Rocksmith and Synth Riders</b>
-    !{' '}
-    <A href="https://charity.gofundme.com/o/en/campaign/chartathon">
-      <b>More information here!</b>
-    </A>
-  </div>
-);
-const advent = (
-  <div>
-    Not enough charity? Follow the ongoing <b>Advent calendar</b> of Clone Hero
-    streamers raising funds for different charities of their choice!{' '}
-    <A href="https://discord.gg/fNXFt7B">Join the Discord!</A>
-  </div>
-);
-const vu = (
-  <div>
-    You know the tedious process I'm getting you to do to even get on here?
-    These people haven't gone through that! Heathens! Introducing{' '}
-    <b>Verified Unverified</b>, a setlist made by promising, yet non-roled
-    charters from the CH community.{' '}
-    <A href="https://www.youtube.com/watch?v=iQVcapBKwYU">Download here!</A>
+    The new system is here! You can now apply to a{' '}
+    <A href="https://docs.google.com/forms/d/e/1FAIpQLScjIfhEPp5rT1kNNJJINTYDpU2DmqpLOBSw06O9cu39xrr5Gw/viewform">
+      new and shiny form
+    </A>{' '}
+    to get your charts in! Make sure you read the rules though.
   </div>
 );
 
@@ -73,15 +56,13 @@ export default class Announcement extends Component {
   constructor(props) {
     super(props);
     // this.state = {
-    //   leftBS: RELEASE_BS - new Date(),
-    //   leftMonthly: RELEASE_MONTHLY - new Date()
+    //   left: RELEASE_DJENT - new Date()
     // };
-    // if (this.state.leftBS > 0 || this.state.leftMonthly > 0)
+    // if (this.state.left > 0)
     //   setInterval(
     //     () =>
     //       this.setState({
-    //         leftBS: RELEASE_BS - new Date(),
-    //         leftMonthly: RELEASE_MONTHLY - new Date()
+    //         left: RELEASE_DJENT - new Date()
     //       }),
     //     333
     //   );
@@ -90,9 +71,7 @@ export default class Announcement extends Component {
     return (
       <div className="Announcement">
         {monthly}
-        {chartathon}
-        {advent}
-        {vu}
+        {review}
       </div>
     );
   }

@@ -90,7 +90,7 @@ class NavBar extends Component {
             </a>
             <a
               class="NavBar__item NavBar__item-link"
-              href="https://github.com/Paturages/chorus/blob/master/sources/sources.txt"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScjIfhEPp5rT1kNNJJINTYDpU2DmqpLOBSw06O9cu39xrr5Gw/viewform"
               target="_blank"
               rel="noopener noreferrer"
             >
