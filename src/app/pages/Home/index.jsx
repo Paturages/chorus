@@ -44,18 +44,14 @@ export default class Home extends Component {
     const { isLoading, roles, songs, hasMore, lastUpdate } = this.state;
     return (
       <div className="Home">
-        {isLoading ? (
-          <LoadingSongList />
-        ) : (
-          <SongList
-            title="Latest charts"
-            subtitle={`last update: ${new Date(lastUpdate)}`}
-            roles={roles}
-            songs={songs}
-            hasMore={hasMore}
-            onMore={this.loadMore.bind(this)}
-          />
-        )}
+        <SongList
+          isLoading={isLoading}
+          title="Latest charts"
+          roles={roles}
+          songs={songs}
+          hasMore={hasMore}
+          onMore={this.loadMore.bind(this)}
+        />
       </div>
     );
   }

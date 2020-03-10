@@ -33,11 +33,9 @@ const A = ({ href, children }) => (
 
 const monthly = (
   <div>
-    Have you found your Valentine's yet? It's not too late, you can get the{' '}
-    <b>CSC February Monthly Pack</b> to help you! (it's also not too late for me
-    to put this announcement){' '}
-    <A href="https://customsongscentral.com/csc-monthly-pack-february-2020/">
-      <b>Download here!</b>
+    Those lame CSC guys only chart easy stuff, right... not this time!{' '}
+    <A href="https://customsongscentral.com/csc-monthly-pack-march-2020/">
+      <b>Download CSC's March 2020 "Hard Songs" pack!</b>
     </A>
   </div>
 );
