@@ -57,6 +57,7 @@ const diffMap = {
 const notesMap = { 0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 8: 6, 7: 7 };
 
 module.exports = chart => {
+  const rawFileHash = getMD5(chart);
   let hasStarPower = false;
   let hasForced = false;
   let hasTap = false;
@@ -212,7 +213,7 @@ module.exports = chart => {
     });
 
     // Compute the hash of the .chart itself first
-    const hashes = { file: getMD5(chart) };
+    const hashes = { file: rawFileHash };
     const noteCounts = {};
     for (let part in notes) {
       const [instrument, difficulty] = part.split('.');
