@@ -7,6 +7,13 @@
 # The approved drives are going to end up in the following folder for now:
 Promising charters :: https://drive.google.com/drive/u/1/folders/1EdPkQHUjZBiApDpW5umAWBIEn29J_tmY
 
+# Temporary measure because I need to support "drive shortcuts" smh
+$ Djent Hero Collection Pack #3 :: https://drive.google.com/open?id=1uh7xUsabWeuFOK2OHLmzyh7ARgsXHSQO :: https://www.youtube.com/watch?v=mws8GZBhmLo
+4TC :: https://drive.google.com/drive/u/1/folders/1_MAC6xvSl4LevUbVlXDhcr5Zkc3RgBY0
+RanZChannel :: https://drive.google.com/drive/u/1/folders/1-3fs9fb3l70IlZfSz8K_5v2H3yFy8VBv
+MrDigous :: https://drive.google.com/drive/u/1/folders/15vMZjFpxU1Nvr_0m2Kq3_TXdXDVJieCR
+omyyer :: https://drive.google.com/drive/u/1/folders/1eRLFYwZKt3GJF0e0b-IF7vbzWAMyWibl
+
 # --------------------------------- #
 
 # Custom Songs Central
