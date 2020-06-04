@@ -8,11 +8,7 @@
 Promising charters :: https://drive.google.com/drive/u/1/folders/1EdPkQHUjZBiApDpW5umAWBIEn29J_tmY
 
 # Temporary measure because I need to support "drive shortcuts" smh
-$ Djent Hero Collection Pack #3 :: https://drive.google.com/open?id=1uh7xUsabWeuFOK2OHLmzyh7ARgsXHSQO :: https://www.youtube.com/watch?v=mws8GZBhmLo
-4TC :: https://drive.google.com/drive/u/1/folders/1_MAC6xvSl4LevUbVlXDhcr5Zkc3RgBY0
-RanZChannel :: https://drive.google.com/drive/u/1/folders/1-3fs9fb3l70IlZfSz8K_5v2H3yFy8VBv
-MrDigous :: https://drive.google.com/drive/u/1/folders/15vMZjFpxU1Nvr_0m2Kq3_TXdXDVJieCR
-omyyer :: https://drive.google.com/drive/u/1/folders/1eRLFYwZKt3GJF0e0b-IF7vbzWAMyWibl
+$ Djent Hero Collection Pack #3 :: https://drive.google.com/open?id=1uh7xUsabWeuFOK2OHLmzyh7ARgsXHSQO :: google-drive/proxy:https://www.youtube.com/watch?v=mws8GZBhmLo
 
 # --------------------------------- #
 
@@ -371,7 +367,7 @@ $ Anti Hero: Beach Episode - The Beach Sides :: https://drive.google.com/drive/f
 $ Redemption Arc :: https://drive.google.com/drive/folders/1KasBj2cs8zzL_nGdVdMkVgJbB9uqeN4q?usp=sharing :: google-drive/proxy:https://www.youtube.com/watch?v=rzW4C9uQMv0
 $! Verified Unverified :: https://drive.google.com/drive/folders/1E74Aru6Yo1v22m5zlrTbvmfeUFwM0gIo :: google-drive/proxy:http://bit.ly/36OR47w
 
-$ Custom Songs Central :: https://drive.google.com/drive/u/1/folders/1NqgS3ZcgtJkawaptp49WKbXR4MIohoiU :: google-drive/proxy:https://customsongscentral.com
+Custom Songs Central :: https://drive.google.com/drive/u/1/folders/1NqgS3ZcgtJkawaptp49WKbXR4MIohoiU :: google-drive/proxy:https://customsongscentral.com
 
 Official games :: https://drive.google.com/drive/folders/1ugbDefoHu4jnYvnjnWLI1_6zfEPecTBc
 Rock Band :: https://drive.google.com/drive/u/0/folders/10cFnmtgfLxYm9I-0E4Nhdqhc3xAlUoAS

@@ -33,9 +33,20 @@ const A = ({ href, children }) => (
 
 const monthly = (
   <div>
-    Those lame CSC guys only chart easy stuff, right... not this time!{' '}
-    <A href="https://customsongscentral.com/csc-monthly-pack-march-2020/">
-      <b>Download CSC's March 2020 "Hard Songs" pack!</b>
+    Well, we can't go out and see our favorite bands live right now. But you can
+    at least enjoy live performances from some amazing bands in this month's
+    pack!{' '}
+    <A href="https://youtu.be/UZvmvgwAPIY">
+      <b>Download CSC's May 2020 "Live" pack!</b>
+    </A>
+  </div>
+);
+
+const djent = (
+  <div>
+    36 songs, 2 solo medleys, a 27 minute song... and it djents?{' '}
+    <A href="https://www.youtube.com/watch?v=mws8GZBhmLo">
+      <b>Download the Djent Hero Collection Pack #3!</b>
     </A>
   </div>
 );
@@ -69,7 +80,20 @@ export default class Announcement extends Component {
     return (
       <div className="Announcement">
         {monthly}
-        {review}
+        <br />
+        Well shit, seems like things broke even more than usual. It's gonna take
+        quite a bit of time to recover (more than 24 hours), so I guess this is
+        nature's way of saying{' '}
+        <A href="https://twitter.com/search?q=%23BlackLivesMatter">
+          #BlackLivesMatter
+        </A>
+        .
+        <br />
+        Also{' '}
+        <A href="https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o/edit#gid=0">
+          refer to the spreadsheet
+        </A>{' '}
+        for common stuff like official setlists and so on.
       </div>
     );
   }
