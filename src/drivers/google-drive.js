@@ -110,7 +110,7 @@ module.exports = async ({
     for (let item of content) {
       // If recover mode and link has already been inserted, skip
       if (process.env.RECOVER) {
-        if (await checkIfLinkInNew({ link: item.webContentLink })) return;
+        if (await checkIfLinkInNew({ link: item.webContentLink })) continue;
       }
 
       // Resolve shortcuts as proper folders before going on
