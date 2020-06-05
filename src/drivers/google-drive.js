@@ -232,6 +232,10 @@ module.exports = async ({
     // Process archives
     for (let i = 0; i < archives.length; i++) {
       const file = archives[i];
+      // If recover mode and link has already been inserted, skip
+      if (process.env.RECOVER) {
+        if (await checkIfLinkInNew({ link: file.webViewLink })) continue;
+      }
       // Single songs
       if (linksMap[file.webViewLink]) {
         if (linksMap[file.webViewLink].ignore) continue;
