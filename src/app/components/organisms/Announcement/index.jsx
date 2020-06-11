@@ -33,11 +33,11 @@ const A = ({ href, children }) => (
 
 const monthly = (
   <div>
-    Well, we can't go out and see our favorite bands live right now. But you can
-    at least enjoy live performances from some amazing bands in this month's
-    pack!{' '}
-    <A href="https://youtu.be/UZvmvgwAPIY">
-      <b>Download CSC's May 2020 "Live" pack!</b>
+    It's the two-year anniversary of the CSC monthly pack, and you know what
+    that means: we're kicking metal to the curb in favor of literally anything
+    else!{' '}
+    <A href="https://www.youtube.com/watch?v=R5Q5AkM0qSA">
+      <b>Download CSC's June 2020 "Anything but metal" pack!</b>
     </A>
   </div>
 );
@@ -81,19 +81,7 @@ export default class Announcement extends Component {
       <div className="Announcement">
         {monthly}
         <br />
-        Well shit, seems like things broke even more than usual. It's gonna take
-        quite a bit of time to recover (more than 24 hours), so I guess this is
-        nature's way of saying{' '}
-        <A href="https://twitter.com/search?q=%23BlackLivesMatter">
-          #BlackLivesMatter
-        </A>
-        .
-        <br />
-        Also{' '}
-        <A href="https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o/edit#gid=0">
-          refer to the spreadsheet
-        </A>{' '}
-        for common stuff like official setlists and so on.
+        It's not like anyone will notice what I write here anyway.
       </div>
     );
   }
