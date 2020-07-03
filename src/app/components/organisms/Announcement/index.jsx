@@ -31,33 +31,35 @@ const A = ({ href, children }) => (
   </a>
 );
 
-const monthly = (
+// const monthly = (
+//   <div>
+//     It's the two-year anniversary of the CSC monthly pack, and you know what
+//     that means: we're kicking metal to the curb in favor of literally anything
+//     else!{' '}
+//     <A href="https://www.youtube.com/watch?v=R5Q5AkM0qSA">
+//       <b>Download CSC's June 2020 "Anything but metal" pack!</b>
+//     </A>
+//   </div>
+// );
+
+const cth1r = (
   <div>
-    It's the two-year anniversary of the CSC monthly pack, and you know what
-    that means: we're kicking metal to the curb in favor of literally anything
-    else!{' '}
-    <A href="https://www.youtube.com/watch?v=R5Q5AkM0qSA">
-      <b>Download CSC's June 2020 "Anything but metal" pack!</b>
+    Years after Carpal Tunnel Hero revolutionized the charting community and
+    laid down the first groundwork for the creation of CSC,
+    <br />
+    we're proud to present it remastered and brought to modern standards -
+    including lyrics and image backgrounds.
+    <A href="https://www.youtube.com/watch?v=42rTAiEQuSQ">
+      <b>Download Carpal Tunnel Hero Remaster</b>
     </A>
   </div>
 );
 
 const djent = (
   <div>
-    36 songs, 2 solo medleys, a 27 minute song... and it djents?{' '}
-    <A href="https://www.youtube.com/watch?v=mws8GZBhmLo">
-      <b>Download the Djent Hero Collection Pack #3!</b>
-    </A>
-  </div>
-);
-
-const review = (
-  <div>
-    The new system is here! You can now apply to a{' '}
-    <A href="https://docs.google.com/forms/d/e/1FAIpQLScjIfhEPp5rT1kNNJJINTYDpU2DmqpLOBSw06O9cu39xrr5Gw/viewform">
-      new and shiny form
-    </A>{' '}
-    to get your charts in! Make sure you read the rules though.
+    Something about low-pitched guitars and bangers, this is the{' '}
+    <b>Djent Hero Collection Pack #4</b>!{' '}
+    <A href="https://www.youtube.com/watch?v=8dIKORUb5w8">Download here</A>
   </div>
 );
 
@@ -79,9 +81,8 @@ export default class Announcement extends Component {
   render() {
     return (
       <div className="Announcement">
-        {monthly}
-        <br />
-        It's not like anyone will notice what I write here anyway.
+        {cth1r}
+        {djent}
       </div>
     );
   }
