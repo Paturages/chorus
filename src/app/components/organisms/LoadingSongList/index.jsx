@@ -4,7 +4,7 @@ import Skeleton from 'components/atoms/Skeleton';
 
 export default () => (
   <div className="SongList">
-    {[...new Array(5)].map(index => (
+    {[...new Array(5)].map((index) => (
       <div className="Song" key={index}>
         <div className="Song__meta">
           <Skeleton style={{ maxWidth: 250 }} />

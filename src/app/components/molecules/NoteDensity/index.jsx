@@ -18,7 +18,7 @@ const ratings = [
   'Basically Soulless 4', // 12
   'ouch', // 13
   'God help me', // 14
-  "...I'm out" // 15
+  "...I'm out", // 15
 ];
 
 // Referential max difficulty note density
@@ -29,7 +29,9 @@ export default ({ length, noteCounts = {} }) => {
   // Preferred referential for note density is "Expert Guitar"
   const part = noteCounts.guitar ? 'guitar' : Object.keys(noteCounts)[0];
   if (!part || !noteCounts[part]) return;
-  const difficulty = ['x', 'h', 'm', 'e'].find(diff => noteCounts[part][diff]);
+  const difficulty = ['x', 'h', 'm', 'e'].find(
+    (diff) => noteCounts[part][diff]
+  );
   const density = (noteCounts[part][difficulty] / length).toFixed(2);
   let height = ((100 * density) / NPS_CAP).toFixed(2);
   if (height > 100) height = 100;

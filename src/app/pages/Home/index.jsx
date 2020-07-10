@@ -14,14 +14,14 @@ export default class Home extends Component {
 
     Promise.all([
       Http.get('/api/latest'),
-      Http.get('/lastupdate.json').catch(() => ({}))
+      Http.get('/lastupdate.json').catch(() => ({})),
     ]).then(([{ roles, songs }, { lastUpdate }]) =>
       this.setState({
         isLoading: false,
         lastUpdate,
         roles,
         songs,
-        hasMore: songs.length == 20
+        hasMore: songs.length == 20,
       })
     );
   }
@@ -36,7 +36,7 @@ export default class Home extends Component {
           hasMore: newSongs.length == 20,
           songs: songs.concat(newSongs),
           roles: Object.assign(roles, newRoles),
-          from: from + 20
+          from: from + 20,
         })
     );
   }

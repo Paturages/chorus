@@ -7,13 +7,13 @@ import SongParts from 'components/molecules/SongParts';
 
 import './style.scss';
 
-const toTime = fullSeconds => {
+const toTime = (fullSeconds) => {
   const minutes = (fullSeconds / 60) >> 0;
   const seconds = fullSeconds % 60;
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-export default props => {
+export default (props) => {
   const {
     name,
     artist,
@@ -31,10 +31,10 @@ export default props => {
     link,
     hashes,
     sources: fullSources = [],
-    onDownload
+    onDownload,
   } = props;
-  const playlist = fullSources.find(source => source.isSetlist);
-  const sources = fullSources.filter(source => !source.isSetlist);
+  const playlist = fullSources.find((source) => source.isSetlist);
+  const sources = fullSources.filter((source) => !source.isSetlist);
   return (
     <div className="Song">
       <div className="Song__meta">

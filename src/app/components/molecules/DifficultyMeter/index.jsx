@@ -8,7 +8,7 @@ const icons = {
   keys: require('assets/images/instruments/keys.png'),
   guitarghl: require('assets/images/instruments/guitarghl.png'),
   bassghl: require('assets/images/instruments/bassghl.png'),
-  drums: require('assets/images/instruments/drums.svg')
+  drums: require('assets/images/instruments/drums.svg'),
 };
 icons.rhythm = icons.guitar;
 const diffPlaceholders = [1, 2, 4, 8];
@@ -17,13 +17,13 @@ const diffFullLabels = {
   e: 'Easy',
   m: 'Medium',
   h: 'Hard',
-  x: 'Expert'
+  x: 'Expert',
 };
 
 // SVG pie chart utility
-const percentToXY = percent => ({
+const percentToXY = (percent) => ({
   x: Math.cos(2 * Math.PI * percent),
-  y: Math.sin(2 * Math.PI * percent)
+  y: Math.sin(2 * Math.PI * percent),
 });
 
 export default ({ tier, diff, label, hashes, counts, hideDiffs }) => {
@@ -49,7 +49,7 @@ export default ({ tier, diff, label, hashes, counts, hideDiffs }) => {
             d={[
               `M 1 0`, // from 0
               `A 1 1 0 ${tier > 3 ? 1 : 0} 1 ${x} ${y}`, // Arc
-              `L 0 0` // Line
+              `L 0 0`, // Line
             ].join(' ')}
           />
         </svg>
@@ -69,7 +69,7 @@ export default ({ tier, diff, label, hashes, counts, hideDiffs }) => {
       {hashes && (
         <div className="DifficultyMeter__details">
           {['e', 'm', 'h', 'x'].map(
-            diff =>
+            (diff) =>
               hashes[diff] && (
                 <div className="DifficultyMeter__detail">
                   {diffFullLabels[diff]}

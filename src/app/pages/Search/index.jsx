@@ -9,7 +9,7 @@ import './style.scss';
 
 const substitutes = {
   'ugandan knuckles': "No, I don't know the fucking way.",
-  'uganda knuckles': "No, I don't know the fucking way."
+  'uganda knuckles': "No, I don't know the fucking way.",
 };
 
 export default class Search extends Component {
@@ -48,7 +48,7 @@ export default class Search extends Component {
             }
           }
           return null;
-        })()
+        })(),
       });
     });
   }
@@ -64,7 +64,7 @@ export default class Search extends Component {
           hasMore: newSongs.length == 20,
           songs: songs.concat(newSongs),
           roles: Object.assign(roles, newRoles),
-          from: from + 20
+          from: from + 20,
         })
     );
   }
@@ -75,7 +75,7 @@ export default class Search extends Component {
       roles,
       hasMore,
       hasNothing,
-      substituteResult
+      substituteResult,
     } = this.state;
     const { pageName = 'Search results' } = this.props;
     return (

@@ -4,7 +4,7 @@ import Http from 'utils/Http';
 import LoadingIndicator from 'components/atoms/LoadingIndicator';
 import Song from 'components/molecules/Song';
 
-const trackClick = song => Http.post(`/api/click?id=${song.id}`);
+const trackClick = (song) => Http.post(`/api/click?id=${song.id}`);
 
 import './style.scss';
 
@@ -16,14 +16,14 @@ export default ({
   songs,
   onMore,
   hasMore,
-  moreLabel
+  moreLabel,
 }) =>
   (!isLoading || songs.length > 0) && (
     <div className="SongList">
       {title && <div className="SongList__title">{title}</div>}
       {subtitle && <div className="SongList__subtitle">{subtitle}</div>}
       {songs &&
-        songs.map(song => (
+        songs.map((song) => (
           <Song roles={roles} onDownload={() => trackClick(song)} {...song} />
         ))}
       {onMore && hasMore && (

@@ -3,7 +3,7 @@ import Component from 'inferno-component';
 
 import './style.scss';
 
-const getHumanTime = time => {
+const getHumanTime = (time) => {
   if (!time || time < 0) return;
   time = (time / 1000) >> 0;
   let seconds = time % 60;
@@ -16,9 +16,9 @@ const getHumanTime = time => {
     days && `${days}d`,
     hours && `${hours}h`,
     minutes && `${minutes}m`,
-    `${seconds}s`
+    `${seconds}s`,
   ]
-    .filter(x => x)
+    .filter((x) => x)
     .join(' ');
 };
 
@@ -31,16 +31,18 @@ const A = ({ href, children }) => (
   </a>
 );
 
-// const monthly = (
-//   <div>
-//     It's the two-year anniversary of the CSC monthly pack, and you know what
-//     that means: we're kicking metal to the curb in favor of literally anything
-//     else!{' '}
-//     <A href="https://www.youtube.com/watch?v=R5Q5AkM0qSA">
-//       <b>Download CSC's June 2020 "Anything but metal" pack!</b>
-//     </A>
-//   </div>
-// );
+const monthly = (
+  <div>
+    <A href="https://www.youtube.com/watch?v=rVgq2d7U3FE">
+      Sorry, did I say popular music? What I meant to say was
+      👌👀👌👀👌👀👌👀👌👀 weird shit weird sHit👌 thats ✔ some weird👌👌shit
+      right👌👌there👌👌👌 right✔there ✔✔if i do ƽaү so my self 💯 i say so 💯
+      thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ)
+      mMMMMᎷМ💯 👌👌 👌НO0ОଠOOOOOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ👌 👌👌 👌 💯 👌 👀 👀 👀
+      👌👌Weird shit
+    </A>
+  </div>
+);
 
 const cth1r = (
   <div>
@@ -81,6 +83,7 @@ export default class Announcement extends Component {
   render() {
     return (
       <div className="Announcement">
+        {monthly}
         {cth1r}
         {djent}
       </div>

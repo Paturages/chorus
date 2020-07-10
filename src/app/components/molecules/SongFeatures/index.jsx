@@ -11,7 +11,7 @@ const FEATURES = [
   'star power',
   'stems (multi-track)',
   'video background',
-  'lyrics'
+  'lyrics',
 ];
 const WARNINGS = [
   <a
@@ -26,7 +26,7 @@ const WARNINGS = [
   'no 5-fret lead guitar chart',
   'no audio',
   // "possible broken notes\n(e.g. notes hidden behind others, broken chords)",
-  'might have notes after end of song'
+  'might have notes after end of song',
 ];
 
 export default ({
@@ -47,7 +47,7 @@ export default ({
   hasBrokenNotes,
   length,
   effectiveLength,
-  link
+  link,
 }) => {
   const flags = [
     hasOpen && Object.keys(hasOpen).length > 0,
@@ -58,7 +58,7 @@ export default ({
     hasStarPower,
     hasStems,
     hasVideo,
-    hasLyrics
+    hasLyrics,
   ];
   const warningFlags = [
     isFolder && link,
@@ -67,7 +67,7 @@ export default ({
     !noteCounts || !noteCounts.guitar,
     hasNoAudio,
     // hasBrokenNotes,
-    length && effectiveLength && effectiveLength > length
+    length && effectiveLength && effectiveLength > length,
   ];
   return (
     <div className="SongFeatures">

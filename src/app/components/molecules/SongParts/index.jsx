@@ -11,7 +11,7 @@ const PARTS = [
   'bassghl',
   'rhythm',
   'keys',
-  'drums'
+  'drums',
 ];
 
 export default ({
@@ -32,7 +32,7 @@ export default ({
   diff_guitarghl,
   diff_bassghl,
   noteCounts,
-  hashes
+  hashes,
 }) => {
   const tiers = {
     guitar: tier_guitar,
@@ -41,7 +41,7 @@ export default ({
     bassghl: tier_bassghl,
     rhythm: tier_rhythm,
     keys: tier_keys,
-    drums: tier_drums
+    drums: tier_drums,
   };
   const diffs = {
     guitar: diff_guitar,
@@ -50,12 +50,12 @@ export default ({
     bassghl: diff_bassghl,
     rhythm: diff_rhythm,
     keys: diff_keys,
-    drums: diff_drums
+    drums: diff_drums,
   };
   return (
     <div className="SongParts">
       {PARTS.map(
-        PART =>
+        (PART) =>
           noteCounts[PART] &&
           !!Object.keys(noteCounts).length && (
             <div className="SongParts__part">
@@ -91,7 +91,7 @@ const old = ({
   diff_guitarghl,
   diff_bassghl,
   noteCounts,
-  hashes
+  hashes,
 }) => (
   <div className="Song__tiers">
     <div className="Song__tier--band">

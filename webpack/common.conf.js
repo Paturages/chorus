@@ -52,7 +52,12 @@ module.exports = {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: true
+            }
+          },
           {
             loader: "css-loader",
             query: {
@@ -69,7 +74,9 @@ module.exports = {
             loader: "sass-loader",
             query: {
               sourceMap: true,
-              includePaths: [path.resolve(__dirname, "..", "src", "app", "scss")]
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, "..", "src", "app", "scss")]
+              }
             }
           }
         ]
@@ -83,13 +90,11 @@ module.exports = {
             loader: "babel-loader",
             query: {
               presets: [
-                ["env", {
-                  "targets": {
-                    "browsers": ["last 2 versions"]
-                  }
+                ["@babel/preset-env", {
+                  "targets": "> 0.25%, not dead"
                 }],
               ],
-              plugins: ["inferno", "transform-object-rest-spread"]
+              plugins: ["babel-plugin-inferno", "@babel/plugin-proposal-object-rest-spread"]
             }
           },
           {

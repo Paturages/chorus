@@ -10,7 +10,7 @@ export default class TierPillSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hovered: null
+      hovered: null,
     };
   }
   render() {
@@ -22,7 +22,7 @@ export default class TierPillSelector extends Component {
       diffs,
       onSelect,
       onToggleComparator,
-      onDiff
+      onDiff,
     } = this.props;
     return (
       <div className="TierPillSelector">
@@ -38,20 +38,20 @@ export default class TierPillSelector extends Component {
           className={[
             'TierPillSelector__pills',
             ((tier >= 6 && (!hovered || hovered >= 6)) || hovered >= 6) &&
-              'TierPillSelector__pills--hard-as-fuck'
+              'TierPillSelector__pills--hard-as-fuck',
           ]
-            .filter(x => x)
+            .filter((x) => x)
             .join(' ')}
           onMouseLeave={() => this.setState({ hovered: null })}
         >
-          {tierPlaceholders.map(index => (
+          {tierPlaceholders.map((index) => (
             <div
               className={[
                 'TierPillSelector__pill',
                 index <= hovered && 'TierPillSelector__pill--hovered',
-                tier < index && 'TierPillSelector__pill--empty'
+                tier < index && 'TierPillSelector__pill--empty',
               ]
-                .filter(x => x)
+                .filter((x) => x)
                 .join(' ')}
               onMouseEnter={() =>
                 this.setState({ hovered: tier == index ? null : index })

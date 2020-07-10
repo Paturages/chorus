@@ -15,7 +15,7 @@ const get = (url, params, headers) =>
     const uriParams =
       params && typeof params === 'object'
         ? Object.keys(params)
-            .map(key => `${key}=${encodeURIComponent(params[key])}`)
+            .map((key) => `${key}=${encodeURIComponent(params[key])}`)
             .join('&')
         : '';
     xhr.open('GET', `${url}${uriParams ? `?${uriParams}` : ''}`, true);
@@ -27,7 +27,7 @@ const get = (url, params, headers) =>
     xhr.send();
   });
 
-const req = method => (url, params, headers) =>
+const req = (method) => (url, params, headers) =>
   new Promise((resolve, reject) => {
     if (process.env.TESTING) url = `/testing${url}`;
     const xhr = new window.XMLHttpRequest();
@@ -52,5 +52,5 @@ export default {
   get,
   post: req('post'),
   put: req('put'),
-  delete: req('delete')
+  delete: req('delete'),
 };

@@ -28,7 +28,7 @@ const ACRONYMS = [
   'Daily reminder that stealing charts is wrong and there will be retaliation',
   'honk',
   '6-frets is not dead',
-  "Chezy's Amazingly Rad Setli- wait, hold on a second"
+  "Chezy's Amazingly Rad Setli- wait, hold on a second",
 ];
 let ACRONYM;
 const now = new Date();
@@ -44,7 +44,7 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = { query: this.getQuery(props) };
-    Http.get('/api/count').then(count => this.setState({ count }));
+    Http.get('/api/count').then((count) => this.setState({ count }));
   }
   componentWillReceiveProps(props) {
     this.setState({ query: this.getQuery(props) });

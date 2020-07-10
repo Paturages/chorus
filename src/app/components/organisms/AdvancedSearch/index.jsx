@@ -8,7 +8,7 @@ import './style.scss';
 
 const updateField = (self, field, $event) =>
   self.setState({
-    [field]: $event.target.value
+    [field]: $event.target.value,
   });
 
 export default class AdvancedSearch extends Component {
@@ -30,7 +30,7 @@ export default class AdvancedSearch extends Component {
         vocals: null,
         keys: null,
         guitarghl: null,
-        bassghl: null
+        bassghl: null,
       },
       comparators: {
         band: 1,
@@ -41,7 +41,7 @@ export default class AdvancedSearch extends Component {
         vocals: 1,
         keys: 1,
         guitarghl: 1,
-        bassghl: 1
+        bassghl: 1,
       },
       diffs: {
         guitar: null,
@@ -50,7 +50,7 @@ export default class AdvancedSearch extends Component {
         drums: null,
         keys: null,
         guitarghl: null,
-        bassghl: null
+        bassghl: null,
       },
       hasForced: null,
       hasOpen: null,
@@ -59,7 +59,7 @@ export default class AdvancedSearch extends Component {
       hasStarPower: null,
       hasSoloSections: null,
       hasStems: null,
-      hasVideo: null
+      hasVideo: null,
     };
     this.updateField = (field, $event) => updateField(this, field, $event);
   }
@@ -82,13 +82,13 @@ export default class AdvancedSearch extends Component {
       hasSoloSections,
       hasStems,
       hasVideo,
-      hasLyrics
+      hasLyrics,
     } = this.state;
     const { onQuery } = this.props;
     return (
       <form
         className="AdvancedSearch"
-        onSubmit={$event => {
+        onSubmit={($event) => {
           $event.preventDefault();
           // Build a custom query
           let queries = [];
@@ -101,9 +101,9 @@ export default class AdvancedSearch extends Component {
           for (let part in tiers) {
             if (tiers[part] || comparators[part] == -1) {
               queries.push(
-                `tier_${part}=${comparators[part] == 1 ? 'gt' : 'lt'}${tiers[
-                  part
-                ] || 0}`
+                `tier_${part}=${comparators[part] == 1 ? 'gt' : 'lt'}${
+                  tiers[part] || 0
+                }`
               );
             }
           }
@@ -127,108 +127,108 @@ export default class AdvancedSearch extends Component {
         <div className="AdvancedSearch__text-row">
           <TextInput
             defaultValue={name}
-            onInput={$event => this.updateField('name', $event)}
+            onInput={($event) => this.updateField('name', $event)}
             label="Song name"
           />
           <TextInput
             defaultValue={artist}
-            onInput={$event => this.updateField('artist', $event)}
+            onInput={($event) => this.updateField('artist', $event)}
             label="Artist/band name"
           />
           <TextInput
             defaultValue={album}
-            onInput={$event => this.updateField('album', $event)}
+            onInput={($event) => this.updateField('album', $event)}
             label="Album name"
           />
         </div>
         <div className="AdvancedSearch__text-row">
           <TextInput
             defaultValue={genre}
-            onInput={$event => this.updateField('genre', $event)}
+            onInput={($event) => this.updateField('genre', $event)}
             label="Genre"
           />
           <TextInput
             defaultValue={charter}
-            onInput={$event => this.updateField('charter', $event)}
+            onInput={($event) => this.updateField('charter', $event)}
             label="Charter"
           />
           <TextInput
             maxLength={32}
             defaultValue={md5}
-            onInput={$event => this.updateField('md5', $event)}
+            onInput={($event) => this.updateField('md5', $event)}
             label="MD5 checksum"
           />
         </div>
         <div className="AdvancedSearch__tier-row">
-          {['band', 'guitar', 'bass'].map(part => (
+          {['band', 'guitar', 'bass'].map((part) => (
             <TierPillSelector
               tier={tiers[part]}
               diffs={diffs[part]}
               comparator={comparators[part]}
               label={part}
-              onSelect={tier =>
+              onSelect={(tier) =>
                 this.setState({ tiers: Object.assign(tiers, { [part]: tier }) })
               }
-              onDiff={flag =>
+              onDiff={(flag) =>
                 this.setState({
-                  diffs: Object.assign(diffs, { [part]: diffs[part] ^ flag })
+                  diffs: Object.assign(diffs, { [part]: diffs[part] ^ flag }),
                 })
               }
               onToggleComparator={() =>
                 this.setState({
                   comparators: Object.assign(comparators, {
-                    [part]: comparators[part] == 1 ? -1 : 1
-                  })
+                    [part]: comparators[part] == 1 ? -1 : 1,
+                  }),
                 })
               }
             />
           ))}
         </div>
         <div className="AdvancedSearch__tier-row">
-          {['rhythm', 'drums', 'vocals'].map(part => (
+          {['rhythm', 'drums', 'vocals'].map((part) => (
             <TierPillSelector
               tier={tiers[part]}
               diffs={diffs[part]}
               comparator={comparators[part]}
               label={part}
-              onSelect={tier =>
+              onSelect={(tier) =>
                 this.setState({ tiers: Object.assign(tiers, { [part]: tier }) })
               }
-              onDiff={flag =>
+              onDiff={(flag) =>
                 this.setState({
-                  diffs: Object.assign(diffs, { [part]: diffs[part] ^ flag })
+                  diffs: Object.assign(diffs, { [part]: diffs[part] ^ flag }),
                 })
               }
               onToggleComparator={() =>
                 this.setState({
                   comparators: Object.assign(comparators, {
-                    [part]: comparators[part] == 1 ? -1 : 1
-                  })
+                    [part]: comparators[part] == 1 ? -1 : 1,
+                  }),
                 })
               }
             />
           ))}
         </div>
         <div className="AdvancedSearch__tier-row">
-          {['keys', 'guitarghl', 'bassghl'].map(part => (
+          {['keys', 'guitarghl', 'bassghl'].map((part) => (
             <TierPillSelector
               tier={tiers[part]}
               diffs={diffs[part]}
               comparator={comparators[part]}
               label={part}
-              onSelect={tier =>
+              onSelect={(tier) =>
                 this.setState({ tiers: Object.assign(tiers, { [part]: tier }) })
               }
-              onDiff={flag =>
+              onDiff={(flag) =>
                 this.setState({
-                  diffs: Object.assign(diffs, { [part]: diffs[part] ^ flag })
+                  diffs: Object.assign(diffs, { [part]: diffs[part] ^ flag }),
                 })
               }
               onToggleComparator={() =>
                 this.setState({
                   comparators: Object.assign(comparators, {
-                    [part]: comparators[part] == 1 ? -1 : 1
-                  })
+                    [part]: comparators[part] == 1 ? -1 : 1,
+                  }),
                 })
               }
             />
@@ -320,7 +320,7 @@ export default class AdvancedSearch extends Component {
             status={hasVideo}
             labels={{
               default: 'Video background',
-              disabled: 'No video background'
+              disabled: 'No video background',
             }}
             onToggle={() => {
               let status;
@@ -334,7 +334,7 @@ export default class AdvancedSearch extends Component {
             status={hasLyrics}
             labels={{
               default: 'Lyrics',
-              disabled: 'No lyrics'
+              disabled: 'No lyrics',
             }}
             onToggle={() => {
               let status;

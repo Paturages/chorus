@@ -7,10 +7,10 @@ export default class DownloadLink extends Component {
     super(props);
     const parts = (props.charter || '')
       .split(/&|,|\+|\//)
-      .map(x => x.trim().toLowerCase());
-    const firstRoledPart = parts.find(part => props.roles[part]);
+      .map((x) => x.trim().toLowerCase());
+    const firstRoledPart = parts.find((part) => props.roles[part]);
     this.state = {
-      roleText: firstRoledPart ? props.roles[firstRoledPart] : ''
+      roleText: firstRoledPart ? props.roles[firstRoledPart] : '',
     };
   }
   render() {
@@ -19,7 +19,7 @@ export default class DownloadLink extends Component {
       charter,
       roles,
       isPack,
-      onDownload
+      onDownload,
     } = this.props;
     const { roleText } = this.state;
     const entityLabel = isPack ? ' pack' : ' chart';
@@ -45,8 +45,8 @@ export default class DownloadLink extends Component {
       );
     }
 
-    const parts = charter.split(/&|,|\+|\//).map(x => x.trim());
-    if (!parts.find(part => roles[part.toLowerCase()])) {
+    const parts = charter.split(/&|,|\+|\//).map((x) => x.trim());
+    if (!parts.find((part) => roles[part.toLowerCase()])) {
       if (!link)
         return (
           <div className="DownloadLink">
@@ -88,7 +88,7 @@ export default class DownloadLink extends Component {
               onMouseOver={() =>
                 roles[part.toLowerCase()] &&
                 this.setState({
-                  roleText: roles[part.toLowerCase()]
+                  roleText: roles[part.toLowerCase()],
                 })
               }
             >

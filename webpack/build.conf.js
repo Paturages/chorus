@@ -1,11 +1,11 @@
 const webpack = require("webpack");
-const webpackMerge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const commonConfig = require("./common.conf");
 const path = require("path");
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = merge(commonConfig, {
   mode: 'production',
   devtool: "source-map",
   optimization: {

@@ -21,7 +21,7 @@ export default class SearchInput extends Component {
     return (
       <form
         className="SearchInput"
-        onSubmit={$event => {
+        onSubmit={($event) => {
           $event.preventDefault();
           onQuery(query);
         }}
@@ -34,7 +34,7 @@ export default class SearchInput extends Component {
           placeholder={placeholder}
           value={this.state.query}
           onChange={this.handleChange.bind(this)}
-          onInput={$event => this.setState({ query: $event.target.value })}
+          onInput={($event) => this.setState({ query: $event.target.value })}
         />
         <button className="SearchInput__button" type="submit">
           🔎
