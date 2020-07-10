@@ -365,19 +365,8 @@ $! Verified Unverified :: https://drive.google.com/drive/folders/1E74Aru6Yo1v22m
 
 Custom Songs Central :: https://drive.google.com/drive/u/1/folders/1NqgS3ZcgtJkawaptp49WKbXR4MIohoiU :: google-drive/proxy:https://customsongscentral.com
 
-Official games :: https://drive.google.com/drive/folders/1ugbDefoHu4jnYvnjnWLI1_6zfEPecTBc
+Guitar Hero :: https://drive.google.com/drive/u/1/folders/1Zn-OAPy7Ji4jAU6chOZmQPJQO6ORqala
 Rock Band :: https://drive.google.com/drive/folders/1N90KzcZJnMUCIBkm0aHYtWZez5GEMBeU
-Guitar Hero 3 :: https://drive.google.com/drive/u/0/folders/1NT8N2q7dpYFaucLtOT6N4sKkmJ8-uw8e
-Guitar Hero 3 DLC :: https://drive.google.com/drive/folders/1phqay8Tpj4-3IgcW5Xe5pLLhtQ5DKZ6m
-Guitar Hero Aerosmith :: https://drive.google.com/drive/folders/1fPoryHpV3lOCBEqWIlfb8qBn1YEh_EGQ
-Guitar Hero Metallica :: https://drive.google.com/drive/folders/1BEIElbgWxObPEyJF2_kU8LB15B1thkjT
-Guitar Hero Metallica DLC :: https://drive.google.com/drive/folders/1zCHkUvGaBorxny97uAvikYSAHsRkHCY6
-Guitar Hero: Smash Hits :: https://drive.google.com/drive/u/2/folders/1E_wHncEu8V1ZBRWJ_enWt4wB_fGxfSd_
-Guitar Hero 5 Hidden Songs :: https://drive.google.com/drive/folders/1Le2GRPigc-1Dvx73tSLXhrz6qAMffD-g
-Guitar Hero: Van Halen :: https://drive.google.com/drive/u/1/folders/19FbmC7MxRe4HEGn8Yhrw9c6LSiwNLQ72
-Guitar Hero: Warriors of Rock :: https://drive.google.com/drive/folders/1fcDEsVF8E9zqhi78oy46ARvi6bNsaXbX
-Band Hero :: https://drive.google.com/drive/folders/1qPll_aXJ2cIFez2mDMbjLqMyCvc1HXdQ
-Neversoft/Harmonix Series Extras :: https://drive.google.com/drive/folders/1T3CIpvVK6IvFOGkPljCo5ljUkCzwWrKb
 
 Phase Shift :: https://drive.google.com/drive/folders/1ac07aghowIWzLArYzdvT-61KN7rdr17z
 Frets on Fire :: https://drive.google.com/drive/folders/104z9URScUlpCcpXF-ceU_bKeQtIT-X7W
