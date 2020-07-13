@@ -1,4 +1,4 @@
-const Node7z = require('node-7z');
+const n7z = require('node-7z');
 const Fs = require('fs');
 const Path = require('path');
 const Rimraf = require('rimraf');
@@ -41,6 +41,11 @@ const ls = (folder, pattern) => new Promise((resolve, reject) =>
     cwd: folder
   }, (err, res) => err ? reject(err) : resolve(res))
 );
+const unzip = (file, dir) => new Promise((resolve, reject) => {
+  const stream = n7z.extractFull(file, dir);
+  stream.on('end', () => resolve(stream.info));
+  stream.on('error', reject);
+});
 const getFileName = path => path.slice(path.lastIndexOf('/') + 1);
 
 // Archive is a buffer representing the archive
@@ -49,7 +54,7 @@ module.exports = async (archive, extension) => {
     const pathDir = Path.resolve(__dirname, 'tmp');
     const pathFile = Path.resolve(__dirname, `tmp.${extension}`);
     // 1. Write the archive to disk to let 7zip operate on it
-    await p(Fs.writeFile, pathFile, archive);
+    await p(Fs.writeFile, pathFile, Buffer.from(archive));
     // 2. Extract the archive in a temp folder
     // Force-delete the folder (for some reason, rimraf doesn't always work, which breaks the entire thing,
     // so we force via `rm -R` on Linux/OSX. Windows is untested.)
@@ -59,8 +64,7 @@ module.exports = async (archive, extension) => {
         ChildProcess.exec(`rm -R ${pathDir}`, err => resolve())
     );
     await p(Fs.mkdir, pathDir);
-    const zip = new Node7z();
-    await zip.extractFull(pathFile, pathDir);
+    await unzip(pathFile, pathDir);
     // 3. Find song folders and try to parse relevant files for metadata
     const songs = [];
     // Explore folders
