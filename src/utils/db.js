@@ -225,13 +225,16 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             is120
           }) => {
             const diffs = getDiffsFromNoteCounts(noteCounts);
-            return [
+            const wordableFields = [
               name || chartMeta.Name || defaultName || null,
               artist || chartMeta.Artist || defaultArtist || null,
               album || chartMeta.Album || null,
               genre || chartMeta.Genre || null,
               year || chartMeta.Year || null,
-              charter || frets || chartMeta.Charter || null,
+              charter || frets || chartMeta.Charter || null
+            ];
+            return [
+              ...wordableFields,
               +diff_band >= 0 ? +diff_band >> 0 : null,
               +diff_guitar >= 0 ? +diff_guitar >> 0 : null,
               +diff_bass >= 0 ? +diff_bass >> 0 : null,
@@ -275,12 +278,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
               {
                 sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)), ' ')`,
                 param: [
-                  name,
-                  artist,
-                  album,
-                  genre,
-                  year,
-                  charter,
+                  ...wordableFields,
                   source.name,
                   parent && parent.name,
                   (() => {
@@ -803,12 +801,13 @@ module.exports.search = async (query, offset, limit) => {
     // Fall back to quick search
     songs = await Pg.query(
       `
-      select round(100 * similarity(
-        s."words",
-        array_to_string(tsvector_to_array(to_tsvector('simple', $1)), ' ')
-      )::numeric, 2) as "searchScore", *
-      from "Songs" s
-      order by "searchScore" desc
+      select s.* from "Songs" s
+      where
+        regexp_split_to_array(lower($1), '[\s\-/]+') <@
+        regexp_split_to_array(
+          words,
+          '[\s\-/]+'
+        )
       limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
       ${+offset ? `OFFSET ${+offset}` : ''}
     `,
