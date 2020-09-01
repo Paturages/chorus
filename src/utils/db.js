@@ -803,10 +803,10 @@ module.exports.search = async (query, offset, limit) => {
       `
       select s.* from "Songs" s
       where
-        regexp_split_to_array(lower($1), '[\s\-/]+') <@
+        regexp_split_to_array(lower($1), '[\\s\\-/]+') <@
         regexp_split_to_array(
           words,
-          '[\s\-/]+'
+          '[\\s\\-/]+'
         )
       limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
       ${+offset ? `OFFSET ${+offset}` : ''}
