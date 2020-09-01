@@ -23,7 +23,7 @@ const init = async () => {
       // Get a new OAuth token if none found
       const authUrl = oAuth2.generateAuthUrl({
         access_type: 'offline',
-        scope: ['https://www.googleapis.com/auth/drive']
+        scope: ['https://www.googleapis.com/auth/drive.readonly']
       });
       const readline = Readline.createInterface({
         input: process.stdin,
