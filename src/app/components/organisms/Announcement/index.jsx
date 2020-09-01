@@ -33,35 +33,18 @@ const A = ({ href, children }) => (
 
 const monthly = (
   <div>
-    <A href="https://www.youtube.com/watch?v=rVgq2d7U3FE">
-      Sorry, did I say popular music? What I meant to say was
-      👌👀👌👀👌👀👌👀👌👀 weird shit weird sHit👌 thats ✔ some weird👌👌shit
-      right👌👌there👌👌👌 right✔there ✔✔if i do ƽaү so my self 💯 i say so 💯
-      thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ)
-      mMMMMᎷМ💯 👌👌 👌НO0ОଠOOOOOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ👌 👌👌 👌 💯 👌 👀 👀 👀
-      👌👌Weird shit
+    <A href="https://www.youtube.com/watch?v=2Db1hOJ8d_Y">
+      This month, everyone is doing what they're known for. These are our
+      signatures, and we hope you'll recognize them!
     </A>
   </div>
 );
 
-const cth1r = (
+const revolved = (
   <div>
-    Years after Carpal Tunnel Hero revolutionized the charting community and
-    laid down the first groundwork for the creation of CSC,
-    <br />
-    we're proud to present it remastered and brought to modern standards -
-    including lyrics and image backgrounds.
-    <A href="https://www.youtube.com/watch?v=42rTAiEQuSQ">
-      <b>Download Carpal Tunnel Hero Remaster</b>
-    </A>
-  </div>
-);
-
-const djent = (
-  <div>
-    Something about low-pitched guitars and bangers, this is the{' '}
-    <b>Djent Hero Collection Pack #4</b>!{' '}
-    <A href="https://www.youtube.com/watch?v=8dIKORUb5w8">Download here</A>
+    You most likely don't need to know how much is 1 + 1 for this one, but you
+    never know. <b>REVOLVED Vol. 1 - Mathcore Fest (Full Difficulty)</b>{' '}
+    <A href="https://youtu.be/-iT1hRSQOQY">Download here</A>
   </div>
 );
 
@@ -84,8 +67,7 @@ export default class Announcement extends Component {
     return (
       <div className="Announcement">
         {monthly}
-        {cth1r}
-        {djent}
+        {revolved}
       </div>
     );
   }

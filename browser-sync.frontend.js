@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const options = {
   target: 'https://chorus.fightthe.pw',
@@ -10,7 +10,7 @@ module.exports = {
   port: 8080,
   server: {
     "baseDir": "dist",
-    middleware: [proxy('/api', options)]
+    middleware: [createProxyMiddleware('/api', options)]
   },
   files: [
     "dist/**/*",

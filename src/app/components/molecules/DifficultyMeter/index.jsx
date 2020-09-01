@@ -3,12 +3,12 @@ import Inferno from 'inferno';
 import './style.scss';
 
 const icons = {
-  guitar: require('assets/images/instruments/guitar.png'),
-  bass: require('assets/images/instruments/bass.png'),
-  keys: require('assets/images/instruments/keys.png'),
-  guitarghl: require('assets/images/instruments/guitarghl.png'),
-  bassghl: require('assets/images/instruments/bassghl.png'),
-  drums: require('assets/images/instruments/drums.svg'),
+  guitar: require('assets/images/instruments/guitar.png').default,
+  bass: require('assets/images/instruments/bass.png').default,
+  keys: require('assets/images/instruments/keys.png').default,
+  guitarghl: require('assets/images/instruments/guitarghl.png').default,
+  bassghl: require('assets/images/instruments/bassghl.png').default,
+  drums: require('assets/images/instruments/drums.svg').default,
 };
 icons.rhythm = icons.guitar;
 const diffPlaceholders = [1, 2, 4, 8];
