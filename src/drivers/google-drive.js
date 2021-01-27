@@ -37,7 +37,7 @@ const download = (url, attempt) =>
         resolve(res.body);
       });
     } else {
-      resolve(await Drive.get(fileId));
+      resolve(await Drive.get(fileId).catch(() => null));
     }
   });
 
@@ -115,7 +115,13 @@ module.exports = async ({
 
       // Resolve shortcuts as proper folders before going on
       if (item.mimeType == 'application/vnd.google-apps.shortcut') {
-        item = await Drive.info(item.shortcutDetails.targetId);
+        try {
+          item = await Drive.info(item.shortcutDetails.targetId);
+        } catch {
+          // This can fail if the target of the shortcut has been deleted
+          // Just skip the shortcut it if it happens
+          continue;
+        }
       }
 
       // Store subfolders for recursion
