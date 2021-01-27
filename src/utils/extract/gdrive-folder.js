@@ -1,13 +1,31 @@
+const Drive = require('../drive');
 const Request = require('request');
 const getMetaFromChart = require('../meta/chart');
 const getMetaFromMidi = require('../meta/midi');
 const getMetaFromIni = require('../meta/ini');
-const download = url => new Promise((resolve, reject) =>
-  Request.get(url, { encoding: null }, (err, res) => {
-    if (err) reject(err);
-    else resolve(res.body);
-  })
-);
+
+const download = url =>
+  new Promise(async (resolve, reject) => {
+    const [, fileId] =
+      url.match(/id=([^&]+)&?/) || url.match(/folders\/([^?]+)/) || [];
+
+    if (!fileId) {
+      Request.get(url, { encoding: null }, (err, res) => {
+        if (err) return reject(err);
+        // Bypass the download warning page if there's one
+        if (res.body.toString('utf8', 0, 15) == '<!DOCTYPE html>') {
+          return Drive.get(
+            url.slice(prefixLength, url.indexOf('&', prefixLength))
+          )
+            .then(body => resolve(body))
+            .catch(err => console.error(err) || resolve(res.body));
+        }
+        resolve(res.body);
+      });
+    } else {
+      resolve(await Drive.get(fileId).catch(() => null));
+    }
+  });
 
 module.exports = async ({ ini: iniItem, chart: chartItems = [], mid: midItems = [], audio, video, album, background = [] }) => {
   if (

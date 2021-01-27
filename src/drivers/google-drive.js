@@ -1,7 +1,5 @@
 const Drive = require('../utils/drive');
 const Request = require('request');
-const Fs = require('fs');
-const Path = require('path');
 
 const getMetaFromArchive = require('../utils/extract/archive');
 const getMetaFromFolder = require('../utils/extract/gdrive-folder');
@@ -16,9 +14,7 @@ const {
 
 const prefixLength = 'https://drive.google.com/uc?id='.length;
 
-// Max timeout = 5 minutes
-// Retry 5 times maximum
-const download = (url, attempt) =>
+const download = url =>
   new Promise(async (resolve, reject) => {
     const [, fileId] =
       url.match(/id=([^&]+)&?/) || url.match(/folders\/([^?]+)/) || [];

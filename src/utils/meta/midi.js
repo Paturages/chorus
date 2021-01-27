@@ -5,7 +5,6 @@
 
 const crypto = require('crypto');
 const MIDIFile = require('midifile');
-const fs = require('fs');
 const getMD5 = txt => {
   const hash = crypto.createHash('md5');
   hash.update(txt);
@@ -25,7 +24,7 @@ const partMap = {
 const diffOffsets = { e: 59, m: 71, h: 83, x: 95 };
 
 const parse = midiFile => {
-  const midi = new MIDIFile(midiFile.buffer);
+  const midi = new MIDIFile(Buffer.from(midiFile));
   let hasSections = false,
     hasSoloSections = false,
     hasStarPower = false,
@@ -115,7 +114,7 @@ const parse = midiFile => {
   });
 
   // Compute the hash of the .mid itself first
-  const hashes = { file: getMD5(midiFile) };
+  const hashes = { file: getMD5(Buffer.from(midiFile)) };
   const noteCounts = {};
   let earliestNote = +Infinity, latestNote = 0;
   for (let part in notes) {
