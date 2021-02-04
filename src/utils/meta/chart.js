@@ -57,7 +57,7 @@ const diffMap = {
 const notesMap = { 0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 8: 6, 7: 7 };
 
 module.exports = chart => {
-  const rawFileHash = getMD5(chart);
+  const rawFileHash = getMD5(Buffer.from(chart));
   let hasStarPower = false;
   let hasForced = false;
   let hasTap = false;

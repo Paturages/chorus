@@ -75,6 +75,7 @@ const processQueue = async () => {
       callback(null, res);
     } catch (err) {
       console.error(err.stack);
+      callback(err);
     }
   } else Drive.files[method](args, callback);
 };
