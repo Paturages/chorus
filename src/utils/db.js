@@ -1,4 +1,8 @@
 const Pg = require('./pg');
+// https://cdn.discordapp.com/attachments/616706064053829633/826847468737527878/unknown.png
+// https://cdn.discordapp.com/attachments/616706064053829633/826845717069955082/unknown.png
+// programming, I love that drug
+const MAX_DIFF = 32000;
 
 module.exports.getNbSongs = () =>
   Pg.q`SELECT COUNT(*) AS "nbSongs" FROM "Songs"`.then(
@@ -235,15 +239,15 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
             ];
             return [
               ...wordableFields,
-              +diff_band >= 0 ? +diff_band >> 0 : null,
-              +diff_guitar >= 0 ? +diff_guitar >> 0 : null,
-              +diff_bass >= 0 ? +diff_bass >> 0 : null,
-              +diff_rhythm >= 0 ? +diff_rhythm >> 0 : null,
-              +diff_drums >= 0 ? +diff_drums >> 0 : null,
-              +diff_vocals >= 0 ? +diff_vocals >> 0 : null,
-              +diff_keys >= 0 ? +diff_keys >> 0 : null,
-              +diff_guitarghl >= 0 ? +diff_guitarghl >> 0 : null,
-              +diff_bassghl >= 0 ? +diff_bassghl >> 0 : null,
+              +diff_band >= 0 ? Math.min(+diff_band, MAX_DIFF) >> 0 : null,
+              +diff_guitar >= 0 ? Math.min(+diff_guitar, MAX_DIFF) >> 0 : null,
+              +diff_bass >= 0 ? Math.min(+diff_bass, MAX_DIFF) >> 0 : null,
+              +diff_rhythm >= 0 ? Math.min(+diff_rhythm, MAX_DIFF) >> 0 : null,
+              +diff_drums >= 0 ? Math.min(+diff_drums, MAX_DIFF) >> 0 : null,
+              +diff_vocals >= 0 ? Math.min(+diff_vocals, MAX_DIFF) >> 0 : null,
+              +diff_keys >= 0 ? Math.min(+diff_keys, MAX_DIFF) >> 0 : null,
+              +diff_guitarghl >= 0 ? Math.min(+diff_guitarghl, MAX_DIFF) >> 0 : null,
+              +diff_bassghl >= 0 ? Math.min(+diff_bassghl, MAX_DIFF) >> 0 : null,
               diffs.guitar,
               diffs.bass,
               diffs.rhythm,

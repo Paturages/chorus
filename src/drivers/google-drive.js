@@ -127,13 +127,11 @@ module.exports = async ({
       }
       // Store archives for processing
       // Archives might or might not be songs.
-      // The 200 MB threshold is just mostly here to not kill my bandwidth with multi-GB packs, which are therefore excluded.
-      // The good practice for such packs would be to rehost it (either by individual charters, or independently with separate
-      // folders/archives for each song)
-      // 2019-03-31: Increasing it to 500 MB to attempt taking modcharts/video backgrounds into account
+      // 2021-03-31: I have no idea what I'm doing with file limits anymore
+      const SIZE_LIMIT_MB = 69;
       if (
         ['rar', 'zip', '7z'].indexOf(item.fileExtension) >= 0 &&
-        item.size < 52428800 &&
+        item.size < SIZE_LIMIT_MB * (1024 * 1024) &&
         item.webContentLink
       ) {
         archives.push(item);
