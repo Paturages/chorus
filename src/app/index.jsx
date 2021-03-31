@@ -11,13 +11,13 @@ import Random from 'pages/Random';
 
 import 'assets/images/favicon_128.png';
 
+import 'scss/fonts.scss';
 import 'scss/global.scss';
 
 // Un-comment in development mode if working without internet.
 // import "assets/fonts/roboto/regular.ttf";
 // import "assets/fonts/roboto/bold.ttf";
 // import "assets/fonts/roboto/light.ttf";
-// import "scss/fonts.scss";
 
 import './index.html';
 

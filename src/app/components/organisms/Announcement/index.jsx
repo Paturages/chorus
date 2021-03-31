@@ -66,8 +66,7 @@ export default class Announcement extends Component {
   render() {
     return (
       <div className="Announcement">
-        {monthly}
-        {revolved}
+        (No, you're still not getting a pp system)
       </div>
     );
   }

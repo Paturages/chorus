@@ -43,18 +43,6 @@ export default ({ tier, diff, label, hashes, counts, hideDiffs }) => {
 
   return (
     <div className="DifficultyMeter">
-      <div className="DifficultyMeter__pie">
-        <svg viewBox="-1 -1 2 2" style="transform: rotate(-90deg)">
-          <path
-            d={[
-              `M 1 0`, // from 0
-              `A 1 1 0 ${tier > 3 ? 1 : 0} 1 ${x} ${y}`, // Arc
-              `L 0 0`, // Line
-            ].join(' ')}
-          />
-        </svg>
-        <div className="DifficultyMeter__pie-label">{tier}</div>
-      </div>
       <img
         className={`DifficultyMeter__part DifficultyMeter__part--${label}`}
         src={icon}

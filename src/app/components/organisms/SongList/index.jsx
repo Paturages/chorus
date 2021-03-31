@@ -2,7 +2,7 @@ import Inferno from 'inferno';
 import Http from 'utils/Http';
 
 import LoadingIndicator from 'components/atoms/LoadingIndicator';
-import Song from 'components/molecules/Song';
+import OsuSong from 'components/molecules/OsuSong';
 
 const trackClick = (song) => Http.post(`/api/click?id=${song.id}`);
 
@@ -24,7 +24,11 @@ export default ({
       {subtitle && <div className="SongList__subtitle">{subtitle}</div>}
       {songs &&
         songs.map((song) => (
-          <Song roles={roles} onDownload={() => trackClick(song)} {...song} />
+          <OsuSong
+            roles={roles}
+            onDownload={() => trackClick(song)}
+            {...song}
+          />
         ))}
       {onMore && hasMore && (
         <div className="SongList__more">

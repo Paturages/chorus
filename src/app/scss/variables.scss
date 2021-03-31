@@ -1,19 +1,21 @@
-$font-family: 'Roboto', 'Arial', sans-serif;
+$font-family: Torus, Inter, "Helvetica Neue", Tahoma, Arial,
+  "Hiragino Kaku Gothic ProN", Meiryo, "Microsoft YaHei",
+  "Apple SD Gothic Neo", sans-serif;
 
-$color--bg: #2c3e50;
+$color--bg: #1c1719;
 
 $color--text: #fff;
-$color--link: #ffb300;
-$color--link-hover: #ff8300;
+$color--link: #fc2;
+$color--link-hover: #fa0;
 $color--difficulty: #C62828;
 
-$color--nav-top-bg: #2980b9;
-$color--nav-bg: #34495e;
+$color--nav-top-bg: #3d2932;
+$color--nav-bg: #2a2226;
 $color--nav-text: #f3f5fb;
 $color--nav-link: $color--nav-text;
 $color--nav-link-hover: $color--nav-text;
 
-$color--announcement-bg: #2980b9;
+$color--announcement-bg: #382e32;
 
 $size--max-width: 72rem;
 $size--page-padding: .5rem 1rem;

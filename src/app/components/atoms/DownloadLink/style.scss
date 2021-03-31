@@ -1,9 +1,11 @@
 .DownloadLink {
+  display: inline;
   &--no-link a,
   &--no-link a:hover {
     color: #fff;
   }
   &--verified {
+    display: inline;
     position: relative;
     a:hover + .DownloadLink__tooltip {
       display: block;
