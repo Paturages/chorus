@@ -1,5 +1,9 @@
 .Song {
-  padding: 1em 2em;
+  padding: .5em .75em;
+  margin: .25em 0;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  border-radius: 5px;
+
   display: flex;
   flex-direction: row;
   position: relative;
@@ -14,6 +18,7 @@
   }
 
   &__modified {
+    margin-top: .25em;
     font-size: .5em;
     opacity: .6;
   }
@@ -23,9 +28,48 @@
     opacity: .6;
   }
 
+  &__header {
+    border-bottom: 1px solid #eee6;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__title {
+    flex: 1;
+    &:hover .Song__misc {
+      display: block;
+    }
+  }
+
   &__artist {
     font-weight: bold;
-    font-size: 1.25em;
+    font-size: .8em;
+    margin-right: .5em;
+    opacity: .8;
+  }
+
+  &__name {
+    font-size: 1.125em;
+    margin-bottom: -2px;
+  }
+
+  &__misc {
+    display: none;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20em;
+    color: #fff;
+    background: rgba(50, 50, 50, .8);
+    padding: .5em;
+  }
+
+  &__more {
+    margin: 1px .25em;
+    &:hover .SongFeatures {
+      display: block;
+    }
   }
 
   &__length {
@@ -53,52 +97,40 @@
     font-size: .8em;
     opacity: .6;
   }
+  
+  &__body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
 
   &__charter {
-    margin: .5em 0;
+    flex: 1;
   }
 
   &__sources {
-    font-size: .8em;
-    margin-bottom: .5rem;
+    text-align: right;
+    font-size: .6em;
   }
 
   &__playlist-source {
     font-size: .6em;
   }
 
-  &__chart-info {
-    margin-right: 1em;
-    position: relative;
-    align-self: flex-end;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    &-misc {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-    @media (max-width: 839px) {
-      width: auto;
-      margin-top: 1em;
-      justify-content: flex-end;
-    }
-  }
-
-  &__chart-metrics {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
   .SongFeatures {
-    margin-right: 1em;
+    display: none;
+    z-index: 1;
+    font-size: .8em;
+    position: absolute;
+    top: 1.75em;
+    right: -1em;
+    width: 20em;
+    color: #fff;
+    background: rgba(50, 50, 50, .8);
+    padding: .5em;
   }
 
   .NoteDensity {
-    margin-top: .5em;
     white-space: nowrap;
   }
 }

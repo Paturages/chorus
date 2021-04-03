@@ -66,8 +66,10 @@ export default class Announcement extends Component {
   render() {
     return (
       <div className="Announcement">
-        {monthly}
-        {revolved}
+        In today's episode of "I am very bad at design", I realized upon
+        implementing osu!chorus that uh
+        <br />
+        things might look better with less information, so try this I guess
       </div>
     );
   }

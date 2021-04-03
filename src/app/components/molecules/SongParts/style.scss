@@ -1,6 +1,8 @@
 .SongParts {
+  width: 17.5em;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   &__part + &__part {
     margin-left: .5em;
   }
@@ -10,9 +12,5 @@
   &__tiers-columns {
     display: flex;
     flex-direction: row;
-  }
-
-  &__tiers-column {
-    margin-right: 1em;
   }
 }

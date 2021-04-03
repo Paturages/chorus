@@ -98,75 +98,71 @@ const old = ({
       <DifficultyMeter label="band" tier={tier_band} hideDiffs />
     </div>
     <div className="Song__tiers-columns">
-      <div className="Song__tiers-column">
-        <div className="Song__tier--guitar">
-          <DifficultyMeter
-            label="guitar"
-            tier={tier_guitar}
-            diff={diff_guitar}
-            counts={noteCounts.guitar}
-            hashes={hashes.guitar}
-          />
-        </div>
-        <div className="Song__tier--bass">
-          <DifficultyMeter
-            label="bass"
-            tier={tier_bass}
-            diff={diff_bass}
-            counts={noteCounts.bass}
-            hashes={hashes.bass}
-          />
-        </div>
-        <div className="Song__tier--rhythm">
-          <DifficultyMeter
-            label="rhythm"
-            tier={tier_rhythm}
-            diff={diff_rhythm}
-            counts={noteCounts.rhythm}
-            hashes={hashes.rhythm}
-          />
-        </div>
-        <div className="Song__tier--drums">
-          <DifficultyMeter
-            label="drums"
-            tier={tier_drums}
-            diff={diff_drums}
-            counts={noteCounts.drums}
-            hashes={hashes.drums}
-          />
-        </div>
+      <div className="Song__tier--guitar">
+        <DifficultyMeter
+          label="guitar"
+          tier={tier_guitar}
+          diff={diff_guitar}
+          counts={noteCounts.guitar}
+          hashes={hashes.guitar}
+        />
       </div>
-      <div className="Song__tiers-column">
-        <div className="Song__tier--vocals">
-          <DifficultyMeter label="vocals" tier={tier_vocals} />
-        </div>
-        <div className="Song__tier--keys">
-          <DifficultyMeter
-            label="keys"
-            tier={tier_keys}
-            diff={diff_keys}
-            counts={noteCounts.keys}
-            hashes={hashes.keys}
-          />
-        </div>
-        <div className="Song__tier--guitarghl">
-          <DifficultyMeter
-            label="guitarghl"
-            tier={tier_guitarghl}
-            diff={diff_guitarghl}
-            counts={noteCounts.guitarghl}
-            hashes={hashes.guitarghl}
-          />
-        </div>
-        <div className="Song__tier--bassghl">
-          <DifficultyMeter
-            label="bassghl"
-            tier={tier_bassghl}
-            diff={diff_bassghl}
-            counts={noteCounts.bassghl}
-            hashes={hashes.bassghl}
-          />
-        </div>
+      <div className="Song__tier--bass">
+        <DifficultyMeter
+          label="bass"
+          tier={tier_bass}
+          diff={diff_bass}
+          counts={noteCounts.bass}
+          hashes={hashes.bass}
+        />
+      </div>
+      <div className="Song__tier--rhythm">
+        <DifficultyMeter
+          label="rhythm"
+          tier={tier_rhythm}
+          diff={diff_rhythm}
+          counts={noteCounts.rhythm}
+          hashes={hashes.rhythm}
+        />
+      </div>
+      <div className="Song__tier--drums">
+        <DifficultyMeter
+          label="drums"
+          tier={tier_drums}
+          diff={diff_drums}
+          counts={noteCounts.drums}
+          hashes={hashes.drums}
+        />
+      </div>
+      <div className="Song__tier--vocals">
+        <DifficultyMeter label="vocals" tier={tier_vocals} />
+      </div>
+      <div className="Song__tier--keys">
+        <DifficultyMeter
+          label="keys"
+          tier={tier_keys}
+          diff={diff_keys}
+          counts={noteCounts.keys}
+          hashes={hashes.keys}
+        />
+      </div>
+      <div className="Song__tier--guitarghl">
+        <DifficultyMeter
+          label="guitarghl"
+          tier={tier_guitarghl}
+          diff={diff_guitarghl}
+          counts={noteCounts.guitarghl}
+          hashes={hashes.guitarghl}
+        />
+      </div>
+      <div className="Song__tier--bassghl">
+        <DifficultyMeter
+          label="bassghl"
+          tier={tier_bassghl}
+          diff={diff_bassghl}
+          counts={noteCounts.bassghl}
+          hashes={hashes.bassghl}
+        />
       </div>
     </div>
   </div>

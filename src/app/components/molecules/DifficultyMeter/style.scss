@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: .5em;
+
   &__part {
     width: 2em;
     &--rhythm {
@@ -13,11 +15,14 @@
   }
   &__diffs {
     font-size: .6em;
+    position: absolute;
+    bottom: 0;
   }
   &__pie {
-    width: 2em;
-    height: 2em;
-    position: relative;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    top: .5em;
     &-label {
       position: absolute;
       top: 50%;
@@ -28,8 +33,7 @@
   svg {
     width: 100%;
     height: 100%;
-    background: rgba(#151515, .5);
-    border: 2px solid $color--text;
+    background: #252525;
     border-radius: 50%;
     path {
       fill: $color--difficulty;
