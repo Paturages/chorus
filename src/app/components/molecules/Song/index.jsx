@@ -120,6 +120,15 @@ export default (props) => {
                   </a>
                 </div>
               ))}
+              {hashes.file && (
+                <a
+                  href={`https://scorespy.online/leaderboards/${hashes.file.toUpperCase()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ScoreSpy leaderboards
+                </a>
+              )}
             </div>
           )}
           <SongParts {...props} />
