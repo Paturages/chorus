@@ -17,10 +17,16 @@
     flex: 1;
   }
 
-  &__modified {
+  &__misc {
     margin-top: .25em;
-    font-size: .5em;
-    opacity: .6;
+    font-size: .6em;
+    color: #ccc;
+    display: flex;
+  }
+
+  &__other {
+    flex: 1;
+    text-align: right;
   }
 
   &__hash {
@@ -53,18 +59,6 @@
     margin-bottom: -2px;
   }
 
-  &__misc {
-    display: none;
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20em;
-    color: #fff;
-    background: rgba(50, 50, 50, .8);
-    padding: .5em;
-  }
-
   &__more {
     margin: 1px .25em;
     &:hover .SongFeatures {
@@ -73,13 +67,12 @@
   }
 
   &__length {
-    font-size: .8em;
+    margin-left: .25em;
+    display: inline-block;
     position: relative;
-    color: #ccc;
     &-tooltip {
       display: none;
       z-index: 1;
-      font-size: .8em;
       position: absolute;
       top: 1.75em;
       left: -1em;
@@ -93,11 +86,6 @@
     }
   }
 
-  &__album, &__genre {
-    font-size: .8em;
-    opacity: .6;
-  }
-  
   &__body {
     display: flex;
     flex-direction: row;

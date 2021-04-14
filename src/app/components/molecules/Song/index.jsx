@@ -42,26 +42,6 @@ export default (props) => {
           <div className="Song__title">
             <span className="Song__artist">{artist}</span>
             <b className="Song__name">{name}</b>
-            <div className="Song__misc">
-              <div className="Song__album">
-                {album || 'Unknown album'}
-                {year ? ` (${year})` : ''}
-              </div>
-              {genre && <div className="Song__genre">{genre}</div>}
-              {!!length && (
-                <div className="Song__length">
-                  {toTime(length)}{' '}
-                  <span className="Song__length-tooltip-trigger">
-                    ({toTime(effectiveLength)})
-                  </span>
-                  <div className="Song__length-tooltip">
-                    Between brackets is the effective length, which is the
-                    duration between the first and the last note. This duration
-                    is the one used in the NPS calculation.
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
           <NoteDensity length={effectiveLength} noteCounts={noteCounts} />
           {noteCounts && (
@@ -71,12 +51,32 @@ export default (props) => {
             </span>
           )}
         </div>
-        <div className="Song__modified">
-          {new Date(lastModified || uploadedAt)
-            .toISOString()
-            .replace(/T|\.\d+Z$/g, ' ')}
+        <div className="Song__misc">
+          {album || 'Unknown album'}
+          {year ? ` (${year})` : ''}
           {' - '}
-          {hashes.file}
+          {genre || 'Unknown genre'}
+          {' - '}
+          {!!length && (
+            <div className="Song__length">
+              {toTime(length)}{' '}
+              <span className="Song__length-tooltip-trigger">
+                ({toTime(effectiveLength)})
+              </span>
+              <div className="Song__length-tooltip">
+                Between brackets is the effective length, which is the duration
+                between the first and the last note. This duration is the one
+                used in the NPS calculation.
+              </div>
+            </div>
+          )}
+          <span className="Song__other">
+            {new Date(lastModified || uploadedAt)
+              .toISOString()
+              .replace(/T|\.\d+Z$/g, ' ')}
+            {' - '}
+            {hashes.file}
+          </span>
         </div>
         <div className="Song__body">
           <div className="Song__charter">
