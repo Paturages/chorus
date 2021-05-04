@@ -43,12 +43,14 @@ export default (props) => {
             <span className="Song__artist">{artist}</span>
             <b className="Song__name">{name}</b>
           </div>
-          <NoteDensity length={effectiveLength} noteCounts={noteCounts} />
           {noteCounts && (
-            <span className="Song__more">
-              ...
-              <SongFeatures {...props} />
-            </span>
+            <Inferno.Fragment>
+              <NoteDensity length={effectiveLength} noteCounts={noteCounts} />
+              <span className="Song__more">
+                ...
+                <SongFeatures {...props} />
+              </span>
+            </Inferno.Fragment>
           )}
         </div>
         <div className="Song__misc">
@@ -74,8 +76,7 @@ export default (props) => {
             {new Date(lastModified || uploadedAt)
               .toISOString()
               .replace(/T|\.\d+Z$/g, ' ')}
-            {' - '}
-            {hashes.file}
+            {hashes ? ` - ${hashes.file}` : ''}
           </span>
         </div>
         <div className="Song__body">
@@ -131,7 +132,7 @@ export default (props) => {
               )}
             </div>
           )}
-          <SongParts {...props} />
+          {noteCounts && <SongParts {...props} />}
         </div>
       </div>
     </div>
