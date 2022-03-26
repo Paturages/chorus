@@ -18,12 +18,12 @@ const ACRONYMS = [
   'Clown Harmonica Olympics: a Really Useless Sport',
   'Cars Honking Over a Rare Utopian Speedway',
   'we are solo',
-  '薬忘れない',
   'Home of Guitar Hero: High Tech 3',
   '!chorusstatus',
   'Daily reminder that stealing charts is wrong and there will be retaliation',
   'honk',
   "Chezy's Amazingly Rad Setli- wait, hold on a second",
+  'you really thought I was alive and still maintaining this huh'
 ];
 let ACRONYM;
 const now = new Date();
