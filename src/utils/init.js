@@ -18,6 +18,7 @@ module.exports = async () => {
     await Pg.q`DROP TABLE IF EXISTS "Songs_Hashes_backup" CASCADE`;
     await Pg.q`DROP TABLE IF EXISTS "Songs_Sources_backup" CASCADE`;
     await Pg.q`CREATE EXTENSION IF NOT EXISTS pg_trgm`;
+    await Pg.q`CREATE EXTENSION IF NOT EXISTS unaccent`;
     await Pg.q`CREATE TABLE "Sources_new" (
       "id" SERIAL NOT NULL PRIMARY KEY,
       "name" text,

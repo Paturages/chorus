@@ -280,7 +280,7 @@ module.exports.upsertSongs = async (songs, noUpdateLastModified) => {
               uploadedAt || new Date().toISOString(),
               !!isPack,
               {
-                sql: `array_to_string(tsvector_to_array(to_tsvector('simple', $$)), ' ')`,
+                sql: `array_to_string(tsvector_to_array(to_tsvector('simple', unaccent($$))), ' ')`,
                 param: [
                   ...wordableFields,
                   source.name,
@@ -807,11 +807,8 @@ module.exports.search = async (query, offset, limit) => {
       `
       select s.* from "Songs" s
       where
-        regexp_split_to_array(lower($1), '[\\s\\-/]+') <@
-        regexp_split_to_array(
-          words,
-          '[\\s\\-/]+'
-        )
+        regexp_split_to_array(lower(unaccent($1)), '[^A-z0-9]+') <@
+        regexp_split_to_array(lower(words),        '[^A-z0-9]+')
       limit ${+limit > 0 ? Math.max(+limit, 100) : 20}
       ${+offset ? `OFFSET ${+offset}` : ''}
     `,
