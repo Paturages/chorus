@@ -279,49 +279,61 @@ module.exports = async ({
         continue;
       }
       console.log('Extracting', file.name);
-      const archive = await download(file.webContentLink);
-      const metaList = await getMetaFromArchive(archive, file.fileExtension);
-      if (!metaList || !metaList.length)
-        toIgnore.push({ sourceId: source.chorusId, link: file.webViewLink });
-      else {
-        // Computing default artist and song names in case there's no song.ini file,
-        // and also inputing already available metadata
-        const { artist: defaultArtist, name: defaultName } = defaultNameParser(
-          file.name
-        );
-        const song = {
-          defaultArtist,
-          defaultName,
-          lastModified: file.modifiedTime,
-          uploadedAt: file.modifiedTime,
-          source,
-          link: file.webViewLink,
-          directLinks: { archive: file.webContentLink },
-          isPack: metaList.length > 1,
-          parent: folder.canBeParent
-            ? {
-                name: folder.name,
-                link: folder.webViewLink
-              }
-            : null
-        };
-        for (let index = 0; index < metaList.length; ++index) {
-          const meta = metaList[index];
-          console.log(
-            `> Found "${meta.name ||
-              (meta.chartMeta || {}).Name ||
-              defaultName}" by "${meta.artist ||
-              (meta.chartMeta || {}).Artist ||
-              defaultArtist ||
-              '???'}"`
-          );
-          // An awful trick to have unique links for multiple items in a pack
-          await upsertSongs([
-            Object.assign({}, song, meta, {
-              link: song.isPack ? `${song.link}&i=${index + 1}` : song.link
-            })
-          ]);
+
+      // An attempt to counteract some downloads/extractions hanging up
+      const isSuccessful = await Promise.race([
+        new Promise(resolve => setTimeout(() => resolve(false), 180000)),
+        async () => {
+          const archive = await download(file.webContentLink);
+          const metaList = await getMetaFromArchive(archive, file.fileExtension);
+          if (!metaList || !metaList.length)
+            toIgnore.push({ sourceId: source.chorusId, link: file.webViewLink });
+          else {
+            // Computing default artist and song names in case there's no song.ini file,
+            // and also inputing already available metadata
+            const { artist: defaultArtist, name: defaultName } = defaultNameParser(
+              file.name
+            );
+            const song = {
+              defaultArtist,
+              defaultName,
+              lastModified: file.modifiedTime,
+              uploadedAt: file.modifiedTime,
+              source,
+              link: file.webViewLink,
+              directLinks: { archive: file.webContentLink },
+              isPack: metaList.length > 1,
+              parent: folder.canBeParent
+                ? {
+                  name: folder.name,
+                  link: folder.webViewLink
+                }
+                : null
+            };
+            for (let index = 0; index < metaList.length; ++index) {
+              const meta = metaList[index];
+              console.log(
+                `> Found "${meta.name ||
+                (meta.chartMeta || {}).Name ||
+                defaultName}" by "${meta.artist ||
+                (meta.chartMeta || {}).Artist ||
+                defaultArtist ||
+                '???'}"`
+              );
+              // An awful trick to have unique links for multiple items in a pack
+              await upsertSongs([
+                Object.assign({}, song, meta, {
+                  link: song.isPack ? `${song.link}&i=${index + 1}` : song.link
+                })
+              ]);
+            }
+          }
+          return true;
         }
+      ]);
+
+      if (!isSuccessful) {
+        console.log('3 minutes elapsed, giving up...');
       }
     }
 
