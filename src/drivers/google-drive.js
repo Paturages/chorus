@@ -283,7 +283,7 @@ module.exports = async ({
       // An attempt to counteract some downloads/extractions hanging up
       const isSuccessful = await Promise.race([
         new Promise(resolve => setTimeout(() => resolve(false), 180000)),
-        async () => {
+        new Promise(async (resolve) => {
           const archive = await download(file.webContentLink);
           const metaList = await getMetaFromArchive(archive, file.fileExtension);
           if (!metaList || !metaList.length)
@@ -328,8 +328,8 @@ module.exports = async ({
               ]);
             }
           }
-          return true;
-        }
+          resolve(true);
+        })
       ]);
 
       if (!isSuccessful) {
