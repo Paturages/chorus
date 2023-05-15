@@ -421,7 +421,12 @@ module.exports.search = async (query, offset, limit) => {
   const [, is120] = query.match(/is120=(\d)/) || [];
   const [, md5] = query.match(/md5=([^ ]+)/) || [];
 
-  const [, sort] = query.match(/sort=([^ ]+)/) || [];
+  let [, sort] = query.match(/sort=([^ ]+)/) || [];
+
+  if (sort === undefined) {
+    sort = '-date';
+  }
+
   let sortSql = [];
   if (sort) {
     const fields = sort
