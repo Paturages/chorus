@@ -142,7 +142,7 @@ module.exports = async ({
       // (there might be several .mid/.chart files, which is why they're arrays)
       if (item.name == 'song.ini') files.ini = item;
       else if (item.name.slice(0, 6) == 'video.') files.video = item;
-      else if (item.name.match(/\.(ogg|mp3|wav)$/i)) files.audio.push(item);
+      else if (item.name.match(/\.(ogg|opus|mp3|wav)$/i)) files.audio.push(item);
       else if (item.fileExtension) {
         if (item.fileExtension.match(/png|jpe?g/)) {
           if (!item.name.match(/^album\./)) files.album = item;

@@ -79,7 +79,7 @@ module.exports = async (archive, extension) => {
         /\.(ogg|mp3|wav)$/i
       ));
       const stemFiles = audioFiles.filter(path => getFileName(path).match(
-        /(guitar|bass|rhythm|drums_.|vocals|keys|song)\.(ogg|mp3|wav)$/i
+        /(guitar|bass|rhythm|drums_.|vocals|keys|song)\.(ogg|opus|mp3|wav)$/i
       ));
 
       // Order of priority: "notes.chart" > files with "[Y]" in it > first one we can find
