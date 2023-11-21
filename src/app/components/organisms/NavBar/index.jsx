@@ -23,7 +23,7 @@ const ACRONYMS = [
   'Daily reminder that stealing charts is wrong and there will be retaliation',
   'honk',
   "Chezy's Amazingly Rad Setli- wait, hold on a second",
-  'you really thought I was alive and still maintaining this huh'
+  'you really thought I was alive and still maintaining this huh',
 ];
 let ACRONYM;
 const now = new Date();

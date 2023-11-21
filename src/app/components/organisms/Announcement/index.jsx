@@ -64,15 +64,21 @@ export default class Announcement extends Component {
     //   );
   }
   render() {
-    // zzzzzzzzz
-    return null;
-    // return (
-    //   <div className="Announcement">
-    //     In today's episode of "I am very bad at design", I realized upon
-    //     implementing osu!chorus that uh
-    //     <br />
-    //     things might look better with less information, so try this I guess
-    //   </div>
-    // );
+    // it's joever (finally)
+    return (
+      <div className="Announcement">
+        chorus is in the process of being replace with a new and improved
+        website called "Chorus Encore".
+        <br />
+        The website is accessible at{' '}
+        <A href="https://enchor.us">https://enchor.us</A>. Please check it out!
+        <br />
+        (The current website will eventually redirect to the new one. Enjoy it
+        while it lasts!)
+        <br />
+        (oh my god this is the final announcement I'm adding here I'm finally
+        free)
+      </div>
+    );
   }
 }
