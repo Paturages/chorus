@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "csv-parse": "^4.10.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "glob": "^7.1.6",
     "google-auth-library": "^6.0.4",
     "googleapis": "^52.1.0",
